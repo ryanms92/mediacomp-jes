@@ -53,6 +53,9 @@ class JESProgram:
         self.skin = ''
         self.webDefinitions = JESConstants.WEB_DEFINITIONS
 
+        self.logBuffer=JESLogBuffer.JESLogBuffer(self)
+	self.logBuffer.saveBoolean = 1;
+	
         # let's just read the config file once, and if
         # it's no there, we'll handle it right now.
         # self.preCheckForConfigFile()
@@ -62,7 +65,7 @@ class JESProgram:
         self.textForCommandWindow = ''
         self.aboutWindow = None
         self.introWindow = None
-        self.logBuffer=JESLogBuffer.JESLogBuffer(self)
+
         self.gui = JESUI.JESUI(self)
         self.filename = ' '
         self.settingsFileName=''
@@ -559,7 +562,7 @@ class JESProgram:
             self.autoSaveOnRun = int(array[JESConstants.CONFIG_AUTOSAVEONRUN])
 	    self.backupSave = int(array[JESConstants.CONFIG_BACKUPSAVE])
 	    self.wrapPixelValues = int(array[JESConstants.CONFIG_WRAPPIXELVALUES])
-
+	    self.logBuffer.saveBoolean = int(array[JESConstants.CONFIG_LOGBUFFER])
             self.skin = array[JESConstants.CONFIG_SKIN] ## string value
             self.showTurnin = int(array[JESConstants.CONFIG_SHOWTURNIN])
             # print "check, program.skin:", self.skin
@@ -635,7 +638,8 @@ class JESProgram:
 				   [JESConstants.CONFIG_AUTOSAVEONRUN, self.autoSaveOnRun],
 				   [JESConstants.CONFIG_BACKUPSAVE, self.backupSave],
                                    [JESConstants.CONFIG_SHOWTURNIN, self.showTurnin],
-				   [JESConstants.CONFIG_SKIN, self.skin] ])
+				   [JESConstants.CONFIG_SKIN, self.skin],
+				   [JESConstants.CONFIG_LOGBUFFER, self.logBuffer.saveBoolean] ])
 
 
 ################################################################################

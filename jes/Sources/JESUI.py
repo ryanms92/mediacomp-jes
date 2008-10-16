@@ -176,7 +176,7 @@ JES_API_SECTIONS = [ \
                 'makeTurtle', 'penUp', 'penDown', 'makeWorld',
                 'getTurtleList', 'drop', 'getHeading', 'getXPos', 'getYPos']),
 ('Movies', ['playMovie', 'makeMovie', 'makeMovieFromInitialFile', \
-            'writeFramesToDirectory', 'addFrameToMovie', 'writeQuicktime', 'writeAVI', \
+            'writeFramesToDirectory', 'addFrameToMovie', 'writeQuicktime', \
             'openFrameSequencerTool', 'explore']),
 ('Pixels', ['getColor', 'setColor', 'getRed', 'getGreen', 'getBlue', \
             'setRed', 'setGreen', 'setBlue', 'getX', 'getY']),
@@ -1774,6 +1774,7 @@ class JESUI(swing.JFrame):
             self.loggerBox = swing.JCheckBox("", 1)
         else:
             self.loggerBox = swing.JCheckBox("", 0)
+            
         if self.program.userExperience ==  JESConstants.BEGINNER_MODE:
             self.userExperienceField = swing.JComboBox( JESConstants.USER_MODES)
         else:

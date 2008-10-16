@@ -1143,7 +1143,7 @@ def drop(turtle, picture):
     if not isinstance(turtle, Turtle):
         print "drop(turtle, picture): Input is not a turtle"
         raise ValueError
-    if not isinstance(urtl,Picture):
+    if not isinstance(turtle,Picture):
         print "drop(turtle, picture): Input is not a picture"
         raise ValueError
     turtle.drop(picture)

@@ -1,0 +1,84 @@
+\chapter{Modifying Sounds using Loops}
+
+\begin{exercises}
+\begin{ex}
+Try and see!
+\end{ex}
+
+\begin{ex}
+Take a look and see! Then go read about the the physics of accoustics and
+overtone series.
+\end{ex}
+
+\begin{ex}
+Left as an exercise to the reader -- try playing with different sounds!
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def increaseVolumeNamed(file):
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+    value = getSample(sample)
+    setSample(sample, value * 2)
+  play(sound)
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def increaseVolumeNamed(inputFile, outputFile):
+  sound = makeSound(inputFile)
+  for sample in getSamples(sound):
+    value = getSample(sample)
+    setSample(sample, value * 2)
+  writeSoundTo(sound, outputFile)
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def increaseVolumeNamed(file, multiplier):
+  sound = makeSound(file)
+  for sample in getSamples(sound):
+    value = getSample(sound):
+    setSample(sample, value * multiplier)
+\end{example}
+
+Yes. There is no restriction on the magnitude of multiplier. If multiplier
+is less than 1, then increaseVolumeNamed will actually decrease the volume.
+\end{ex}
+
+\begin{ex}
+Drawing pictures is left as an exercise to the reader.
+\end{ex}
+
+\begin{ex}
+The upper limit for allowed values of a sample is 32767 and the lower limit
+is -32768. When you increase or decrease a sample value beyond that range,
+it wraps around to the other side. This is similar to how color values
+would wrap around to non-sensical values like if you tried to increase the
+red in a picture of a person and it looked like you just gave them a
+strange skin disease (see section 3.4). After multiplying the sample values
+by a ratio greater than 1 for a while, the values become non-sensical which
+eventually translates to static noises.
+\end{ex}
+
+\begin{ex}
+The key idea to remember about making noise is that sound is caused by
+oscillate vibrations. If you have a sound that oscillate 440 times per
+second between 32767 and -32768, then that will be a relatively loud A
+above middle C. However, if you have a large span of time filled with just
+1 value that doesn't oscillate, then you will get silence, no matter how
+large the magnitude of the sample values.
+\end{ex}
+
+\begin{ex}
+The magnitude of the vibration is not the maximum sample value, but rather,
+is the distance of the maximum sample value from the mean sample value.
+Shifting a sound "vertically" does not affect the magnitude of the
+vibration or the frequency, therefore there should be little noticeable
+difference.
+\end{ex}
+
+\end{exercises}

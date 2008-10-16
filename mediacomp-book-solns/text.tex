@@ -1,0 +1,237 @@
+% text.tex, chapter of "Introduction to Media Computation"
+
+\chapter{Creating and Modifying Text}
+
+\begin{exercises}
+\begin{ex}
+You've just re-written the news. Who controls the past, controls the
+future. Who controls the present, controls the past. 
+\end{ex}
+
+\begin{ex} %% 10.2
+(a) Domain Name Server,
+(b) FTP,
+(c) URL,
+(d) Web Server,
+(e) HTTP,
+(f) Client,
+(g) HTML,
+(h) this is the extra definition,
+(i) IP.
+\end{ex}
+
+\begin{ex} %% 10.3
+(a)	Basically the idea here is that anything that takes genuine human
+judgement or insight cannot be done by writing a program.\newline
+(b)	An array is a collection of data arranged in a systematic form. A
+list and a matrix are examples of kinds of arrays. A matrix is a specific
+kind of array that is two dimensional. A tree is a set of nested arrays.
+Each "node" of a tree contains some data along with links to other "nodes".
+\newline
+(c)	Dot notation is used to call certain kinds of functions known as
+methods. Methods are functions that apply directly to objects such as
+strings or pictures. Dot notation usually eliminates the need for passing
+in objects as input as they are called ON objects. For example
+getWidth(picture) is equivalent to picture.getWidth()
+\newline
+(d)	The RGB values of a flesh-tone usually has very high red values. If
+a person is slightly flushed or sunburned, their skin will be considered
+part of the background. However if you are an alien or you are attempting
+to use chromakey on non-red objects, then red is acceptable.
+\newline
+(e)	A function is a subroutine of instructions to accomplish a certain
+task. A method is a type of function that applies its instructions to a
+certain object. Methods are functions that cannot stand alone. An object
+must be involved for a method to be executed.
+\newline
+(f) Files on a disk have a nested, hierarchical structure. A directory may
+contain not just files, but other directories. They're to help you organize
+your stuff! Arrays can't capture this structure easily (unless they
+contained other arrays), but a tree structure is just right.
+\newline
+(g)	Consider a blue square against a red background. A
+vector-graphics-based representation would say "Hey, that's a square on a
+blank background! The width and height of the background are such and such
+and the square is located at such and such coordinates with such and such
+height". A format such as bitmap would say "The pixel at 1,1 is red. The
+pixel at 1, 2 is red. The pixel at 1, 3 is red. The pixel at 1, 4 is
+red..." Vector based graphics have a very significant advantage over bitmap
+graphics when dealing with graphs, cartoonish-type pictures, etc. However,
+the advantage is lost when photographs are considered, since there is no
+set pattern for the color of the pixels that can be easily captured into
+short equations.
+\end{ex}
+
+\begin{ex} %% 10.4
+(a) 32 bits: 232 = 4,294,967,296 = 2564
+\newline
+(b) 16 bits: 216 = 65,536
+\newline
+(c) 24 bits: 224 = 16,777,216 = 2563
+\newline
+(d) 10 bits: 210 = 1,024
+\end{ex}
+
+\begin{ex} %% 10.5
+(a)	The domain name server takes the human readable domain from a URL
+(like www.google.com) and transforms it into an IP address, a form that the
+computer can handle (64.233.161.99).
+\newline
+(b)	These are all protocols that are used to transfer different kinds
+of data across the internet
+\newline
+FTP - File Transfer Protocol - used for passing files from computer to
+computer
+\newline
+SMTP - Simple Mail Transfer Protocol - This is used to transfer emails
+\newline
+HTTP - Hyper Text Transfer Protocol - This is used to deliver webpages to
+your browser.
+\newline
+(c)	Hypertext is the language that webpages are encoded in
+\newline
+(d)	A client is the computer that requests information from a server,
+the computer that delivers the information.
+\newline
+(e)	When data is transferred on the internet, at some point it needs to
+be converted into text so that it can be sent in the most simple fashion.
+\newline
+If you understand the raw protocols and encodings that data is stored in,
+you can manipulate it into any form you want. For example, you could
+manipulate the text on a webpage listing stock information and
+automatically generate an image with a chart displaying the information.
+\newline
+(f)	The internet is a network of computers spread across the world. The
+unique idea behind the creation of the internet was that there was no
+central point controlling the internet as opposed to other systems that
+were controlled by some central "brain".
+\newline
+(g)	An ISP is an internet service provider. Examples include AOL, MSN,
+Mindspring, your campus' ResNet, etc.
+\end{ex}
+
+\begin{ex} %% 10.6
+\begin{example}
+def mirrorString(string):
+  output = string[len(string) / 2]
+  for x in range(0, len(string) / 2)
+    character = string[len(string) / 2 - x - 1]
+    output = character + output + character
+  return output
+\end{example}
+\end{ex}
+
+\begin{ex} %% 10.7
+Do something creative! The answer to the problem is almost entirely in the
+problem itself.
+\end{ex}
+
+\begin{ex} %% 10.8
+\begin{example}
+def percentageGenders(string):
+  
+  # These will be used to keep track of each tally
+  males = 0
+  females = 0
+  
+  # Go through each letter in the string
+  for gender in string:
+  
+    # If the letter is M, add one to the male tally
+    if gender.upper() == 'M':
+      males = males + 1
+    
+    # If the letter is F, add one to the female tally
+    if gender.upper() == 'F':
+      females = females + 1
+  
+  # Figure out the total AS A FLOATING POINT DECIMAL
+  total = males + females + 0.0
+  
+  # Determine the percentages
+  mPercentage = str(100 * males / total) + '\%'
+  fPercentage = str(100 * females / total) + '\%'
+  
+  # Present results
+  print "There are " + mPercentage + " males and " + fPercentage + " females"
+\end{example}
+\end{ex}
+
+\begin{ex} %% 10.9
+\begin{example}
+def fixItUp(string):
+  # Which letters are messd up?
+  theseAreBad = '7890uiohj'
+  
+  # And what are their CORRESPONDING correct letters?
+  theseAreGood= 'uiopjklnm'
+  
+  # Each time we fix a letter, we'll
+  # add it to the end of this string
+  goodOutput = ''
+  
+  # Go through every letter in the document
+  for letter in string:
+
+    # Determine if the current letter is a messed up
+    # letter, and if so, which one is it?  
+    messUp = theseAreBad.find(letter)
+
+    # If it was a messed up letter then...    
+    if messUp != -1:
+    
+      # replace it with its corresponding correct letter
+      letter = theseAreGood[messUp]
+    
+    # Add the correct letter to the end of the new document
+    goodOutput = goodOutput + letter
+    
+  # Yay.
+  return goodOutput
+\end{example}
+\end{ex}
+
+\begin{ex} %% 10.10
+\begin{example}
+def doGraphics(list):
+
+    # Fresh canvas
+    canvas = makePicture(getMediaPath("640x480.jpg"))
+
+    # Go through each command in the list
+    for command in list:
+  
+        # b means make a pixel
+        if command[0] == 'b':
+    
+            # Split command up into its separate words
+            pieces = command.split(' ')
+      
+            # X coordinate and Y coordinate, 2nd and 3rd respectively
+            x = int(pieces[1])
+            y = int(pieces[2])
+      
+            # Draw it
+            canvas.addRectFilled(black, x, y, 1, 1)
+    
+        # l means make a line
+        if command[1] == 'l':
+    
+            # Split command up into its separate words
+            pieces = command.split(' ')
+      
+            # Extracting X coordinates and Y coordinates
+            x1 = int(pieces[1])
+            y1 = int(pieces[2])
+            x2 = int(pieces[3])
+            y2 = int(pieces[4])
+      
+            # Draw it
+            canvas.addLine(black, x1, y1, x2, y2)
+  
+    # voila!
+    return canvas
+\end{example}
+\end{ex}
+
+\end{exercises}

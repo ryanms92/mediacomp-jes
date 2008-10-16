@@ -1,0 +1,137 @@
+\chapter{Creating and Modifying Movies}
+\begin{exercises}
+
+\begin{ex} %% 12.1
+\begin{example}
+def animation(dir):
+  spaceship = makePicture(getMediaPath("space\_ship.jpg"))
+  planetColor = makeColor(200, 60, 0) # redish orange
+
+  maxFrame = 50
+
+  for frame in range(1, maxFrame + 1):
+    # progress is a number between 0 and 1 denoting how far the animation
+has progressed. 
+    # It will be used to determine coordinates
+    progress = (frame + 0.0) / maxFrame
+
+    #you'll want a blank canvas for each frame
+    canvas = makeEmptyPicture(320, 200)
+		
+    #draw a spaceship that flies from the left to the right and goes AROUND
+the sun in the shape of a V
+    spaceShipX = int(getWidth(canvas) * progress)
+    if frame * 2 < maxFrame:
+      spaceShipY = int(getHeight(canvas) * (.5 - progress))
+    else:
+      spaceShipY = int(getHeight(canvas) * (progress - .5))
+    copy(spaceship, canvas, spaceShipX, spaceShipY)
+
+    #draw a sun that will pulse from yellow to white. It will drift from
+the right portion of the canvas to the left portion and slightly downward
+    sunX = .75 - progress / 2
+    sunY = .5 + progress / 8
+    sunColor = makeColor(255, 255, 128 + int(127 * sin(frame * 2 * pi /
+10)))
+    canvas.addArcFilled(sunColor, int(sunX * getWidth(canvas)), int(sunY * getHeight(canvas)), 20, 20, 0, 360)
+
+    #draw a planet that will orbit the sun 3 times during the course of the
+animation
+    x = int((cos(2 * pi * progress * 3) / 6 + sunX) * getWidth(canvas))
+    y = int((cos(2 * pi * progress * 3) / 6 + sunY) * getHeight(canvas))
+    canvas.addArcFilled(planetColor, x-10, y-10, 20, 20, 0, 360)
+
+    # How many digits is the last frame?
+    # How many digits is this frame?
+    # Fill in the difference with 0's
+    leadingZeros = "0" * (len(str(maxFrame)) - len(str(frame))) 
+    writePictureTo(canvas, dir + '//frame' + leadingZeros + str(frame) + '.jpg') 
+
+def copy(pic, canvas, xoffset, yoffset):
+  bgcolor = getColor(getPixel(pic, 1, 1))
+  for p in getPixels(pic):
+    if 1 <= getX(p) <= getWidth(canvas) and 1 <= getY(p) <= getHeight(canvas):
+      color = getColor(p)
+      if distance(color, bgcolor) > 20):
+        targetX = getX(p) + xoffset
+        targetY = getY(p) + yoffset
+        targetPixel = getPixel(canvas, targetX, targetY)
+        setColor(targetPixel, color)
+\end{example}
+\end{ex}
+
+\begin{ex} %% 12.2
+/* I believe the ABC news site has drastically changed since 
+the time you wrote this question. I was thinking I could
+throw together an exerpt of a "fake" news page and show
+how one would parse that. Is that ok? */
+\end{ex}
+
+\begin{ex} %% 12.3
+Rather than passing the jungle picture in to the jungle picture in as the
+third parameter of the swapbg function, simply pass the blank wall in
+twice.
+\end{ex}
+
+\begin{ex} %% 12.4
+\begin{example}
+# Assuming that both are the same size...
+
+def blend(dir, pictureFileA, pictureFileB):
+
+  # Refer to fadeFrom and fadeInto to determine your color values
+  fadeFrom = makePicture(pictureFileA)
+  fadeInto = makePicture(pictureFileB)
+
+  # All we basically need here is a picture to use as the frame
+  # which must be the same size as the other two picture
+  canvas = makePicture(pictureFileA)
+
+  maxFrame = 100
+
+  for frame in range(maxFrame):
+
+    # Determine a ratio of how much of each picture you want
+    # in this frame. 
+    ratio = frame / (maxFrame - 1.0)
+  
+    for x in range(1, getWidth(canvas) + 1):
+      for y in range(1, getHeight(canvas) + 1):
+
+        # Get the pixels you'll be reading from
+        pixelA = getPixel(fadeFrom, x, y)
+        pixelB = getPixel(fadeInto, x, y)
+
+        # Get the pixel you'll be writing to
+        target = getPixel(canvas, x, y)
+
+        # Calculate and set the red value
+        redA = getRed(pixelA) * (1 - ratio)
+        redB = getRed(pixelB) * ratio
+        setRed(target, redA + redB)
+
+        # Calculate and set the green value
+        greenA = getGreen(pixelA) * (1 - ratio)
+        greenB = getGreen(pixelB) * ratio
+        setGreen(target, greenA + greenB)
+
+        # Calculate and set the blue value
+        blueA = getBlue(pixelA) * (1 - ratio)
+        blueB = getBlue(pixelB) * ratio
+        setBlue(target, blueA + blueB)
+
+    # Convert the numerical frame number to a string
+    framenum = str(frame)
+
+    # Determine how many 0's should be in front of the frame number
+    zeros = "0" * (len(str(maxFrame)) - len(framenum))
+
+    # Concatenate the Zeros onto the front of the frame number
+    framenum = zeros + framenum
+  
+    # Write the picture to the directory with the proper file name
+    writePictureTo(canvas, dir + '//' + 'frame' + framenum + '.jpg')
+\end{example}
+\end{ex}
+
+\end{exercises}

@@ -1,0 +1,3690 @@
+Only in ../jes-1315/JES/.: .DS_Store
+Common subdirectories: ./images and ../jes-1315/JES/./images
+Only in ../jes-1315/JES/.: jes
+Only in .: JESAPIHelp.html
+Only in .: JES.app
+Only in .: JES.exe
+Common subdirectories: ./JESHelp and ../jes-1315/JES/./JESHelp
+Only in ../jes-1315/JES/.: JESPreprocessing.py
+Only in .: JES.sh
+Only in ../jes-1315/JES/.: JMF-2.1.1e
+Only in .: jython
+Common subdirectories: ./jython-2.1 and ../jes-1315/JES/./jython-2.1
+Only in .: jython.jar
+Only in ../jes-1315/JES/.: media.py
+Only in ../jes-1315/JES/.: .notesTA.txt
+Common subdirectories: ./Sources and ../jes-1315/JES/./Sources
+Only in ../jes-1315/JES/.: Sources.zip
+--- ./JESHelp/auxHelp/Programming_DataTypes.html	2005-11-27 17:33:18.000000000 -0500
++++ ../jes-1315/JES/./JESHelp/auxHelp/Programming_DataTypes.html	2003-05-12 16:45:00.000000000 -0400
+@@ -15,7 +15,7 @@
+     <td bgcolor="#dddddd"> <b>Basic Data Types</b><br> <br>
+       Data types are simply different kinds of data that are recognized by a programming 
+       langauge. Jython, like almost all languages, recognizes the basic data types 
+-      listed below. Although you usually don't need to tell Jython what kind of 
++      listed below. Although you usually don't need to tell Jython what kinf of 
+       data you are using (it figures it out by looking at the data!) it is still 
+       important to understand how Jython uses the different data types. 
+       <ul>
+--- ./JESHelp/JESHelp/5_Sound_Functions.html	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./JESHelp/JESHelp/5_Sound_Functions.html	2003-07-22 13:50:00.000000000 -0400
+@@ -104,46 +104,36 @@
+             Takes a Sample object and returns the Sound that it remembers as its own.
+           </td>
+         </tr>
+-
+         <tr>
+-          <td>makeEmptySound</td>
++          <td>makeSound</td>
+           <td>
+-          <b>makeEmptySound</b>(duration):<br>
+-            <font color=blue>duration</font>: An integer, time in seconds for duration of sound<br>
+-            <font color=blue>returns</font>: An Empty Sound.<br>
+-            Takes a duration in secounds as sinput and returns the empty sound.
+-          </td>
+-        </tr>
+-
+-        <tr>
+-          <td bgcolor="#eeeeee">makeSound</td>
+-          <td bgcolor="#eeeeee">
+           <b>makeSound</b>(path):<br>
+             <font color=blue>path</font>: A String, a path to a wav file.<br>
+             <font color=blue>returns</font>: A Sound, created from the file at the given path.<br>
+             Takes a filename as input, reads the file, and creates a sound from it. Returns the sound.
+           </td>
+         </tr>
+-
+         <tr>
+-          <td>pickAFile</td>
+-          <td>
++          <td bgcolor="#eeeeee">pickAFile</td>
++          <td bgcolor="#eeeeee">
+           <b>pickAFile</b>():<br>
+             <font color=blue>returns</font>: A String, the path to the file chosen in the dialog box.<br>
+             Lets the user pick a file and returns the complete path name as a string. No input.
+           </td>
+         </tr>
+         <tr>
+-          <td bgcolor="#eeeeee">play</td>
+-          <td bgcolor="#eeeeee">
++          <td>play<br>
++            </td>
++          <td>
+           <b>play</b>(A Sound):<br>
+             <font color=blue>sound</font>: the sound you want to be played.<br>
+             Plays a sound provided as input. No return value.
+           </td>
+         </tr>
+         <tr>
+-          <td>playNote</td>
+-          <td>
++          <td bgcolor="#EEEEEE">playNote<br>
++            </td>
++          <td bgcolor="#EEEEEE">
+           <b>playNote</b>(note, duration, intensity):<br>
+             <font color=blue>note</font>: the note (a number > 0) you want to be played.<br>
+             <font color=blue>duration</font>: the duration you want the note to be played in milliseconds.<br>
+@@ -152,8 +142,9 @@
+           </td>
+         </tr>
+         <tr>
+-          <td bgcolor="#eeeeee">playAtRate </td>
+-          <td bgcolor="#eeeeee">
++          <td>playAtRate<br>
++            </td>
++          <td>
+           <b>playAtRate</b>(sound, rate):<br>
+             <font color=blue>sound</font>: A Sound, the sound you want to be played.<br>
+             <font color=blue>rate</font>: A Number, the rate you want the sound to be played.<br>
+@@ -161,8 +152,9 @@
+           </td>
+         </tr>
+         <tr>
+-          <td>playAtRateDur</td>
+-          <td>
++          <td bgcolor="#EEEEEE">playAtRateDur<br>
++            </td>
++          <td bgcolor="#EEEEEE">
+           <b>playAtRateDur</b>(sound, rate, duration):<br>
+             <font color=blue>sound</font>: A Sound, the sound you want to be played.<br>
+             <font color=blue>rate</font>: A Number, the rate at which you want the sound to be played.<br>
+@@ -171,8 +163,8 @@
+           </td>
+         </tr>
+         <tr>
+-          <td bgcolor="#eeeeee">playInRange</td>
+-          <td bgcolor="#eeeeee">
++          <td>playInRange</td>
++          <td>
+             <b>playInRange</b>(sound, start, stop):<br>
+             <font color=blue>sound</font>: A Sound, the sound you want to play a piece of.<br>
+             <font color=blue>start</font>: A Number, the index of the sound you want the playback to start.<br>
+@@ -181,9 +173,9 @@
+           </td>
+         </tr>
+         <tr>
+-          <td>setSample<br>
++          <td bgcolor="#EEEEEE">setSample<br>
+             </td>
+-          <td>
++          <td bgcolor="#EEEEEE">
+           <b>setSample</b>(sample, value):<br>
+             <font color=blue>sample</font>: A Sample, the sound sample tou want to change the value of.<br>
+             <font color=blue>value</font>: An Integer, the value you want to set the sample to.<br>
+@@ -191,8 +183,9 @@
+           </td>
+         </tr>
+         <tr>
+-          <td bgcolor="#eeeeee">setSampleValueAt </td>
+-          <td bgcolor="#eeeeee">
++          <td>setSampleValueAt<br>
++            </td>
++          <td>
+             <b>setSampleValueAt</b>(sound, index, value):<br>
+             <font color=blue>sound</font>: A Sound, the sound you want to change a sample in.<br>
+             <font color=blue>index</font>: An Integer, the index of the sample you want to set.<br>
+@@ -201,8 +194,10 @@
+           </td>
+         </tr>
+         <tr>
+-          <td>writeSoundTo</td>
+-          <td>
++          <td bgcolor="#EEEEEE">writeSoundTo
++<br>
++            </td>
++          <td bgcolor="#EEEEEE">
+           <b>writeSoundTo</b>(sound, filename):<br>
+             <font color=blue>sound</font>: A Sound, the sound you want to write out to a file.<br>
+             <font color=blue>filename</font>: A String, the path of the location you want to write the sound.<br>
+--- ./JESHelp/JESHelp/Turning_in_Assignments.html	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./JESHelp/JESHelp/Turning_in_Assignments.html	2003-07-31 17:18:00.000000000 -0400
+@@ -89,7 +89,7 @@
+         </tr>
+         <tr> 
+           <td align="right">GA Tech:</td>
+-          <td>smtp.mail.gatech.edu</td>
++          <td>smtp.prism.gatech.edu</td>
+         </tr>
+         <tr> 
+           <td align="right">GTE:</td>
+Common subdirectories: ./jython-2.1/cachedir and ../jes-1315/JES/./jython-2.1/cachedir
+Only in ../jes-1315/JES/./jython-2.1: com
+Only in ../jes-1315/JES/./jython-2.1: Demo
+Common subdirectories: ./jython-2.1/Doc and ../jes-1315/JES/./jython-2.1/Doc
+Only in ../jes-1315/JES/./jython-2.1: .DS_Store
+Common subdirectories: ./jython-2.1/installer and ../jes-1315/JES/./jython-2.1/installer
+diff -u --ignore-space-change ./jython-2.1/jython ../jes-1315/JES/./jython-2.1/jython
+--- ./jython-2.1/jython	2005-03-17 15:22:00.000000000 -0500
++++ ../jes-1315/JES/./jython-2.1/jython	2003-07-22 12:54:00.000000000 -0400
+@@ -2,6 +2,7 @@
+ ###############################################################################
+ #
+ # This file generated by Jython installer
+-# Created on XXX by wesa
++# Created on XXX by awilson
+ 
+-"/net/usr.local-i586rh-9/j2sdk1.4.0/jre/bin/java" -Dpython.home="/net/hu14/wesa/courses/cs3911/jes-source/jython-2.1" -classpath "/net/hu14/wesa/courses/cs3911/jes-source/jython-2.1/jython.jar:$CLASSPATH" "org.python.util.jython" "$@"
++"java" -Xmx512m -Dpython.home="." -classpath ".:./jython.jar:../JMF-2.1.1e/lib/jmf.jar:../Sources/:../:$CLASSPATH
++" "org.python.util.jython" "$@"
+diff -u --ignore-space-change ./jython-2.1/jythonc ../jes-1315/JES/./jython-2.1/jythonc
+--- ./jython-2.1/jythonc	2005-03-17 15:22:00.000000000 -0500
++++ ../jes-1315/JES/./jython-2.1/jythonc	2003-05-27 20:51:00.000000000 -0400
+@@ -2,6 +2,6 @@
+ ###############################################################################
+ #
+ # This file generated by Jython installer
+-# Created on XXX by wesa
++# Created on XXX by awilson
+ 
+-"/net/hu14/wesa/courses/cs3911/jes-source/jython-2.1/jython" "/net/hu14/wesa/courses/cs3911/jes-source/jython-2.1/Tools/jythonc/jythonc.py" "$@"
++"/net/hu11/awilson/JES/jython-2.1/jython" "/net/hu11/awilson/JES/jython-2.1/Tools/jythonc/jythonc.py" "$@"
+Common subdirectories: ./jython-2.1/Lib and ../jes-1315/JES/./jython-2.1/Lib
+Only in ../jes-1315/JES/./jython-2.1: org
+Common subdirectories: ./jython-2.1/Tools and ../jes-1315/JES/./jython-2.1/Tools
+Only in ../jes-1315/JES/./jython-2.1: TXT
+Files ./jython-2.1/Uninstall.class and ../jes-1315/JES/./jython-2.1/Uninstall.class differ
+Files ./jython-2.1/cachedir/packages/apple_provider.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/apple_provider.pkc differ
+Files ./jython-2.1/cachedir/packages/charsets.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/charsets.pkc differ
+Files ./jython-2.1/cachedir/packages/classes.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/classes.pkc differ
+Files ./jython-2.1/cachedir/packages/CoreAudio.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/CoreAudio.pkc differ
+Files ./jython-2.1/cachedir/packages/dns_sd.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/dns_sd.pkc differ
+Files ./jython-2.1/cachedir/packages/dnsns.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/dnsns.pkc differ
+Files ./jython-2.1/cachedir/packages/jce$1.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jce$1.pkc differ
+Files ./jython-2.1/cachedir/packages/jce.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jce.pkc differ
+Files ./jython-2.1/cachedir/packages/jsse$1.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jsse$1.pkc differ
+Files ./jython-2.1/cachedir/packages/jsse.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jsse.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$1.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$1.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$2.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$2.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$3.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$3.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$4.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$4.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$5.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$5.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$6.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$6.pkc differ
+Files ./jython-2.1/cachedir/packages/jython$7.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython$7.pkc differ
+Files ./jython-2.1/cachedir/packages/jython.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/jython.pkc differ
+Files ./jython-2.1/cachedir/packages/laf.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/laf.pkc differ
+Files ./jython-2.1/cachedir/packages/ldapsec.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/ldapsec.pkc differ
+Files ./jython-2.1/cachedir/packages/localedata.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/localedata.pkc differ
+Files ./jython-2.1/cachedir/packages/MRJToolkit.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/MRJToolkit.pkc differ
+Files ./jython-2.1/cachedir/packages/packages.idx and ../jes-1315/JES/./jython-2.1/cachedir/packages/packages.idx differ
+Files ./jython-2.1/cachedir/packages/QTJava.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/QTJava.pkc differ
+Files ./jython-2.1/cachedir/packages/QTJSupport.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/QTJSupport.pkc differ
+Files ./jython-2.1/cachedir/packages/sunjce_provider$1.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/sunjce_provider$1.pkc differ
+Files ./jython-2.1/cachedir/packages/sunjce_provider.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/sunjce_provider.pkc differ
+Files ./jython-2.1/cachedir/packages/sunrsasign.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/sunrsasign.pkc differ
+Files ./jython-2.1/cachedir/packages/ui.pkc and ../jes-1315/JES/./jython-2.1/cachedir/packages/ui.pkc differ
+Files ./jython-2.1/Lib/atexit$py.class and ../jes-1315/JES/./jython-2.1/Lib/atexit$py.class differ
+Files ./jython-2.1/Lib/base64$py.class and ../jes-1315/JES/./jython-2.1/Lib/base64$py.class differ
+Files ./jython-2.1/Lib/bdb$py.class and ../jes-1315/JES/./jython-2.1/Lib/bdb$py.class differ
+Files ./jython-2.1/Lib/cmd$py.class and ../jes-1315/JES/./jython-2.1/Lib/cmd$py.class differ
+Files ./jython-2.1/Lib/code$py.class and ../jes-1315/JES/./jython-2.1/Lib/code$py.class differ
+Files ./jython-2.1/Lib/copy_reg$py.class and ../jes-1315/JES/./jython-2.1/Lib/copy_reg$py.class differ
+Files ./jython-2.1/Lib/getopt$py.class and ../jes-1315/JES/./jython-2.1/Lib/getopt$py.class differ
+Files ./jython-2.1/Lib/httplib$py.class and ../jes-1315/JES/./jython-2.1/Lib/httplib$py.class differ
+Files ./jython-2.1/Lib/javaos$py.class and ../jes-1315/JES/./jython-2.1/Lib/javaos$py.class differ
+Files ./jython-2.1/Lib/javapath$py.class and ../jes-1315/JES/./jython-2.1/Lib/javapath$py.class differ
+Files ./jython-2.1/Lib/keyword$py.class and ../jes-1315/JES/./jython-2.1/Lib/keyword$py.class differ
+Files ./jython-2.1/Lib/linecache$py.class and ../jes-1315/JES/./jython-2.1/Lib/linecache$py.class differ
+Files ./jython-2.1/Lib/mimetools$py.class and ../jes-1315/JES/./jython-2.1/Lib/mimetools$py.class differ
+Files ./jython-2.1/Lib/mimetypes$py.class and ../jes-1315/JES/./jython-2.1/Lib/mimetypes$py.class differ
+Files ./jython-2.1/Lib/MimeWriter$py.class and ../jes-1315/JES/./jython-2.1/Lib/MimeWriter$py.class differ
+Files ./jython-2.1/Lib/pawt/__init__$py.class and ../jes-1315/JES/./jython-2.1/Lib/pawt/__init__$py.class differ
+Files ./jython-2.1/Lib/pawt/colors$py.class and ../jes-1315/JES/./jython-2.1/Lib/pawt/colors$py.class differ
+Files ./jython-2.1/Lib/pdb$py.class and ../jes-1315/JES/./jython-2.1/Lib/pdb$py.class differ
+Files ./jython-2.1/Lib/posixpath$py.class and ../jes-1315/JES/./jython-2.1/Lib/posixpath$py.class differ
+Files ./jython-2.1/Lib/quopri$py.class and ../jes-1315/JES/./jython-2.1/Lib/quopri$py.class differ
+Files ./jython-2.1/Lib/re$py.class and ../jes-1315/JES/./jython-2.1/Lib/re$py.class differ
+Files ./jython-2.1/Lib/repr$py.class and ../jes-1315/JES/./jython-2.1/Lib/repr$py.class differ
+Files ./jython-2.1/Lib/rfc822$py.class and ../jes-1315/JES/./jython-2.1/Lib/rfc822$py.class differ
+Files ./jython-2.1/Lib/site$py.class and ../jes-1315/JES/./jython-2.1/Lib/site$py.class differ
+Files ./jython-2.1/Lib/smtplib$py.class and ../jes-1315/JES/./jython-2.1/Lib/smtplib$py.class differ
+Files ./jython-2.1/Lib/socket$py.class and ../jes-1315/JES/./jython-2.1/Lib/socket$py.class differ
+Files ./jython-2.1/Lib/sre$py.class and ../jes-1315/JES/./jython-2.1/Lib/sre$py.class differ
+Files ./jython-2.1/Lib/sre_compile$py.class and ../jes-1315/JES/./jython-2.1/Lib/sre_compile$py.class differ
+Files ./jython-2.1/Lib/sre_constants$py.class and ../jes-1315/JES/./jython-2.1/Lib/sre_constants$py.class differ
+Files ./jython-2.1/Lib/sre_parse$py.class and ../jes-1315/JES/./jython-2.1/Lib/sre_parse$py.class differ
+Files ./jython-2.1/Lib/stat$py.class and ../jes-1315/JES/./jython-2.1/Lib/stat$py.class differ
+Files ./jython-2.1/Lib/string$py.class and ../jes-1315/JES/./jython-2.1/Lib/string$py.class differ
+Files ./jython-2.1/Lib/StringIO$py.class and ../jes-1315/JES/./jython-2.1/Lib/StringIO$py.class differ
+Files ./jython-2.1/Lib/tempfile$py.class and ../jes-1315/JES/./jython-2.1/Lib/tempfile$py.class differ
+Files ./jython-2.1/Lib/threading$py.class and ../jes-1315/JES/./jython-2.1/Lib/threading$py.class differ
+Files ./jython-2.1/Lib/token$py.class and ../jes-1315/JES/./jython-2.1/Lib/token$py.class differ
+Files ./jython-2.1/Lib/tokenize$py.class and ../jes-1315/JES/./jython-2.1/Lib/tokenize$py.class differ
+Files ./jython-2.1/Lib/traceback$py.class and ../jes-1315/JES/./jython-2.1/Lib/traceback$py.class differ
+Files ./jython-2.1/Lib/urllib$py.class and ../jes-1315/JES/./jython-2.1/Lib/urllib$py.class differ
+Files ./jython-2.1/Lib/urlparse$py.class and ../jes-1315/JES/./jython-2.1/Lib/urlparse$py.class differ
+Files ./jython-2.1/Lib/user$py.class and ../jes-1315/JES/./jython-2.1/Lib/user$py.class differ
+Files ./jython-2.1/Lib/UserDict$py.class and ../jes-1315/JES/./jython-2.1/Lib/UserDict$py.class differ
+Files ./jython-2.1/Uninstall.class and ../jes-1315/JES/./jython-2.1/Uninstall.class differ
+Files ./Sources/colors$py.class and ../jes-1315/JES/./Sources/colors$py.class differ
+Files ./Sources/HighlightingStyledDocument.class and ../jes-1315/JES/./Sources/HighlightingStyledDocument.class differ
+--- ./Sources/HighlightingStyledDocument.java	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/HighlightingStyledDocument.java	2003-07-23 11:50:00.000000000 -0400
+@@ -25,13 +25,9 @@
+     /* Comment Style */
+     private SimpleAttributeSet commentStyle = new SimpleAttributeSet();
+     
+-    /* String Style */
++    /* String style */
+     private SimpleAttributeSet stringStyle = new SimpleAttributeSet();
+ 
+-    /* Parentheses Style */
+-    private SimpleAttributeSet rParenStyle = new SimpleAttributeSet();
+-    private SimpleAttributeSet lParenStyle = new SimpleAttributeSet();
+-    
+     /* Default Style */
+     private SimpleAttributeSet defaultStyle = new SimpleAttributeSet();
+     
+@@ -41,9 +37,6 @@
+     /* Gutters */
+     private Vector gutters = new Vector();
+ 
+-    /* Parentheses */
+-    private Vector lParens = new Vector();
+-    
+     /* Jython environment words */
+     private Vector environmentWords = new Vector();
+     
+@@ -53,11 +46,6 @@
+     /* Generated regular expression for environment words */
+     private Pattern envReg = Pattern.compile("");
+     
+-    /* Regular Expression for parentheses */
+-    //    private Patter extraParenReg = Pattern.compile("[\)\(]");
+-
+-    // private Patter missingParenReg = Pattern.compile("\(\(+.*\)");
+-
+     /* Regular Expression for comments */
+     private Pattern commentReg = Pattern.compile("#++[^\n]*");
+     
+@@ -77,8 +65,6 @@
+     /* Regular Expression to match triple qoutes */
+     private Pattern triQuote = Pattern.compile("\"\"\"");
+ 
+-    public static String newline = System.getProperty("line.separator");
+-
+     /**
+      * insertString
+      * Overrides the default method from DefaultStyledDocument.  Calls appropriate
+@@ -124,15 +110,13 @@
+             int lineend = defaultElement.getElementIndex(offset + length);
+             int start = defaultElement.getElement(line).getStartOffset();
+             int end = defaultElement.getElement(lineend).getEndOffset();
+-            int endPoint = getLength();
+-	    
+ 
+-	    String fullText = getText(0, endPoint);
+             String text = getText(start, end - start);
+             setCharacterAttributes(start, end - start, defaultStyle, true);
+             
+             //Do Block Highlighting:            
+             
++            
+             //Find and highlight keywords:
+             Matcher m = keyReg.matcher(text);
+             while (m.find())
+@@ -153,38 +137,10 @@
+                 if (text.charAt(m.start()) == '\'' || text.charAt(m.start()) == '"')
+                     setCharacterAttributes(start + m.start(), m.end() - m.start(), stringStyle, true);
+             }
+-
+ 	    //Matches Multi-line strings starting with triple quotes:
+             /*m = mlString.matcher(textAll);
+ 	      while(m.find())
+                 setCharacterAttributes(m.start(), m.end() - m.start(), stringStyle, true);*/
+-
+-	    // Build lParen Vector and find and highlight missing or extra parentheses
+-	    // make sure we check ENIRE document for it
+-	    
+-	    for(int x = start; x < end; x++){
+-		char c = text.charAt(x-start);
+-		Integer indexVal = new Integer(x);
+-		    
+-		if(c == '(' && !(isString(x) || isComment(x))) {		   
+-		    lParens.add(indexVal);
+-		} else if(c == ')' && !(isString(x) || isComment(x))) {
+-		    if(lParens.isEmpty()) { 
+-			setCharacterAttributes(x, 1, rParenStyle, true); // color right paren
+-		    } else {
+-			lParens.remove(lParens.size() - 1); // remove the vector from the lparen vector
+-		    }
+-		}	
+-	    }
+-	    for(Enumeration e = lParens.elements(); e.hasMoreElements();) { 
+-		int index = ((Integer)e.nextElement()).intValue();
+-		setCharacterAttributes(index, 1, lParenStyle, true); // color left paren
+-
+-	    }
+-	    lParens.clear();
+-
+-	    	   
+-      
+         }
+         catch( Exception e){}
+     }
+@@ -230,28 +186,26 @@
+      * Looks at a location in the given document and determines if 
+      * that location is inside a string.  Supports """ for multi-line
+      * strings.
+-     * PRE: Strings have been colorized
+      * @param doc The document to look in for the text
+      * @param offset The location to check for string-ness
+      * @return True for is a string, false for is not a string
+      */
+     private boolean isString(int offset)
+     {
+-	return getCharacterElement(offset).getAttributes().isEqual(stringStyle);
++        return false;
+     }
+     
+     /**
+      * Method: isComment
+      * Looks at a location inside a document and determines if it is
+      * a comment.
+-     * PRE: Comments have been colorized
+      * @param doc The document to look in for the text
+      * @param offset The location to check for stringness
+      * @return True for is a comment, false for is not a comment
+      */
+     private boolean isComment(int offset)
+     {
+-	return getCharacterElement(offset).getAttributes().isEqual(commentStyle);
++        return false;
+     }
+     
+     /**
+@@ -347,26 +301,6 @@
+     }
+ 
+     /**
+-     * Method: setLParenStyle
+-     * Sets the style of text to use for invalid Left Parens
+-     * @param style The new text style
+-     */
+-    public void setLParenStyle(SimpleAttributeSet style)
+-    {
+-        lParenStyle = style;
+-    } 
+-
+-    /**
+-     * Method: setRParenStyle
+-     * Sets the style of text to use for invalid Right Parens
+-     * @param style The new text style
+-     */
+-    public void setRParenStyle(SimpleAttributeSet style)
+-    {
+-        rParenStyle = style;
+-    }
+-    
+-    /**
+      * Method: setDefaultStyle
+      * Sets the default style of text to use
+      * @param style The new text style
+Files ./Sources/Html_Browser$py.class and ../jes-1315/JES/./Sources/Html_Browser$py.class differ
+--- ./Sources/javadoc/allclasses-frame.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/allclasses-frame.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,7 +2,7 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+ All Classes
+ </TITLE>
+@@ -21,41 +21,33 @@
+ 
+ <TABLE BORDER="0" WIDTH="100%">
+ <TR>
+-<TD NOWRAP><FONT CLASS="FrameItemFont"><A HREF="DigitalPicture.html" TARGET="classFrame"><I>DigitalPicture</I></A>
++<TD NOWRAP><FONT CLASS="FrameItemFont"><A HREF="HighlightingStyledDocument.html" TARGET="classFrame">HighlightingStyledDocument</A>
+ <BR>
+-<A HREF="FileChooser.html" TARGET="classFrame">FileChooser</A>
++<A HREF="JavaMovie.html" TARGET="classFrame">JavaMovie</A>
+ <BR>
+-<A HREF="HighlightingStyledDocument.html" TARGET="classFrame">HighlightingStyledDocument</A>
+-<BR>
+-<A HREF="ImageDisplay.html" TARGET="classFrame">ImageDisplay</A>
++<A HREF="JavaMoviePlayer.html" TARGET="classFrame">JavaMoviePlayer</A>
+ <BR>
+ <A HREF="JavaMusic.html" TARGET="classFrame">JavaMusic</A>
+ <BR>
+-<A HREF="JESGutter.html" TARGET="classFrame">JESGutter</A>
+-<BR>
+-<A HREF="Picture.html" TARGET="classFrame">Picture</A>
++<A HREF="JavaPicture.html" TARGET="classFrame">JavaPicture</A>
+ <BR>
+-<A HREF="PictureExplorer.html" TARGET="classFrame">PictureExplorer</A>
++<A HREF="JavaPixel.html" TARGET="classFrame">JavaPixel</A>
+ <BR>
+-<A HREF="PictureFrame.html" TARGET="classFrame">PictureFrame</A>
++<A HREF="JavaSound.html" TARGET="classFrame">JavaSound</A>
+ <BR>
+-<A HREF="Pixel.html" TARGET="classFrame">Pixel</A>
++<A HREF="JavaSoundException.html" TARGET="classFrame">JavaSoundException</A>
+ <BR>
+-<A HREF="Playback.html" TARGET="classFrame">Playback</A>
+-<BR>
+-<A HREF="SimpleOutput.html" TARGET="classFrame">SimpleOutput</A>
+-<BR>
+-<A HREF="SimplePicture.html" TARGET="classFrame">SimplePicture</A>
++<A HREF="JESGutter.html" TARGET="classFrame">JESGutter</A>
+ <BR>
+-<A HREF="SimpleSound.html" TARGET="classFrame">SimpleSound</A>
++<A HREF="JpegImagesToMovie.html" TARGET="classFrame">JpegImagesToMovie</A>
+ <BR>
+-<A HREF="SoundException.html" TARGET="classFrame">SoundException</A>
++<A HREF="MovieMaker.html" TARGET="classFrame">MovieMaker</A>
+ <BR>
+-<A HREF="SoundExplorer.html" TARGET="classFrame">SoundExplorer</A>
++<A HREF="PictureViewer.html" TARGET="classFrame">PictureViewer</A>
+ <BR>
+-<A HREF="SoundSample.html" TARGET="classFrame">SoundSample</A>
++<A HREF="ShowImage.html" TARGET="classFrame">ShowImage</A>
+ <BR>
+-<A HREF="TConversionTool.html" TARGET="classFrame">TConversionTool</A>
++<A HREF="SoundView.html" TARGET="classFrame">SoundView</A>
+ <BR>
+ </FONT></TD>
+ </TR>
+--- ./Sources/javadoc/allclasses-noframe.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/allclasses-noframe.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,7 +2,7 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+ All Classes
+ </TITLE>
+@@ -21,41 +21,33 @@
+ 
+ <TABLE BORDER="0" WIDTH="100%">
+ <TR>
+-<TD NOWRAP><FONT CLASS="FrameItemFont"><A HREF="DigitalPicture.html" TARGET=""><I>DigitalPicture</I></A>
++<TD NOWRAP><FONT CLASS="FrameItemFont"><A HREF="HighlightingStyledDocument.html" TARGET="">HighlightingStyledDocument</A>
+ <BR>
+-<A HREF="FileChooser.html" TARGET="">FileChooser</A>
++<A HREF="JavaMovie.html" TARGET="">JavaMovie</A>
+ <BR>
+-<A HREF="HighlightingStyledDocument.html" TARGET="">HighlightingStyledDocument</A>
+-<BR>
+-<A HREF="ImageDisplay.html" TARGET="">ImageDisplay</A>
++<A HREF="JavaMoviePlayer.html" TARGET="">JavaMoviePlayer</A>
+ <BR>
+ <A HREF="JavaMusic.html" TARGET="">JavaMusic</A>
+ <BR>
+-<A HREF="JESGutter.html" TARGET="">JESGutter</A>
+-<BR>
+-<A HREF="Picture.html" TARGET="">Picture</A>
++<A HREF="JavaPicture.html" TARGET="">JavaPicture</A>
+ <BR>
+-<A HREF="PictureExplorer.html" TARGET="">PictureExplorer</A>
++<A HREF="JavaPixel.html" TARGET="">JavaPixel</A>
+ <BR>
+-<A HREF="PictureFrame.html" TARGET="">PictureFrame</A>
++<A HREF="JavaSound.html" TARGET="">JavaSound</A>
+ <BR>
+-<A HREF="Pixel.html" TARGET="">Pixel</A>
++<A HREF="JavaSoundException.html" TARGET="">JavaSoundException</A>
+ <BR>
+-<A HREF="Playback.html" TARGET="">Playback</A>
+-<BR>
+-<A HREF="SimpleOutput.html" TARGET="">SimpleOutput</A>
+-<BR>
+-<A HREF="SimplePicture.html" TARGET="">SimplePicture</A>
++<A HREF="JESGutter.html" TARGET="">JESGutter</A>
+ <BR>
+-<A HREF="SimpleSound.html" TARGET="">SimpleSound</A>
++<A HREF="JpegImagesToMovie.html" TARGET="">JpegImagesToMovie</A>
+ <BR>
+-<A HREF="SoundException.html" TARGET="">SoundException</A>
++<A HREF="MovieMaker.html" TARGET="">MovieMaker</A>
+ <BR>
+-<A HREF="SoundExplorer.html" TARGET="">SoundExplorer</A>
++<A HREF="PictureViewer.html" TARGET="">PictureViewer</A>
+ <BR>
+-<A HREF="SoundSample.html" TARGET="">SoundSample</A>
++<A HREF="ShowImage.html" TARGET="">ShowImage</A>
+ <BR>
+-<A HREF="TConversionTool.html" TARGET="">TConversionTool</A>
++<A HREF="SoundView.html" TARGET="">SoundView</A>
+ <BR>
+ </FONT></TD>
+ </TR>
+--- ./Sources/javadoc/constant-values.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/constant-values.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,7 +2,7 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+ Constant Field Values
+ </TITLE>
+--- ./Sources/javadoc/deprecated-list.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/deprecated-list.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,16 +2,16 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+-Deprecated List ()
++Deprecated List
+ </TITLE>
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+ function asd()
+ {
+-parent.document.title="Deprecated List ()";
++parent.document.title="Deprecated List";
+ }
+ </SCRIPT>
+ <BODY BGCOLOR="white" onload="asd();">
+--- ./Sources/javadoc/help-doc.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/help-doc.html	2003-11-14 12:52:51.000000000 -0500
+@@ -2,16 +2,16 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:09 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:51 EST 2003 -->
+ <TITLE>
+-API Help ()
++API Help
+ </TITLE>
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+ function asd()
+ {
+-parent.document.title="API Help ()";
++parent.document.title="API Help";
+ }
+ </SCRIPT>
+ <BODY BGCOLOR="white" onload="asd();">
+--- ./Sources/javadoc/HighlightingStyledDocument.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/HighlightingStyledDocument.html	2003-11-14 12:52:50.000000000 -0500
+@@ -2,10 +2,11 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+ HighlightingStyledDocument
+ </TITLE>
++<META NAME="keywords" CONTENT="HighlightingStyledDocument,HighlightingStyledDocument class">
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+@@ -41,8 +42,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="FileChooser.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="ImageDisplay.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;PREV CLASS&nbsp;
++&nbsp;<A HREF="JavaMovie.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="HighlightingStyledDocument.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+@@ -61,9 +62,9 @@
+ </TR>
+ <TR>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_javax.swing.text.DefaultStyledDocument">NESTED</A>&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
++  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.text.DefaultStyledDocument">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
++DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+ </TR>
+ </TABLE>
+ <!-- =========== END OF NAVBAR =========== -->
+@@ -104,32 +105,7 @@
+ <P>
+ <!-- ======== NESTED CLASS SUMMARY ======== -->
+ 
+-<A NAME="nested_class_summary"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+-<TD COLSPAN=2><FONT SIZE="+2">
+-<B>Nested Class Summary</B></FONT></TD>
+-</TR>
+-</TABLE>
+-&nbsp;<A NAME="nested_classes_inherited_from_class_javax.swing.text.DefaultStyledDocument"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+-<TD><B>Nested classes inherited from class javax.swing.text.DefaultStyledDocument</B></TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE>javax.swing.text.DefaultStyledDocument.AttributeUndoableEdit, javax.swing.text.DefaultStyledDocument.ElementBuffer, javax.swing.text.DefaultStyledDocument.ElementSpec, javax.swing.text.DefaultStyledDocument.SectionElement</CODE></TD>
+-</TR>
+-</TABLE>
+-&nbsp;<A NAME="nested_classes_inherited_from_class_javax.swing.text.AbstractDocument"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+-<TD><B>Nested classes inherited from class javax.swing.text.AbstractDocument</B></TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE>javax.swing.text.AbstractDocument.AbstractElement, javax.swing.text.AbstractDocument.AttributeContext, javax.swing.text.AbstractDocument.BranchElement, javax.swing.text.AbstractDocument.Content, javax.swing.text.AbstractDocument.DefaultDocumentEvent, javax.swing.text.AbstractDocument.ElementEdit, javax.swing.text.AbstractDocument.LeafElement</CODE></TD>
+-</TR>
+-</TABLE>
+-&nbsp;
++
+ <!-- =========== FIELD SUMMARY =========== -->
+ 
+ <A NAME="field_summary"><!-- --></A>
+@@ -138,14 +114,6 @@
+ <TD COLSPAN=2><FONT SIZE="+2">
+ <B>Field Summary</B></FONT></TD>
+ </TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+-<CODE>static&nbsp;java.lang.String</CODE></FONT></TD>
+-<TD><CODE><B><A HREF="HighlightingStyledDocument.html#newline">newline</A></B></CODE>
+-
+-<BR>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD>
+-</TR>
+ </TABLE>
+ &nbsp;<A NAME="fields_inherited_from_class_javax.swing.text.DefaultStyledDocument"><!-- --></A>
+ <TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+@@ -294,24 +262,6 @@
+ <TR BGCOLOR="white" CLASS="TableRowColor">
+ <TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+ <CODE>&nbsp;void</CODE></FONT></TD>
+-<TD><CODE><B><A HREF="HighlightingStyledDocument.html#setLParenStyle(javax.swing.text.SimpleAttributeSet)">setLParenStyle</A></B>(javax.swing.text.SimpleAttributeSet&nbsp;style)</CODE>
+-
+-<BR>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method: setLParenStyle
+- Sets the style of text to use for invalid Left Parens</TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+-<CODE>&nbsp;void</CODE></FONT></TD>
+-<TD><CODE><B><A HREF="HighlightingStyledDocument.html#setRParenStyle(javax.swing.text.SimpleAttributeSet)">setRParenStyle</A></B>(javax.swing.text.SimpleAttributeSet&nbsp;style)</CODE>
+-
+-<BR>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Method: setRParenStyle
+- Sets the style of text to use for invalid Right Parens</TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD ALIGN="right" VALIGN="top" WIDTH="1%"><FONT SIZE="-1">
+-<CODE>&nbsp;void</CODE></FONT></TD>
+ <TD><CODE><B><A HREF="HighlightingStyledDocument.html#setStringStyle(javax.swing.text.SimpleAttributeSet)">setStringStyle</A></B>(javax.swing.text.SimpleAttributeSet&nbsp;style)</CODE>
+ 
+ <BR>
+@@ -371,22 +321,6 @@
+ 
+ <!-- ============ FIELD DETAIL =========== -->
+ 
+-<A NAME="field_detail"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+-<TD COLSPAN=1><FONT SIZE="+2">
+-<B>Field Detail</B></FONT></TD>
+-</TR>
+-</TABLE>
+-
+-<A NAME="newline"><!-- --></A><H3>
+-newline</H3>
+-<PRE>
+-public static java.lang.String <B>newline</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+ 
+ <!-- ========= CONSTRUCTOR DETAIL ======== -->
+ 
+@@ -583,34 +517,6 @@
+ </DL>
+ <HR>
+ 
+-<A NAME="setLParenStyle(javax.swing.text.SimpleAttributeSet)"><!-- --></A><H3>
+-setLParenStyle</H3>
+-<PRE>
+-public void <B>setLParenStyle</B>(javax.swing.text.SimpleAttributeSet&nbsp;style)</PRE>
+-<DL>
+-<DD>Method: setLParenStyle
+- Sets the style of text to use for invalid Left Parens
+-<P>
+-<DD><DL>
+-<DT><B>Parameters:</B><DD><CODE>style</CODE> - The new text style</DL>
+-</DD>
+-</DL>
+-<HR>
+-
+-<A NAME="setRParenStyle(javax.swing.text.SimpleAttributeSet)"><!-- --></A><H3>
+-setRParenStyle</H3>
+-<PRE>
+-public void <B>setRParenStyle</B>(javax.swing.text.SimpleAttributeSet&nbsp;style)</PRE>
+-<DL>
+-<DD>Method: setRParenStyle
+- Sets the style of text to use for invalid Right Parens
+-<P>
+-<DD><DL>
+-<DT><B>Parameters:</B><DD><CODE>style</CODE> - The new text style</DL>
+-</DD>
+-</DL>
+-<HR>
+-
+ <A NAME="setDefaultStyle(javax.swing.text.SimpleAttributeSet)"><!-- --></A><H3>
+ setDefaultStyle</H3>
+ <PRE>
+@@ -651,8 +557,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="FileChooser.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="ImageDisplay.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;PREV CLASS&nbsp;
++&nbsp;<A HREF="JavaMovie.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="HighlightingStyledDocument.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+@@ -671,9 +577,9 @@
+ </TR>
+ <TR>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_javax.swing.text.DefaultStyledDocument">NESTED</A>&nbsp;|&nbsp;<A HREF="#field_summary">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
++  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.text.DefaultStyledDocument">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-DETAIL:&nbsp;<A HREF="#field_detail">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
++DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+ </TR>
+ </TABLE>
+ <!-- =========== END OF NAVBAR =========== -->
+--- ./Sources/javadoc/index-all.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/index-all.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,16 +2,16 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+-Index ()
++Index
+ </TITLE>
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+ function asd()
+ {
+-parent.document.title="Index ()";
++parent.document.title="Index";
+ }
+ </SCRIPT>
+ <BODY BGCOLOR="white" onload="asd();">
+@@ -61,16 +61,19 @@
+ </TABLE>
+ <!-- =========== END OF NAVBAR =========== -->
+ 
+-<A HREF="#_A_">A</A> <A HREF="#_B_">B</A> <A HREF="#_C_">C</A> <A HREF="#_D_">D</A> <A HREF="#_E_">E</A> <A HREF="#_F_">F</A> <A HREF="#_G_">G</A> <A HREF="#_H_">H</A> <A HREF="#_I_">I</A> <A HREF="#_J_">J</A> <A HREF="#_L_">L</A> <A HREF="#_M_">M</A> <A HREF="#_N_">N</A> <A HREF="#_O_">O</A> <A HREF="#_P_">P</A> <A HREF="#_R_">R</A> <A HREF="#_S_">S</A> <A HREF="#_T_">T</A> <A HREF="#_U_">U</A> <A HREF="#_W_">W</A> <A HREF="#_Z_">Z</A> <HR>
++<A HREF="#_A_">A</A> <A HREF="#_B_">B</A> <A HREF="#_C_">C</A> <A HREF="#_D_">D</A> <A HREF="#_F_">F</A> <A HREF="#_G_">G</A> <A HREF="#_H_">H</A> <A HREF="#_I_">I</A> <A HREF="#_J_">J</A> <A HREF="#_L_">L</A> <A HREF="#_M_">M</A> <A HREF="#_O_">O</A> <A HREF="#_P_">P</A> <A HREF="#_R_">R</A> <A HREF="#_S_">S</A> <A HREF="#_T_">T</A> <A HREF="#_U_">U</A> <A HREF="#_W_">W</A> <A HREF="#_X_">X</A> <A HREF="#_Y_">Y</A> <A HREF="#_Z_">Z</A> <HR>
+ <A NAME="_A_"><!-- --></A><H2>
+ <B>A</B></H2>
+ <DL>
+-<DT><A HREF="PictureExplorer.html#actionPerformed(java.awt.event.ActionEvent)"><B>actionPerformed(ActionEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
++<DT><A HREF="MovieMaker.html#actionPerformed(java.awt.event.ActionEvent)"><B>actionPerformed(ActionEvent)</B></A> - 
++Method in class <A HREF="MovieMaker.html">MovieMaker</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#actionPerformed(java.awt.event.ActionEvent)"><B>actionPerformed(ActionEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
+ <DD>Controls the zoom menu bar
+-<DT><A HREF="SoundExplorer.html#actionPerformed(java.awt.event.ActionEvent)"><B>actionPerformed(ActionEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle an action event
++<DT><A HREF="SoundView.html#actionPerformed(java.awt.event.ActionEvent)"><B>actionPerformed(ActionEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
+ <DT><A HREF="HighlightingStyledDocument.html#addEnvironmentWord(java.lang.String)"><B>addEnvironmentWord(String)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: addEnvironmentWord
+@@ -79,126 +82,81 @@
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: addKeyword
+  Adds a keyword to the Vector of keywords.
+-<DT><A HREF="SimplePicture.html#addMessage(java.lang.String, int, int)"><B>addMessage(String, int, int)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to draw a message as a string on the buffered image
+-<DT><A HREF="SimpleOutput.html#addNewLines(java.lang.String)"><B>addNewLines(String)</B></A> - 
+-Static method in class <A HREF="SimpleOutput.html">SimpleOutput</A>
+-<DD>Method to add new line character if the message 
+- is too long
+-<DT><A HREF="TConversionTool.html#alaw2linear(byte)"><B>alaw2linear(byte)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimpleSound.html#asArray()"><B>asArray()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to return the byte array
++<DT><A HREF="JavaSound.html#asArray()"><B>asArray()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_B_"><!-- --></A><H2>
+ <B>B</B></H2>
+ <DL>
+-<DT><A HREF="SimpleSound.html#blockingPlay()"><B>blockingPlay()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPicture.html#bimg"><B>bimg</B></A> - 
++Variable in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#blockingPlay()"><B>blockingPlay()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Creates a new Playback thread, starts it, then waits for the entire sound 
+  to finish playing before it returns.
+-<DT><A HREF="SimpleSound.html#blockingPlayAtRateDur(double, double)"><B>blockingPlayAtRateDur(double, double)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#blockingPlayAtRateDur(double, double)"><B>blockingPlayAtRateDur(double, double)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Calls <code>playAtRateInRange((float)rate, 0, (int)durInFrames-1, true)
+  </code>.
+-<DT><A HREF="SimpleSound.html#blockingPlayAtRateInRange(float, int, int)"><B>blockingPlayAtRateInRange(float, int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#blockingPlayAtRateInRange(float, int, int)"><B>blockingPlayAtRateInRange(float, int, int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Calls <code>playAtRateInRange(rate, startFrame, endFrame, true)
+  </code>.
+-<DT><A HREF="TConversionTool.html#bytesToInt16(byte[], int, boolean)"><B>bytesToInt16(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts 2 successive bytes starting at <code>byteOffset</code> in 
+- <code>buffer</code> to a signed integer sample with 16bit range.
+-<DT><A HREF="TConversionTool.html#bytesToInt24(byte[], int, boolean)"><B>bytesToInt24(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts 3 successive bytes starting at <code>byteOffset</code> in 
+- <code>buffer</code> to a signed integer sample with 24bit range.
+-<DT><A HREF="TConversionTool.html#bytesToInt32(byte[], int, boolean)"><B>bytesToInt32(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts a 4 successive bytes starting at <code>byteOffset</code> in 
+- <code>buffer</code> to a signed 32bit integer sample.
+ </DL>
+ <HR>
+ <A NAME="_C_"><!-- --></A><H2>
+ <B>C</B></H2>
+ <DL>
++<DT><A HREF="JavaPicture.html#canvas"><B>canvas</B></A> - 
++Variable in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
+ <DT><A HREF="JESGutter.html#changedUpdate(javax.swing.event.DocumentEvent)"><B>changedUpdate(DocumentEvent)</B></A> - 
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>Method: changedUpdate
+  Gives notification that an attribute or set of attributes changed.
+-<DT><A HREF="PictureExplorer.html#changeToBaseOne()"><B>changeToBaseOne()</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
++<DT><A HREF="PictureViewer.html#changeToBaseOne()"><B>changeToBaseOne()</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
+ <DD>Changes the number system to start at one
+-<DT><A HREF="PictureExplorer.html#checkScroll()"><B>checkScroll()</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method to check that the current position is in the viewing area and if
+- not scroll to center the current position if possible
+-<DT><A HREF="SoundExplorer.html#checkScroll()"><B>checkScroll()</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to check that the current position is in the viewing area and if
+- not scroll to center the current position if possible
+ <DT><A HREF="JavaMusic.html#cleanUp()"><B>cleanUp()</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+ <DT><A HREF="JavaMusic.html#close()"><B>close()</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+-<DT><A HREF="Pixel.html#colorDistance(java.awt.Color)"><B>colorDistance(Color)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the distance between this pixel's color and the passed color
+-<DT><A HREF="Pixel.html#colorDistance(java.awt.Color, java.awt.Color)"><B>colorDistance(Color, Color)</B></A> - 
+-Static method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to compute the color distances between two color objects
+-<DT><A HREF="SimpleSound.html#convert(java.lang.String, java.lang.String)"><B>convert(String, String)</B></A> - 
+-Static method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to convert a mp3 sound into a wav sound
+-<DT><A HREF="SimplePicture.html#copyPicture(SimplePicture)"><B>copyPicture(SimplePicture)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method that will copy all of the passed source picture into
+- the current picture object
+-<DT><A HREF="SimplePicture.html#createGraphics()"><B>createGraphics()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get a Graphics2D object for this picture which can
+- be used to do 2D drawing on the picture
+-<DT><A HREF="PictureExplorer.html#createLocationPanel(java.awt.Font)"><B>createLocationPanel(Font)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Create the pixel location panel
++<DT><A HREF="JpegImagesToMovie.html#controllerUpdate(ControllerEvent)"><B>controllerUpdate(ControllerEvent)</B></A> - 
++Method in class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>Controller Listener.
++<DT><A HREF="SoundView.html#createInfoPanel()"><B>createInfoPanel()</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="JavaPicture.html#createNewImage(int, int)"><B>createNewImage(int, int)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.SamplingPanel.html#createWaveForm(boolean)"><B>createWaveForm(boolean)</B></A> - 
++Method in class <A HREF="SoundView.SamplingPanel.html">SoundView.SamplingPanel</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_D_"><!-- --></A><H2>
+ <B>D</B></H2>
+ <DL>
+-<DT><A HREF="DigitalPicture.html"><B>DigitalPicture</B></A> - interface <A HREF="DigitalPicture.html">DigitalPicture</A>.<DD>Interface to describe a digital picture.<DT><A HREF="PictureFrame.html#displayImage()"><B>displayImage()</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>A method to make sure the frame is displayed
+-<DT><A HREF="PictureExplorer.html#displayPixelInformation(java.lang.String, java.lang.String)"><B>displayPixelInformation(String, String)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method to display the pixel information from the passed x and y but
+- also converts x and y from strings
+-</DL>
+-<HR>
+-<A NAME="_E_"><!-- --></A><H2>
+-<B>E</B></H2>
+-<DL>
+-<DT><A HREF="SimplePicture.html#explore()"><B>explore()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to open a picture explorer on a copy of this simple picture
+-<DT><A HREF="SimpleSound.html#explore()"><B>explore()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to open a sound viewer on a copy of this sound
++<DT><A HREF="JpegImagesToMovie.html#dataSinkUpdate(DataSinkEvent)"><B>dataSinkUpdate(DataSinkEvent)</B></A> - 
++Method in class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>Event handler for the file writer.
++<DT><A HREF="JpegImagesToMovie.html#doIt(int, int, int, java.util.Vector, MediaLocator)"><B>doIt(int, int, int, Vector, MediaLocator)</B></A> - 
++Method in class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>&nbsp;
++<DT><A HREF="JpegImagesToMovie.html#doItPath(int, int, int, java.util.Vector, java.lang.String)"><B>doItPath(int, int, int, Vector, String)</B></A> - 
++Method in class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_F_"><!-- --></A><H2>
+ <B>F</B></H2>
+ <DL>
+-<DT><A HREF="FileChooser.html"><B>FileChooser</B></A> - class <A HREF="FileChooser.html">FileChooser</A>.<DD>A class to make working with a file chooser easier
+- for students.<DT><A HREF="FileChooser.html#FileChooser()"><B>FileChooser()</B></A> - 
+-Constructor for class <A HREF="FileChooser.html">FileChooser</A>
+-<DD>&nbsp;
+ <DT><A HREF="HighlightingStyledDocument.html#fireRemoveUpdate(javax.swing.event.DocumentEvent)"><B>fireRemoveUpdate(DocumentEvent)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>fireRemoveUpdate
+@@ -208,222 +166,80 @@
+ <A NAME="_G_"><!-- --></A><H2>
+ <B>G</B></H2>
+ <DL>
+-<DT><A HREF="Pixel.html#getAlpha()"><B>getAlpha()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the amount of alpha (transparency) at this pixel.
+-<DT><A HREF="SimpleSound.html#getAudioFileFormat()"><B>getAudioFileFormat()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method that returns the AudioFileFormat describing this simple sound.
+-<DT><A HREF="Pixel.html#getAverage()"><B>getAverage()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the average of the colors of this pixel
+-<DT><A HREF="DigitalPicture.html#getBasicPixel(int, int)"><B>getBasicPixel(int, int)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getBasicPixel(int, int)"><B>getBasicPixel(int, int)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to return the pixel value as an int for the given x and y location
+-<DT><A HREF="Pixel.html#getBlue()"><B>getBlue()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the amount of blue at this pixel.
+-<DT><A HREF="Pixel.html#getBlue(int)"><B>getBlue(int)</B></A> - 
+-Static method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the blue value from a pixel represented as an int
+-<DT><A HREF="SimpleSound.html#getBuffer()"><B>getBuffer()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method that returns the byte array representation of this simple sound.
+-<DT><A HREF="DigitalPicture.html#getBufferedImage()"><B>getBufferedImage()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getBufferedImage()"><B>getBufferedImage()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the buffered image
++<DT><A HREF="JavaPixel.html#getAlpha()"><B>getAlpha()</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Returns the alpha value of the pixel.
++<DT><A HREF="JavaSound.html#getAudioFileFormat()"><B>getAudioFileFormat()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Obtains the AudioFileFormat describing this sound.
++<DT><A HREF="JavaPicture.html#getBasicPixel(int, int)"><B>getBasicPixel(int, int)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Returns the pixel value of a pixel in the picture, given its coordinates.
++<DT><A HREF="JavaPixel.html#getBlue()"><B>getBlue()</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Returns the blue value of the pixel.
++<DT><A HREF="JavaSound.html#getBuffer()"><B>getBuffer()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Obtains the byte array representation of this sound.
+ <DT><A HREF="JavaMusic.html#getChannel()"><B>getChannel()</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+-<DT><A HREF="SimpleSound.html#getChannels()"><B>getChannels()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#getChannels()"><B>getChannels()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains the number of channels of this sound.
+-<DT><A HREF="Pixel.html#getColor()"><B>getColor()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get a color object that represents the color at this pixel.
+-<DT><A HREF="ImageDisplay.html#getCurrentX()"><B>getCurrentX()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to get the current x
+-<DT><A HREF="ImageDisplay.html#getCurrentY()"><B>getCurrentY()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to get the current y
+-<DT><A HREF="SimpleSound.html#getDEBUG()"><B>getDEBUG()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to get the value of the debug flag
+-<DT><A HREF="SimplePicture.html#getExtension()"><B>getExtension()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the extension for this picture
+-<DT><A HREF="DigitalPicture.html#getFileName()"><B>getFileName()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getFileName()"><B>getFileName()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the file name associated with the picture
+-<DT><A HREF="SimpleSound.html#getFileName()"><B>getFileName()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method that returns the name of the file this sound came from.
+-<DT><A HREF="SimpleSound.html#getFrame(int)"><B>getFrame(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#getFileName()"><B>getFileName()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Obtains the name of the file this sound came from.
++<DT><A HREF="JavaSound.html#getFrame(int)"><B>getFrame(int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Returns an array containing all of the bytes in the specified frame.
+-<DT><A HREF="SimplePicture.html#getGraphics()"><B>getGraphics()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get a graphics object for this picture to use to draw on
+-<DT><A HREF="Pixel.html#getGreen()"><B>getGreen()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the amount of green at this pixel.
+-<DT><A HREF="Pixel.html#getGreen(int)"><B>getGreen(int)</B></A> - 
+-Static method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the green value from a pixel represented as an int
+-<DT><A HREF="DigitalPicture.html#getHeight()"><B>getHeight()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getHeight()"><B>getHeight()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the height of the picture in pixels
+-<DT><A HREF="DigitalPicture.html#getImage()"><B>getImage()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="ImageDisplay.html#getImage()"><B>getImage()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to get the image
+-<DT><A HREF="SimplePicture.html#getImage()"><B>getImage()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get an image from the picture
+-<DT><A HREF="SimpleSound.html#getLeftSample(int)"><B>getLeftSample(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPixel.html#getGreen()"><B>getGreen()</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Returns the green value of the pixel.
++<DT><A HREF="JavaPicture.html#getHeight()"><B>getHeight()</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#getLeftSample(int)"><B>getLeftSample(int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains the left sample of the audio data contained at the specified 
+  frame.
+-<DT><A HREF="SimpleSound.html#getLength()"><B>getLength()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to return the length of the sound as the number of samples
+-<DT><A HREF="SimpleSound.html#getLengthInBytes()"><B>getLengthInBytes()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#getLength()"><B>getLength()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains the length of this sound in bytes.
+-<DT><A HREF="SimpleSound.html#getLengthInFrames()"><B>getLengthInFrames()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#getLengthInFrames()"><B>getLengthInFrames()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains the length of the audio data contained in the file, expressed
+  in sample frames.
+-<DT><A HREF="FileChooser.html#getMediaDirectory()"><B>getMediaDirectory()</B></A> - 
+-Static method in class <A HREF="FileChooser.html">FileChooser</A>
+-<DD>Method to get the directory for the media
+-<DT><A HREF="FileChooser.html#getMediaPath(java.lang.String)"><B>getMediaPath(String)</B></A> - 
+-Static method in class <A HREF="FileChooser.html">FileChooser</A>
+-<DD>Method to get the full path for the passed file name
+-<DT><A HREF="SimplePicture.html#getMediaPath(java.lang.String)"><B>getMediaPath(String)</B></A> - 
+-Static method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the directory for the media
+-<DT><A HREF="SimpleSound.html#getNumSamples()"><B>getNumSamples()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Returns the number of samples in this sound
+-<DT><A HREF="SimplePicture.html#getPictureFrame()"><B>getPictureFrame()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the picture frame for the picture
+-<DT><A HREF="SimplePicture.html#getPictureWithHeight(int)"><B>getPictureWithHeight(int)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to create a new picture of the passed height.
+-<DT><A HREF="DigitalPicture.html#getPixel(int, int)"><B>getPixel(int, int)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getPixel(int, int)"><B>getPixel(int, int)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get a pixel object for the given x and y location
+-<DT><A HREF="SimplePicture.html#getPixels()"><B>getPixels()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get a one-dimensional array of Pixels for this simple picture
+-<DT><A HREF="SimpleSound.html#getPlaybacks()"><B>getPlaybacks()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method that returns the vector of playback threads currently active
++<DT><A HREF="JavaPicture.html#getPixel(int, int)"><B>getPixel(int, int)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Returns a JavaPixel object representing a pixel in the picture given its coordinates
++<DT><A HREF="JavaSound.html#getPlaybacks()"><B>getPlaybacks()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Obtains the collection of playback threads currently active
+  on this sound.
+-<DT><A HREF="Playback.html#getPlaying()"><B>getPlaying()</B></A> - 
+-Method in class <A HREF="Playback.html">Playback</A>
+-<DD>Method to return true if this playback thread is playing and
+- false otherwise
+-<DT><A HREF="ImageDisplay.html#getPreferredScrollableViewportSize()"><B>getPreferredScrollableViewportSize()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to return the preferred size
+-<DT><A HREF="Pixel.html#getRed()"><B>getRed()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the amount of red at this pixel.
+-<DT><A HREF="Pixel.html#getRed(int)"><B>getRed(int)</B></A> - 
+-Static method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the red value from a pixel represented as an int
+-<DT><A HREF="SimpleSound.html#getRightSample(int)"><B>getRightSample(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.Playback.html#getPlaying()"><B>getPlaying()</B></A> - 
++Method in class <A HREF="JavaSound.Playback.html">JavaSound.Playback</A>
++<DD>&nbsp;
++<DT><A HREF="JavaPixel.html#getRed()"><B>getRed()</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Returns the red value of the pixel.
++<DT><A HREF="JavaSound.html#getRightSample(int)"><B>getRightSample(int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains the right sample of the audio data contained at the specified
+  frame.
+-<DT><A HREF="SimpleSound.html#getSample(int)"><B>getSample(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to create and return a SoundSample object for the given 
+- frame number
+-<DT><A HREF="SimpleSound.html#getSamples()"><B>getSamples()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to create and return an array of SoundSample objects
+-<DT><A HREF="SimpleSound.html#getSampleValue(int)"><B>getSampleValue(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#getSample(int)"><B>getSample(int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>If this is a mono sound, obtains the single sample contained within this 
+  frame, else obtains the first (left) sample contained in the specified
+  frame.
+-<DT><A HREF="SimpleSound.html#getSampleValueAt(int)"><B>getSampleValueAt(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to get the sample at the passed index and handle any SoundExceptions
+-<DT><A HREF="SimpleSound.html#getSamplingRate()"><B>getSamplingRate()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to get the sampling rate of this sound
+-<DT><A HREF="ImageDisplay.html#getScrollableBlockIncrement(java.awt.Rectangle, int, int)"><B>getScrollableBlockIncrement(Rectangle, int, int)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to return the block increment for scrolling
+-<DT><A HREF="ImageDisplay.html#getScrollableTracksViewportHeight()"><B>getScrollableTracksViewportHeight()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to check if the viewport height is the source height
+-<DT><A HREF="ImageDisplay.html#getScrollableTracksViewportWidth()"><B>getScrollableTracksViewportWidth()</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to check if the viewport width is the source width
+-<DT><A HREF="ImageDisplay.html#getScrollableUnitIncrement(java.awt.Rectangle, int, int)"><B>getScrollableUnitIncrement(Rectangle, int, int)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to return the unit increment for scrolling
+-<DT><A HREF="SimpleSound.html#getSoundExplorer()"><B>getSoundExplorer()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method that returns the SoundExplorer
+-<DT><A HREF="DigitalPicture.html#getTitle()"><B>getTitle()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getTitle()"><B>getTitle()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the title of the picture
+-<DT><A HREF="SimplePicture.html#getTranslationEnclosingRectangle(java.awt.geom.AffineTransform)"><B>getTranslationEnclosingRectangle(AffineTransform)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the coordinates of the enclosing rectangle after this
+- transformation is applied to the current picture
+-<DT><A HREF="SoundSample.html#getValue()"><B>getValue()</B></A> - 
+-Method in class <A HREF="SoundSample.html">SoundSample</A>
+-<DD>Method to get the value of this sample as in int
+- and handle the possible sound exception
+-<DT><A HREF="DigitalPicture.html#getWidth()"><B>getWidth()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#getWidth()"><B>getWidth()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to get the width of the picture in pixels
+-<DT><A HREF="Pixel.html#getX()"><B>getX()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the x location of this pixel.
+-<DT><A HREF="Pixel.html#getY()"><B>getY()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to get the y location of this pixel.
++<DT><A HREF="JavaPicture.html#getWidth()"><B>getWidth()</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_H_"><!-- --></A><H2>
+ <B>H</B></H2>
+ <DL>
+-<DT><A HREF="PictureFrame.html#hideImage()"><B>hideImage()</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>&nbsp;
+ <DT><A HREF="HighlightingStyledDocument.html"><B>HighlightingStyledDocument</B></A> - class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>.<DD>Highlights jython syntax in a Document
+  Created for the Jython Environment for Students (JES)
+  Hilghights keywords and environment words that are defined
+@@ -435,14 +251,9 @@
+ <A NAME="_I_"><!-- --></A><H2>
+ <B>I</B></H2>
+ <DL>
+-<DT><A HREF="ImageDisplay.html"><B>ImageDisplay</B></A> - class <A HREF="ImageDisplay.html">ImageDisplay</A>.<DD>Class to display an image and the current location with a + sign
+- 
+- Copyright Georgia Institute of Technology 2004<DT><A HREF="ImageDisplay.html#ImageDisplay(java.awt.Image)"><B>ImageDisplay(Image)</B></A> - 
+-Constructor for class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Constructor that takes the image to display
+-<DT><A HREF="ImageDisplay.html#ImageDisplay(java.awt.Image, int, int)"><B>ImageDisplay(Image, int, int)</B></A> - 
+-Constructor for class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Constructor that takes the image and current x and y
++<DT><A HREF="JavaPicture.html#imgIcon"><B>imgIcon</B></A> - 
++Variable in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
+ <DT><A HREF="HighlightingStyledDocument.html#insertString(int, java.lang.String, javax.swing.text.AttributeSet)"><B>insertString(int, String, AttributeSet)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>insertString
+@@ -451,38 +262,66 @@
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>Method: insertUpdate
+  Gives notification that there was text inserted into the document.
+-<DT><A HREF="TConversionTool.html#intToBytes16(int, byte[], int, boolean)"><B>intToBytes16(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts a 16 bit sample of type <code>int</code> to 2 bytes in an array.
+-<DT><A HREF="TConversionTool.html#intToBytes24(int, byte[], int, boolean)"><B>intToBytes24(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts a 24 bit sample of type <code>int</code> to 3 bytes in an array.
+-<DT><A HREF="TConversionTool.html#intToBytes32(int, byte[], int, boolean)"><B>intToBytes32(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>Converts a 32 bit sample of type <code>int</code> to 4 bytes in an array.
+-<DT><A HREF="TConversionTool.html#intToUnsignedByte(int)"><B>intToUnsignedByte(int)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#intToUnsignedBytes16(int, byte[], int, boolean)"><B>intToUnsignedBytes16(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#intToUnsignedBytes24(int, byte[], int, boolean)"><B>intToUnsignedBytes24(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#intToUnsignedBytes32(int, byte[], int, boolean)"><B>intToUnsignedBytes32(int, byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimpleSound.html#isStereo()"><B>isStereo()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to check if a sound is stereo (2 channels) or not
++<DT><A HREF="JavaSound.html#intToUnsignedByte(int)"><B>intToUnsignedByte(int)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#intToUnsignedBytes16(int, byte[], int, boolean)"><B>intToUnsignedBytes16(int, byte[], int, boolean)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#intToUnsignedBytes24(int, byte[], int, boolean)"><B>intToUnsignedBytes24(int, byte[], int, boolean)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#intToUnsignedBytes32(int, byte[], int, boolean)"><B>intToUnsignedBytes32(int, byte[], int, boolean)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#isStereo()"><B>isStereo()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_J_"><!-- --></A><H2>
+ <B>J</B></H2>
+ <DL>
++<DT><A HREF="JavaMovie.html"><B>JavaMovie</B></A> - class <A HREF="JavaMovie.html">JavaMovie</A>.<DD>&nbsp;<DT><A HREF="JavaMoviePlayer.html"><B>JavaMoviePlayer</B></A> - class <A HREF="JavaMoviePlayer.html">JavaMoviePlayer</A>.<DD>&nbsp;<DT><A HREF="JavaMoviePlayer.html#JavaMoviePlayer(java.lang.String)"><B>JavaMoviePlayer(String)</B></A> - 
++Constructor for class <A HREF="JavaMoviePlayer.html">JavaMoviePlayer</A>
++<DD>&nbsp;
+ <DT><A HREF="JavaMusic.html"><B>JavaMusic</B></A> - class <A HREF="JavaMusic.html">JavaMusic</A>.<DD>&nbsp;<DT><A HREF="JavaMusic.html#JavaMusic()"><B>JavaMusic()</B></A> - 
+ Constructor for class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
++<DT><A HREF="JavaPicture.html"><B>JavaPicture</B></A> - class <A HREF="JavaPicture.html">JavaPicture</A>.<DD>&nbsp;<DT><A HREF="JavaPicture.html#JavaPicture()"><B>JavaPicture()</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Constructor
++<DT><A HREF="JavaPicture.html#JavaPicture()"><B>JavaPicture()</B></A> - 
++Constructor for class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="JavaPixel.html"><B>JavaPixel</B></A> - class <A HREF="JavaPixel.html">JavaPixel</A>.<DD>
++  class JavaPixel
++  a class representing a pixel in a picture
++ <DT><A HREF="JavaPixel.html#JavaPixel(JavaPicture, int, int)"><B>JavaPixel(JavaPicture, int, int)</B></A> - 
++Constructor for class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html"><B>JavaSound</B></A> - class <A HREF="JavaSound.html">JavaSound</A>.<DD>The <code>JavaSound</code> class is an Implementation of the 
++ <a href = "http://java.sun.com/products/java-media/sound/index.html">
++ Java Sound API </a> specifically designed for use with the Jython 
++ Environment for Students (JES).<DT><A HREF="JavaSound.Playback.html"><B>JavaSound.Playback</B></A> - class <A HREF="JavaSound.Playback.html">JavaSound.Playback</A>.<DD>The nested class <code>Playback</code> extends from <code>Thread</code>
++ and allows for playback of this sound.<DT><A HREF="JavaSound.Playback.html#JavaSound.Playback()"><B>JavaSound.Playback()</B></A> - 
++Constructor for class <A HREF="JavaSound.Playback.html">JavaSound.Playback</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#JavaSound()"><B>JavaSound()</B></A> - 
++Constructor for class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Constructs a <code>JavaSound</code> of 3 seconds long.
++<DT><A HREF="JavaSound.html#JavaSound(int)"><B>JavaSound(int)</B></A> - 
++Constructor for class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Constructs a <code>JavaSound</code> of the specified length.
++<DT><A HREF="JavaSound.html#JavaSound(int, boolean)"><B>JavaSound(int, boolean)</B></A> - 
++Constructor for class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#JavaSound(java.lang.String)"><B>JavaSound(String)</B></A> - 
++Constructor for class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Constructs a new JavaSound from the given file.
++<DT><A HREF="JavaSoundException.html"><B>JavaSoundException</B></A> - exception <A HREF="JavaSoundException.html">JavaSoundException</A>.<DD>&nbsp;<DT><A HREF="JavaSoundException.html#JavaSoundException(java.lang.String)"><B>JavaSoundException(String)</B></A> - 
++Constructor for class <A HREF="JavaSoundException.html">JavaSoundException</A>
++<DD>&nbsp;
+ <DT><A HREF="JESGutter.html"><B>JESGutter</B></A> - class <A HREF="JESGutter.html">JESGutter</A>.<DD>The JES Gutter
+  Created for the Jython Environment for Students
+  The JES Gutter is a side bar that shows useful contextual information
+@@ -490,100 +329,114 @@
+ Constructor for class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>Class constructor
+  Creates a Gutter object with a given TextComponent.
++<DT><A HREF="JpegImagesToMovie.html"><B>JpegImagesToMovie</B></A> - class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>.<DD>This program takes a list of JPEG image files and convert them into
++ a QuickTime movie.<DT><A HREF="JpegImagesToMovie.html#JpegImagesToMovie()"><B>JpegImagesToMovie()</B></A> - 
++Constructor for class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#justABufferTaste(byte[])"><B>justABufferTaste(byte[])</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#justATaste()"><B>justATaste()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
+ </DL>
+ <HR>
+ <A NAME="_L_"><!-- --></A><H2>
+ <B>L</B></H2>
+ <DL>
+-<DT><A HREF="TConversionTool.html#linear2alaw(short)"><B>linear2alaw(short)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
++<DT><A HREF="JavaSound.html#linear2alaw(short)"><B>linear2alaw(short)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#linear2ulaw(int)"><B>linear2ulaw(int)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
++<DT><A HREF="JavaSound.html#linear2ulaw(int)"><B>linear2ulaw(int)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Converts a linear signed 16bit sample to a uLaw byte.
+-<DT><A HREF="DigitalPicture.html#load(java.awt.Image)"><B>load(Image)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#load(java.awt.Image)"><B>load(Image)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to load the buffered image with the passed image
+-<DT><A HREF="DigitalPicture.html#load(java.lang.String)"><B>load(String)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#load(java.lang.String)"><B>load(String)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to load the picture from the passed file name
+-<DT><A HREF="SimpleSound.html#loadFromFile(java.lang.String)"><B>loadFromFile(String)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#loadFromFile(java.lang.String)"><B>loadFromFile(String)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Resets the fields of this sound so that it now represents the sound
+  in the specified file.
+-<DT><A HREF="SimplePicture.html#loadPictureAndShowIt(java.lang.String)"><B>loadPictureAndShowIt(String)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to load a picture from a file name and show it in a picture frame
++<DT><A HREF="JavaPicture.html#loadImage(java.lang.String)"><B>loadImage(String)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Load image
+ </DL>
+ <HR>
+ <A NAME="_M_"><!-- --></A><H2>
+ <B>M</B></H2>
+ <DL>
++<DT><A HREF="JavaMovie.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="JavaMovie.html">JavaMovie</A>
++<DD>&nbsp;
++<DT><A HREF="JavaMoviePlayer.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="JavaMoviePlayer.html">JavaMoviePlayer</A>
++<DD>&nbsp;
+ <DT><A HREF="JavaMusic.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+-<DT><A HREF="PictureExplorer.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
+-Static method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Test Main.
+-<DT><A HREF="SimpleSound.html#makeAIS()"><B>makeAIS()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPicture.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Test Main
++<DT><A HREF="JavaSound.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>&nbsp;
++<DT><A HREF="JpegImagesToMovie.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="JpegImagesToMovie.html">JpegImagesToMovie</A>
++<DD>&nbsp;
++<DT><A HREF="MovieMaker.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="MovieMaker.html">MovieMaker</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>Test Main
++<DT><A HREF="SoundView.html#main(java.lang.String[])"><B>main(String[])</B></A> - 
++Static method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.html#makeAIS()"><B>makeAIS()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Creates an <code>AudioInputStream</code> for this sound from the 
+  <code>buffer</code> and the <code>audioFileFormat</code>.
+-<DT><A HREF="PictureExplorer.html#mouseClicked(java.awt.event.MouseEvent)"><B>mouseClicked(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the mouse is clicked
+-<DT><A HREF="SoundExplorer.html#mouseClicked(java.awt.event.MouseEvent)"><B>mouseClicked(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Handle a mouse click event
+-<DT><A HREF="PictureExplorer.html#mouseDragged(java.awt.event.MouseEvent)"><B>mouseDragged(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Called when the mouse is dragged (button held down and moved)
+-<DT><A HREF="SoundExplorer.html#mouseDragged(java.awt.event.MouseEvent)"><B>mouseDragged(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse dragged event
+-<DT><A HREF="PictureExplorer.html#mouseEntered(java.awt.event.MouseEvent)"><B>mouseEntered(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the component is entered (mouse moves over it)
+-<DT><A HREF="SoundExplorer.html#mouseEntered(java.awt.event.MouseEvent)"><B>mouseEntered(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse entered event
+-<DT><A HREF="PictureExplorer.html#mouseExited(java.awt.event.MouseEvent)"><B>mouseExited(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the mouse moves over the component
+-<DT><A HREF="SoundExplorer.html#mouseExited(java.awt.event.MouseEvent)"><B>mouseExited(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse exited event
+-<DT><A HREF="PictureExplorer.html#mouseMoved(java.awt.event.MouseEvent)"><B>mouseMoved(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the mouse is moved with no buttons down
+-<DT><A HREF="SoundExplorer.html#mouseMoved(java.awt.event.MouseEvent)"><B>mouseMoved(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse move event
+-<DT><A HREF="PictureExplorer.html#mousePressed(java.awt.event.MouseEvent)"><B>mousePressed(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the mouse button is pushed down
+-<DT><A HREF="SoundExplorer.html#mousePressed(java.awt.event.MouseEvent)"><B>mousePressed(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse press
+-<DT><A HREF="PictureExplorer.html#mouseReleased(java.awt.event.MouseEvent)"><B>mouseReleased(MouseEvent)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Method called when the mouse button is released
+-<DT><A HREF="SoundExplorer.html#mouseReleased(java.awt.event.MouseEvent)"><B>mouseReleased(MouseEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle a mouse release
+-</DL>
+-<HR>
+-<A NAME="_N_"><!-- --></A><H2>
+-<B>N</B></H2>
+-<DL>
+-<DT><A HREF="HighlightingStyledDocument.html#newline"><B>newline</B></A> - 
+-Static variable in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
++<DT><A HREF="PictureViewer.html#mouseClicked(java.awt.event.MouseEvent)"><B>mouseClicked(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html#mouseClicked(java.awt.event.MouseEvent)"><B>mouseClicked(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mouseDragged(java.awt.event.MouseEvent)"><B>mouseDragged(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>Controls the updating of the information values.
++<DT><A HREF="SoundView.html#mouseDragged(java.awt.event.MouseEvent)"><B>mouseDragged(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mouseEntered(java.awt.event.MouseEvent)"><B>mouseEntered(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html#mouseEntered(java.awt.event.MouseEvent)"><B>mouseEntered(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mouseExited(java.awt.event.MouseEvent)"><B>mouseExited(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html#mouseExited(java.awt.event.MouseEvent)"><B>mouseExited(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mouseMoved(java.awt.event.MouseEvent)"><B>mouseMoved(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html#mouseMoved(java.awt.event.MouseEvent)"><B>mouseMoved(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mousePressed(java.awt.event.MouseEvent)"><B>mousePressed(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>Controls the updating of the information values.
++<DT><A HREF="SoundView.html#mousePressed(java.awt.event.MouseEvent)"><B>mousePressed(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html#mouseReleased(java.awt.event.MouseEvent)"><B>mouseReleased(MouseEvent)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html#mouseReleased(java.awt.event.MouseEvent)"><B>mouseReleased(MouseEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="MovieMaker.html"><B>MovieMaker</B></A> - class <A HREF="MovieMaker.html">MovieMaker</A>.<DD>&nbsp;<DT><A HREF="MovieMaker.html#MovieMaker()"><B>MovieMaker()</B></A> - 
++Constructor for class <A HREF="MovieMaker.html">MovieMaker</A>
+ <DD>&nbsp;
+ </DL>
+ <HR>
+@@ -602,73 +455,37 @@
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>paint
+  Paints gutter information to the graphics object
+-<DT><A HREF="ImageDisplay.html#paintComponent(java.awt.Graphics)"><B>paintComponent(Graphics)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to handle displaying this object
+-<DT><A HREF="FileChooser.html#pickAFile()"><B>pickAFile()</B></A> - 
+-Static method in class <A HREF="FileChooser.html">FileChooser</A>
+-<DD>Method to let the user pick a file and return
+- the full file name as a string.
+-<DT><A HREF="Picture.html"><B>Picture</B></A> - class <A HREF="Picture.html">Picture</A>.<DD>A class that represents a picture.<DT><A HREF="Picture.html#Picture()"><B>Picture()</B></A> - 
+-Constructor for class <A HREF="Picture.html">Picture</A>
+-<DD>Constructor that takes no arguments
+-<DT><A HREF="Picture.html#Picture(int, int)"><B>Picture(int, int)</B></A> - 
+-Constructor for class <A HREF="Picture.html">Picture</A>
+-<DD>Constructor that takes the width and height
+-<DT><A HREF="Picture.html#Picture(Picture)"><B>Picture(Picture)</B></A> - 
+-Constructor for class <A HREF="Picture.html">Picture</A>
+-<DD>Constructor that takes a picture and creates a 
+- copy of that picture
+-<DT><A HREF="Picture.html#Picture(java.lang.String)"><B>Picture(String)</B></A> - 
+-Constructor for class <A HREF="Picture.html">Picture</A>
+-<DD>Constructor that takes a file name and creates the picture
+-<DT><A HREF="PictureExplorer.html"><B>PictureExplorer</B></A> - class <A HREF="PictureExplorer.html">PictureExplorer</A>.<DD>Displays a picture and lets you explore the picture by displaying the x, y, red,
+- green, and blue values of the pixel at the cursor when you click a mouse button or
+- press and hold a mouse button while moving the cursor.<DT><A HREF="PictureExplorer.html#PictureExplorer(DigitalPicture)"><B>PictureExplorer(DigitalPicture)</B></A> - 
+-Constructor for class <A HREF="PictureExplorer.html">PictureExplorer</A>
++<DT><A HREF="SoundView.SamplingPanel.html#paint(java.awt.Graphics)"><B>paint(Graphics)</B></A> - 
++Method in class <A HREF="SoundView.SamplingPanel.html">SoundView.SamplingPanel</A>
++<DD>&nbsp;
++<DT><A HREF="PictureViewer.html"><B>PictureViewer</B></A> - class <A HREF="PictureViewer.html">PictureViewer</A>.<DD>&nbsp;<DT><A HREF="PictureViewer.html#PictureViewer(JavaPicture)"><B>PictureViewer(JavaPicture)</B></A> - 
++Constructor for class <A HREF="PictureViewer.html">PictureViewer</A>
+ <DD>Public constructor
+-<DT><A HREF="PictureFrame.html"><B>PictureFrame</B></A> - class <A HREF="PictureFrame.html">PictureFrame</A>.<DD>Class that holds a digital picture and displays it.<DT><A HREF="PictureFrame.html#PictureFrame()"><B>PictureFrame()</B></A> - 
+-Constructor for class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>A constructor that takes no arguments.
+-<DT><A HREF="PictureFrame.html#PictureFrame(DigitalPicture)"><B>PictureFrame(DigitalPicture)</B></A> - 
+-Constructor for class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>A constructor that takes a picture to display
+-<DT><A HREF="Pixel.html"><B>Pixel</B></A> - class <A HREF="Pixel.html">Pixel</A>.<DD>Class that references a pixel in a picture.<DT><A HREF="Pixel.html#Pixel(DigitalPicture, int, int)"><B>Pixel(DigitalPicture, int, int)</B></A> - 
+-Constructor for class <A HREF="Pixel.html">Pixel</A>
+-<DD>A constructor that take the x and y location for the pixel and
+- the picture the pixel is coming from
+-<DT><A HREF="SimpleSound.html#play()"><B>play()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#play()"><B>play()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Creates a new Playback thread and starts it.
+-<DT><A HREF="SimpleSound.html#playAtRateDur(double, double)"><B>playAtRateDur(double, double)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#playAtRateDur(double, double)"><B>playAtRateDur(double, double)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Calls <code>playAtRateInRange((float)rate, 0, (int)durInFrames-1, false)
+  </code>.
+-<DT><A HREF="SimpleSound.html#playAtRateInRange(float, int, int)"><B>playAtRateInRange(float, int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#playAtRateInRange(float, int, int)"><B>playAtRateInRange(float, int, int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Calls <code>playAtRateInRange(rate, startFrame, endFrame, false)
+  </code>.
+-<DT><A HREF="SimpleSound.html#playAtRateInRange(float, int, int, boolean)"><B>playAtRateInRange(float, int, int, boolean)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#playAtRateInRange(float, int, int, boolean)"><B>playAtRateInRange(float, int, int, boolean)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Plays the specified segment of this sound at the given sample rate.
+-<DT><A HREF="Playback.html"><B>Playback</B></A> - class <A HREF="Playback.html">Playback</A>.<DD>The class <code>Playback</code> extends from <code>Thread</code>
+- and allows for playback of a simple sound.<DT><A HREF="Playback.html#Playback(SimpleSound)"><B>Playback(SimpleSound)</B></A> - 
+-Constructor for class <A HREF="Playback.html">Playback</A>
+-<DD>Constructor that takes the simple sound to be played
+ <DT><A HREF="JavaMusic.html#playNote(int, int)"><B>playNote(int, int)</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+ <DT><A HREF="JavaMusic.html#playNote(int, int, int)"><B>playNote(int, int, int)</B></A> - 
+ Static method in class <A HREF="JavaMusic.html">JavaMusic</A>
+ <DD>&nbsp;
+-<DT><A HREF="SimpleSound.html#playNote(int, int, int)"><B>playNote(int, int, int)</B></A> - 
+-Static method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to play a note using MIDI
+-<DT><A HREF="SimpleSound.html#printError(java.lang.String)"><B>printError(String)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#printError(java.lang.String)"><B>printError(String)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Invokes <code>printError(message, null)</code>
+-<DT><A HREF="SimpleSound.html#printError(java.lang.String, java.lang.Exception)"><B>printError(String, Exception)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#printError(java.lang.String, java.lang.Exception)"><B>printError(String, Exception)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Prints the given String to the "standard" error output stream, then
+  prints a stack trace on the exception, and then exits the program.
+ </DL>
+@@ -680,67 +497,43 @@
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>removeLineMark
+  Removes the line demarcation from the gutter
+-<DT><A HREF="SimpleSound.html#removePlayback(Playback)"><B>removePlayback(Playback)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Deletes the specified playback object from the Vector.
+ <DT><A HREF="JESGutter.html#removeUpdate(javax.swing.event.DocumentEvent)"><B>removeUpdate(DocumentEvent)</B></A> - 
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>Method: removeUpdate
+  Gives notifications that text was removed from the document.
+-<DT><A HREF="PictureExplorer.html#repaint()"><B>repaint()</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
++<DT><A HREF="PictureViewer.html#repaint()"><B>repaint()</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
+ <DD>Repaints the image on the scrollpane.
+-<DT><A HREF="PictureFrame.html#repaint()"><B>repaint()</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>Method to force the picture frame to repaint (redraw)
+-<DT><A HREF="SimplePicture.html#repaint()"><B>repaint()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to force the picture to redraw itself.
+-<DT><A HREF="Playback.html#run()"><B>run()</B></A> - 
+-Method in class <A HREF="Playback.html">Playback</A>
++<DT><A HREF="JavaPicture.html#repaintImage()"><B>repaintImage()</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.Playback.html#run()"><B>run()</B></A> - 
++Method in class <A HREF="JavaSound.Playback.html">JavaSound.Playback</A>
+ <DD>Starts this thread.
+ </DL>
+ <HR>
+ <A NAME="_S_"><!-- --></A><H2>
+ <B>S</B></H2>
+ <DL>
+-<DT><A HREF="Pixel.html#setAlpha(int)"><B>setAlpha(int)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to set the alpha (transparency) to a new alpha value
+-<DT><A HREF="SimpleSound.html#setAudioFileFormat(javax.sound.sampled.AudioFileFormat)"><B>setAudioFileFormat(AudioFileFormat)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPicture.html#saveImage(java.lang.String)"><B>saveImage(String)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Saves the image represented by the JavaPicture object onto disk.
++<DT><A HREF="JavaSound.html#setAudioFileFormat(javax.sound.sampled.AudioFileFormat)"><B>setAudioFileFormat(AudioFileFormat)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Changes the AudioFileFormat of this sound.
+-<DT><A HREF="SoundExplorer.html#setBase(int)"><B>setBase(int)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to set the base for the index.
+-<DT><A HREF="DigitalPicture.html#setBasicPixel(int, int, int)"><B>setBasicPixel(int, int, int)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#setBasicPixel(int, int, int)"><B>setBasicPixel(int, int, int)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to set the value of a pixel in the picture from an int
+-<DT><A HREF="Pixel.html#setBlue(int)"><B>setBlue(int)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to set the blue to a new blue value
+-<DT><A HREF="SimpleSound.html#setBuffer(byte[])"><B>setBuffer(byte[])</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPicture.html#setBasicPixel(int, int, int)"><B>setBasicPixel(int, int, int)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>Sets the value of a pixel in the picture.
++<DT><A HREF="JavaPixel.html#setBlue(int)"><B>setBlue(int)</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Sets the blue value of the pixel.
++<DT><A HREF="JavaSound.html#setBuffer(byte[])"><B>setBuffer(byte[])</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Changes the byte array that represents this sound.
+-<DT><A HREF="SimpleSound.html#setBuffer(int)"><B>setBuffer(int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Changes the byte array that represents this sound.
+-<DT><A HREF="Pixel.html#setColor(java.awt.Color)"><B>setColor(Color)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to set the pixel color to the passed in color object.
+ <DT><A HREF="HighlightingStyledDocument.html#setCommentStyle(javax.swing.text.SimpleAttributeSet)"><B>setCommentStyle(SimpleAttributeSet)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setCommentStyle
+  Sets the style of text to use for comments
+-<DT><A HREF="ImageDisplay.html#setCurrentX(int)"><B>setCurrentX(int)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to set the current x
+-<DT><A HREF="ImageDisplay.html#setCurrentY(int)"><B>setCurrentY(int)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to set the current y
+ <DT><A HREF="HighlightingStyledDocument.html#setDefaultStyle(javax.swing.text.SimpleAttributeSet)"><B>setDefaultStyle(SimpleAttributeSet)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setDefaultStyle
+@@ -757,15 +550,12 @@
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setEnvironmentWordStyle
+  Sets the style of text to use for environment words
+-<DT><A HREF="SimpleSound.html#setFrame(int, byte[])"><B>setFrame(int, byte[])</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#setFrame(int, byte[])"><B>setFrame(int, byte[])</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Changes the value of each byte of the specified frame.
+-<DT><A HREF="Pixel.html#setGreen(int)"><B>setGreen(int)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to set the green to a new green value
+-<DT><A HREF="ImageDisplay.html#setImage(java.awt.Image)"><B>setImage(Image)</B></A> - 
+-Method in class <A HREF="ImageDisplay.html">ImageDisplay</A>
+-<DD>Method to set the image
++<DT><A HREF="JavaPixel.html#setGreen(int)"><B>setGreen(int)</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Sets the green value of the pixel.
+ <DT><A HREF="HighlightingStyledDocument.html#setKeywords(java.lang.String[])"><B>setKeywords(String[])</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setKeywords
+@@ -774,8 +564,8 @@
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setKeywordStyle
+  Sets the style of text to use for keywords
+-<DT><A HREF="SimpleSound.html#setLeftSample(int, int)"><B>setLeftSample(int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#setLeftSample(int, int)"><B>setLeftSample(int, int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>&nbsp;
+ <DT><A HREF="JESGutter.html#setLine(int, int, int)"><B>setLine(int, int, int)</B></A> - 
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+@@ -785,38 +575,22 @@
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>setLineMark
+  Sets the line do demarcate on the gutter
+-<DT><A HREF="HighlightingStyledDocument.html#setLParenStyle(javax.swing.text.SimpleAttributeSet)"><B>setLParenStyle(SimpleAttributeSet)</B></A> - 
+-Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+-<DD>Method: setLParenStyle
+- Sets the style of text to use for invalid Left Parens
+-<DT><A HREF="FileChooser.html#setMediaPath(java.lang.String)"><B>setMediaPath(String)</B></A> - 
+-Static method in class <A HREF="FileChooser.html">FileChooser</A>
+-<DD>Method to set the media path by setting the directory to use
+-<DT><A HREF="SimplePicture.html#setMediaPath(java.lang.String)"><B>setMediaPath(String)</B></A> - 
+-Static method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to set the media path by setting the directory to use
+-<DT><A HREF="SimplePicture.html#setPictureFrame(PictureFrame)"><B>setPictureFrame(PictureFrame)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to set the picture frame for this picture
+-<DT><A HREF="Pixel.html#setRed(int)"><B>setRed(int)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to set the red to a new red value
+-<DT><A HREF="SimpleSound.html#setRightSample(int, int)"><B>setRightSample(int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaPixel.html#setPixel()"><B>setPixel()</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>actually sets the integer (or basic) value of the pixel once the separate
++ red, green, blue and alpha values are set
++<DT><A HREF="JavaPixel.html#setRed(int)"><B>setRed(int)</B></A> - 
++Method in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>Sets the red value of the pixel.
++<DT><A HREF="JavaSound.html#setRightSample(int, int)"><B>setRightSample(int, int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>&nbsp;
+-<DT><A HREF="HighlightingStyledDocument.html#setRParenStyle(javax.swing.text.SimpleAttributeSet)"><B>setRParenStyle(SimpleAttributeSet)</B></A> - 
+-Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+-<DD>Method: setRParenStyle
+- Sets the style of text to use for invalid Right Parens
+-<DT><A HREF="SimpleSound.html#setSampleValue(int, int)"><B>setSampleValue(int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#setSample(int, int)"><B>setSample(int, int)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Changes the value of the sample found at the specified frame.
+-<DT><A HREF="SimpleSound.html#setSampleValueAt(int, int)"><B>setSampleValueAt(int, int)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to set the sample value at the passed index to the passed value
+-<DT><A HREF="SimpleSound.html#setSoundExplorer(SoundExplorer)"><B>setSoundExplorer(SoundExplorer)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Changes the explorer of this object.
++<DT><A HREF="JavaSound.html#setSoundView(SoundView)"><B>setSoundView(SoundView)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
++<DD>Changes the view of this object.
+ <DT><A HREF="HighlightingStyledDocument.html#setStringStyle(javax.swing.text.SimpleAttributeSet)"><B>setStringStyle(SimpleAttributeSet)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: setStringStyle
+@@ -825,189 +599,101 @@
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>setTextComponent()
+  Sets th etext component the gutter models itself after
+-<DT><A HREF="DigitalPicture.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
++<DT><A HREF="PictureViewer.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
++<DD>Set the title of the window
++<DT><A HREF="SoundView.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
+ <DD>&nbsp;
+-<DT><A HREF="PictureExplorer.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
+-<DD>Set the title of the frame
+-<DT><A HREF="PictureFrame.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>Method to set the title for the picture frame
+-<DT><A HREF="SimplePicture.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to set the title for the picture
+-<DT><A HREF="SoundExplorer.html#setTitle(java.lang.String)"><B>setTitle(String)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to set the title on the main window
+-<DT><A HREF="SoundSample.html#setValue(int)"><B>setValue(int)</B></A> - 
+-Method in class <A HREF="SoundSample.html">SoundSample</A>
+-<DD>Method to set the value of this sample and
+- handle the sound exception
+-<DT><A HREF="DigitalPicture.html#show()"><B>show()</B></A> - 
+-Method in interface <A HREF="DigitalPicture.html">DigitalPicture</A>
+-<DD>&nbsp;
+-<DT><A HREF="SimplePicture.html#show()"><B>show()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to show the picture in a picture frame
+-<DT><A HREF="SimpleOutput.html#showError(java.lang.String)"><B>showError(String)</B></A> - 
+-Static method in class <A HREF="SimpleOutput.html">SimpleOutput</A>
+-<DD>Method to show an error to a user
+-<DT><A HREF="SimpleOutput.html#showInformation(java.lang.String)"><B>showInformation(String)</B></A> - 
+-Static method in class <A HREF="SimpleOutput.html">SimpleOutput</A>
+-<DD>Method to show information to the user
+-<DT><A HREF="SimpleOutput.html#showWarning(java.lang.String)"><B>showWarning(String)</B></A> - 
+-Static method in class <A HREF="SimpleOutput.html">SimpleOutput</A>
+-<DD>Method to show a warning to a user
+-<DT><A HREF="SimpleOutput.html"><B>SimpleOutput</B></A> - class <A HREF="SimpleOutput.html">SimpleOutput</A>.<DD>Class to make it easy to do output to the user
+- using JOptionPane
+- 
+- Copyright Georgia Institute of Technology 2004<DT><A HREF="SimpleOutput.html#SimpleOutput()"><B>SimpleOutput()</B></A> - 
+-Constructor for class <A HREF="SimpleOutput.html">SimpleOutput</A>
++<DT><A HREF="JavaPicture.html#shower"><B>shower</B></A> - 
++Variable in class <A HREF="JavaPicture.html">JavaPicture</A>
+ <DD>&nbsp;
+-<DT><A HREF="SimplePicture.html"><B>SimplePicture</B></A> - class <A HREF="SimplePicture.html">SimplePicture</A>.<DD>A class that represents a simple picture.<DT><A HREF="SimplePicture.html#SimplePicture()"><B>SimplePicture()</B></A> - 
+-Constructor for class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>A Constructor that takes no arguments.
+-<DT><A HREF="SimplePicture.html#SimplePicture(int, int)"><B>SimplePicture(int, int)</B></A> - 
+-Constructor for class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>A constructor that takes the width and height desired for a picture and
+- creates a buffered image of that size.
+-<DT><A HREF="SimplePicture.html#SimplePicture(SimplePicture)"><B>SimplePicture(SimplePicture)</B></A> - 
+-Constructor for class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>A Constructor that takes a picture to copy information from
+-<DT><A HREF="SimplePicture.html#SimplePicture(java.lang.String)"><B>SimplePicture(String)</B></A> - 
+-Constructor for class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>A Constructor that takes a file name and uses the file to create
+- a picture
+-<DT><A HREF="SimpleSound.html"><B>SimpleSound</B></A> - class <A HREF="SimpleSound.html">SimpleSound</A>.<DD>The <code>SimpleSound</code> class is an implementation of the 
+- <a href = "http://java.sun.com/products/java-media/sound/index.html">
+- Java Sound API </a> specifically designed for use with students.<DT><A HREF="SimpleSound.html#SimpleSound()"><B>SimpleSound()</B></A> - 
+-Constructor for class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Constructs a <code>SimpleSound</code> of 3 seconds long.
+-<DT><A HREF="SimpleSound.html#SimpleSound(int)"><B>SimpleSound(int)</B></A> - 
+-Constructor for class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Constructs a <code>SimpleSound</code> of the specified length.
+-<DT><A HREF="SimpleSound.html#SimpleSound(int, boolean)"><B>SimpleSound(int, boolean)</B></A> - 
+-Constructor for class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Constructs a simple sound with the given sample size in bits and
+- type of endian (big or little)
+-<DT><A HREF="SimpleSound.html#SimpleSound(SimpleSound)"><B>SimpleSound(SimpleSound)</B></A> - 
+-Constructor for class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Constructor that creates a new SimpleSound by copying a passed
+- SimpleSound
+-<DT><A HREF="SimpleSound.html#SimpleSound(java.lang.String)"><B>SimpleSound(String)</B></A> - 
+-Constructor for class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Constructs a new SimpleSound from the given file.
+-<DT><A HREF="SoundException.html"><B>SoundException</B></A> - exception <A HREF="SoundException.html">SoundException</A>.<DD>Class to use to report a sound exception
+- 
+- Copyright Georgia Institute of Technology 2004<DT><A HREF="SoundException.html#SoundException(java.lang.String)"><B>SoundException(String)</B></A> - 
+-Constructor for class <A HREF="SoundException.html">SoundException</A>
++<DT><A HREF="ShowImage.html"><B>ShowImage</B></A> - class <A HREF="ShowImage.html">ShowImage</A>.<DD>&nbsp;<DT><A HREF="ShowImage.html#ShowImage(JavaPicture)"><B>ShowImage(JavaPicture)</B></A> - 
++Constructor for class <A HREF="ShowImage.html">ShowImage</A>
++<DD>&nbsp;
++<DT><A HREF="ShowImage.html#ShowImage(JavaPicture, java.lang.String)"><B>ShowImage(JavaPicture, String)</B></A> - 
++Constructor for class <A HREF="ShowImage.html">ShowImage</A>
++<DD>&nbsp;
++<DT><A HREF="JavaPicture.html#showPictureWithTitle(java.lang.String)"><B>showPictureWithTitle(String)</B></A> - 
++Method in class <A HREF="JavaPicture.html">JavaPicture</A>
++<DD>&nbsp;
++<DT><A HREF="SoundView.html"><B>SoundView</B></A> - class <A HREF="SoundView.html">SoundView</A>.<DD>&nbsp;<DT><A HREF="SoundView.SamplingPanel.html"><B>SoundView.SamplingPanel</B></A> - class <A HREF="SoundView.SamplingPanel.html">SoundView.SamplingPanel</A>.<DD>&nbsp;<DT><A HREF="SoundView.SamplingPanel.html#SoundView.SamplingPanel(boolean)"><B>SoundView.SamplingPanel(boolean)</B></A> - 
++Constructor for class <A HREF="SoundView.SamplingPanel.html">SoundView.SamplingPanel</A>
+ <DD>&nbsp;
+-<DT><A HREF="SoundExplorer.html"><B>SoundExplorer</B></A> - class <A HREF="SoundExplorer.html">SoundExplorer</A>.<DD>This class allows you to explore a Sound.<DT><A HREF="SoundExplorer.html#SoundExplorer(SimpleSound, boolean)"><B>SoundExplorer(SimpleSound, boolean)</B></A> - 
+-Constructor for class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Constructor that takes a sound and a boolean flag
+-<DT><A HREF="SoundSample.html"><B>SoundSample</B></A> - class <A HREF="SoundSample.html">SoundSample</A>.<DD>Class that represents a sample of a sound.<DT><A HREF="SoundSample.html#SoundSample(SimpleSound, int)"><B>SoundSample(SimpleSound, int)</B></A> - 
+-Constructor for class <A HREF="SoundSample.html">SoundSample</A>
+-<DD>Constructor that takes a sound and valueArray
+-<DT><A HREF="Playback.html#stopPlaying()"><B>stopPlaying()</B></A> - 
+-Method in class <A HREF="Playback.html">Playback</A>
++<DT><A HREF="SoundView.html#SoundView(JavaSound, boolean)"><B>SoundView(JavaSound, boolean)</B></A> - 
++Constructor for class <A HREF="SoundView.html">SoundView</A>
++<DD>&nbsp;
++<DT><A HREF="JavaSound.Playback.html#stopPlaying()"><B>stopPlaying()</B></A> - 
++Method in class <A HREF="JavaSound.Playback.html">JavaSound.Playback</A>
+ <DD>Stops this thread by breaking the while loop in the run method.
+ </DL>
+ <HR>
+ <A NAME="_T_"><!-- --></A><H2>
+ <B>T</B></H2>
+ <DL>
+-<DT><A HREF="TConversionTool.html"><B>TConversionTool</B></A> - class <A HREF="TConversionTool.html">TConversionTool</A>.<DD>&nbsp;<DT><A HREF="TConversionTool.html#TConversionTool()"><B>TConversionTool()</B></A> - 
+-Constructor for class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="Picture.html#toString()"><B>toString()</B></A> - 
+-Method in class <A HREF="Picture.html">Picture</A>
+-<DD>Method to return a string with information about this picture.
+-<DT><A HREF="Pixel.html#toString()"><B>toString()</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to return a string with information about this pixel
+-<DT><A HREF="SimplePicture.html#toString()"><B>toString()</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to return a string with information about this picture
+-<DT><A HREF="SimpleSound.html#toString()"><B>toString()</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#toString()"><B>toString()</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Obtains a string representation of this JavaSound.
+-<DT><A HREF="SoundSample.html#toString()"><B>toString()</B></A> - 
+-Method in class <A HREF="SoundSample.html">SoundSample</A>
+-<DD>Method to return a string with the information about
+- this object
+ </DL>
+ <HR>
+ <A NAME="_U_"><!-- --></A><H2>
+ <B>U</B></H2>
+ <DL>
+-<DT><A HREF="TConversionTool.html#ulaw2linear(byte)"><B>ulaw2linear(byte)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#unsignedByteToInt(byte)"><B>unsignedByteToInt(byte)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
+-<DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#unsignedByteToInt16(byte[], int, boolean)"><B>unsignedByteToInt16(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
++<DT><A HREF="JavaSound.html#unsignedByteToInt24(byte[], int, boolean)"><B>unsignedByteToInt24(byte[], int, boolean)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#unsignedByteToInt24(byte[], int, boolean)"><B>unsignedByteToInt24(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
++<DT><A HREF="JavaSound.html#unsignedByteToInt32(byte[], int, boolean)"><B>unsignedByteToInt32(byte[], int, boolean)</B></A> - 
++Static method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>&nbsp;
+-<DT><A HREF="TConversionTool.html#unsignedByteToInt32(byte[], int, boolean)"><B>unsignedByteToInt32(byte[], int, boolean)</B></A> - 
+-Static method in class <A HREF="TConversionTool.html">TConversionTool</A>
++<DT><A HREF="SoundView.html#update(javax.sound.sampled.LineEvent)"><B>update(LineEvent)</B></A> - 
++Method in class <A HREF="SoundView.html">SoundView</A>
+ <DD>&nbsp;
+-<DT><A HREF="SoundExplorer.html#update(javax.sound.sampled.LineEvent)"><B>update(LineEvent)</B></A> - 
+-Method in class <A HREF="SoundExplorer.html">SoundExplorer</A>
+-<DD>Method to handle the line event update
+ <DT><A HREF="HighlightingStyledDocument.html#updateHighlightingInRange(int, int)"><B>updateHighlightingInRange(int, int)</B></A> - 
+ Method in class <A HREF="HighlightingStyledDocument.html">HighlightingStyledDocument</A>
+ <DD>Method: updateHighlightingInRange
+  Looks at a given range of text in a document and highlights it
+  according to keywords, environment, strings, and comments.
+-<DT><A HREF="PictureFrame.html#updateImage()"><B>updateImage()</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>A method to update the picture frame image with the image in the 
+- picture
+-<DT><A HREF="PictureFrame.html#updateImageAndShowIt()"><B>updateImageAndShowIt()</B></A> - 
+-Method in class <A HREF="PictureFrame.html">PictureFrame</A>
+-<DD>A method to update the picture frame image with the image in the picture
+- and show it
+ <DT><A HREF="JESGutter.html#updateLines()"><B>updateLines()</B></A> - 
+ Method in class <A HREF="JESGutter.html">JESGutter</A>
+ <DD>updateLines
+  Recounts the number of lines in the Document, and updates the lines
+  list to have the new last few lines.
+-<DT><A HREF="Pixel.html#updatePicture(int, int, int, int)"><B>updatePicture(int, int, int, int)</B></A> - 
+-Method in class <A HREF="Pixel.html">Pixel</A>
+-<DD>Method to update the picture based on the passed color
+- values for this pixel
+ </DL>
+ <HR>
+ <A NAME="_W_"><!-- --></A><H2>
+ <B>W</B></H2>
+ <DL>
+-<DT><A HREF="SimplePicture.html#write(java.lang.String)"><B>write(String)</B></A> - 
+-Method in class <A HREF="SimplePicture.html">SimplePicture</A>
+-<DD>Method to write the contents of the picture to a file with 
+- the passed name
+-<DT><A HREF="SimpleSound.html#write(java.lang.String)"><B>write(String)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
+-<DD>Method to write this sound to a file
+-<DT><A HREF="SimpleSound.html#writeToFile(java.lang.String)"><B>writeToFile(String)</B></A> - 
+-Method in class <A HREF="SimpleSound.html">SimpleSound</A>
++<DT><A HREF="JavaSound.html#writeToFile(java.lang.String)"><B>writeToFile(String)</B></A> - 
++Method in class <A HREF="JavaSound.html">JavaSound</A>
+ <DD>Creates an audioInputStream from this sound, and then writes this
+  stream out to the file with the specified name.
+ </DL>
+ <HR>
++<A NAME="_X_"><!-- --></A><H2>
++<B>X</B></H2>
++<DL>
++<DT><A HREF="JavaPixel.html#x"><B>x</B></A> - 
++Variable in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>&nbsp;
++</DL>
++<HR>
++<A NAME="_Y_"><!-- --></A><H2>
++<B>Y</B></H2>
++<DL>
++<DT><A HREF="JavaPixel.html#y"><B>y</B></A> - 
++Variable in class <A HREF="JavaPixel.html">JavaPixel</A>
++<DD>&nbsp;
++</DL>
++<HR>
+ <A NAME="_Z_"><!-- --></A><H2>
+ <B>Z</B></H2>
+ <DL>
+-<DT><A HREF="PictureExplorer.html#zoom(double)"><B>zoom(double)</B></A> - 
+-Method in class <A HREF="PictureExplorer.html">PictureExplorer</A>
++<DT><A HREF="PictureViewer.html#zoom(double)"><B>zoom(double)</B></A> - 
++Method in class <A HREF="PictureViewer.html">PictureViewer</A>
+ <DD>Zooms in the on picture by scaling the image.
+ </DL>
+ <HR>
+-<A HREF="#_A_">A</A> <A HREF="#_B_">B</A> <A HREF="#_C_">C</A> <A HREF="#_D_">D</A> <A HREF="#_E_">E</A> <A HREF="#_F_">F</A> <A HREF="#_G_">G</A> <A HREF="#_H_">H</A> <A HREF="#_I_">I</A> <A HREF="#_J_">J</A> <A HREF="#_L_">L</A> <A HREF="#_M_">M</A> <A HREF="#_N_">N</A> <A HREF="#_O_">O</A> <A HREF="#_P_">P</A> <A HREF="#_R_">R</A> <A HREF="#_S_">S</A> <A HREF="#_T_">T</A> <A HREF="#_U_">U</A> <A HREF="#_W_">W</A> <A HREF="#_Z_">Z</A> 
++<A HREF="#_A_">A</A> <A HREF="#_B_">B</A> <A HREF="#_C_">C</A> <A HREF="#_D_">D</A> <A HREF="#_F_">F</A> <A HREF="#_G_">G</A> <A HREF="#_H_">H</A> <A HREF="#_I_">I</A> <A HREF="#_J_">J</A> <A HREF="#_L_">L</A> <A HREF="#_M_">M</A> <A HREF="#_O_">O</A> <A HREF="#_P_">P</A> <A HREF="#_R_">R</A> <A HREF="#_S_">S</A> <A HREF="#_T_">T</A> <A HREF="#_U_">U</A> <A HREF="#_W_">W</A> <A HREF="#_X_">X</A> <A HREF="#_Y_">Y</A> <A HREF="#_Z_">Z</A> 
+ <!-- ========== START OF NAVBAR ========== -->
+ <A NAME="navbar_bottom"><!-- --></A>
+ <TABLE BORDER="0" WIDTH="100%" CELLPADDING="1" CELLSPACING="0">
+--- ./Sources/javadoc/index.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/index.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,14 +2,14 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005-->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003-->
+ <TITLE>
+ Generated Documentation (Untitled)
+ </TITLE>
+ </HEAD>
+ <FRAMESET cols="20%,80%">
+ <FRAME src="allclasses-frame.html" name="packageFrame">
+-<FRAME src="DigitalPicture.html" name="classFrame">
++<FRAME src="HighlightingStyledDocument.html" name="classFrame">
+ </FRAMESET>
+ <NOFRAMES>
+ <H2>
+@@ -18,5 +18,5 @@
+ <P>
+ This document is designed to be viewed using the frames feature. If you see this message, you are using a non-frame-capable web client.
+ <BR>
+-Link to<A HREF="DigitalPicture.html">Non-frame version.</A></NOFRAMES>
++Link to<A HREF="HighlightingStyledDocument.html">Non-frame version.</A></NOFRAMES>
+ </HTML>
+--- ./Sources/javadoc/JavaMusic.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/JavaMusic.html	2003-11-14 12:52:50.000000000 -0500
+@@ -2,10 +2,11 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:50 EST 2003 -->
+ <TITLE>
+ JavaMusic
+ </TITLE>
++<META NAME="keywords" CONTENT="JavaMusic,JavaMusic class">
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+@@ -41,8 +42,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="ImageDisplay.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="JESGutter.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;<A HREF="JavaMoviePlayer.html"><B>PREV CLASS</B></A>&nbsp;
++&nbsp;<A HREF="JavaPicture.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="JavaMusic.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+@@ -323,8 +324,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="ImageDisplay.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="JESGutter.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;<A HREF="JavaMoviePlayer.html"><B>PREV CLASS</B></A>&nbsp;
++&nbsp;<A HREF="JavaPicture.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="JavaMusic.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+--- ./Sources/javadoc/JESGutter.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/JESGutter.html	2003-11-14 12:52:50.000000000 -0500
+@@ -2,10 +2,11 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:50 EST 2003 -->
+ <TITLE>
+ JESGutter
+ </TITLE>
++<META NAME="keywords" CONTENT="JESGutter,JESGutter class">
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+@@ -41,8 +42,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="JavaMusic.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="Picture.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;<A HREF="JavaSoundException.html"><B>PREV CLASS</B></A>&nbsp;
++&nbsp;<A HREF="JpegImagesToMovie.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="JESGutter.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+@@ -61,7 +62,7 @@
+ </TR>
+ <TR>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_javax.swing.JComponent">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.JComponent">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
++  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.JComponent">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+ </TR>
+@@ -106,41 +107,7 @@
+ <P>
+ <!-- ======== NESTED CLASS SUMMARY ======== -->
+ 
+-<A NAME="nested_class_summary"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+-<TD COLSPAN=2><FONT SIZE="+2">
+-<B>Nested Class Summary</B></FONT></TD>
+-</TR>
+-</TABLE>
+-&nbsp;<A NAME="nested_classes_inherited_from_class_javax.swing.JComponent"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+-<TD><B>Nested classes inherited from class javax.swing.JComponent</B></TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE>javax.swing.JComponent.AccessibleJComponent</CODE></TD>
+-</TR>
+-</TABLE>
+-&nbsp;<A NAME="nested_classes_inherited_from_class_java.awt.Container"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+-<TD><B>Nested classes inherited from class java.awt.Container</B></TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE>java.awt.Container.AccessibleAWTContainer</CODE></TD>
+-</TR>
+-</TABLE>
+-&nbsp;<A NAME="nested_classes_inherited_from_class_java.awt.Component"><!-- --></A>
+-<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#EEEEFF" CLASS="TableSubHeadingColor">
+-<TD><B>Nested classes inherited from class java.awt.Component</B></TD>
+-</TR>
+-<TR BGCOLOR="white" CLASS="TableRowColor">
+-<TD><CODE>java.awt.Component.AccessibleAWTComponent, java.awt.Component.BltBufferStrategy, java.awt.Component.FlipBufferStrategy</CODE></TD>
+-</TR>
+-</TABLE>
+-&nbsp;
++
+ <!-- =========== FIELD SUMMARY =========== -->
+ 
+ <A NAME="field_summary"><!-- --></A>
+@@ -571,8 +538,8 @@
+ 
+ <TR>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+-&nbsp;<A HREF="JavaMusic.html"><B>PREV CLASS</B></A>&nbsp;
+-&nbsp;<A HREF="Picture.html"><B>NEXT CLASS</B></A></FONT></TD>
++&nbsp;<A HREF="JavaSoundException.html"><B>PREV CLASS</B></A>&nbsp;
++&nbsp;<A HREF="JpegImagesToMovie.html"><B>NEXT CLASS</B></A></FONT></TD>
+ <TD BGCOLOR="white" CLASS="NavBarCell2"><FONT SIZE="-2">
+   <A HREF="index.html" TARGET="_top"><B>FRAMES</B></A>  &nbsp;
+ &nbsp;<A HREF="JESGutter.html" TARGET="_top"><B>NO FRAMES</B></A>  &nbsp;
+@@ -591,7 +558,7 @@
+ </TR>
+ <TR>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+-  SUMMARY:&nbsp;<A HREF="#nested_classes_inherited_from_class_javax.swing.JComponent">NESTED</A>&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.JComponent">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
++  SUMMARY:&nbsp;NESTED&nbsp;|&nbsp;<A HREF="#fields_inherited_from_class_javax.swing.JComponent">FIELD</A>&nbsp;|&nbsp;<A HREF="#constructor_summary">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_summary">METHOD</A></FONT></TD>
+ <TD VALIGN="top" CLASS="NavBarCell3"><FONT SIZE="-2">
+ DETAIL:&nbsp;FIELD&nbsp;|&nbsp;<A HREF="#constructor_detail">CONSTR</A>&nbsp;|&nbsp;<A HREF="#method_detail">METHOD</A></FONT></TD>
+ </TR>
+--- ./Sources/javadoc/overview-tree.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/overview-tree.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,16 +2,16 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+-Class Hierarchy ()
++Class Hierarchy
+ </TITLE>
+ <LINK REL ="stylesheet" TYPE="text/css" HREF="stylesheet.css" TITLE="Style">
+ </HEAD>
+ <SCRIPT>
+ function asd()
+ {
+-parent.document.title="Class Hierarchy ()";
++parent.document.title="Class Hierarchy";
+ }
+ </SCRIPT>
+ <BODY BGCOLOR="white" onload="asd();">
+@@ -85,31 +85,32 @@
+ <LI TYPE="circle">class <A HREF="JESGutter.html"><B>JESGutter</B></A> (implements javax.swing.event.DocumentListener)
+ <LI TYPE="circle">class javax.swing.JPanel (implements javax.accessibility.Accessible)
+ <UL>
+-<LI TYPE="circle">class <A HREF="ImageDisplay.html"><B>ImageDisplay</B></A> (implements javax.swing.Scrollable)
++<LI TYPE="circle">class <A HREF="SoundView.SamplingPanel.html"><B>SoundView.SamplingPanel</B></A></UL>
+ </UL>
++<LI TYPE="circle">class java.awt.Window (implements javax.accessibility.Accessible)
++<UL>
++<LI TYPE="circle">class java.awt.Frame (implements java.awt.MenuContainer)
++<UL>
++<LI TYPE="circle">class javax.swing.JFrame (implements javax.accessibility.Accessible, javax.swing.RootPaneContainer, javax.swing.WindowConstants)
++<UL>
++<LI TYPE="circle">class <A HREF="JavaMovie.html"><B>JavaMovie</B></A><LI TYPE="circle">class <A HREF="JavaMoviePlayer.html"><B>JavaMoviePlayer</B></A><LI TYPE="circle">class <A HREF="ShowImage.html"><B>ShowImage</B></A></UL>
+ </UL>
+ </UL>
+ </UL>
+-<LI TYPE="circle">class <A HREF="FileChooser.html"><B>FileChooser</B></A><LI TYPE="circle">class <A HREF="JavaMusic.html"><B>JavaMusic</B></A><LI TYPE="circle">class <A HREF="PictureExplorer.html"><B>PictureExplorer</B></A> (implements java.awt.event.ActionListener, java.awt.event.MouseListener, java.awt.event.MouseMotionListener)
+-<LI TYPE="circle">class <A HREF="PictureFrame.html"><B>PictureFrame</B></A><LI TYPE="circle">class <A HREF="Pixel.html"><B>Pixel</B></A><LI TYPE="circle">class <A HREF="SimpleOutput.html"><B>SimpleOutput</B></A><LI TYPE="circle">class <A HREF="SimplePicture.html"><B>SimplePicture</B></A> (implements <A HREF="DigitalPicture.html">DigitalPicture</A>)
+-<UL>
+-<LI TYPE="circle">class <A HREF="Picture.html"><B>Picture</B></A></UL>
+-<LI TYPE="circle">class <A HREF="SimpleSound.html"><B>SimpleSound</B></A><LI TYPE="circle">class <A HREF="SoundExplorer.html"><B>SoundExplorer</B></A> (implements java.awt.event.ActionListener, javax.sound.sampled.LineListener, java.awt.event.MouseListener, java.awt.event.MouseMotionListener)
+-<LI TYPE="circle">class <A HREF="SoundSample.html"><B>SoundSample</B></A><LI TYPE="circle">class <A HREF="TConversionTool.html"><B>TConversionTool</B></A><LI TYPE="circle">class java.lang.Thread (implements java.lang.Runnable)
++</UL>
++<LI TYPE="circle">class <A HREF="JavaMusic.html"><B>JavaMusic</B></A><LI TYPE="circle">class <A HREF="JavaPicture.html"><B>JavaPicture</B></A><LI TYPE="circle">class <A HREF="JavaPixel.html"><B>JavaPixel</B></A><LI TYPE="circle">class <A HREF="JavaSound.html"><B>JavaSound</B></A><LI TYPE="circle">class <A HREF="JpegImagesToMovie.html"><B>JpegImagesToMovie</B></A><LI TYPE="circle">class <A HREF="MovieMaker.html"><B>MovieMaker</B></A> (implements java.awt.event.ActionListener)
++<LI TYPE="circle">class <A HREF="PictureViewer.html"><B>PictureViewer</B></A> (implements java.awt.event.ActionListener, java.awt.event.MouseListener, java.awt.event.MouseMotionListener)
++<LI TYPE="circle">class <A HREF="SoundView.html"><B>SoundView</B></A> (implements java.awt.event.ActionListener, javax.sound.sampled.LineListener, java.awt.event.MouseListener, java.awt.event.MouseMotionListener)
++<LI TYPE="circle">class java.lang.Thread (implements java.lang.Runnable)
+ <UL>
+-<LI TYPE="circle">class <A HREF="Playback.html"><B>Playback</B></A></UL>
++<LI TYPE="circle">class <A HREF="JavaSound.Playback.html"><B>JavaSound.Playback</B></A></UL>
+ <LI TYPE="circle">class java.lang.Throwable (implements java.io.Serializable)
+ <UL>
+ <LI TYPE="circle">class java.lang.Exception<UL>
+-<LI TYPE="circle">class <A HREF="SoundException.html"><B>SoundException</B></A></UL>
++<LI TYPE="circle">class <A HREF="JavaSoundException.html"><B>JavaSoundException</B></A></UL>
+ </UL>
+ </UL>
+ </UL>
+-<H2>
+-Interface Hierarchy
+-</H2>
+-<UL>
+-<LI TYPE="circle">interface <A HREF="DigitalPicture.html"><B>DigitalPicture</B></A></UL>
+ <HR>
+ 
+ <!-- ========== START OF NAVBAR ========== -->
+--- ./Sources/javadoc/packages.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/packages.html	2003-11-14 12:52:49.000000000 -0500
+@@ -2,7 +2,7 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:08 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:49 EST 2003 -->
+ <TITLE>
+ 
+ </TITLE>
+@@ -20,7 +20,7 @@
+ <BR>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="index.html">Frame version</A>
+ <BR>
+-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="DigitalPicture.html">Non-frame version.</A></CENTER>
++&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<A HREF="HighlightingStyledDocument.html">Non-frame version.</A></CENTER>
+ 
+ </BODY>
+ </HTML>
+--- ./Sources/javadoc/serialized-form.html	2005-05-06 18:03:00.000000000 -0400
++++ ../jes-1315/JES/./Sources/javadoc/serialized-form.html	2003-11-14 12:52:51.000000000 -0500
+@@ -2,7 +2,7 @@
+ <!--NewPage-->
+ <HTML>
+ <HEAD>
+-<!-- Generated by javadoc on Fri May 06 19:03:09 EDT 2005 -->
++<!-- Generated by javadoc on Fri Nov 14 12:52:51 EST 2003 -->
+ <TITLE>
+ Serialized Form
+ </TITLE>
+@@ -124,26 +124,6 @@
+ <HR>
+ 
+ <H3>
+-rParenStyle</H3>
+-<PRE>
+-javax.swing.text.SimpleAttributeSet <B>rParenStyle</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
+-
+-<H3>
+-lParenStyle</H3>
+-<PRE>
+-javax.swing.text.SimpleAttributeSet <B>lParenStyle</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
+-
+-<H3>
+ defaultStyle</H3>
+ <PRE>
+ javax.swing.text.SimpleAttributeSet <B>defaultStyle</B></PRE>
+@@ -174,16 +154,6 @@
+ <HR>
+ 
+ <H3>
+-lParens</H3>
+-<PRE>
+-java.util.Vector <B>lParens</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
+-
+-<H3>
+ environmentWords</H3>
+ <PRE>
+ java.util.Vector <B>environmentWords</B></PRE>
+@@ -274,61 +244,39 @@
+ 
+ <P>
+ <HR SIZE="4" NOSHADE>
+-<A NAME="ImageDisplay"><!-- --></A>
++<A NAME="JavaMovie"><!-- --></A>
+ <TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+ <TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+ <TD COLSPAN=2><FONT SIZE="+2">
+-<B>Class <A HREF="ImageDisplay.html">ImageDisplay</A> implements Serializable</B></FONT></TD>
++<B>Class <A HREF="JavaMovie.html">JavaMovie</A> implements Serializable</B></FONT></TD>
+ </TR>
+ </TABLE>
+ 
+ <P>
+-<A NAME="serializedForm"><!-- --></A>
++
++<P>
++<HR SIZE="4" NOSHADE>
++<A NAME="JavaMoviePlayer"><!-- --></A>
+ <TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+-<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
+-<TD COLSPAN=1><FONT SIZE="+2">
+-<B>Serialized Fields</B></FONT></TD>
++<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
++<TD COLSPAN=2><FONT SIZE="+2">
++<B>Class <A HREF="JavaMoviePlayer.html">JavaMoviePlayer</A> implements Serializable</B></FONT></TD>
+ </TR>
+ </TABLE>
+ 
+-<H3>
+-image</H3>
+-<PRE>
+-java.awt.Image <B>image</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
+-
+-<H3>
+-prefSize</H3>
+-<PRE>
+-java.awt.Dimension <B>prefSize</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
++<P>
+ 
+-<H3>
+-currentX</H3>
+-<PRE>
+-int <B>currentX</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
+-<HR>
++<P>
++<HR SIZE="4" NOSHADE>
++<A NAME="JavaSoundException"><!-- --></A>
++<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
++<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
++<TD COLSPAN=2><FONT SIZE="+2">
++<B>Class <A HREF="JavaSoundException.html">JavaSoundException</A> implements Serializable</B></FONT></TD>
++</TR>
++</TABLE>
+ 
+-<H3>
+-currentY</H3>
+-<PRE>
+-int <B>currentY</B></PRE>
+-<DL>
+-<DL>
+-</DL>
+-</DL>
++<P>
+ 
+ <P>
+ <HR SIZE="4" NOSHADE>
+@@ -450,17 +398,55 @@
+ 
+ <P>
+ <HR SIZE="4" NOSHADE>
+-<A NAME="SoundException"><!-- --></A>
++<A NAME="ShowImage"><!-- --></A>
+ <TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
+ <TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
+ <TD COLSPAN=2><FONT SIZE="+2">
+-<B>Class <A HREF="SoundException.html">SoundException</A> implements Serializable</B></FONT></TD>
++<B>Class <A HREF="ShowImage.html">ShowImage</A> implements Serializable</B></FONT></TD>
+ </TR>
+ </TABLE>
+ 
+ <P>
+ 
+ <P>
++<HR SIZE="4" NOSHADE>
++<A NAME="SoundView.SamplingPanel"><!-- --></A>
++<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
++<TR BGCOLOR="#CCCCFF" CLASS="TableSubHeadingColor">
++<TD COLSPAN=2><FONT SIZE="+2">
++<B>Class <A HREF="SoundView.SamplingPanel.html">SoundView.SamplingPanel</A> implements Serializable</B></FONT></TD>
++</TR>
++</TABLE>
++
++<P>
++<A NAME="serializedForm"><!-- --></A>
++<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0" WIDTH="100%">
++<TR BGCOLOR="#CCCCFF" CLASS="TableHeadingColor">
++<TD COLSPAN=1><FONT SIZE="+2">
++<B>Serialized Fields</B></FONT></TD>
++</TR>
++</TABLE>
++
++<H3>
++forLeftSample</H3>
++<PRE>
++boolean <B>forLeftSample</B></PRE>
++<DL>
++<DL>
++</DL>
++</DL>
++<HR>
++
++<H3>
++points</H3>
++<PRE>
++java.util.Vector <B>points</B></PRE>
++<DL>
++<DL>
++</DL>
++</DL>
++
++<P>
+ <HR>
+ 
+ <!-- ========== START OF NAVBAR ========== -->
+Files ./Sources/JavaMusic.class and ../jes-1315/JES/./Sources/JavaMusic.class differ
+--- ./Sources/JavaMusic.java	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JavaMusic.java	2003-07-23 11:50:00.000000000 -0400
+@@ -1,7 +1,7 @@
+ import javax.sound.midi.*;
+ import java.io.*;
+ 
+-public class JavaMusic {
++public class JavaMusic{
+     
+     private static Synthesizer synthr;
+     private static MidiChannel channel;
+@@ -17,7 +17,7 @@
+ 	    channel = channels[0];
+ 	    
+ 	}catch(Exception e){
+-
++	    System.out.println(e);
+ 	}
+     }
+ 
+Files ./Sources/JESAbout$py.class and ../jes-1315/JES/./Sources/JESAbout$py.class differ
+Files ./Sources/JESAction$py.class and ../jes-1315/JES/./Sources/JESAction$py.class differ
+Files ./Sources/JESAddressFinder$py.class and ../jes-1315/JES/./Sources/JESAddressFinder$py.class differ
+--- ./Sources/JESAddressFinder.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESAddressFinder.py	2003-07-23 11:50:00.000000000 -0400
+@@ -17,8 +17,10 @@
+         self.data=self.grabFile()
+     
+     def getTargetAddress(self,gt,hw):
+-        self.targetGt=string.strip(gt)
+-        self.targetHw=string.strip(hw)
++        self.targetGt=gt
++        self.targetGt=string.strip(self.targetGt)
++        self.targetHw=hw
++        self.targetHw=string.strip(self.targetHw)
+         self.parseDataFile(self.data)
+         return self.findAddress()
+ 
+@@ -39,33 +41,20 @@
+             f.close()
+             return data
+         except:
+-            import sys
+-            a,b,c = sys.exc_info()
+-            print a,b,c
+             print "Error in JESAddressFinder.grabFile, could not get target mail address for submission"
+             return None
+ 
+     def parseDataFile(self,text):
+-        #Get the TA assignments:        
+-        beg = text.find("#BEGIN")
+-        end = text.find("#END")
+-        if (beg == -1) or (end == -1):
+-            return 0
+-        text = text[beg+6:end]
+         self.splitarray=[]
+         array=text.split("\n")
+         for x in array:
+             self.splitarray.append(x.split("|"))
+ 
+-  
+     def findAddress(self):
+         try:
+             for x in self.splitarray:
+                 if string.strip(x[0]) == self.targetGt:
+                     if string.strip(x[1]) == self.targetHw:
+-                        return string.strip(x[2])
++                        return x[2]
+         except:
+-            import sys
+-            a,b,c=sys.exc_info()
+-            print a,b,c
+             print "Error in JESAddressFinder.findAddress"
+Files ./Sources/JESCommandHistory$py.class and ../jes-1315/JES/./Sources/JESCommandHistory$py.class differ
+Files ./Sources/JESCommandWindow$py.class and ../jes-1315/JES/./Sources/JESCommandWindow$py.class differ
+Files ./Sources/JESCommandWindowDocument$py.class and ../jes-1315/JES/./Sources/JESCommandWindowDocument$py.class differ
+--- ./Sources/JESCommandWindowDocument.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESCommandWindowDocument.py	2003-12-11 16:12:10.000000000 -0500
+@@ -42,7 +42,7 @@
+ #     the user's font selection. In theory.
+ ################################################################################
+     def changeFontSize(self, fontSize):
+-        newFontSize = int(fontSize)
++        newFontSize = string.atoi(fontSize)
+         swing.text.StyleConstants.setFontSize(self.textAttrib, newFontSize)
+         text = DefaultStyledDocument.getText(self, 0, DefaultStyledDocument.getLength(self))
+         DefaultStyledDocument.remove(self, 0, DefaultStyledDocument.getLength(self))
+Files ./Sources/JESConstants$py.class and ../jes-1315/JES/./Sources/JESConstants$py.class differ
+--- ./Sources/JESConstants.py	2005-03-15 17:39:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESConstants.py	2003-09-23 15:51:04.000000000 -0400
+@@ -37,16 +37,9 @@
+ # The turnin types for the class.  You can turn the methods on and off by
+ # assigning 1 for on, and 0 for off.
+ EMAIL_TURNIN = 0
+-COWEB_TURNIN = 0
++COWEB_TURNIN = 1
+ 
+-# Using the CoWeb Table - automatically assigns turnin type per assignment basis
+-# Ignores EMAIL_TURNIN and COWEB_TURNIN constants
+-TURNIN_TYPE_TABLE = 1
+-# This URL should be a link to the table containg file turnin types for EACH
+-# assignment.
+-HW_TABLE_LINK = 'http://coweb.cc.gatech.edu/mediaComp-plan/109'
+-
+-# This URL should be a link TO the table containing the URL for the email HW
++# This URL should be a link the table containing the URL for the email HW
+ # submission information.  The file should be of the following format:
+ # Any stuff here will be ignored by the parser
+ # #BEGIN
+@@ -56,8 +49,7 @@
+ # Important, HW# must exactly match a HW# from the ASSIGNMENT_URL or the 
+ # program will not know where to turn the file in to.  Also, the target email
+ # must be complete and exact.
+-#HW_ADDRESS_URL = 'http://coweb.cc.gatech.edu/mediaComp-plan/33'
+-HW_ADDRESS_URL = 'http://coweb.cc.gatech.edu/mediaComp-plan/111'# DEBUG
++HW_ADDRESS_URL = 'http://coweb.cc.gatech.edu/mediaComp-plan/33'
+ 
+ # This URL will contain the file which contains the list of possible assignments
+ # that the student will be able to turn in.  It will look like:
+@@ -66,8 +58,7 @@
+ # HW#|HW#|HW#
+ # #END
+ # Stuff here gets ignored
+-#ASSIGNMENT_URL='http://coweb.cc.gatech.edu/mediaComp-plan/32'
+-ASSIGNMENT_URL='http://coweb.cc.gatech.edu/mediaComp-plan/112'# DEBUG
++ASSIGNMENT_URL='http://coweb.cc.gatech.edu/mediaComp-plan/32'
+ 
+ #This URL will contain the file which contains the Web turnin
+ #Address definitions.  It should look like this:
+@@ -79,8 +70,7 @@
+ # TA_GT_NUM|ASSIGNMENT_NAME|TARGET_COWEB_ADDRESS
+ # ...
+ # #END_TURNIN_LOCATIONS
+-#HW_COWEB_ADDRESS_URL = 'http://coweb.cc.gatech.edu:8080/mediaComp-plan/81'
+-HW_COWEB_ADDRESS_URL = 'http://coweb.cc.gatech.edu:8080/mediaComp-plan/113'# DEBUG
++HW_COWEB_ADDRESS_URL = 'http://coweb.cc.gatech.edu:8080/mediaComp-plan/81'
+ HW_COWEB_PORT = 8080
+ HW_COWEB_ATTACH_SUFFIX = '.attach'
+ 
+@@ -91,8 +81,6 @@
+ ENVIRONMENT_WORD_COLOR = awt.Color(150,50,150)
+ COMMENT_COLOR = awt.Color(50, 120, 50)
+ STRING_COLOR = awt.Color(150, 90, 90)
+-LPAREN_COLOR = awt.Color(150, 0, 0)
+-RPAREN_COLOR = awt.Color(150, 0, 0)
+ LOAD_BUTTON_DIFF_COLOR = awt.Color(200, 50, 50)
+ LOAD_BUTTON_SAME_COLOR = awt.Color(50, 200, 50)
+ FONT_SIZE = 12
+@@ -102,7 +90,7 @@
+ NAME_OF_EXC_MSG = 'The error "%s" had occurred\n'
+ LINE_NUM_MSG = 'Please check line %d of %s\n'
+ 
+-PRE_PROCESSING_FILE = 'Sources/JESPreprocessing.py'
++PRE_PROCESSING_FILE = 'JESPreprocessing.py'
+ SHOW_VARS_FILTER_FILE = 'JESShowVarsFilter.py'
+ NO_PRE_PROCESSING_FILE_ERR_MSG = '\nThe file ' + PRE_PROCESSING_FILE + \
+                                  ' could not be loaded.  You program '\
+Files ./Sources/JESDBVariableWatcher$py.class and ../jes-1315/JES/./Sources/JESDBVariableWatcher$py.class differ
+Files ./Sources/JESDebugger$py.class and ../jes-1315/JES/./Sources/JESDebugger$py.class differ
+Files ./Sources/JESDebugWindow$py.class and ../jes-1315/JES/./Sources/JESDebugWindow$py.class differ
+Files ./Sources/JESEditor$py.class and ../jes-1315/JES/./Sources/JESEditor$py.class differ
+Files ./Sources/JESEditorDocument$py.class and ../jes-1315/JES/./Sources/JESEditorDocument$py.class differ
+--- ./Sources/JESEditorDocument.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESEditorDocument.py	2003-07-23 08:02:00.000000000 -0400
+@@ -19,7 +19,6 @@
+ WORD_BREAKS = [' ', '\n', '\t', '[', ']', '{', '}', ',', '\'', '-', '+', '=',
+                '<', '>',  ':', ';', '_', '(', ')', '.',  '#', '"', '%' ]
+ KEYWORD_BOLD = 1
+-INVALID_PAREN_BOLD = 1
+ INSERT_EVENT = 1
+ REMOVE_EVENT = 2
+ MAX_UNDO_EVENTS_TO_RETAIN = 500
+@@ -48,8 +47,6 @@
+         self.highlightLineAttrib = swing.text.SimpleAttributeSet()
+ 	self.commentAttrib = swing.text.SimpleAttributeSet()
+ 	self.stringAttrib = swing.text.SimpleAttributeSet()
+-        self.lParenAttrib = swing.text.SimpleAttributeSet()
+-        self.rParenAttrib = swing.text.SimpleAttributeSet()
+ 	self.needToSetEnvironment = 1
+         
+ 	swing.text.StyleConstants.setForeground(self.stringAttrib, JESConstants.STRING_COLOR)
+@@ -71,16 +68,6 @@
+         swing.text.StyleConstants.setFontSize(self.keywordAttrib, self.editor.program.userFont)
+         swing.text.StyleConstants.setFontFamily(self.keywordAttrib, "Monospaced");
+ 
+-        swing.text.StyleConstants.setForeground(self.lParenAttrib, JESConstants.LPAREN_COLOR)
+-        swing.text.StyleConstants.setBold(self.lParenAttrib, INVALID_PAREN_BOLD)
+-        swing.text.StyleConstants.setFontSize(self.lParenAttrib, self.editor.program.userFont)
+-        swing.text.StyleConstants.setFontFamily(self.lParenAttrib, "Monospaced");
+-
+-        swing.text.StyleConstants.setForeground(self.rParenAttrib, JESConstants.RPAREN_COLOR)
+-        swing.text.StyleConstants.setBold(self.rParenAttrib, INVALID_PAREN_BOLD)
+-        swing.text.StyleConstants.setFontSize(self.rParenAttrib, self.editor.program.userFont)
+-        swing.text.StyleConstants.setFontFamily(self.rParenAttrib, "Monospaced");
+-
+         swing.text.StyleConstants.setForeground(self.errorLineAttrib, ERROR_LINE_FONT_COLOR)
+         swing.text.StyleConstants.setBackground(self.errorLineAttrib, ERROR_LINE_BACKGROUND_COLOR)
+         swing.text.StyleConstants.setFontFamily(self.errorLineAttrib, "Monospaced")
+@@ -95,8 +82,6 @@
+         HighlightingStyledDocument.setKeywordStyle(self, self.keywordAttrib)
+         HighlightingStyledDocument.setEnvironmentWordStyle(self, self.jesEnvironmentWordAttrib)
+         HighlightingStyledDocument.setStringStyle(self, self.stringAttrib)
+-        HighlightingStyledDocument.setLParenStyle(self, self.lParenAttrib)
+-        HighlightingStyledDocument.setRParenStyle(self, self.rParenAttrib)
+         HighlightingStyledDocument.setCommentStyle(self, self.commentAttrib)
+         HighlightingStyledDocument.setDefaultStyle(self, self.textAttrib)
+ 
+@@ -118,15 +103,13 @@
+ #			the user's font selection. In theory.
+ ################################################################################
+     def changeFontSize(self, fontSize):
+-        newFontSize = int(fontSize)
++        newFontSize = string.atoi(fontSize)
+         swing.text.StyleConstants.setFontSize(self.errorLineAttrib, newFontSize)
+         swing.text.StyleConstants.setFontSize(self.commentAttrib, newFontSize)
+         swing.text.StyleConstants.setFontSize(self.stringAttrib, newFontSize)
+         swing.text.StyleConstants.setFontSize(self.textAttrib, newFontSize)
+         swing.text.StyleConstants.setFontSize(self.jesEnvironmentWordAttrib,
+ newFontSize)
+-        swing.text.StyleConstants.setFontSize(self.rParenAttrib, newFontSize)
+-        swing.text.StyleConstants.setFontSize(self.lParenAttrib, newFontSize);
+         swing.text.StyleConstants.setFontSize(self.keywordAttrib, newFontSize)
+         HighlightingStyledDocument.updateHighlightingInRange(self, 0,
+ HighlightingStyledDocument.getLength(self))
+Files ./Sources/JESExceptionRecord$py.class and ../jes-1315/JES/./Sources/JESExceptionRecord$py.class differ
+--- ./Sources/JESExceptionRecord.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESExceptionRecord.py	2003-12-11 16:04:23.000000000 -0500
+@@ -314,7 +314,7 @@
+             
+ 
+             return "%s: %s\n" % (exc_type.__name__, exc_value)
+-	elif exc_type.__name__ == 'SoundException':
++	elif exc_type.__name__ == 'JavaSoundException':
+ 	    return "%s\n" % (exc_value)
+         else:
+ 
+Files ./Sources/JESGutter.class and ../jes-1315/JES/./Sources/JESGutter.class differ
+Files ./Sources/JESHomeworkSubmission$py.class and ../jes-1315/JES/./Sources/JESHomeworkSubmission$py.class differ
+--- ./Sources/JESHomeworkSubmission.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESHomeworkSubmission.py	2003-09-03 16:45:14.000000000 -0400
+@@ -7,7 +7,6 @@
+ import JESConstants
+ import JESAddressFinder
+ import JESURLFinder
+-import JESTurninTypeFinder
+ import MimeWriter
+ import base64
+ import quopri
+@@ -21,7 +20,6 @@
+ import urlparse
+ import java.lang.System as system
+ 
+-
+ ####################################################################
+ ####################################################################
+ # Class: JESHomeworkSubmission
+@@ -40,8 +38,9 @@
+ 	config = self.readFromConfigFile()
+ 	self.studentName =  config[JESConstants.CONFIG_NAME]
+ 	self.gtNumber = config[JESConstants.CONFIG_GT]
+-	self.mailServer = config[JESConstants.CONFIG_MAIL]
++	self.mail = config[JESConstants.CONFIG_MAIL]
+ 	self.studentEmail = config[JESConstants.CONFIG_EMAIL_ADDR]
++	self.mailServer = string.strip(self.mail[(self.mail.find("@") + 1):])
+         self.cowebPort = 80
+ 	self.hwTitle = hwTitle
+ 	self.fileName = fileName
+@@ -61,45 +60,16 @@
+     def turnin(self):
+         emailError = 0
+         cowebError = 0
+-        doEmail = 0
+-        doCoWeb = 0
+-        turninType = ''
+-
+-        
+-        #USE Turnin Type Table check
+-        if(JESConstants.TURNIN_TYPE_TABLE):
+             try:
+-                turnTypeFinder = JESTurninTypeFinder.JESTurninTypeFinder(string.strip(self.hwTitle))
+-                turninType = turnTypeFinder.getTurninType()
+-            except Exception:
+-                import sys
+-                a,b,c=sys.exc_info()
+-                print a,b,c
+-                
+-            if( turninType == 'EMAIL' or turninType == 'BOTH'):
+-                doEmail = 1
+-            if( turninType == 'COWEB' or turninType == 'BOTH'):
+-                doCoWeb = 1
+-        else:
+             if JESConstants.EMAIL_TURNIN:
+-                doEmail = 1
+-            if JESConstants.COWEB_TURNIN:
+-                doCoWeb = 1
+-        
+-        try:
+-            if doEmail:
+                 self.emailTurnin()
+         except Exception:
+-            import sys
+-            a,b,c=sys.exc_info()
+-            print a,b,c
+             emailError = 1
+ 	try:
+-            if doCoWeb:
++            if JESConstants.COWEB_TURNIN:
+                 self.cowebTurnin()
+         except Exception:
+             cowebError = 1
+-
+         if emailError and cowebError:
+             raise StandardError, "Error emailing and uploading submission."
+         elif emailError:
+@@ -117,13 +87,9 @@
+ ####################################################################
+     def emailTurnin(self):
+ 	#Get email information
+-        try:
+             addr = JESAddressFinder.JESAddressFinder()
+             taEmail = addr.getTargetAddress(self.gtNumber, self.hwTitle)
+-            if(taEmail == None):
+-                raise StandardError, "Could not find an e-mail to send assignment."
+-                return            
+-            
++	try:
+             filehandle = open(self.zipFile,"rb")
+ 	   #CONSTRUCT EMAIL
+ 	   #Build the email from all the parts of information:
+@@ -153,10 +119,6 @@
+ 	    servObj = smtplib.SMTP(self.mailServer)
+             servObj.sendmail(self.studentEmail, taEmail, msgBody)
+         except:
+-            print "Student E-mail: " + self.studentEmail + "\n"
+-            import sys
+-            a,b,c=sys.exc_info()
+-            print a,b,c
+             raise StandardError, "Error emailing assignment."
+ 	
+ 
+@@ -177,9 +139,6 @@
+             port = url.getPort()
+ 	    finder = JESURLFinder.JESURLFinder()
+             turninURL = finder.getTargetURL(self.gtNumber, string.strip(self.hwTitle))
+-            if(turninURL == -1): # check if url is not found - RJC
+-                raise StandardError, "Unable to find a valid upload url for assignment."           
+-            
+ 	    selector = string.strip(turninURL[turninURL.find("/"):]) + JESConstants.HW_COWEB_ATTACH_SUFFIX
+             fields = [['specific', 'true'], ['reference', 'true']]
+ 	    files = [['filestuff', os.path.basename(self.zipFile), filehandle.read()]]
+@@ -189,9 +148,7 @@
+ 		raise StandardError
+ 	    return response
+ 	except:
+-            import sys
+-            a,b,c = sys.exc_info()
+-            print a,b,c
++	    system.out.println("Could not upload submission to the coweb")
+ 	    raise StandardError, "Error turning in to the Coweb."
+ 	
+ 
+Files ./Sources/JESHomeworkTurninRunnable$py.class and ../jes-1315/JES/./Sources/JESHomeworkTurninRunnable$py.class differ
+Files ./Sources/JESHomeworkTurninThread$py.class and ../jes-1315/JES/./Sources/JESHomeworkTurninThread$py.class differ
+--- ./Sources/JESHomeworkTurninThread.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESHomeworkTurninThread.py	2003-12-15 14:53:11.000000000 -0500
+@@ -20,7 +20,6 @@
+         
+         # do stuff here
+         try:
+-
+             update = JESHomeworkTurninRunnable.JESHomeworkTurninRunnable('Submitting Assignment ....',self.gui)
+             self.gui.swing.SwingUtilities.invokeLater( update )            
+             self.homeworkSub.turnin()
+@@ -57,9 +56,7 @@
+                     import sys
+                     a,b,c=sys.exc_info()
+                     print a,b,c
++
+         except Exception, target:
+-            import sys
+-            a,b,c=sys.exc_info()
+-            print a,b,c
+             update = JESHomeworkTurninRunnable.JESHomeworkTurninRunnable('Exception',self.gui)
+             self.gui.swing.SwingUtilities.invokeLater( update )
+Files ./Sources/JESInterpreter$py.class and ../jes-1315/JES/./Sources/JESInterpreter$py.class differ
+Files ./Sources/JESIntroduction$py.class and ../jes-1315/JES/./Sources/JESIntroduction$py.class differ
+--- ./Sources/JESPreprocessing.py	2005-11-10 14:07:42.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESPreprocessing.py	2003-07-23 11:49:00.000000000 -0400
+@@ -63,7 +63,7 @@
+ #     that will open a popup window containing all global and local variable.
+ #
+ ################################################################################
+-#def showVars(count = __JESNum__(1) ,varsToFilter = __varsToFilter__):
++def showVars(count = __JESNum__(1) ,varsToFilter = __varsToFilter__):
+     # I just learned what a closure was, and I've been itching to use one
+     #  just kidding.
+     # The showVars function is a closure - the optional parameters grab
+@@ -72,24 +72,24 @@
+     # and keeps track of the number of times that showVars() has been called.
+ 
+ 
+-#    import JESDebugWindow
+-#    frame   = sys._getframe(1)
+-#    localVars  = frame.f_locals.copy()
+-#    globalVars = frame.f_globals.copy()
++    import JESDebugWindow
++    frame   = sys._getframe(1)
++    localVars  = frame.f_locals.copy()
++    globalVars = frame.f_globals.copy()
+ 
+-#    JESDebugWindow.JESDebugWindow( localVars, \
+-#                                   globalVars, \
+-#                                   count.getNum(), \
+-#                                   varsToFilter)
+-#    count.increment()
++    JESDebugWindow.JESDebugWindow( localVars, \
++                                   globalVars, \
++                                   count.getNum(), \
++                                   varsToFilter)
++    count.increment()
+ 
+ 
+-#del __JESNum__
+-#del __varsToFilter__
++del __JESNum__
++del __varsToFilter__
+ 
+-#def printNow(text):
++def printNow(text):
+ 
+-#    sys.stdout.printNow("%s\n" % text)
++    sys.stdout.printNow("%s\n" % text)
+ 
+ 
+ 
+Files ./Sources/JESPrintableDocument$py.class and ../jes-1315/JES/./Sources/JESPrintableDocument$py.class differ
+Files ./Sources/JESProgram$py.class and ../jes-1315/JES/./Sources/JESProgram$py.class differ
+--- ./Sources/JESProgram.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESProgram.py	2003-09-23 16:03:38.000000000 -0400
+@@ -14,8 +14,6 @@
+ import JESConstants
+ import JESInterpreter
+ import JESStdOutputBuffer
+-import JESFileChooser
+-import JESLogBuffer
+ import JESUI
+ import os
+ import java.io as io
+@@ -28,7 +26,7 @@
+ from code import compile_command
+ from tokenize import TokenError
+ 
+-FILE_EXISTS_ERROR=2
++
+ 
+ class JESProgram:
+ ################################################################################
+@@ -49,7 +47,6 @@
+         self.textForCommandWindow = ''
+         self.aboutWindow = None
+         self.introWindow = None
+-        self.logBuffer=JESLogBuffer.JESLogBuffer(self)
+         self.gui = JESUI.JESUI(self)
+         self.filename = ' '
+         self.settingsFileName=''
+@@ -57,7 +54,7 @@
+ 	
+         self.varsToHighlight = self.interpreter.getVarsToHighlight()
+ 
+-        self.chooser = JESFileChooser.JESFileChooser()
++        self.chooser = swing.JFileChooser()
+         self.defaultPath = self.chooser.getCurrentDirectory()
+         self.setHelpArray()
+         self.loadSuccess()
+@@ -94,7 +91,6 @@
+     def newFile(self):
+         self.gui.editor.setText('')
+         self.gui.setFileName('')
+-        self.logBuffer.resetBuffer()
+         self.chooser = swing.JFileChooser() #reset the filechooser to keep
+ 
+ ################################################################################
+@@ -117,7 +113,7 @@
+ 	    self.gui.loadDifferent()
+             file.close()
+             self.defaultPath = self.chooser.getCurrentDirectory()
+-            self.logBuffer.openLogFile(file.name)
++            
+       
+ ################################################################################
+ # Function name: saveFile
+@@ -144,13 +140,11 @@
+                 
+                 filePath = self.chooser.getSelectedFile().getPath()
+                 self.filename =  os.path.normpath(filePath)
+-
+                 fileWriter = io.FileWriter(filePath, 0)
+                 fileWriter.write(text)
+                 fileWriter.close()
+                 
+                 self.defaultPath = self.chooser.getCurrentDirectory()
+-                self.logBuffer.saveLogFile(self.filename)
+                 self.gui.editor.modified = 0
+                 self.gui.setFileName(os.path.basename(self.filename))
+ 		return 1
+@@ -171,7 +165,6 @@
+         self.chooser.setCurrentDirectory(self.defaultPath)
+         text = self.gui.editor.getText()
+         self.chooser.setApproveButtonText("Save File")
+-
+         returnVal = self.chooser.showSaveDialog(self.gui)
+         if returnVal ==  0: #User has chosen a file, so now it can be saved
+             #DNR
+@@ -186,7 +179,6 @@
+ 
+             filePath = self.chooser.getSelectedFile().getPath()
+             self.filename = os.path.normpath(filePath)
+-
+             fileWriter = io.FileWriter(filePath, 0)
+             fileWriter.write(text)
+             fileWriter.close()
+@@ -194,13 +186,11 @@
+             self.defaultPath = self.chooser.getCurrentDirectory()
+             self.gui.editor.modified = 0
+             self.gui.setFileName(os.path.basename(self.filename))
+-            self.logBuffer.saveLogFile(self.filename)
+ 	    return 1
+-        
+-       except lang.Exception, e:
++       except:
+        #TODO - fix
+          #Error handling for saveAs
+-         e.printStackTrace()
++         print "Error coming from saveAs"
+ 	 return 0
+ 
+ ################################################################################
+@@ -429,7 +419,6 @@
+ 	    self.gui.commandWindow.showText(JESConstants.EDITOR_LOAD_WARNING)
+ 
+         self.gui.commandWindow.setKeymap(None)
+-        self.logBuffer.addCommand(text)
+         self.interpreter.runCommand(text)
+  
+ 
+Files ./Sources/JESRunnable$py.class and ../jes-1315/JES/./Sources/JESRunnable$py.class differ
+--- ./Sources/JESRunnable.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESRunnable.py	2003-07-23 11:49:00.000000000 -0400
+@@ -4,7 +4,6 @@
+ #See JESCopyright.txt for full licensing information
+ 
+ from java.lang import Runnable
+-from javax.swing import JOptionPane
+ 
+ ################################################################################
+ # JESRunnable
+@@ -52,7 +51,7 @@
+             self.interpreter.sendOutput( self.errMsg )
+ 
+         if self.errLine != None:
+-            self.interpreter.program.gui.editor.showErrorLine(self.errLine)
++            self.interpreter.program.gui.editor.showErrorLine( self.errLine)
+ 
+ 
+         self.interpreter.program.gui.commandWindow.restoreConsole(self.mode)
+@@ -63,26 +62,6 @@
+ 	
+ 	# needed for midi note playing
+ 	import JavaMusic
+-
+-        try:
+             JavaMusic.cleanUp()
+-        except:
+-            menuBar = self.interpreter.program.gui.getJMenuBar()
+-            mediaMenu = menuBar.getMenu(menuBar.getMenuCount() - 2)
+-            if mediaMenu.getText() == 'MediaTools':
+-                # the above is merely for sanity checking...
+-                #if mediaMenu.getItem(0).isEnabled():
+-                if self.interpreter.program.gui.soundErrorShown == 0:
+-                    # we don't want to keep bombarding the user with messages!
+-                    # mediaMenu.getItem(0).setEnabled(0)
+-                    self.interpreter.program.gui.soundErrorShown = 1
+-                    msg = 'Sound card initialization failed!\n\n'
+-                    msg += 'You will not be able to use this functionality during the\n'
+-                    msg += 'current session of JES. Please make sure your sound card\n'
+-                    msg += 'is not currently being used by another program and restart\n'
+-                    msg += 'JES.'
+-                    JOptionPane.showMessageDialog(self.interpreter.program.gui,
+-                                                  msg, 'Sound Error', JOptionPane.ERROR_MESSAGE)
+-            
+ 	if self.interpreter.debug_mode:
+ 	    self.interpreter.debugger.endExecution()
+Files ./Sources/JESStdOutputBuffer$py.class and ../jes-1315/JES/./Sources/JESStdOutputBuffer$py.class differ
+Files ./Sources/JESTabnanny$py.class and ../jes-1315/JES/./Sources/JESTabnanny$py.class differ
+Files ./Sources/JESThread$py.class and ../jes-1315/JES/./Sources/JESThread$py.class differ
+Files ./Sources/JESUI$py.class and ../jes-1315/JES/./Sources/JESUI$py.class differ
+--- ./Sources/JESUI.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESUI.py	2003-12-15 15:25:19.000000000 -0500
+@@ -131,14 +131,7 @@
+ BUTTON_PANE_HEIGHT = 15
+ STATUS_BAR_HEIGHT = 30
+ 
+-#PROMPT_SAVE_MESSAGE = 'You should save the file that you are working\non before loading or submitting it.\n-Would you like to save now?'
+-
+-# Added by Adam Poncz
+-PROMPT_NEW_MESSAGE = 'You are about to open a new program area\n-Would you like to save your old program area?'
+-PROMPT_OPEN_MESSAGE = 'You are about to open a file.\n-Would you like to save the existing program area?'
+-PROMPT_LOAD_MESSAGE = 'You should save the file that you are working\non before loading or submitting it.\n-Would you like to save now?'
+-#end add
+-
++PROMPT_SAVE_MESSAGE = 'You should save the file that you are working\non before loading or submitting it.\n-Would you like to save now?'
+ PROMPT_SAVE_CAPTION = 'Save File?'
+ 
+ FocusOwner = None
+@@ -157,7 +150,6 @@
+ 
+     def __init__(self, program):
+         try:       
+-            self.soundErrorShown = 0
+             self.FocusOwner = None
+             self.swing = swing
+             self.program  = program
+@@ -331,12 +323,6 @@
+             self.UpdateName()
+             self.helpFiles = {}
+             self.helplist = []
+-
+-            editorDocument = self.editor.getDocument()
+-            editorDocument.changeFontSize(self.program.userFont)
+-            commandDocument = self.commandWindow.getDocument()
+-            commandDocument.changeFontSize(self.program.userFont)
+-			
+         except:
+             import traceback
+             import sys
+@@ -356,22 +342,10 @@
+     def actionPerformed(self, event):
+         actionCommand = event.getActionCommand()
+ 
+-        self.program.logBuffer.addMenuOption(actionCommand)
+-
+         if actionCommand == COMMAND_NEW:
+-            # MODIFIED by Adam Poncz
+-            if self.editor.modified:
+-                if self.promptSave(PROMPT_NEW_MESSAGE):
+-                    self.editor.document.removeErrorHighlighting()
+             self.program.newFile()
+-            # END MOD
+         elif actionCommand == COMMAND_OPEN:
+-            # MODIFIED by Patrick Carnahan
+-            if self.editor.modified:
+-                if self.promptSave(PROMPT_OPEN_MESSAGE):
+-                    self.editor.document.removeErrorHighlighting()
+             self.program.openFile()
+-            # END MOD
+         elif actionCommand == COMMAND_SAVE:
+             self.program.saveFile()
+         elif actionCommand == COMMAND_SAVEAS:
+@@ -410,7 +384,7 @@
+             self.program.openAboutWindow()
+         elif (actionCommand == LOAD_BUTTON_CAPTION) or (actionCommand == COMMAND_LOAD):
+             if self.editor.modified:
+-                if self.promptSave(PROMPT_LOAD_MESSAGE):
++                if self.promptSave():
+                     self.editor.document.removeErrorHighlighting()
+                     self.program.loadFile()
+             else:
+@@ -498,12 +472,13 @@
+ # Description:
+ #     Prompts the user whether they want to save the currently loaded file.
+ ################################################################################
+-    def promptSave(self, prompt):
++    def promptSave(self):
+         promptResult = swing.JOptionPane.showConfirmDialog(
+                                            self,
+-                                           prompt,
++                                           PROMPT_SAVE_MESSAGE,
+                                            PROMPT_SAVE_CAPTION,
+-                                           swing.JOptionPane.YES_NO_OPTION)
++                                           swing.JOptionPane.CANCEL_OPTION
++                                            + swing.JOptionPane.YES_OPTION)
+ 
+         if promptResult == swing.JOptionPane.YES_OPTION:
+             return self.program.saveFile()
+@@ -739,12 +714,7 @@
+                 array=self.program.readFromConfigFile()
+                 name=array[JESConstants.CONFIG_NAME]
+                 gt=array[JESConstants.CONFIG_GT]
+-                
+-                if(array[JESConstants.CONFIG_MAIL] == ''):
+-                    mail=JESConstants.MAIL_SERVER #default to mail.gatech.edu
+-                else:
+                     mail=array[JESConstants.CONFIG_MAIL]
+-                    
+                 mailaddr = array[JESConstants.CONFIG_EMAIL_ADDR]
+                 webDefs = array[JESConstants.CONFIG_WEB_TURNIN]
+             except:
+@@ -776,8 +746,7 @@
+             self.settingsWindow.contentPane.add(self.namefield)
+             self.settingsWindow.contentPane.add(gtlabel)
+             self.settingsWindow.contentPane.add(self.gtfield)
+-            #RJC - always display if using coweb dynamic turnin type table
+-            if JESConstants.EMAIL_TURNIN or JESConstants.TURNIN_TYPE_TABLE:
++            if JESConstants.EMAIL_TURNIN:
+                 self.settingsWindow.contentPane.add(mailaddrlabel)
+                 self.settingsWindow.contentPane.add(self.mailaddrfield)
+                 self.settingsWindow.contentPane.add(maillabel)
+@@ -793,7 +762,6 @@
+         else:
+             self.settingsWindow.show()
+ 
+-
+     ################################################################################
+     # Function name: settingsButtonPressed
+     # Parameters: event    
+@@ -929,41 +897,15 @@
+         if event.source.text=='Turnin':
+             try:
+                 isSaved=1
+-                array=self.program.readFromConfigFile()
+-
+                 title= self.titlefield.getSelectedItem()
+                 if self.editor.modified:
+                     isSaved=self.promptSave()
+                 if not os.path.isfile(self.program.filename):
+                     isSaved=0
+                 if isSaved != 0:
+-                    if array[JESConstants.CONFIG_GT] == '':
+-                        self.turninWindow.dispose()
+-                        self.errorWindow=swing.JFrame()
+-                        swing.JOptionPane.showMessageDialog(self,
+-                                                            'You must have a student your student number.',
+-                                                            'Turnin cannot complete.',
+-                                                            swing.JOptionPane.WARNING_MESSAGE)
+-                        self.openSettings()
+-                    elif array[JESConstants.CONFIG_EMAIL_ADDR] == '':
+-                        self.turninWindow.dispose()
+-                        self.errorWindow=swing.JFrame()
+-                        swing.JOptionPane.showMessageDialog(self,
+-                                                            'You must enter an e-mail address.',
+-                                                            'Turnin cannot complete.',
+-                                                            swing.JOptionPane.WARNING_MESSAGE)
+-                        self.openSettings()                        
+-                    elif array[JESConstants.CONFIG_NAME] == '':
+-                        self.turninWindow.dispose()
+-                        self.errorWindow=swing.JFrame()
+-                        swing.JOptionPane.showMessageDialog(self,
+-                                                 'You must enter a name.',
+-                                                 'Turnin cannot complete.',
+-                                                 swing.JOptionPane.WARNING_MESSAGE)
+-                        self.openSettings()                        
+-                    else:
+                         if title !='Assignments':
+                             filename=self.program.filename
++			array=self.program.readFromConfigFile()
+                             gt=array[JESConstants.CONFIG_GT]
+                             zip=self.buildFileArchive(gt,title,filename)
+                             j = JESHomeworkSubmission.JESHomeworkSubmission(title,filename,zip) 
+@@ -1047,8 +989,6 @@
+             if name.strip() != fileToSend.strip():
+                file.write(name,os.path.basename(name),zipfile.ZIP_DEFLATED)
+         file.write(fileToSend,os.path.basename(fileToSend),zipfile.ZIP_DEFLATED)
+-        if self.program.logBuffer.saveBoolean:
+-            file.write(fileToSend+'log',os.path.basename(fileToSend+'log'),zipfile.ZIP_DEFLATED)
+         #Create and add a text file with the notes to the TA:
+         notesTA = open(".notesTA.txt", "w")
+         notesTA.write(self.notesToTA.getText())
+@@ -1088,13 +1028,13 @@
+             return ['Assignments']
+             
+     ################################################################################
+-    # Function name: openOptions
++    # Function name: openTurnin
+     # Description: 
+-    #     Opens up the turnin options.
++    #     Opens up a JES Turnin dialog.
+     ################################################################################
+     def openOptions(self):
+         self.optionsWindow=swing.JFrame('JES Options')
+-        self.optionsWindow.contentPane.layout = awt.GridLayout(6,2)
++        self.optionsWindow.contentPane.layout = awt.GridLayout(5,2)
+         self.optionsWindow.size = (250,450)
+         donebutton = swing.JButton("Done",preferredSize=(100,20),
+                     actionPerformed=self.optionsButtonPressed)
+@@ -1104,7 +1044,6 @@
+         fontlabel=swing.JLabel("Font:")
+         gutterlabel=swing.JLabel("Line Numbers:")
+         blocklabel=swing.JLabel("Block Boxes:")
+-        logginglabel=swing.JLabel("Logging:")
+         if self.program.gutterOn:
+             self.gutterBox = swing.JCheckBox("", 1)
+         else:
+@@ -1113,10 +1052,6 @@
+             self.blockBox = swing.JCheckBox("", 1)
+         else:
+             self.blockBox = swing.JCheckBox("", 0)
+-        if self.program.logBuffer.saveBoolean:
+-            self.loggerBox = swing.JCheckBox("", 1)
+-        else:
+-            self.loggerBox = swing.JCheckBox("", 0)
+         if self.program.userExperience ==  JESConstants.BEGINNER_MODE: 
+             self.userExperienceField = swing.JComboBox( JESConstants.USER_MODES)
+         else:
+@@ -1136,8 +1071,6 @@
+         self.optionsWindow.contentPane.add(self.gutterBox)
+         self.optionsWindow.contentPane.add(blocklabel)
+         self.optionsWindow.contentPane.add(self.blockBox)
+-        self.optionsWindow.contentPane.add(logginglabel)
+-        self.optionsWindow.contentPane.add(self.loggerBox)
+         self.optionsWindow.contentPane.add(cancelbutton)
+         self.optionsWindow.contentPane.add(donebutton)
+         self.optionsWindow.pack()
+@@ -1149,7 +1082,7 @@
+             self.program.userFont = self.userFontField.getSelectedItem()
+             self.program.blockBoxOn = self.blockBox.isSelected()
+             self.program.gutterOn = self.gutterBox.isSelected()
+-            self.program.logBuffer.saveBoolean=self.loggerBox.isSelected()
++
+             self.program.writeConfigListToFile([[JESConstants.CONFIG_MODE, self.program.userExperience],
+                                                [JESConstants.CONFIG_FONT, self.program.userFont],
+                                                [JESConstants.CONFIG_GUTTER, self.program.gutterOn],
+Files ./Sources/JESUpdateRunnable$py.class and ../jes-1315/JES/./Sources/JESUpdateRunnable$py.class differ
+Files ./Sources/JESURLFinder$py.class and ../jes-1315/JES/./Sources/JESURLFinder$py.class differ
+--- ./Sources/JESURLFinder.py	2005-02-16 15:17:00.000000000 -0500
++++ ../jes-1315/JES/./Sources/JESURLFinder.py	2003-07-23 11:50:00.000000000 -0400
+@@ -69,9 +69,6 @@
+ #     definitions).
+ ##################################################################
+     def getURL(self):
+-        print "Student number:" + self.taGT
+-        print "assignment: " + self.hw 
+-        
+ 	try:
+ 	    for element in self.addressData:
+ 		if string.strip(element[0]) == string.strip(self.taGT):
+@@ -135,7 +132,6 @@
+ 	    end = self.text.find("#END_TURNIN_LOCATIONS")
+ 	    if (beg == -1) or (end == -1):
+ 	        return 0
+-
+ 	    loclist = self.text[beg:end]
+ 	    loclist = loclist.split("\n")
+ 	    self.addressData = []
+@@ -143,7 +139,4 @@
+ 	        self.addressData.append(entry.split("|"))
+ 	    return 1
+ 	except:
+-            import sys
+-            a,b,c=sys.exc_info()
+-            print a,b,c
+ 	    raise StandardError, "Error parsing data file."
+Files ./Sources/media$py.class and ../jes-1315/JES/./Sources/media$py.class differ
+--- ./Sources/media.py	2005-12-01 22:49:42.000000000 -0500
++++ ../jes-1315/JES/./Sources/media.py	2003-12-15 15:21:24.000000000 -0500
+@@ -17,26 +17,16 @@
+ # 2 Oct:  Corrected calls in setSampleValueAt  (MarkG): 
+ # 30 Aug: Made commands more consistent and add type-checking (MarkG)
+ # 2 Aug: Changed to getSampleValueAt and setSampleValueAt (MarkG)
+-# 1 Dec 2005: made max makeEmptySound size 600
+-#             made max makeEmptyPicture dimensions 10000x10000
+-#             fixed the off-by-one error in makeEmptyPicture 
++#
+ 
+ # TODO:
+ ## Fix HSV/RGB conversions -- getting a divide by zero error when max=min
+ 
+ # Get the Java Pieces
+-# import JavaSound
+-# import JavaPicture
+-# import JavaPixel
++import JavaSound
++import JavaPicture
++import JavaPixel
+ import JavaMusic
+-
+-###################################
+-# integrating in new java classes #
+-###################################
+-import SimpleSound as JavaSound
+-import SimplePicture as JavaPicture
+-import Pixel as JavaPixel
+-
+ import java.awt.Color as jcolor
+ import java.awt.Font as jfont
+ import java.awt as awt
+@@ -79,10 +69,6 @@
+ 	mediaFolder = file+os.sep
+ 	print "New media folder: "+mediaFolder
+ 
+-def setTestMediaFolder():
+-    global mediaFolder
+-    mediaFolder = os.getcwd() + os.sep
+-
+ def getMediaFolder(filename):
+ 	global mediaFolder
+ 	file = mediaFolder+filename
+@@ -233,7 +219,7 @@
+ 		return self.s.getLengthInFrames()
+ 	
+ 	def getSampleValue(self,index):
+-		return self.s.getSampleValue(index-1)
++		return self.s.getSample(index-1)
+ 			#JavaSound is 0-indexed
+ 	
+ 	#added 18June03 - new functionality in JavaSound.java        
+@@ -247,7 +233,7 @@
+ 			#JavaSound is 0-indexed
+ 
+ 	def setSampleValue(self,index,value):
+-		return self.s.setSampleValueAt(index-1,int(value))
++		return self.s.setSample(index-1,int(value))
+ 			#JavaSound is 0-indexed
+ 
+ 	
+@@ -269,7 +255,7 @@
+ 	def __init__(self,aSound):
+ 		self.myList = []
+ 		self.sound = aSound
+-		for s in range(1,aSound.getLength()+1):
++		for s in range(1,aSound.getLength()):
+ 			self.myList.append(Sample(aSound,s))
+ 	
+ 	def __str__(self):
+@@ -320,11 +306,7 @@
+ 		raise ValueError 
+ 	return Sound(filename)
+ 
+-# MMO (1 Dec 2005): capped size of sound to 600
+ def makeEmptySound(size):
+-	if size > 600:
+-		print "makeEmptySound(size): size must be 600 seconds or less"
+-		raise ValueError
+ 	snd = Sound()
+ 	snd.makeEmptyLength(size)
+ 	return snd
+@@ -415,10 +397,6 @@
+ 	if not sample.__class__ == Sample:
+ 		print "setSample(sample,value): Input is not a sample."
+ 		raise ValueError 
+-	if value > 32767:
+-		value = 32767
+-	elif value < -32768:
+-		value = -32768
+ 	# Need to coerce value to integer
+ 	return sample.setValue(value)
+ 
+@@ -456,18 +434,16 @@
+ 	def __init__(self):
+ 		self.pic=JavaPicture()
+ 
+-	# MMO (1 Dec 2005): fixed the "off by one" error
+ 	def createImage(self, width, height):
+-		self.pic = JavaPicture(width, height)
+-		#self.pic.createNewImage(width + 1, height + 1)
+-		#self.addRectFilled(black, 1, 1, width, height)
++		self.pic.createNewImage(width + 1, height + 1)
++		self.addRectFilled(black, 1, 1, width, height)
+ 		
+ 	def loadImage(self,filename):
+ 		global mediaFolder
+                 try:
+                         if not os.path.isabs(filename):
+                             filename = mediaFolder + filename
+-			if self.pic.load(filename) == 0:
++			if self.pic.loadImage(filename) == 0:
+ 				print "load image failed."
+ 			self.filename = filename
+ 		except:
+@@ -483,11 +459,10 @@
+ 		
+ 	
+ 	def repaint(self):
+-		self.pic.repaint()
++		self.pic.repaintImage()
+ 		
+ 	def show(self):
+-		#self.pic.showPictureWithTitle(getShortPath(self.filename))
+-		self.pic.show()
++		self.pic.showPictureWithTitle(getShortPath(self.filename))
+ 
+ 	def setTitle(self, title):
+ 		self.pic.setTitle(title)
+@@ -499,66 +474,63 @@
+ 		return self.pic.getHeight()
+ 	
+ 	def getPixel(self,x,y):
+-		if x < 1 or x > self.getWidth() or y < 1 or y > self.getHeight():
+-			raise ValueError
+-		else:
+ 			return Pixel(self,x - 1,y - 1)
+ 	
+ 	def getPixels(self):
+ 		collect = []
+-		for x in range(0,self.getWidth()):
+-			for y in range(0,self.getHeight()):
++		for x in range(1,self.getWidth()):
++			for y in range(1,self.getHeight()):
+ 				collect.append(Pixel(self,x,y))
+ 		return collect
+ 	
+ 	def writeTo(self,filename):
+                 if not os.path.isabs(filename):
+                     filename = mediaFolder + filename
+-		self.pic.write(filename)
++		self.pic.saveImage(filename)
+ 		
+ 	# Graphics stuff on pictures
+         def addRectFilled(self,acolor,x,y,w,h):
+-           	g = self.pic.getBufferedImage().getGraphics()
++           	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.fillRect(x - 1,y - 1,w,h)
+         
+     	def addRect(self, acolor,x,y,w,h):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+     	    	g.setColor(acolor.getJcolor())
+         	g.drawRect(x - 1,y - 1,w,h)
+ 	
+     	def addOvalFilled(self, acolor,x,y,w,h):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.fillOval(x - 1,y - 1,w,h)
+ 		
+     	def addOval(self, acolor,x,y,w,h):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.drawOval(x - 1,y - 1,w,h)
+ 
+     	def addArcFilled(self, acolor,x,y,w,h,start,angle):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.fillArc(x - 1,y - 1,w,h,start,angle)
+ 		
+     	def addArc(self, acolor,x,y,w,h,start,angle):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.drawArc(x - 1,y - 1,w,h,start,angle)
+ 
+     	def addLine(self, acolor, x1, y1, x2, y2):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.drawLine(x1 - 1,y1 - 1,x2 - 1,y2 - 1)
+ 
+     	def addText(self, acolor, x, y, string):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.drawString(string, x - 1, y - 1)
+ 	
+     	def addTextWithStyle(self, acolor, x, y, string, style):
+-        	g = self.pic.getBufferedImage().getGraphics()
++        	g = self.pic.bimg.getGraphics()
+         	g.setColor(acolor.getJcolor())
+         	g.setFont(style)
+         	g.drawString(string, x - 1, y - 1)
+@@ -622,17 +594,26 @@
+ class Color:
+ 	def __init__(self,r,g,b):
+ 		r = int(r)
+-		r = r % 256
+ 		if r < 0:
+-				r = -r
++                	while(r<0):
++				r = 256 + r
++		if r > 255:
++			while(r>255):
++				r = r - 256
+ 		g = int(g)
+-		g = g % 256
+ 		if g < 0:
+-				g = -g
++                	while(g<0):
++				g = 256 + g
++		if g > 255:
++			while(g>255):
++				g = g - 256
+ 		b = int(b)
+-		b = b % 256
+ 		if b < 0:
+-				b = -b
++                	while(b<0):
++				b = 256 + b
++		if b > 255:
++			while(b>255):
++				b = b - 256
+ 		self.r=r
+ 		self.g=g
+ 		self.b=b
+@@ -760,14 +741,7 @@
+ 	except:
+ 		print "Was unable to load the image in " + filename +"\nMake sure it's a valid image file." 
+ 
+-# MMO (1 Dec 2005): Capped width/height to max 10000 and min 1
+ def makeEmptyPicture(width, height):
+-	if width > 10000 or height > 10000:
+-		print "makeEmptyPicture(width, height): height and width must be less than 10000 each"
+-		raise ValueError
+-	if width <= 0 or height <= 0:
+-		print "makeEmptyPicture(width, height): height and width must be greater than 0 each"
+-		raise ValueError
+ 	picture = Picture()
+ 	picture.createImage(width, height)
+ 	picture.filename = ''
+@@ -993,14 +967,14 @@
+ #
+ 
+ def openPictureTool(picture):
+-    import PictureExplorer
+-    viewer = PictureExplorer(picture.pic)
++    import PictureViewer
++    viewer = PictureViewer(picture.pic)
+     viewer.changeToBaseOne();
+     viewer.setTitle(getShortPath(picture.filename))
+     
+ def openSoundTool(sound):
+-    import SoundExplorer
+-    viewer = SoundExplorer(sound.s, 0)
++    import SoundView
++    viewer = SoundView(sound.s, 0)
+     try:
+         viewer.setTitle(getShortPath(sound.filename))
+     except:

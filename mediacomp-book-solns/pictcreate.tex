@@ -1,0 +1,63 @@
+% pictcreate.tex, chapter of "Introduction to Media Computation"
+\chapter[Combining Pictures]{Making Pictures by Combining Pieces}
+    \graphicspath{{figs/}{figs/pictcreate/}{figs/pictencode/}}
+
+\begin{exercises}
+\begin{ex}
+Try doing chromakey in a range---grab something out of its
+background where the something is only in one part of a picture.
+For example, put a halo around someone's head, but don't mess with
+the rest of their body.
+\end{ex}
+
+\begin{ex}
+Using the drawing tools presented here, draw a house---just go for
+the simple child's house with one door, two windows, walls, and a
+roof.
+\end{ex}
+
+\begin{ex}
+Put a cabana on that beach.  Draw the house from the previous
+exercise on the beach where we put the mysterious box previously.
+\end{ex}
+
+\begin{ex}
+Now use your house to draw a town with dozens of houses at
+different sizes. You'll probably want to modify your house
+function to draw at an input coordinate, then change the
+coordinate where each house is drawn.
+\end{ex}
+
+\begin{ex}
+Draw a rainbow--use what you know about colors, pixels, and
+drawing operations to draw a rainbow.  Is this easier to do with
+our drawing functions or by manipulating individual pixels? Why?
+\end{ex}
+
+\begin{starex}
+Write a function \code{doGraphics} that will take a list as input.
+The function \code{doGraphics} will start by creating a canvas
+from the \filename{640x480.jpg} file in the mediasources folder.
+You will draw on the canvas according to the commands in the input
+list.
+
+Each element of the list will be a string. There will be two kinds
+of strings in the list:
+
+\begin{itemize}
+\item ``b 200 120'' means to draw a black dot at x position 200
+and y position 120--$(200,120)$. The numbers, of course, will
+change, but the command will always be a ``b''. You can assume
+that the input numbers will always have three digits.
+
+\item ``l 000 010 100 200'' means to draw a line from position
+$(0,10)$ to position $(100,200)$
+
+\end{itemize}
+
+So an input list might look like: \code{["b 100 200","b 101
+200","b 102 200","l 102 200 102 300"]} (but have any number of
+elements).
+\end{starex}
+
+\end{exercises}

@@ -1,0 +1,88 @@
+% text.tex, chapter of "Introduction to Media Computation"
+
+	%\graphicspath{{figs/}{figs/pictcreate/}}
+
+Manipulating text is what this chapter is about.  It's very important for us because a very common form of text for us today is \newterm{HyperText Markup Language (HTML)}.
+
+
+\section{A recipe to generate HTML}
+
+	Be sure to do \code{ setMediaFolder()} before running this!
+
+\begin{recipe}{A recipe to generate HTML}
+\begin{example}
+def html():
+
+    # To use this routine the Media folder must be used for your output and picture files
+
+    myHTML =  getMediaPath("myHTML.html")
+    pictureFile = getMediaPath("barbara.jpg") 
+    eol=chr(11) #End-of-line character                 
+    # The following line builds a literal string that includes both single and double quotes
+    buildSpecial = "<IMG SRC=\""+ pictureFile + '" ALT= "I am one heck of a programmer!">'+eol 
+   
+    outFile = open(myHTML,'w')
+      
+    outFile.write( '<HTML>'+eol)
+    outFile.write('<HEAD>'+eol)
+    outFile.write('<TITLE>Homepage of Georgia P. Burdell</TITLE>'+eol)
+    outFile.write('<LINK REL=STYLESHEET TYPE="text/css" HREF="style.css">')      
+    outFile.write('</HEAD>'+eol)
+    outFile.write('<BODY>'+eol)
+    outFile.write('<CENTER><H2>Welcome to the home page of Georgia P. Burdell!</H2></CENTER>'+eol)
+    outFile.write('<BR>'+eol)
+    outFile.write('<P> Hello, and welcome to my home page! As you should have already'+eol)
+    outFile.write(' guessed, my name is Georgia, and I am a <A HREF=http://www.cc.gatech.edu><B>'+eol) 
+    outFile.write('Computer Science</B></A> major at <A HREF=http://www.gatech.edu><B>'+eol)
+    outFile.write('Georgia Tech</B> </A>'+eol)
+    outFile.write('<BR>'+eol)
+    outFile.write('Here is a picture of me in case you were wondering what I looked like.'+eol)
+    outFile.write('</P>'+eol)
+    outFile.write(buildSpecial)                                        # Write the special line we built up near the top
+    outFile.write('<P><H4> Well, welcome to my web page. The majority of it is still under construction, so I don\'t have a lot to show you right now. '+eol)
+    outFile.write('I am in my 75th year at Georgia Tech but am taking CS 1315 so I don\'t have a lot of spare time to update the page.'+eol)
+    outFile.write('I promise to start real soon!'+eol)
+    outFile.write('--Georgia P. Burdell</P></H4>'+eol)
+    outFile.write('<HR>'+eol)
+    outFile.write('<PIf you want to send me e-mail, click <><A HREF = "mailto:name@ece.gatech.edu">name@ece.gatech.edu</A>'+eol)
+    outFile.write('<HR></P>'+eol)
+    outFile.write('<CENTER><A HREF="http://www.cc.gatech.edu/">'+eol)
+    outFile.write('<IMG SRC="http://www.cc.gatech.edu/newhome_images/CoC_logo_anniv2.gif" ALT= "To my school"></CENTER>'+eol)
+    outFile.write('</A>'+eol)
+    outFile.write('</BODY>'+eol)
+    outFile.write('</HTML>'+eol)
+
+    outFile.close()
+\end{example}
+\end{recipe}
+
+
+\section{Converting from sound to text to graphics}
+
+	The creation of a signal visualization of a sound is something that Excel can do, too.
+
+\begin{recipe}{Convert a sound into a text file that Excel can read}
+\begin{example}
+def writeSampleValue():
+    f = pickAFile()					# File where the original sound resides
+    source = makeSound(f)
+    eol = chr(11)
+
+    getPath = f.split('.')                # find the '.' in the full file name
+    suffix = '.txt'
+    myFile = getPath[0] + suffix          # get the part leading up to the '.' and make it  a ".txt" file
+    outFile = open(myFile,'w')
+      
+    endCurrentSound = getLength(source)
+    
+    for pos in range (1, endCurrentSound+1): 
+        sampVal =  getSampleValueAt(source,pos) 
+        stringVal = '%s' % (sampVal)
+        outFile.write(stringVal + eol)
+        #outFile.write(eol)
+    
+    outFile.close()
+\end{example}
+\end{recipe}
+
+

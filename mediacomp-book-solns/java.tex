@@ -1,0 +1,67 @@
+% java.tex, chapter of "Introduction to Media Computation"
+
+	%\graphicspath{{figs/}{figs/java/}}
+
+Java is a popular programming language today.  It's interesting to contrast with Jython because it allows us to look ``under the covers'' and see how our programs would look if they were written to address memory locations more directly.
+
+
+\section{Java example}
+
+	Here's the normalize recipe (\recref{rec:normalize}) rewritten in Java.  Ignore the syntactic differences.  Can you see each of the loops in normalize?  The one to find the maximum value?  And the other to multiply all the samples by the maximizing multiplier?
+
+\begin{recipe}{Java normalize}
+\begin{example}
+public class Normalize {
+
+    JavaSound normal;				// only one variable
+
+
+    public Normalize(String filename) 		// parms: string defining the file path
+    {				
+	normal = new JavaSound();		
+	JavaSound s = new JavaSound();
+	s.loadFromFile(filename);		// load the sound
+	normal.loadFromFile(filename);		\ initialize normalized sound
+	int loudest = 0;
+	int asample ;
+	double multiplier, newValue;
+
+	for (int i=1; i < s.getLengthInFrames();i++)    // find loudest sample
+		{
+		  asample = s.getSample(i);
+	 	  if (asample > loudest) 
+		     loudest = asample;
+                }
+		 
+
+	multiplier = 32767.0 / loudest;    	// determine multiplier  
+	System.out.println("Multiplier is " + multiplier ); 
+		
+	if (multiplier == 1)
+		return;
+	
+	
+	for (int i=1; i < s.getLengthInFrames();i++) 	// build normalized sound 
+		{	
+		  newValue = multiplier * s.getSample(i);  // multiply each sample value
+		  asample =  (int) newValue;		   // change to integer
+		  normal.setSample(i,asample);		   // load into normalized sound
+		}
+	s.blockingPlay();				   // play original sound
+	normal.blockingPlay();			 	   // play normalized sound
+	
+	} 
+
+	// main method to test our code 
+    	public static void main(String[] args) {
+	
+	Normalize norm = new Normalize("squareout.wav");
+         System.exit(0);
+	
+	}
+
+}
+\end{example}
+\end{recipe}
+
+

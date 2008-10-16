@@ -1,0 +1,1225 @@
+--- ./SimpleSound.java	2006-08-31 17:20:53.696813360 -0400
++++ ../../barb-classes/./SimpleSound.java	2005-09-22 13:07:04.000000000 -0400
+@@ -5,16 +5,17 @@
+ 
+ /**
+  * The <code>SimpleSound</code> class is an implementation of the 
+- * <a href = "http://java.sun.com/products/java-media/sound/index.html">
+- * Java Sound API </a> specifically designed for use with students.
++ * Java Sound API specifically designed for use with students.
++ * http://java.sun.com/products/java-media/sound/index.html
+  * <p>
+- * This class allows for easy playback, and manipulation of AU, AIFF, and 
+- * WAV files.
++ * This class allows for easy playback, and manipulation of AU, 
++ * AIFF, and WAV files.
+  * <p>
+  *
+  * Code & ideas for this class related to playing and 
+  * viewing the sound were borrowed from the Java Sound Demo:
+- * http://java.sun.com/products/java-media/sound/samples/JavaSoundDemo/
++ * http://java.sun.com/products/java-media/sound/
++ * samples/JavaSoundDemo/
+  *
+  * Also, some code borrowed from Tritonus as noted.
+  * 
+@@ -24,7 +25,7 @@
+  */
+ public class SimpleSound{
+   
+-  ///////////////////////////// fields //////////////////////////////////////
++  ///////////////////////////// fields ////////////////////////
+   
+   /**
+    * Constant for the default sampling rate
+@@ -60,8 +61,8 @@
+   private Vector playbacks = new Vector();
+   
+   /**
+-   * The explorer for this sound, if it exists. If it exists, this becomes
+-   * the LineListener for output lines in the Playback class.
++   * The explorer for this sound, if it exists. If it exists, this 
++   * becomes the LineListener for output lines in the Playback class.
+    * @see Playback
+    */
+   private SoundExplorer soundExplorer = null;
+@@ -73,15 +74,14 @@
+    */
+   private String fileName = null;
+   
+-  ////////////////////////// constructors /////////////////////////////////
++  ////////////////////////// constructors /////////////////////
+   
+   /**
+    * Constructs a <code>SimpleSound</code> of 3 seconds long.
+-   * @see SimpleSound#SimpleSound(int numSeconds)
+    */
+   public SimpleSound()
+   {
+-    this(3);
++    this(SAMPLE_RATE * 3);
+   }
+   
+   /**
+@@ -96,42 +96,41 @@
+    * <li>signed PCM encoding
+    * <li>small-endian byte order
+    * </ul>
+-   * Note that no new sound file is created, we only represent the sound
+-   * with a buffer and the AudioFileFormat.  If a file is desired, then 
+-   * the method <code>writeToFile(String filename)</code> must
+-   * be called on this newly created sound.
++   * Note that no new sound file is created, we only represent the 
++   * sound with a buffer and the AudioFileFormat.  If a file is 
++   * desired, then the method <code>writeToFile(String filename)
++   * </code> must be called on this newly created sound.
+    *
+-   * @param numSeconds The length, in seconds, for the new sound
+-   * @see SimpleSound#writeToFile(String filename)
++   * @param numFrames the number of samples in the sound
++   * @see SimpleSound#write(String filename)
+    */
+-  public SimpleSound(int numSeconds)
++  public SimpleSound(int numFrames)
+   {
+     int numChannels = 1;    // the number of channels in the sound
+-    int bytesPerSample = NUM_BITS_PER_SAMPLE / 8; // the number of bytes per sample 
++    int bytesPerSample = NUM_BITS_PER_SAMPLE / 8; 
++    
+     /* 
+      Make a new sound with the default sampling rate, 16 bits, 
+      1 channel(==1 sample/frame), signed, smallEndian 
+      */
+-    AudioFormat audioFormat = new AudioFormat(SAMPLE_RATE, NUM_BITS_PER_SAMPLE,
+-                                              numChannels, true, false);
++    AudioFormat audioFormat = 
++      new AudioFormat(SAMPLE_RATE, NUM_BITS_PER_SAMPLE,
++                      numChannels, true, false);
+     
+     /*
+-     * The length in bytes is the sample rate times the number of channels
+-     * times the number of seconds and times the number of bytes per
++     * The length in bytes is the number of channels
++     * times the number of frames and times the number of bytes per
+      * sample (2 bytes per sample)
+      */
+-    int lengthInBytes = SAMPLE_RATE * numChannels * numSeconds * bytesPerSample;
++    int lengthInFrames = numChannels * numFrames; 
++    int lengthInBytes = lengthInFrames * bytesPerSample;
+     
+     /* 
+      Make a new WAV file format, with the AudioFormat described above 
+-     lengthInFrames = lengthInBytes/frameSizeInBytes
+-     
+-     note : frame size is number of bytes required to contain one sample
+-     from each channel:
+-     in this case:  2 bytes/sample * 1 sample/frame = 2 bytes/frame
+      */
+-    audioFileFormat = new AudioFileFormat(AudioFileFormat.Type.WAVE, 
+-                                          audioFormat, lengthInBytes/(2));
++    audioFileFormat = 
++      new AudioFileFormat(AudioFileFormat.Type.WAVE, 
++                          audioFormat, lengthInFrames);
+     
+     // create the buffer
+     buffer = new byte[lengthInBytes];
+@@ -147,21 +146,25 @@
+   {
+     // calculate the number of bytes in the sample 
+     int numBytesInSample = sampleSizeInBits/8;
+-    int numberOfChannels = 1;
++    int numberOfChannels = 2;
+     boolean signedFlag = true;  
+     
+     // create the audio format
+-    AudioFormat audioFormat = new AudioFormat(SAMPLE_RATE, sampleSizeInBits, 
+-                                              numberOfChannels,
+-                                              signedFlag, isBigEndian);
++    AudioFormat audioFormat = 
++      new AudioFormat(SAMPLE_RATE, sampleSizeInBits, 
++                      numberOfChannels,
++                      signedFlag, isBigEndian);
+     
+     // compute the length of the byte array 
+-    int lengthInBytes = SAMPLE_RATE*numberOfChannels*3*numBytesInSample;
++    int lengthInBytes = 
++      SAMPLE_RATE*numberOfChannels*5*numBytesInSample;
+     
+     // create the audio file format
+-    audioFileFormat = new AudioFileFormat(AudioFileFormat.Type.WAVE,
+-                                          audioFormat, 
+-                                          lengthInBytes/(numBytesInSample*numberOfChannels));
++    audioFileFormat = 
++      new AudioFileFormat(AudioFileFormat.Type.WAVE,
++                          audioFormat, 
++                          lengthInBytes/
++                          (numBytesInSample*numberOfChannels));
+     
+     // create the buffer
+     buffer = new byte[lengthInBytes];
+@@ -202,10 +205,11 @@
+     }
+   }
+   
+-  ///////////////////////// accessors /////////////////////////////////////
++  ///////////////////////// accessors ///////////////////////////
+   
+   /**
+-   * Method that returns the byte array representation of this simple sound.
++   * Method that returns the byte array representation of this 
++   * simple sound.
+    * @return     the sound represented as a byte array
+    */
+   public byte[] getBuffer()
+@@ -214,7 +218,8 @@
+   }
+   
+   /**
+-   * Method that returns the AudioFileFormat describing this simple sound.
++   * Method that returns the AudioFileFormat describing this 
++   * simple sound.
+    * @return the AudioFileFormat describing this sound
+    * @see AudioFileFormat
+    */
+@@ -252,8 +257,8 @@
+   }
+   
+   /**
+-   * Method that returns the vector of playback threads currently active
+-   * on this sound.
++   * Method that returns the vector of playback threads currently 
++   * active on this sound.
+    * @return the vector of playback threads for this simple sound
+    */
+   public Vector getPlaybacks()
+@@ -263,7 +268,8 @@
+   
+   /**
+    * Method that returns the name of the file this sound came from.  
+-   * If this sound did not originate with a file, this value will be null.
++   * If this sound did not originate with a file, this value will 
++   * be null.
+    * @return the file name associated with this sound or null
+    * @see #loadFromFile(String fileName)
+    */
+@@ -281,7 +287,7 @@
+     return DEBUG;
+   }
+   
+-  ////////////////////////////// modifiers ////////////////////////////////
++  ////////////////////////////// modifiers ////////////////////////
+   
+   /**
+    * Changes the byte array that represents this sound. 
+@@ -292,16 +298,6 @@
+   {
+     buffer = newBuffer;
+   }
+-
+-  /**
+-   * Changes the byte array that represents this sound. 
+-   * @param newSize - integer representing size in bytes
+-   * that the new buffer should be.
+-   */
+-  public void setBuffer(int newSize)
+-  {
+-    buffer = new byte[newSize];
+-  }
+   
+   /**
+    * Changes the AudioFileFormat of this sound.
+@@ -326,7 +322,7 @@
+   
+   
+   
+-  ///////////////////////// methods ///////////////////////////////////////
++  ///////////////////////// methods /////////////////////////////
+   
+   /**
+    * Creates an <code>AudioInputStream</code> for this sound from the 
+@@ -416,17 +412,19 @@
+   }
+   
+   /**
+-   * Creates an audioInputStream from this sound, and then writes this
+-   * stream out to the file with the specified name.  If no file exists, 
+-   * one is created.  If a file already exists, then it is overwritten.
+-   * Does not check the extension of the fileName passed in to make sure
+-   * it agrees with the <code>AudioFileFormat.Type</code> of this sound.
++   * Creates an audioInputStream from this sound, and then writes 
++   * this stream out to the file with the specified name.  If no 
++   * file exists, one is created.  If a file already exists, then it 
++   * is overwritten.  This does not check the extension of the 
++   * fileName passed in to make sure it agrees with the 
++   * <code>AudioFileFormat.Type</code> of this sound.
+    *
+    * @param outFileName The name of the file to write this sound to
+-   * @throws SoundException if any error is encountered while writing
+-   *                            to the file.
++   * @throws SoundException if any error is encountered while 
++   * writing to the file.
+    */
+-  public void writeToFile(String outFileName) throws SoundException
++  public void writeToFile(String outFileName) 
++    throws SoundException
+   {
+     
+     /*
+@@ -485,8 +483,8 @@
+     {
+       printError("The file you specified did not already exist " +
+                  "so we tried to create a new one, but were unable"+
+-                 "to do so.  Please try again.  If problems persist"+
+-                 "see your TA.", e);
++                 "to do so.  Please try again.  If problems "+
++                 "persit see your TA.", e);
+     }
+     catch(Exception e)
+     { 
+@@ -508,9 +506,10 @@
+   
+   
+   /**
+-   * Resets the fields of this sound so that it now represents the sound
+-   * in the specified file.  If successful, the fileName variable is updated 
+-   * such that it is equivalent to <code>inFileName</code>.
++   * Resets the fields of this sound so that it now represents the 
++   * sound in the specified file.  If successful, the fileName 
++   * ariable is updated such that it is equivalent to 
++   * <code>inFileName</code>.
+    *
+    * @param inFileName the path and filename of the sound we want to 
+    *                   represent.
+@@ -527,9 +526,8 @@
+                  "again.");  
+     }
+     
+-    /* get the File object representing the file named inFileName and
+-     make sure it exists */
+-    
++    /* get the File object representing the file named inFileName 
++     * and make sure it exists */
+     File file = new File(inFileName);
+     if(!file.exists())
+     {
+@@ -552,15 +550,19 @@
+       return;
+     }//catch
+     
+-    /* We need to make an array representing this sound, so the number
+-     of bytes we will be storing cannot be greater than Integer.MAX_VALUE
+-     The JavaSound API also supports only integer length frame lengths.
+-     (See AudioFileFormat.getFrameLength().  I don't know why this is 
+-     inconsistent with AudioInputStream.getFrameLength().) */
++    /* We need to make an array representing this sound, so the 
++     * number of bytes we will be storing cannot be greater than 
++     * Integer.MAX_VALUE.  The JavaSound API also supports only 
++     * integer length frame lengths. 
++     * (See AudioFileFormat.getFrameLength().  I don't know why 
++     * this is inconsistent with AudioInputStream.getFrameLength().)
++     */
+     if((audioInputStream.getFrameLength() * 
+-        audioInputStream.getFormat().getFrameSize()) > Integer.MAX_VALUE)
++        audioInputStream.getFormat().getFrameSize()) > 
++       Integer.MAX_VALUE)
+     {
+-      printError("The sound in file: " + inFileName + " is too long."+
++      printError("The sound in file: " + inFileName + 
++                 " is too long."+
+                  "  Try using a shorter sound.");
+     }
+     int bufferSize = (int)audioInputStream.getFrameLength() *
+@@ -591,7 +593,9 @@
+     }//while
+     
+     
+-    // set the format of the file, assuming that the extension is correct
++    /* set the format of the file, assuming that the extension 
++     * is correct
++     */
+     if(inFileName.toLowerCase().endsWith(".wav"))
+     {
+       audioFileFormat = 
+@@ -623,21 +627,24 @@
+     if(DEBUG)
+     {
+       System.out.println("New sound created from file: " + fileName);
+-      System.out.println("\tendianness: " + audioInputStream.getFormat().isBigEndian());
+-      System.out.println("\tencoding: " + audioInputStream.getFormat().getEncoding());
++      System.out.println("\tendianness: " + 
++                         audioInputStream.getFormat().isBigEndian());
++      System.out.println("\tencoding: " + 
++                         audioInputStream.getFormat().getEncoding());
+     }
+     
+     this.fileName = inFileName;
+     
+   }//loadFromFile(String inFileName)
+   
+-  //////////////////////// Methods for playing the sound ////////////////////
++  //////////////////////// Methods for playing the sound //////////
+   
+   /**
+-   * Creates a new Playback thread and starts it.   The thread is guarranteed
+-   * to finish playing the sound as long as the program doesn't exit before it
+-   * is done.  This method does not block, however.  So, if you invoke
+-   * <code>play()</code> multiple times in a row, sounds will simply play on 
++   * Creates a new Playback thread and starts it.   The thread is 
++   * guarranteed to finish playing the sound as long as the program 
++   * doesn't exit before it is done.  This method does not block, 
++   * however.  So, if you invoke <code>play()</code> multiple times 
++   * in a row, sounds will simply play on 
+    * top of eachother - "accidental mixing"
+    *
+    * @see Playback
+@@ -651,35 +658,55 @@
+   }
+   
+   /**
+-   * Creates a new Playback thread, starts it, then waits for the entire sound 
+-   * to finish playing before it returns.  This method is guarranteed to play 
+-   * the entire sound, and does not allow for any "accidental mixing"
++   * Creates a new Playback thread, starts it, then waits for the 
++   * entire sound to finish playing before it returns.  This method 
++   * is guarranteed to play the entire sound, and does not allow for 
++   * any "accidental mixing"
+    *
+    * @see Playback
+    */
+-  public void blockingPlay()
++  public void blockingPlayOld()
+   {
+     /* create the thread, add it to the Vector, start it, and wait 
+      until its done playing to return */
+     Playback playback = new Playback(this);
+     playbacks.add(playback);
+     playback.start();
+-    while(playback.isAlive()){;}//wait until the sound is done playing
++    //wait until the sound is done playing
++    while(playback.isAlive()){;}
++  }
++  
++  /**
++   * Plays the sound, then sleeps for how 
++   * long the sound SHOULD last.
++   **/
++  public void blockingPlay()
++  {
++    this.play();
++    try {
++      double timeToSleep =
++           1000 *
++        (this.getLength()/this.getSamplingRate());
++      Thread.sleep((int) timeToSleep);
++    } catch (Exception ex) {
++      System.out.println("Exception occurred: "+ex);
++    }
+   }
+   
+   /**
+-   * Calls <code>playAtRateInRange((float)rate, 0, (int)durInFrames-1, false)
+-   * </code>.  Checks the value of durInFrames to make sure that it is not 
+-   * larger than Integer.MAX_VALUE to guarrantee safe casting.  Also checks
+-   * the value of rate to make sure that it is not larger than Float.MAX_VALUE
+-   * before casting.
++   * Checks the value of durInFrames to make sure that it is not 
++   * larger than Integer.MAX_VALUE to guarrantee safe casting.  
++   * Also checks the value of rate to make sure that it is not 
++   * larger than Float.MAX_VALUE before casting.
+    * 
+-   * @param rate a double representing the change in sampleRate (==frameRate)
+-   *             for playing back this sound
+-   * @param durInFrames a double representing how much of this sound we want 
+-   *                    to play.
+-   * @see SimpleSound#playAtRateInRange(float rate, int startFrame, 
+-   *                                  int endFrame, boolean isBlocking)
++   * @param rate a double representing the change in sampleRate 
++   * (==frameRate) for playing back this sound
++   * @param durInFrames a double representing how much of this 
++   * sound we want to play.
++   * @see SimpleSound#playAtRateInRange(float rate, 
++   *                                    int startFrame, 
++   *                                    int endFrame, 
++   *                                    boolean isBlocking)
+    * @throws SoundException if there are problems playing the sound.
+    */
+   public void playAtRateDur(double rate, double durInFrames) 
+@@ -701,18 +728,19 @@
+   }
+   
+   /**
+-   * Calls <code>playAtRateInRange((float)rate, 0, (int)durInFrames-1, true)
+-   * </code>.  First, checks the value of durInFrames to make sure that it is 
++   * First, checks the value of durInFrames to make sure that it is 
+    * not larger than Integer.MAX_VALUE to guarrantee safe casting.  
+-   * Simmilarly, checks the value of rate to make sure that it is not larger 
+-   * than FLoat.MAX_VALUE before casting.
++   * Simmilarly, checks the value of rate to make sure that it is 
++   * not larger than FLoat.MAX_VALUE before casting.
+    * 
+-   * @param rate a double representing the change in sampleRate (==frameRate)
+-   *             for playing back this sound
+-   * @param durInFrames a double representing how much of this sound we want 
+-   *                    to play 
+-   * @see SimpleSound#playAtRateInRange(float range, int startFrame, 
+-   *                                  int endFrame, boolean isBlocking)
++   * @param rate a double representing the change in sampleRate 
++   * (==frameRate) for playing back this sound
++   * @param durInFrames a double representing how much of this sound 
++   * we want to play 
++   * @see SimpleSound#playAtRateInRange(float range, 
++   *                                    int startFrame, 
++   *                                    int endFrame, 
++   *                                    boolean isBlocking)
+    * @throws SoundException if there are problems playing the sound.
+    */
+   public void blockingPlayAtRateDur(double rate, double durInFrames)
+@@ -736,20 +764,23 @@
+   }
+   
+   /**
+-   * Calls <code>playAtRateInRange(rate, startFrame, endFrame, false)
+-   * </code>.
++   * Calls <code>playAtRateInRange(rate, startFrame, endFrame, 
++   * false) </code>.
+    * 
+-   * @param rate a float representing the change in sampleRate (==frameRate)
+-   *             for playing back this sound
+-   * @param startFrame an int representing the frame at which we want to begin
+-   *                   playing the sound
+-   * @param endFrame an int representing the frame at which want to stop
+-   *                 playing the sound
+-   * @see SimpleSound#playAtRateInRange(float range, int startFrame, 
+-   *                                  int endFrame, boolean isBlocking)
++   * @param rate a float representing the change in sampleRate 
++   * (==frameRate) for playing back this sound
++   * @param startFrame an int representing the frame at which we 
++   * want to begin playing the sound
++   * @param endFrame an int representing the frame at which want 
++   * to stop playing the sound
++   * @see SimpleSound#playAtRateInRange(float range, 
++   *                                    int startFrame, 
++   *                                    int endFrame, 
++   *                                    boolean isBlocking)
+    * @throws SoundException if there are problems playing the sound.
+    */
+-  public void playAtRateInRange(float rate, int startFrame, int endFrame)
++  public void playAtRateInRange(float rate, int startFrame, 
++                                int endFrame)
+     throws SoundException
+   {
+     playAtRateInRange(rate, startFrame, endFrame, false);
+@@ -759,14 +790,16 @@
+    * Calls <code>playAtRateInRange(rate, startFrame, endFrame, true)
+    * </code>.
+    * 
+-   * @param rate a float representing the change in sampleRate (==frameRate)
+-   *             for playing back this sound
+-   * @param startFrame an int representing the frame at which we want to begin
+-   *                   playing the sound
+-   * @param endFrame an int representing the frame at which want to stop
+-   *                 playing the sound
+-   * @see SimpleSound#playAtRateInRange(float range, int startFrame, 
+-   *                                  int endFrame, boolean isBlocking)
++   * @param rate a float representing the change in sampleRate 
++   * (==frameRate) for playing back this sound
++   * @param startFrame an int representing the frame at which we want
++   * to begin playing the sound
++   * @param endFrame an int representing the frame at which want 
++   * to stop playing the sound
++   * @see SimpleSound#playAtRateInRange(float range, 
++   *                                    int startFrame, 
++   *                                    int endFrame, 
++   *                                    boolean isBlocking)
+    * @throws SoundException if there are problems playing the sound.
+    */
+   public void blockingPlayAtRateInRange(float rate, int startFrame, 
+@@ -777,33 +810,37 @@
+   }
+   
+   /**
+-   * Plays the specified segment of this sound at the given sample rate.  
+-   * Then it saves the old fields (buffer and audioFileFormat) of this sound 
+-   * into temporary variables, and setting the fields of this sound to 
+-   * modified values.  Then it creates a Playback thread on this sound (with 
+-   * the modified values) and starts the thread.  The values for buffer and
+-   * audioFileFormat are restored to their original values before the method
+-   * returns. 
++   * Plays the specified segment of this sound at the given sample 
++   * rate.  Then it saves the old fields (buffer and audioFileFormat) 
++   * of this sound into temporary variables, and setting the fields 
++   * of this sound to modified values.  Then it creates a Playback 
++   * thread on this sound (with the modified values) and starts the 
++   * thread.  The values for buffer and audioFileFormat are restored 
++   * to their original values before the method returns. 
+    *
+-   * @param rate The change in the sampleRate (==frameRate) for playing back
+-   *             this sound.  The old SampleRate is multiplied by this value.
+-   *             So, if rate = 2, the sound will play twice as fast (half
+-   *             the length), and if rate = .5, the sound will play half as 
++   * @param rate The change in the sampleRate (==frameRate) for 
++   * playing back this sound.  The old SampleRate is multiplied by 
++   * this value.  So, if rate = 2, the sound will play twice as fast 
++   * (half the length), and if rate = .5, the sound will play half as 
+    *             fast (twice the length).
+-   * @param startFrame The index of the frame where we want to begin play
++   * @param startFrame The index of the frame where we want to begin 
++   * play
+    * @param endFrame The index of the frame where we want to end play
+-   * @param isBlocking If true, this method waits until the thread is done
+-   *                   playing the sound before returning.  If false, it
++   * @param isBlocking If true, this method waits until the thread is 
++   * done playing the sound before returning.  If false, it
+    *                   simply starts the thread and then returns.
+-   * @throws SoundException if there are any problems playing the sound.
++   * @throws SoundException if there are any problems playing the 
++   * sound.
+    */
+-  public void playAtRateInRange(float rate, int startFrame, int endFrame, 
+-                                boolean isBlocking)
++  public void playAtRateInRange(float rate, int startFrame, 
++                                int endFrame, boolean isBlocking)
+     throws SoundException
+   {   
+     
+-    //before we get started, lets try to check for some obvious errors.  
+-    //maybe we can avoid some of those pesky array out of bounds exceptions.
++    /*before we get started, lets try to check for some obvious 
++     * errors.  maybe we can avoid some of those pesky array out of 
++     * bounds exceptions.
++     */
+     if(endFrame >= getAudioFileFormat().getFrameLength())
+     {
+       printError("You are trying to play to index: " + (endFrame+1) +
+@@ -902,9 +939,9 @@
+   }
+   
+   /**
+-   * Deletes the specified playback object from the Vector.  This should
+-   * only be called from within the run() method of an individual
+-   * playback thread.  
++   * Deletes the specified playback object from the Vector.  This 
++   * should only be called from within the run() method of an 
++   * individual playback thread.  
+    *
+    * @see Playback#run()
+    */
+@@ -920,10 +957,11 @@
+   
+   
+   
+-  ////////////////////// getting sound information ///////////////////////
++  ////////////////////// getting sound information /////////////////
+   
+   /**
+-   * Returns an array containing all of the bytes in the specified frame.
++   * Returns an array containing all of the bytes in the specified 
++   * frame.
+    * 
+    * @param frameNum the index of the frame to access
+    * @return the array containing all of the bytes in frame 
+@@ -934,9 +972,9 @@
+   {
+     if(frameNum >= getAudioFileFormat().getFrameLength())
+     {
+-      printError("That index "+ (frameNum + 1) +", does not exist. "+ 
++      printError("That index "+ (frameNum) +", does not exist. "+ 
+                  "The last valid index is "+ 
+-                 (getAudioFileFormat().getFrameLength()));
++                 (getAudioFileFormat().getFrameLength() -1));
+     }
+     
+     int frameSize = getAudioFileFormat().getFormat().getFrameSize();
+@@ -950,8 +988,8 @@
+   
+   
+   /**
+-   * Obtains the length of the audio data contained in the file, expressed
+-   * in sample frames. 
++   * Obtains the length of the audio data contained in the file, 
++   * expressed in sample frames. 
+    * 
+    * @return the number of sample frames of audio data in the file
+    */
+@@ -997,11 +1035,13 @@
+    */
+   private void reportIndexException(int index, Exception ex)
+   {
+-    System.out.println("The index " + index + " isn't valid for this sound");
++    System.out.println("The index " + index + 
++                       " isn't valid for this sound");
+   }
+   
+   /**
+-   * Method to get the sample at the passed index and handle any SoundExceptions
++   * Method to get the sample at the passed index and handle 
++   * any SoundExceptions
+    * @param index the desired index
+    * @return the sample value
+    */
+@@ -1018,13 +1058,13 @@
+   }
+       
+   /**
+-   * If this is a mono sound, obtains the single sample contained within this 
+-   * frame, else obtains the first (left) sample contained in the specified
+-   * frame.
++   * If this is a mono sound, obtains the single sample contained 
++   * within this frame, else obtains the first (left) sample 
++   * contained in the specified frame.
+    *
+    * @param frameNum the index of the frame to access
+-   * @return an integer representation of the bytes contained within the 
+-   *         specified frame
++   * @return an integer representation of the bytes contained within 
++   * the specified frame
+    * @throws SoundException if the frame number is invalid.
+    */
+   public int getSampleValue(int frameNum) throws SoundException
+@@ -1033,15 +1073,15 @@
+     if(frameNum >= getAudioFileFormat().getFrameLength())
+     {
+       printError("You are trying to access the sample at index: " 
+-                   + (frameNum + 1) + ", but the last valid index is at " + 
+-                 (getAudioFileFormat().getFrameLength()));
++                 + (frameNum) + ", but the last valid index is at " + 
++                 (getAudioFileFormat().getFrameLength() - 1));
+     }
+     else if(frameNum < 0)
+     {
+-      printError("You asked for the sample at index: " + (frameNum + 1) +
+-                 ".  This number is less than or equal to zero.  Please try" +
+-                 "again using an index in the range [1," + 
+-                 (getAudioFileFormat().getFrameLength()) +"]");
++      printError("You asked for the sample at index: " + (frameNum) +
++                 ".  This number is less than zero.  Please try" +
++                 "again using an index in the range [0," + 
++                 (getAudioFileFormat().getFrameLength() - 1) +"]");
+     }
+    
+     AudioFormat format = getAudioFileFormat().getFormat();
+@@ -1058,11 +1098,14 @@
+       if(sampleSizeInBits == 8)//8 bits == 1 byte
+         return theFrame[0];
+       else if(sampleSizeInBits == 16)
+-        return TConversionTool.bytesToInt16(theFrame, 0, isBigEndian);
++        return TConversionTool.bytesToInt16(theFrame, 0, 
++                                            isBigEndian);
+       else if(sampleSizeInBits == 24)
+-        return TConversionTool.bytesToInt24(theFrame, 0, isBigEndian);
++        return TConversionTool.bytesToInt24(theFrame, 0, 
++                                            isBigEndian);
+       else if(sampleSizeInBits == 32)
+-        return TConversionTool.bytesToInt32(theFrame, 0, isBigEndian);
++        return TConversionTool.bytesToInt32(theFrame, 0, 
++                                            isBigEndian);
+       else
+       {
+         printError("Unsupported audio encoding.  The sample "+
+@@ -1077,13 +1120,16 @@
+         return TConversionTool.unsignedByteToInt(theFrame[0])-
+         (int)Math.pow(2,7);
+       else if(sampleSizeInBits == 16)
+-        return TConversionTool.unsignedByteToInt16(theFrame, 0, isBigEndian)-
++        return TConversionTool.unsignedByteToInt16(theFrame, 0, 
++                                                   isBigEndian)-
+         (int)Math.pow(2, 15);
+       else if(sampleSizeInBits == 24)
+-        return TConversionTool.unsignedByteToInt24(theFrame, 0, isBigEndian)-
++        return TConversionTool.unsignedByteToInt24(theFrame, 0, 
++                                                   isBigEndian)-
+         (int)Math.pow(2, 23);
+       else if(sampleSizeInBits == 32)
+-        return TConversionTool.unsignedByteToInt32(theFrame, 0, isBigEndian)-
++        return TConversionTool.unsignedByteToInt32(theFrame, 0, 
++                                                   isBigEndian)-
+         (int)Math.pow(2, 31);
+       else
+       {
+@@ -1573,4 +1619,4 @@
+     return output;
+   }
+   
+-} // end of SimpleSound class
++} // end of SimpleSound class
+\ No newline at end of file
+--- ./Picture.java	2006-08-31 17:20:53.699812904 -0400
++++ ../../barb-classes/./Picture.java	2006-08-17 15:19:18.000000000 -0400
+@@ -6,14 +6,12 @@
+ /**
+  * A class that represents a picture.  This class inherits from 
+  * SimplePicture and allows the student to add functionality to
+- * the Picture class.  Pictures are immutable (don't change).
+- * Each method that changes a picture creates a copy of the original
+- * picture and changes that.
++ * the Picture class.  
+  * 
+- * Copyright Georgia Institute of Technology 2004
+- * @author Barb Ericson ericson@cc.gatech.edu
++ * Copyright Georgia Institute of Technology 2004-2005
++ * @author Barbara Ericson ericson@cc.gatech.edu
+  */
+-public class Picture extends SimplePicture
++public class Picture extends SimplePicture 
+ {
+   ///////////////////// constructors //////////////////////////////////
+   
+@@ -74,6 +72,6 @@
+     return output;
+     
+   }
+-  
+-} // end of class Picture put all new methods before this last paraenthesis
++
++} // end of class Picture, put all new methods before this
+  
+\ No newline at end of file
+--- ./SoundSample.java	2006-08-31 17:20:54.233731736 -0400
++++ ../../barb-classes/./SoundSample.java	2005-01-21 06:49:18.000000000 -0500
+@@ -64,6 +64,6 @@
+    */
+   public String toString()
+   {
+-    return "Sample at index " + (frameNumber + 1) + " has value " + getValue();
++    return "Sample at index " + frameNumber + " has value " + getValue();
+   }
+-} // end of SoundSample class
++} // end of SoundSample class
+\ No newline at end of file
+--- ./FileChooser.java	2006-08-31 17:20:54.242730368 -0400
++++ ../../barb-classes/./FileChooser.java	2006-07-28 07:58:16.000000000 -0400
+@@ -2,6 +2,7 @@
+ import javax.swing.JFrame;
+ import java.util.Properties;
+ import java.io.*;
++import java.net.*;
+   
+ /**
+  * A class to make working with a file chooser easier
+@@ -14,7 +15,7 @@
+ public class FileChooser 
+ {
+ 
+-  ///////////////////////////// class fields ////////////////////////////////////
++  ///////////////////////////// class fields ///////////////////
+    /**
+    * Properities to use during execution
+    */
+@@ -28,9 +29,10 @@
+   /**
+    * Name for property file
+    */
+-  private static final String PROPERTY_FILE_NAME = "SimplePictureProperties.txt";
++  private static final String PROPERTY_FILE_NAME = 
++    "SimplePictureProperties.txt";
+   
+-  /////////////////////// methods ////////////////////////////////////////////////
++  /////////////////////// methods /////////////////////////////
+  
+   /**
+    * Method to let the user pick a file and return
+@@ -62,8 +64,10 @@
+     if (fileChooser == null)
+       fileChooser = new JFileChooser();
+     
+-    // create a JFrame to be the parent of the file chooser open dialog
+-    // if you don't do this then you may not see the dialog.
++    /* create a JFrame to be the parent of the file 
++     * chooser open dialog if you don't do this then 
++     * you may not see the dialog.
++     */
+     JFrame frame = new JFrame();
+     
+     // get the return value from choosing a file
+@@ -100,6 +104,8 @@
+  {
+    String directory = null;
+    
++   
++   
+    // check if the application properties are null
+    if (appProperties == null)
+    {
+@@ -107,7 +113,11 @@
+      
+      // load the properties from a file
+      try {
+-       FileInputStream in = new FileInputStream(PROPERTY_FILE_NAME);
++       // get the URL for where we loaded this class 
++       Class currClass = Class.forName("FileChooser");
++       URL classURL = currClass.getResource("FileChooser.class");
++       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
++       FileInputStream in = new FileInputStream(fileURL.getPath());
+        appProperties.load(in);
+        in.close();
+      } catch (Exception ex) {
+@@ -132,22 +142,33 @@
+    // check if the directory exists
+    File file = new File(directory);
+    if (!file.exists())
+-     System.out.println("Sorry but " + directory + " doesn't exist, try a different directory.");
++     System.out.println("Sorry but " + directory + 
++                 " doesn't exist, try a different directory.");
+    else {
+      
+-     // check if there is an application properties object and if not create one
++     /* check if there is an application properties object 
++      * and if not create one
++      */
+      if (appProperties == null)
+        appProperties = new Properties();
+-     
+-     // set the media directory property
+-     appProperties.put(MEDIA_DIRECTORY,directory);
++       
++       // set the media directory property
++       appProperties.put(MEDIA_DIRECTORY,directory);
+      
+      // write out the application properties to a file
+      try {
+-       FileOutputStream out = new FileOutputStream(PROPERTY_FILE_NAME);
+-       appProperties.store(out, "Properties for the Simple Picture class");
++       
++       // get the URL for where we loaded this class 
++       Class currClass = Class.forName("FileChooser");
++       URL classURL = currClass.getResource("FileChooser.class");
++       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
++       FileOutputStream out = 
++         new FileOutputStream(fileURL.getPath());
++       appProperties.store(out, 
++                     "Properties for the Simple Picture class");
+        out.close();
+-       System.out.println("The media directory is now " + directory);
++       System.out.println("The media directory is now " + 
++                          directory);
+      } catch (Exception ex) {
+        System.out.println("Couldn't save media path to a file");
+      }
+--- ./SimplePicture.java	2006-08-31 17:20:54.164742224 -0400
++++ ../../barb-classes/./SimplePicture.java	2006-07-28 07:35:56.000000000 -0400
+@@ -14,7 +14,6 @@
+  * 
+  * Copyright Georgia Institute of Technology 2004
+  * @author Barb Ericson ericson@cc.gatech.edu
+- * MODIFIED by Joe Yeager gtg654a@mail.gatech.edu
+  */
+ public class SimplePicture implements DigitalPicture
+ {
+@@ -58,7 +57,7 @@
+   * of code in a constructor.
+   */
+  public SimplePicture() 
+- {}
++ {this(200,100);}
+  
+  /**
+   * A Constructor that takes a file name and uses the file to create
+@@ -67,8 +66,10 @@
+   */
+  public SimplePicture(String fileName)
+  {
++   
+    // load the picture into the buffered image 
+-   load(fileName); 
++   load(fileName);
++   
+  }
+  
+  /**
+@@ -82,7 +83,9 @@
+  {
+    bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+    title = "New Picture";
++   fileName = "New Picture";
+    extension = "jpg";
++   setAllPixelsToAColor(Color.white);
+  }
+  
+  /**
+@@ -91,9 +94,13 @@
+   */
+  public SimplePicture(SimplePicture copyPicture)
+  {
+-   this.fileName = new String(copyPicture.fileName);
+-   this.title = new String(copyPicture.title);
+-   this.extension = copyPicture.extension;
++   if (copyPicture.fileName != null)
++   {
++      this.fileName = new String(copyPicture.fileName);
++      this.extension = copyPicture.extension;
++   }
++   if (copyPicture.title != null)
++      this.title = new String(copyPicture.title);
+    if (copyPicture.bufferedImage != null)
+    {
+      this.bufferedImage = new BufferedImage(copyPicture.getWidth(),
+@@ -142,6 +149,23 @@
+  }
+  
+  /**
++  * Method to set the color in the picture to the passed color
++  * @param color the color to set to
++  */
++ public void setAllPixelsToAColor(Color color)
++ {
++   // loop through all x
++   for (int x = 0; x < this.getWidth(); x++)
++   {
++     // loop through all y
++     for (int y = 0; y < this.getHeight(); y++)
++     {
++       getPixel(x,y).setColor(color);
++     }
++   }
++ }
++ 
++ /**
+   * Method to get the buffered image
+   * @return the buffered image 
+   */
+@@ -156,8 +180,7 @@
+   */
+  public Graphics getGraphics()
+  {
+-	if(bufferedImage!=null)return bufferedImage.getGraphics();
+-	else return null;
++   return bufferedImage.getGraphics();
+  }
+  
+  /**
+@@ -166,8 +189,7 @@
+   */
+  public Graphics2D createGraphics()
+  {
+-	if(bufferedImage!=null) return bufferedImage.createGraphics();
+-	else return null;
++   return bufferedImage.createGraphics();
+  }
+  
+  /**
+@@ -180,7 +202,8 @@
+   * Method to get the title of the picture
+   * @return the title of the picture
+   */
+- public String getTitle() { return title; }
++ public String getTitle() 
++ { return title; }
+  
+  /**
+   * Method to set the title for the picture
+@@ -189,29 +212,20 @@
+  public void setTitle(String title) 
+  {
+    this.title = title;
+-
+-   // only if there is a current picture frame 
+-   if (pictureFrame!=null) pictureFrame.setTitle(title);
++   pictureFrame.setTitle(title);
+  }
+  
+  /**
+   * Method to get the width of the picture in pixels
+   * @return the width of the picture in pixels
+   */
+- public int getWidth() { 
+-   // only if there is a buffered image
+-   if(bufferedImage!=null) return bufferedImage.getWidth();
+-   else return 0;
+- }
++ public int getWidth() { return bufferedImage.getWidth(); }
+  
+  /**
+   * Method to get the height of the picture in pixels
+   * @return  the height of the picture in pixels
+   */
+- public int getHeight() { 
+-   if(bufferedImage!=null) return bufferedImage.getHeight(); 
+-   else return 0;
+- }
++ public int getHeight() { return bufferedImage.getHeight(); }
+  
+  /**
+   * Method to get the picture frame for the picture
+@@ -247,8 +261,7 @@
+   */
+  public int getBasicPixel(int x, int y)
+  {
+-	if(bufferedImage!=null) return bufferedImage.getRGB(x,y);
+-	else return -1;
++    return bufferedImage.getRGB(x,y);
+  }
+     
+  /** 
+@@ -259,7 +272,7 @@
+   */     
+  public void setBasicPixel(int x, int y, int rgb)
+  {
+-	if(bufferedImage!=null) bufferedImage.setRGB(x,y,rgb);
++   bufferedImage.setRGB(x,y,rgb);
+  }
+   
+  /**
+@@ -302,8 +315,6 @@
+   */
+  public void load(Image image)
+  {
+-   if(bufferedImage==null) return;
+-
+    // get a graphics context to use to draw on the buffered image
+    Graphics2D graphics2d = bufferedImage.createGraphics();
+    
+@@ -327,6 +338,27 @@
+    else
+      pictureFrame = new PictureFrame(this);
+  }
++ 
++ /**
++  * Method to hide the picture
++  */
++ public void hide()
++ {
++   if (pictureFrame != null)
++     pictureFrame.setVisible(false);
++ }
++ 
++ /**
++  * Method to make this picture visible or not
++  * @param flag true if you want it visible else false
++  */
++ public void setVisible(boolean flag)
++ {
++   if (flag)
++     this.show();
++   else 
++     this.hide();
++ }
+ 
+  /**
+   * Method to open a picture explorer on a copy of this simple picture
+@@ -397,8 +429,6 @@
+   */
+  public void addMessage(String message, int xPos, int yPos)
+  {
+-   if(bufferedImage==null) return;
+-
+    // get a graphics context to use to draw on the buffered image
+    Graphics2D graphics2d = bufferedImage.createGraphics();
+    
+@@ -509,7 +539,7 @@
+    * transformation is applied to the current picture
+    * @return the enclosing rectangle
+    */
+-  public Rectangle2D getTranslationEnclosingRectangle(AffineTransform trans)
++  public Rectangle2D getTransformEnclosingRect(AffineTransform trans)
+   {
+     int width = getWidth();
+     int height = getHeight();
+--- ./PictureFrame.java	2006-08-31 17:20:54.678664096 -0400
++++ ../../barb-classes/./PictureFrame.java	2005-05-23 22:16:46.000000000 -0400
+@@ -5,7 +5,7 @@
+  * Class that holds a digital picture and displays it.
+  * 
+  * Copyright Georgia Institute of Technology 2004
+- * @author Barb Ericson ericson@cc.gatech.edu
++ * @author Barb Ericson 
+  */
+ public class PictureFrame
+ {
+@@ -46,7 +46,8 @@
+   
+   /**
+    * A constructor that takes a picture to display
+-   * @param picture  the digital picture to display in the picture frame
++   * @param picture  the digital picture to display in the 
++   * picture frame
+    */
+   public PictureFrame(DigitalPicture picture)
+   {
+@@ -57,11 +58,23 @@
+     initFrame();
+   }
+   
+-  ///////////////////////// methods ////////////////////////////////////
++  ///////////////////////// methods ///////////////////////////////
+   
+   /**
+-   * A method to update the picture frame image with the image in the 
+-   * picture 
++   * Method to set the picture to show in this picture frame
++   * @param picture the new picture to use
++   */
++  public void setPicture(Picture picture)
++  {
++    this.picture = picture;
++    imageIcon.setImage(picture.getImage());
++    frame.pack();
++    frame.repaint();
++  }
++  
++  /**
++   * A method to update the picture frame image with the image  
++   * in the picture 
+    */
+   public void updateImage()
+   {
+@@ -73,17 +86,13 @@
+       
+       // set the title of the frame to the title of the picture
+       frame.setTitle(picture.getTitle());
++      
+     }
+   }
+-
+-  public void hideImage()
+-  {
+-    frame.setVisible(false);
+-  }
+   
+   /**
+-   * A method to update the picture frame image with the image in the picture
+-   * and show it
++   * A method to update the picture frame image with the image in 
++   * the picture and show it
+    */
+   public void updateImageAndShowIt()
+   {
+@@ -103,6 +112,32 @@
+   }
+   
+   /**
++   * A method to hide the frame
++   */
++  public void hide()
++  {
++    frame.setVisible(false);
++  }
++  
++  /**
++   * A method to set the visible flag on the frame
++   * @param flag the flag to use
++   */
++  public void setVisible(boolean flag) 
++  { 
++    frame.setVisible(flag);
++  }
++  
++  /**
++   * A method to close a picture frame
++   */
++  public void close()
++  {
++    frame.setVisible(false);
++    frame.dispose();
++  }
++  
++  /**
+    * Method to set the title for the picture frame
+    * @param title the title to use
+    */
+@@ -146,4 +181,4 @@
+     frame.setVisible(true);
+   }
+   
+-}
++}
+\ No newline at end of file

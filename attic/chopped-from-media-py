@@ -1,0 +1,172 @@
+##
+# Movie Functions
+#
+
+# def makeMovieFromPictures(frames, outputpath, framerate=30):
+#     global mediaFolder
+#     filename = outputpath
+# #    try:
+#     import JpegImagesToMovie
+#     if not os.path.isabs(outputpath):
+#         outputpath = mediaFolder + outputpath
+#     vec = java.util.Vector()
+#     width = frames[0].getWidth()
+#     height = frames[0].getHeight()
+#     for f in frames:
+#         vec.addElement(f.pic)
+#     if os.path.exists(filename):
+#         os.remove(filename)
+#     jitm = JpegImagesToMovie()
+#     suc = jitm.doItPath(width, height, framerate, vec, outputpath)
+#     if not suc:
+#         print "Could not write movie to " + outputpath
+#         print "Make sure that the mov path is valid and the pictures are in a list"
+#     else:
+#         print "Finished writing movie: " + outputpath
+#     jitm = None
+#     vec = None
+#     import java.lang.System as System
+#     System.gc()
+# #     except Exception, e:
+# #         print "Could not write movie to " + outputpath
+# #         print "Make sure that the mov path is valid and the pictures are in a list"
+        
+# def openMovie(filename):
+#     global mediaFolder
+#     import java.lang.System as System
+#     if not os.path.isabs(filename):
+#         filename = mediaFolder + filename
+#     if System.getProperty('os.name').find('Mac') <> -1:
+#         print "Movie playback unsupported on Macintosh systems"
+#     elif not os.path.exists(filename):
+#         print "There is no movie at " + filename
+#     else:   
+#         try:
+#             import quicktime
+#             import quicktime.io
+#             import quicktime.std.movies
+#             import quicktime.app.display.QTCanvas
+#             import quicktime.app.players.QTPlayer
+           
+#             quicktime.QTSession.open()
+#             frame = swing.JFrame(os.path.basename(filename))
+#             qtf = quicktime.io.QTFile(filename)
+#             movieFile = quicktime.io.OpenMovieFile.asRead(qtf)
+#             m = quicktime.std.movies.Movie.fromFile(movieFile)
+#             mc = quicktime.std.movies.MovieController(m)
+#             mc.setKeysEnabled(1)
+#             myQTCanvas = quicktime.app.display.QTCanvas()
+#             frame.getContentPane().add(myQTCanvas)
+#             myQTPlayer = quicktime.app.players.QTPlayer(mc)
+#             myQTCanvas.setClient(myQTPlayer, 1)
+
+#             frame.pack()
+#             frame.show()
+#             frame.toFront()
+#         except Exception, e:
+#             print e
+#             print "Could not open a player for " + filename
+#             print "Make sure it is a valid movie file."
+
+
+
+# def addOvalFilled(picture, acolor,x,y,w,h):
+#     if not picture.__class__ == Picture:
+#         print "addOvalFilled(picture,acolor,x,y,w,h): Input is not a picture"
+#         raise ValueError 
+#     g = picture.getBufferedImage().getGraphics()
+#     g.setColor(acolor.color)
+#     g.fillOval(x - 1,y - 1,w,h)
+
+# def addOval(picture, acolor,x,y,w,h):
+#     if not picture.__class__ == Picture:
+#         print "addRectFilled(picture,acolor,x,y,w,h): Input is not a picture"
+#         raise ValueError 
+#     g = picture.getBufferedImage().getGraphics()
+#     g.setColor(acolor.color)
+#     g.drawOval(x - 1,y - 1,w,h)
+
+# def addArcFilled(picture, acolor,x,y,w,h,start,angle):
+#     if not picture.__class__ == Picture:
+#         print "addArcFilled(picture,acolor,x,y,w,h,start,angle): Input is not a picture"
+#         raise ValueError 
+#     g = picture.getBufferedImage().getGraphics()
+#     g.setColor(acolor.color)
+#     g.fillArc(x - 1,y - 1,w,h,start,angle)
+#         
+# def addArc(picture, acolor,x,y,w,h,start,angle):
+#     if not picture.__class__ == Picture:
+#         print "addArc(picture,acolor,x,y,w,h,start,angle): Input is not a picture"
+#         raise ValueError 
+#     g = picture.getBufferedImage().getGraphics()
+#     g.setColor(acolor.color)
+#     g.drawArc(x - 1,y - 1,w,h,start,angle)
+# 
+# not busted anymore!
+
+
+#def addTextWithStyle(picture, acolor, x, y, string, style):
+#    if not picture.__class__ == Picture:
+#        print "addTextWithStyle(picture,acolor,x,y,string,style): Input is not a picture"
+#        raise ValueError 
+#    g = picture.getBufferedImage().getGraphics()
+#    g.setColor(acolor.color)
+#    g.setFont(style)
+#    g.drawString(string, x - 1, y - 1)
+
+
+
+
+# class Samples:
+#     def __init__(self,aSound):
+#         self.sound = aSound
+# # i'm going to make this a lazy list
+# #        self.myList = []
+# #        for s in range(1,aSound.getLength()+1):
+# #            self.myList.append(Sample(aSound,s))
+    
+#     def __len__(self):
+#         return self.sound.getLength()
+
+#     def __str__(self):
+#         return "Samples, length "+str(len(self))
+    
+#     def __repr__(self):
+#         return "Samples, length "+str(len(self))
+    
+#     def __getitem__(self,item):
+#         if item >= len(self):
+#             raise IndexError('Index out of range') # necessary for python to detect end of array
+#         else:
+#             return Sample(self.sound,item+1)
+# #        return self.myList[item]
+
+    
+#     def __setitem__(self,item,value):
+#         setSampleValueAt(self.getSound(), item, int(value))
+    
+#     def getSound(self):
+#         return self.sound
+    
+        
+# class Sample:
+#     def __init__(self,aSound,index):
+#         self.sound=aSound
+#         self.index=index
+
+#     def __str__(self):
+#         return "Sample at "+str(self.index)+" value at "+str(self.getValue())
+
+#     def __repr__(self):
+#         return "Sample at "+str(self.index)+" value at "+str(self.getValue())
+    
+#     def setValue(self,value):
+#         setSampleValueAt(self.getSound(), self.index, int(round(value)))
+    
+#     def getValue(self):
+#         return getSampleValueAt(self.getSound(), self.index)
+        
+#     def getSound(self):
+#         return self.sound
+
+

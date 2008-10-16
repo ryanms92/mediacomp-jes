@@ -1,0 +1,12 @@
+This is BibTeX, Version 0.99cThe top-level auxiliary file: main.aux
+The style file: ph.bst
+Database file #1: book.bib
+Name 1 in "Lauren Rich, Heather Perry, and Mark Guzdial" has a comma at the end for entry mediacomp-sigcse
+while executing---line 1116 of file ph.bst
+Warning--missing pages in cc2001
+Warning--missing chapter and pages in mediacomp-hicss
+Warning--missing publisher in mediacomp-hicss
+Name 1 in "Lauren Rich, Heather Perry, and Mark Guzdial" has a comma at the end for entry mediacomp-sigcse
+while executing---line 1204 of file ph.bst
+Warning--missing publisher in mediacomp-sigcse
+(There were 2 error messages)

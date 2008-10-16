@@ -1,0 +1,129 @@
+% Styles for "Introduction to Media Computation"
+
+% Environments for csconcept, debuggingtip, commonbug, recipe
+
+\graphicspath{{figs/}}
+
+%\newcounter{recipe}[chapter]
+%\newenvironment{recipe}[1] % recipe title
+%{\refstepcounter{recipe}\index{recipe!#1}%
+% \begin{Sbox}\begin{tabular}{l p{5 in}} %
+%\raisebox{-0.75in}{\includegraphics[width=0.75 in]{cooking.eps}} & %
+%\textbf{Recipe \arabic{chapter}--\arabic{recipe}: #1} \newline\  } %
+%{ \\ \end{tabular}\end{Sbox}  \doublebox{{\TheSbox}}}
+
+%% VERSION 1: WORKS, BUT USES UP LOTS OF SPACE
+%\newenvironment{recipe}[1] % recipe title
+%{\vspace*{4pt}\refstepcounter{recipe}\index{recipe!#1}%
+% \begin{Sbox}\begin{tabular}{l p{3.5in}}%
+% \raisebox{-0.8in}{\includegraphics[width=0.75 in]{cooking.eps}} & %
+%\textbf{Recipe~\arabic{recipe}:\ #1} \newline\ \small }%
+%{\normalsize \\ \end{tabular}\end{Sbox}  \doublebox{{\TheSbox}}\vspace*{4pt}}
+
+%% VERSION 2: SHRINKS THE ICON AND MOVES CODE TO LEFT
+%\newenvironment{recipe}[1] % recipe title
+%{\noindent\vspace*{4pt}\refstepcounter{recipe}\index{recipe!#1}%
+% \begin{Sbox}\begin{tabular}{p{\textwidth}}%
+% \raisebox{-0.2in}{\includegraphics[width=0.3 in]{cooking.eps}} %
+%\textbf{Recipe~\arabic{recipe}:\ #1} \newline\ }%
+%{\\ \end{tabular} \end{Sbox}  \doublebox{{\TheSbox}}\vspace*{4pt}}
+
+% VERSION 3: PULLS CODE OUT OF BOX AND REMOVES END BOX
+% \setcounter{changebargrey}{85}
+  \newenvironment{recipe}[1] % recipe title
+  {\vspace*{4pt}\noindent\vspace*{4pt}\refstepcounter{recipe}\index{recipe!#1}%
+   \doublebox{\raisebox{-0.2in}{\includegraphics[width=0.3 in]{cooking.eps}} %
+      \textbf{Recipe~\arabic{recipe}:\ #1}} \newline\ }%
+  { \vspace*{4pt} }
+
+%Version 4: Uses PH Computer Listings format
+%% \newenvironment{recipe}[1] % recipe title
+%%  {%
+%%    \refstepcounter{recipe}\index{recipe!#1}
+%%    \begin{codelist}{Some code}}%
+%% %{\raisebox{-0.2in}{\includegraphics[width=0.3 in]{cooking.eps}}Recipe~\arabic{recipe}:\ #1} }
+%%  {\end{codelist} }
+
+\newcounter{recipe}  %[chapter]
+
+%Version 1: These don't float
+  \newenvironment{csconcept}[1] %
+  {\vspace*{4pt}\index{computer science idea!#1}%
+   \begin{Sbox}\begin{tabular}{l p{3.5 in}} %
+  %% \raisebox{-0.6in}{\includegraphics[width=0.75 in]{idea.eps}} & %
+  \textbf{Computer Science Idea: #1} \newline\  } %
+  { \\ \end{tabular}\end{Sbox}  \doublebox{{\TheSbox}}\vspace*{4pt}}
+
+  \newenvironment{bug}[1] %
+  {\vspace*{4pt}\index{common bug!#1}%
+   \begin{Sbox}\begin{tabular}{l p{3.5 in}} %
+  \raisebox{-0.7in}{\includegraphics[width=0.75 in]{commonbug.eps}} & %
+  \textbf{Common Bug: #1} \newline\  } %
+  { \\ \end{tabular}\end{Sbox}  \ovalbox{{\TheSbox}}\vspace*{4pt}}
+
+  \newenvironment{debuggingtip}[1] %
+  {\vspace*{4pt}\index{debugging tip!#1}%
+   \begin{Sbox}\begin{tabular}{l p{3.5 in}} %
+  \raisebox{-0.75in}{\includegraphics[width=0.75 in]{debug.eps}} & %
+  \textbf{Debugging Tip: #1} \newline\  } %
+  { \\ \end{tabular}\end{Sbox}  \framebox{{\TheSbox}}\vspace*{4pt}}
+
+  \newenvironment{makingitwork}[1] %
+  {\vspace*{4pt}\index{making it work!#1}%
+   \begin{Sbox}\begin{tabular}{l p{3.5 in}} %
+  \raisebox{-0.5in}{\includegraphics[width=0.75 in]{mountain.eps}} & %
+  \textbf{Making it Work Tip: #1} \newline\  } %
+  { \\ \end{tabular}\end{Sbox}  \Ovalbox{{\TheSbox}}\vspace*{4pt}}
+
+%Version 2: Uses PH Titled Boxes
+%%    \newenvironment{csconcept}[1] %
+%%    {\index{computer science idea!#1}%
+%%     \begin{titledbox}{\raisebox{-0.6in}{\includegraphics[width=0.75 in]{idea.eps}} %
+%%    Computer Science Idea: #1  }} %
+%%    {\end{titledbox}}
+
+%%    \newenvironment{bug}[1] %
+%%    {\index{common bug!#1}%
+%%     \begin{titledbox}{\raisebox{-0.6in}{\includegraphics[width=0.75 in]{commonbug.eps}} %
+%%    Common Bug: #1  }} %
+%%    {\end{titledbox}}
+
+%%    \newenvironment{debuggingtip}[1] %
+%%    {\index{debugging tip!#1}%
+%%     \begin{titledbox}{\raisebox{-0.6in}{\includegraphics[width=0.75 in]{debug.eps}} %
+%%    Debugging Tip: #1  }} %
+%%    {\end{titledbox}}
+
+%%    \newenvironment{makingitwork}[1] %
+%%    {\index{making it work!#1}%
+%%     \begin{titledbox}{\raisebox{-0.6in}{\includegraphics[width=0.75 in]{mountain.eps}} %
+%%    Making it Work: #1  }} %
+%%    {\end{titledbox}}
+
+ \newenvironment{myp} % caption and label
+  {\begin{figure}[htb] \begin{center} } { \end{center} \end{figure}}
+
+
+ \newcommand{\incgrbig}[1]{\includegraphics[width=4 in]{#1}}
+ \newcommand{\incgr}[1]{\includegraphics{#1}}
+
+ \newcommand{\recref}[1]{Recipe~\ref{#1} (page~\pageref{#1})}
+ \newcommand{\newterm}[1]{\emph{#1}\index{#1}}
+\newcommand{\ui}[1]{\textsc{#1}}
+ \newcommand{\filename}[1]{\texttt{#1}}
+
+ \newcounter{exercise}
+ \newcommand{\exercise}{\refstepcounter{exercise}\noindent\textbf{Exercise~\arabic{exercise}:}\hspace*{1em}}
+
+ \newcommand{\newcode}[1]{\code{#1}\index{#1}}
+
+\newcommand{\objectives}{\noindent\textbf{\textsf{\Large\textsc Chapter Learning
+Objectives}}}
+
+\newcommand{\mediagoals}{\noindent\textbf{The media learning objectives for this
+chapter are:}}
+\newcommand{\csgoals}{\noindent\textbf{The computer science objectives for this
+chapter are:}}
+
+\newcommand{\howitworks}{\noindent\fbox{\textbf{How it works:}}}
+\newcommand{\programmingsummary}{\section*{Programming Summary}}

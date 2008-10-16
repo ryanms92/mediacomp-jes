@@ -1,0 +1,144 @@
+\chapter{Modifying Pictures using Loops}
+
+% pictencode.tex, chapter of "Introduction to Media Computation"
+\begin{exercises}
+
+\begin{ex}
+\begin{itemize}
+
+\item We don't see red green and blue spots in pictures becuase a pixel is
+so small that the human eye cannot detect it. However if the resolution (or
+number of pixels per inch) were reduced -- for example, by zooming in on
+the picture -- then you would be able to see dots of colors in a picture.
+
+\item Luminance is the eye's perception of the brightness of light and
+color.
+
+\item Each color - red,green,and blue - is represented with 8 bits in a
+computer.  Since each bit in a computer can be either a 0 or 1 (two
+options) there are $2^8$ or 256 different possible representations you can
+get with 8 bits.  This translates to 256 different shades for each of red
+green and blue.  Since 0 is one of those representations, the highest you
+can go is 255.
+
+\item Since each of RGB uses 8 bits to represent it, it requires 3 * 8 or 24
+bits to represent a pixel's color in a computer. With 24 bits, there are
+$2^24$ different colors that can be represented in a computer. Since this
+number is much greater than the number of colors that can be perceived by
+the human eye, this representation gives more than enough colors.
+\end{itemize}
+
+\end{ex}
+
+
+\begin{ex}
+Hello back to you!
+Hello
+Hello
+Hello
+Hello
+6
+Hello back to you!
+\end{ex}
+
+\begin{ex}
+
+\begin{example}
+def decreaseRed(picture):
+		for p in getPixels(picture):
+		value = getRed(p)
+		setRed(p,value0.9)
+
+def decreaseRed(picture):
+		for p in getPixels(picture):
+		value = getRed(p)
+		setRed(p,value0.8)
+\end{example}
+
+\end{ex}
+
+
+
+\begin{ex}
+
+\begin{example}
+
+def decreaseBlue(picture):
+		for p in getPixels(picture):
+		value = getBlue(p)
+		setBlue(p,value0.5)
+
+def decreaseGreen(picture):
+		for p in getPixels(picture):
+		value = getGreen(p)
+		setGreen(p,value0.5)
+
+\end{example}
+\end{ex}
+
+\begin{ex}
+(Sort of a subjective question, really.)
+\end{ex}
+
+\begin{ex}
+Since each component, red green and blue can take on values only from
+0-255, when you increase one of these components, it overflows (i.e.
+it becomes a number greater than 255) When this happens, to prevent an
+error from occuring, the numbers wrap around and it starts over again
+at 0. So setRed(p,256) would be equivalent to setRed(p,0), 257 goes to 1,
+etc. Since low numbers represent very little of that component,
+when it wraps around via the increase color function, you eventually get
+back to the low numbers -- so that color has in effect been decreased.
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def clearRed(picture):
+    for p in getPixels(picture):
+    setRed(p,0)
+
+def clearGreen(picture):
+    for p in getPixels(picture):
+    setGreen(p,0)
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def maxBlue(picture):
+    for p in getPixels(picture):
+    setBlue(p,255)
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+XXX: not right yet. Still needs to calculate the percent thing. Way to go,
+Kelly.
+
+def changeColor(picture,percent,color):
+    for p in getPixels(picture):
+        if color == 1:
+            r = getRed(p)
+            setRed(p,r + (rpercent))
+        if color == 2:
+            g = getGreen(p)
+            setGreen(p, g + (gpercent))
+        if color == 3:
+            b = getBlue(p)
+            setBlue(p, b + (bpercent))
+\end{example}
+
+Write a new version of the function \code{increaseRed} and
+\code{decreaseRed} (and blue and green) called \code{changeColor}
+that takes as input a picture \emph{and} an amount to increase or
+decrease a color by \emph{and} a number 1 (for red), 2 (for
+green), or 3 (for blue).  The amount will be a number between
+$-.99$ and $.99$.
+\end{ex}
+
+\begin{ex}
+Take a look and see for yourself!
+\end{ex}
+
+\end{exercises}

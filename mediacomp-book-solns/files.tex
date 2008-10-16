@@ -1,0 +1,174 @@
+\chapter{Encoding, Creating, and Manipulating Files}
+
+% files.tex, chapter of "Introduction to Media Computation"
+
+
+
+    %\graphicspath{{figs/}{figs/files/}}
+
+
+
+This chapter will eventually talk about directories and manipulating directories, and how to read and write files.
+
+
+
+\section{How to walk through a directory}
+
+
+
+
+
+To manipulate a directory of files, you have to \newcode{import} a \newterm{module} that contains additional functionality.  To manipulate the functions in the module, you'll have to use \newterm{dot notation}.
+
+
+
+\begin{example}
+
+>>> print file
+
+/Users/guzdial/Work/mediasources/dark-bladerunner/dark-bladerunner 001.jpg
+
+>>> import os
+
+>>> for file in os.listdir("/Users/guzdial/Work/mediasources/dark-bladerunner"):
+
+...    print file
+
+...
+
+dark-bladerunner 001.jpg
+
+dark-bladerunner 002.jpg
+
+dark-bladerunner 003.jpg
+
+\ldots
+
+\end{example}
+
+
+
+
+
+
+
+\section{Copying files}
+
+
+
+    \begin{recipe}{Simplest file copy}
+
+\begin{example}
+
+def copyFile(path1,path2):
+
+
+
+  inFile  = open(path1,'r')
+
+  outFile = open(path2,'w')
+
+
+
+    temp = inFile.read()
+
+    outFile.write(temp)
+
+
+
+  outFile.close()
+
+  return
+
+\end{example}
+
+\end{recipe}
+
+
+
+What if we can't fit the whole file into memory?  But what if we run out of memory?
+
+
+
+\begin{recipe}{Memory-protecting file copy}
+
+\begin{example}
+
+def copyFile(path1,path2):
+
+
+
+  inFile  = open(path1,'r')
+
+  outFile = open(path2,'w')
+
+
+
+  more = 1                    # set so we can perform the first read
+
+  while (more > 0 ):
+
+                      # Alternative (less readable but cooler): while (more):
+
+
+
+    temp = inFile.read(4096)  # reads 4096 bytes or whatever is left at end
+
+    more = len(temp)          # when no more data more is set to 0
+
+    outFile.write(temp)
+
+
+
+  outFile.close()
+
+  return
+
+\end{example}
+
+\end{recipe}
+
+
+
+\code{temp} in these examples is a string.  If we want to copy \newterm{binary files}, we use this form.
+
+
+
+\begin{recipe}{Memory-protecting binary file copy}
+
+\begin{example}
+
+def copyFile(path1,path2):
+
+
+
+  inFile  = open(path1,'rb')
+
+  outFile = open(path2,'wb')
+
+
+
+  more = 1                    # set so we can perform the first read
+
+  while (more > 0 ):
+
+                      # Alternative (less readable but cooler): while (more):
+
+
+
+    temp = inFile.read(4096)  # reads 4096 bytes or whatever is left at end
+
+    more = len(temp)          # when no more data more is set to 0
+
+    outFile.write(temp)
+
+
+
+  outFile.close()
+
+  return
+
+\end{example}
+
+\end{recipe}
+

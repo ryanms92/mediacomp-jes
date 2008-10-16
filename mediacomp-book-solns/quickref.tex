@@ -1,0 +1,92 @@
+
+
+\chapter{Quick Reference to Python}
+
+
+
+% quickref.tex, chapter of "Introduction to Media Computation"
+
+
+
+    \graphicspath{{figs/}{figs/cs/}}
+
+
+
+\section{Variables}
+
+
+
+Variables start with a letter and can be any word \emph{except}
+
+the \newterm{reserved words}.  Those are:
+
+
+
+\begin{quote}
+
+and, assert, break, class, continue, def, del, elif, else, except,
+
+exec, finally, for, from, global, if, import, in, is, lambda, not,
+
+or, pass, print, raise, return, try, while, yield
+
+\end{quote}
+
+
+
+We can use \code{print} to get a printable representation of an
+
+expression (such as a variable).  If we simply type the variable,
+
+without \code{print}, we get the internal representation:
+
+functions and objects tell us about where they are in memory, and
+
+strings appear with their quotes.
+
+
+
+\begin{verbatim}
+
+>>> x = 10
+
+>>> print x
+
+10
+
+>>> x
+
+10
+
+>>> y='string'
+
+>>> print y
+
+string
+
+>>> y
+
+'string'
+
+>>> p=makePicture(pickAFile())
+
+>>> print p
+
+Picture, filename C:\Documents and Settings\Mark Guzdial\My
+
+Documents\mediasources\7inX95in.jpg height 684 width 504
+
+>>> p
+
+<media.Picture instance at 6436242>
+
+>>> print sin(12)
+
+-0.5365729180004349
+
+>>> sin
+
+<java function sin at 26510058>
+
+\end{verbatim}
+

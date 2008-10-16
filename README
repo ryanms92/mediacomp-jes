@@ -1,0 +1,16 @@
+** What's in the repository:
+
+BUGS: current list of known bugs
+JES-DIFF: diff of the 216 build versus the cs1315 one
+JES-DIFF-ERR: errors from that diff
+README: this file, duh.
+TODO: current list of high-level open tasks
+bookClasses-8-21-06.zip: Barbara's Java mediacomp classes, to be integrated
+jes: our current working version
+testusermanual2.pdf: old testing manual
+
+attic/ : Files you probably don't need that often.
+attic/jes-1315.tar.bz2: tarball of the version cs1315 had been distributing
+attic/jes-216.tar.bz2: the build before we started this semester
+attic/JES-visualstudio.zip : the visual studio project for building the jes
+windows executable.

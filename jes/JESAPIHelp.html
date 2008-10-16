@@ -1,0 +1,1222 @@
+<html><body>
+API Documentation for functions in media.py
+_
+setMediaPath|<b>setMediaPath</b>:(directory)<br>
+<font color=blue>directory</font>: The directory you want to set as the media folder.<br>
+Takes a directory as input. JES then will look for files in that directory unless given a full path, i.e. one that starts with "c:\". You can leave out the directory. If you do, JES will open up a file chooser to let you select a directory.<br>
+<b>Examples:</b>
+<pre>
+def openBobsSong():
+  setMediaPath()
+  song = makeSound("BobsSong.wav")
+  return song
+</pre>
+This will let the user set a folder to look for files in, and then open the file "BobsSong.wav" in that folder.<br>
+<pre>
+def openMarysSong():
+  setMediaPath("C:/music")
+  song = makeSound("MarysSong.wav")
+  return song
+</pre>
+This sets the folder to look in to "C:/music", and then open the file "MarysSong.wav" in that folder.
+_
+getMediaPath|<b>getMediaPath</b>(filename):<br>
+<font color=blue>filename</font>: the name of the file you want<br>
+<font color=blue>returns</font>: the complete path to the file specified<br>
+getMediaPath() builds the whole path to the file you specify, as long as
+you've already used setMediaFolder() or setMediaPath() to pick out the place
+where you keep your media.
+
+getMediaPath|<b>getMediaPath</b>():<br>
+<font color=blue>returns</font>: The current setting for media path.<br>
+Takes no input and returns a String with the current folder for the media path.
+_
+setMediaFolder|<b>setMediaFolder</b>:(directory)<br>
+<font color=blue>directory</font>: The directory you want to set as the media folder.<br>
+Takes a directory as input. JES then will look for files in that directory unless given a full path, i.e. one that starts with "c:\". You can leave out the directory. If you do, JES will open up a file chooser to let you select a directory.<br>
+<b>Examples:</b>
+<pre>
+def openBobsSong():
+  setMediaFolder()
+  song = makeSound("BobsSong.wav")
+  return song
+</pre>
+This will let the user set a folder to look for files in, and then open the file "BobsSong.wav" in that folder.<br>
+<pre>
+def openMarysSong():
+  setMediaFolder("C:/music")
+  song = makeSound("MarysSong.wav")
+  return song
+</pre>
+This sets the folder to look in to "C:/music", and then open the file "MarysSong.wav" in that folder.
+_
+getMediaFolder|<b>getMediaFolder</b>(filename):<br>
+<font color=blue>filename</font>: the name of the file you want<br>
+<font color=blue>returns</font>: the complete path to the file specified<br>
+getMediaFolder() builds the whole path to the file you specify, as long as
+you've already used setMediaFolder() or setMediaPath() to pick out the place
+where you keep your media.
+
+getMediaFolder|<b>getMediaFolder</b>():<br>
+<font color=blue>returns</font>: The current setting for media path.<br>
+Takes no input and returns a String with the current folder for the media path.
+_
+getShortPath|<b>getShortPath</b>(path):<br>
+<font color=blue>path</font>: a path to a file, as a string<br>
+<font color=blue>returns</font>: a shorter, non-absolute version of that path<br>
+Takes a file path as input and returns the short version of that path. For example, calling getShortPath("c:\images\kittens\fluffy.jpg") would
+return "kittens\fluffy.jpg".
+_
+setLibPath|<b>setLibPath</b>(directory):<br>
+<font color=blue>directory</font>: A path to a directory, as a string. You can leave this out. If you do, JES will open up a file chooser for you to select a directory yourself.<br>
+setLibPath() allows you to add a directory where JES can look for modules that you want to be able to import.
+_
+makeSound|<b>makeSound</b>(A String):<br>
+<font color=blue>argument1</font>: A String, a path to a wav file.<br>
+<font color=blue>returns</font>: A Sound, created from the file at the given path.<br>
+Takes a filename as input, reads the file, and creates a sound from it. Returns the sound.<br>
+<b>Example:</b>
+<pre>
+def openAnySound():
+  file = pickAFile()
+  return makeSound(file)
+</pre>
+This opens up a file selector dialog.  The user picks a file, and the function returns it as a sound.
+_
+makeEmptySound|<b>makeEmptySound</b>(samples, samplingRate):<br>
+<font color=blue>samples</font>: The length of the blank sound you want to create in samples.<br>
+<font color=blue>samplingRate</font>: The sampling rate you want to use. You can leave this out.<br>
+Creates and returns an empty sound (all sample values are 0) of a particular length.
+_
+makeEmptySoundBySeconds|<b>makeEmptySoundBySeconds</b>(seconds, samplingRate):<br>
+<font color=blue>seconds</font>: The length of the blank sound you want to create in seconds.<br>
+<font color=blue>samplingRate</font>: The sampling rate you want to use. You can leave this out.<br>
+Creates and returns an empty sound (all sample values are 0) of a particular length.
+_
+duplicateSound|<b>duplicateSound</b>(sound):<br>
+<font color=blue>sound</font>: A sound that you want to copy.<br>
+Creates and returns a copy of the sound given as input.
+_
+getSamples|<b>getSamples</b>(sound):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to extract the samples from<br>
+<font color=blue>returns</font>: A collection of all the samples in the sound<br>
+Takes a sound as input and returns the Samples in that sound.<br>
+<b>Example:</b>
+<pre>
+def printFirstTen(sound):
+  samps = getSamples(sound)
+  for num in range(0, 10):
+    print samps[num]
+</pre>
+This will take in a sound and print the first 10 samples in that sound
+_
+play|<b>play</b>(sound):<br>
+<font color=blue>sound</font>: The sound you want to be played.<br>
+Plays a sound provided as input. No return value.<br>
+<b>Example:</b>
+<pre>
+def playAnySound():
+  file = pickAFile()
+  sound = makeSound(file)
+  play(sound)
+</pre>
+This will open up a file selector box, make a sound from the chosen file, and then play that sound back.
+_
+blockingPlay|<b>blockingPlay</b>(sound):<br>
+<font color=blue>sound</font>: the sound that you want to play.<br> 
+Plays the sound provided as input, and makes sure that no other sound plays at the exact same time. (Try two playÿs right after each other.)<br>
+<b>Example:</b>
+<pre>
+def playSoundTwice():
+  sound = makeSound(r"C:\My Sounds\preamble.wav")
+  blockingPlay(sound)
+  blockingPlay(sound)
+</pre>
+This will play the preamble.wav twice, back-to-back.
+_
+stopPlaying|<b>stopPlaying</b>(sound):<br>
+<font color=blue>sound</font>: The sound that you want to stop playing.<br>
+Stops a sound that is currently playing.
+<b>Example:</b>
+<pre>
+def playAndStop():
+  sound = makeSound(r"C:\My Sounds\preamble.wav")
+  play(sound)
+  stopPlaying(sound)
+</pre>
+This will start playing preamble.wav and stop it shortly after it starts.
+_
+getSamplingRate|<b>getSamplingRate</b>(sound):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to get the sampling rate from.<br>
+<font color=blue>returns</font>: An Integer representing the number of samples per second.<br>
+Takes a sound as input and returns the number representing the number of samples in each second for the sound.<br>
+<b>Example:</b>
+<pre>
+def getDoubleSamplingRate(sound):
+  rate = getSamplingRate(sound)
+  return (rate * 2)
+</pre>
+This will take in a sound an return the sampling rate multiplied by 2.
+_
+setSampleValueAt|<b>setSampleValueAt</b>(sound, index, value):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to change a sample in.<br>
+<font color=blue>index</font>: An Integer, the index of the sample you want to set.<br>
+<font color=blue>value</font>: An Integer, the new value of the sample you want to set.<br>
+Takes a sound, an index, and a value (should be between -32000 and 32000), and sets the value of the sample at the given index in the given sound to the given value.<br>
+<b>Example:</b>
+<pre>
+def setTenthToTen(sound):
+  setSampleValueAt(sound, 10, 10)
+</pre>
+This takes in a sound and sets the value of the 10th sample to 10.
+_
+getSampleValueAt|<b>getSampleValueAt</b>(sound, index):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to use the sample from.<br>
+<font color=blue>index</font>: An Integer, the index of the sample you want to get the value of.<br>
+Takes a sound and an index (an integer value), and returns the value of the sample (between -32000 and 32000) for that object.<br>
+<b>Example:</b>
+<pre>
+def getTenthSampleValue(sound):
+  num = getSampleValueAt(sound, 10)
+  return num
+</pre>
+This will take in a sound and return the integer value of the tenth sample
+_
+getSampleObjectAt|<b>getSampleObjectAt</b>(sound, index):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to get the sample from. <br>
+<font color=blue>index</font>: An Integer, the index value of the sample you want to get.<br>
+<font color=blue>returns</font>: The sample object at that index.<br>
+Takes a sound and an index (an integer value), and returns the Sample object at that index.<br>
+<b>Example:</b>
+<pre>
+def getTenthSample(sound):
+  samp = getSampleObjectAt(sound, 10)
+  return samp
+</pre>
+This takes a sound, and returns the 10th sample in the sound.
+_
+setSampleValue|<b>setSampleValue</b>(sample, value):<br>
+<font color=blue>sample</font>: A Sample, the sound sample tou want to change the value of.<br>
+<font color=blue>value</font>: An Integer, the value you want to set the sample to.<br>
+Takes a Sample object and a value, and sets the sample to that value.<br>
+<b>Example:</b>
+<pre>
+def setTenthSample(sound, value):
+  samp = getSampleObjectAt(sound, 10)
+  setSampleValue(samp, value)
+</pre>
+This takes a sound and an integer, and then sets the value of the 10th sample in the sound to the passed in value.
+_
+getSampleValue|<b>getSampleValue</b>(sample):<br>
+<font color=blue>sample</font>: A Sample, a sample of a sound.<br>
+<font color=blue>returns</font>: The integer value of that sample.<br>
+Takes a Sample object and returns its value (between -32000 and 32000)<br>
+<b>Example:</b>
+<pre>
+def sampleToInt(sample):
+  return getSampleValue(sample)
+</pre>
+This will convert a sample object into an integer.
+_
+getSound|<b>getSound</b>(sample):<br>
+<font color=blue>sample</font>: A Sample, a sample belonging to a sound.<br>
+<font color=blue>return</font>: A Sound, the sound the sample belongs to.<br>
+Takes a Sample object and returns the Sound that it remembers as its own.<br>
+<b>Example:</b>
+<pre>
+def getSamplesFromAnySample(sample):
+  sound = getSound(sample)
+  return getSamples(sound)
+</pre>
+This will take in a sample and return a collection of samples from the original sound.
+_
+getLength|<b>getLength</b>(sound):<br>
+<font color=blue>sound</font>: the sound you want to find the length of (how many samples it has).<br>
+<font color=blue>returns</font>: the number of samples in sound.<br>
+Takes a sound as input and returns the number of samples in that sound.<br>
+<b>Example:</b>
+<pre>
+def songLength():
+  sound = makeSound(r"C:\My Sounds\2secondsong.wav")
+  print getLength(sound)
+</pre>
+This will print out the number of samples in the sound.  For a 2 second song at 44kHz, it will print out 88000.
+_
+getNumSamples|<b>getNumSamples</b>(sound):<br>
+<font color=blue>sound</font>: the sound you want to find the length of (how many samples it has).<br>
+<font color=blue>returns</font>: the number of samples in sound.<br>
+Takes a sound as input and returns the number of samples in that sound.<br>
+<b>Example:</b>
+<pre>
+def songLength():
+  sound = makeSound(r"C:\My Sounds\2secondsong.wav")
+  print getNumSamples(sound)
+</pre>
+This will print out the number of samples in the sound.  For a 2 second song at 44kHz, it will print out 88000.
+_
+getDuration|<b>getDuration</b>(sound):<br>
+<font color=blue>sound</font>: the sound you want to find the length of (in seconds).<br>
+<font color=blue>returns</font>: the number of seconds the sound lasts.<br>
+Takes a sound as input and returns the number of seconds that sound lasts.<br>
+<b>Example:</b>
+<pre>
+def songLength():
+  sound = makeSound(r"C:\My Sounds\2secondsong.wav")
+  print getDuration(sound)
+</pre>
+This will print out the number of seconds in the sound.  For a song with 88000 samples at 44kHz, it will print out 2.
+_
+writeSoundTo|<b>writeSoundTo</b>(sound, filename):<br>
+<font color=blue>sound</font>: A Sound, the sound you want to write out to a file.<br>
+<font color=blue>filename</font>: A String, the path of the location you want to write the sound.<br>
+Takes a sound and a filename (a string) and writes the sound to that file as a WAV file. (Make sure that the filename ends in ”.wav‘ if you want the operating system to treat it right.)<br>
+<b>Example:</b>
+<pre>
+def writeTempSound(sound):
+  writeSoundTo(sound, 'C:\temp\temp.wav')
+</pre>
+This takes in a sound and writes it out to a file called temp.wav in c:\temp\.
+_
+makeStyle|<b>makeStyle</b>(fontname,emph,size):<br>
+<font color=blue>fontname</font>: The name of the font you'd like to use<br>
+<font color=blue>emph</font>: Emphasis<br>
+<font color=blue>size</font>: Font size, in points<br>
+<font color=blue>returns</font>: a Font object, suitable for passing to
+other commands<br>
+Builds a Font object with the specified font name, emphasis, and size. If
+you need to use this, please see the appropriate Java documentation in
+java.awt.Font.<br>
+_
+setColorWrapAround|<b>setColorWrapAround</b>(flag):<br>
+<font color=blue>flag</font>: Should be true (1) or false (0).<br>
+Temporarily sets the color wrap around option. If the option is on, color values will wrap around if they go outside 0-255. If off, color values will be capped at 0 or 255.
+_
+getColorWrapAround|<b>getColorWrapAround</b>():<br>
+<font color=blue>returns</font>: Returns true (1) if RGB values will wrap around if they go outside the bounds of 0-255. Returns false (0) if RGB values will be capped at 0 or 255.<br>
+Takes no input, but returns the status of the color wraparound option.
+_
+pickAColor|<b>pickAColor</b>():<br>
+<font color=blue>returns</font>: the color selected in the picker<br>
+Takes no input, but puts up a color picker. Find the color you want, and the function will return the Color object of what you picked.
+_
+makePicture|<b>makePicture</b>(path):<br>
+<font color=blue>path</font>: the name of the file you want to open as a
+picture<br>
+<font color=blue>returns</font>: a picture object made from the file<br>
+Takes a filename as input, reads the file, and creates a picture from it.
+Returns the picture.<br>
+<b>Example:</b>
+<pre>
+def makePictureSelector():
+    file = pickAFile()
+    return makePicture(file)
+</pre>
+This function will open a file selector box and then return the picture
+object made from that file.
+_
+makeEmptyPicture|<b>makeEmptyPicture</b>(width, height, color):<br>
+<font color=blue>width</font>: the desired width of the blank picture<br>
+<font color=blue>height</font>: the desired height of the blank picture<br>
+<font color=blue>color</font>: the desired color of the blank picture. You can leave this out. If you do, the picture will be white.<br>
+Creates a blank picture object and returns it.
+_
+getPixels|<b>getPixels</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to get the pixels from<br>
+<font color=blue>returns</font>: a list of all the pixels in the picture<br>
+Takes a picture as input and returns the sequence of Pixel objects in the picture.<br>
+<b>Example:</b>
+<pre>
+def getTenthPixel(picture):
+  pixels = getPixels(picture)
+  return pixels[10]
+</pre>
+This takes in a picture and returns the 10th pixel in that picture.
+_
+getAllPixels|<b>getAllPixels</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to get the pixels from<br>
+<font color=blue>returns</font>: a list of all the pixels in the picture<br>
+Takes a picture as input and returns the sequence of Pixel objects in the picture.<br>
+<b>Example:</b>
+<pre>
+def getTenthPixel(picture):
+  pixels = getAllPixels(picture)
+  return pixels[10]
+</pre>
+This takes in a picture and returns the 10th pixel in that picture.
+_
+getWidth|<b>getWidth</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to get the width of<br>
+<font color=blue>returns</font>: the width of the picture<br>
+Takes a picture as input and returns its length in the number of pixels left-to-right in the picture.<br>
+<b>Example:</b>
+<pre>
+def howWide(picture)
+  width = getWidth(picture)
+  print "The picture is " + str(width) + " pixels wide."
+</pre>
+This takes in a picture and prints a descriptive message about its width.
+_
+getHeight|<b>getHeight</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to get the height of<br>
+<font color=blue>returns</font>: the height of the picture<br>
+Takes a picture as input and returns its length in the number of pixels top-to-bottom in the picture.<br>
+<b>Example:</b>
+<pre>
+def howTall(picture)
+  height = getHeight(picture)
+  print "The picture is " + str(height) + " pixels tall."
+</pre>
+This takes in a picture and prints a descriptive message about its height.
+_
+show|<b>show</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to see<br>
+Shows the picture provided as input.
+_
+repaint|<b>repaint</b>(picture):<br>
+<font color=blue>picture</font>: the picture you want to repaint<br>
+Repaints the picture if it has been opened in a window from show(picture).
+_
+addLine|<b>addLine</b>(picture, startX, startY, endX, endY, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the line on<br>
+<font color=blue>startX</font>: the x position you want the line to start<br>
+<font color=blue>startY</font>: the y position you want the line to start<br>
+<font color=blue>endX</font>: the x position you want the line to end<br>
+<font color=blue>endY</font>: the y position you want the line to end<br>
+<font color=blue>color</font>: The color of the line. You can leave this out. If you do, the line will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), and an ending (x, y) position (two more numbers, four total) and draws a black line from the starting point to the ending point in the picture. You can add a color as the last argument to set the color of the line.<br>
+<b>Examples:</b>
+<pre>
+def drawVertical(picture):
+  addLine(picture, 100, 20, 100, 250)
+</pre>
+This will take in a picture and draw a black vertical line on it from (100,20) to (100,250)<br>
+<pre>
+def drawDiagonal(picture):
+  addLine(picture, 0, 15, 100, 115, blue)
+</pre>
+This will take in a picture and draw a blue diagonal line on it from (0,15) to (100, 115).
+_
+addText|<b>addText</b>(picture, xpos, ypos, text, color):<br>
+<font color=blue>picture</font>: the picture you want to add the text to<br>
+<font color=blue>xpos</font>: the x-coordinate where you want to start writing the text<br>
+<font color=blue>ypos</font>: the y-coordinate where you want to start writing the text<br>
+<font color=blue>text</font>: a string containing the text you want written<br>
+<font color=blue>color</font>: The color you want the text to be. You can leave this out. If you do, the text will be black.<br>
+Takes a picture, an x position and a y position (two numbers), and some text as a string, which will get drawn into the picture. You can add a color as the last argument to set the color of the text.<br>
+<b>Examples:</b>
+<pre>
+def addDate(picture):
+  str = "Today is the first day of the rest of your life."
+  addText(picture, 0, 0, str)
+</pre>
+This takes in a picture and adds a black date stamp to the upper left corner.<br>
+<pre>
+def addHappyBirthday(picture):
+  str = "Happy Birthday!!!"
+  addText(picture, 0, 0, str, orange)
+</pre>
+This takes in a picture and adds an orange Happy Birthday message to the upper left corner.<br>
+_
+addTextWithStyle|<b>addTextWithStyle</b>(picture, xpos, ypos, text, style, color):<br>
+<font color=blue>picture</font>: the picture you want to add the text to<br>
+<font color=blue>xpos</font>: the x-coordinate where you want to start writing the text<br>
+<font color=blue>ypos</font>: the y-coordinate where you want to start writing the text<br>
+<font color=blue>text</font>: a string containing the text you want written<br>
+<font color=blue>style</font>: a font created using makeStyle()<br>
+<font color=blue>color</font>: The color you want the text to be. You can leave this out. If you do, the text will be black.<br>
+Takes a picture, an x position and a y position (two numbers), some text as a string, and a font style which will get drawn into the picture. You can add a color as the last argument to set the color of the text.<br>
+<b>Examples:</b>
+<pre>
+def addDate(picture):
+  import java.awt.Font as Font
+  str = "Today is the first day of the rest of your life."
+  myFont = makeStyle("Comic Sans", Font.BOLD, 96)
+  addTextWithStyle(picture, 0, 0, str, myFont)
+</pre>
+This takes in a picture and adds a black date stamp to the upper left corner in Size 96 bold Comic Sans.<br>
+<pre>
+def addHappyBirthday(picture):
+  import java.awt.Font as Font
+  str = "Happy Birthday!!!"
+  myFont = makeStyle("Wingdings", Font.ITALICS, 24)
+  addText(picture, 0, 0, str, orange)
+</pre>
+This takes in a picture and adds an orange Happy Birthday message to the upper left corner in Size 24 italcized Wingdings.<br>
+_
+addRect|<b>addRect</b>(picture, startX, startY, width, height, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the rectangle on<br>
+<font color=blue>startX</font>: the x-coordinate of the upper left-hand corner of the rectangle<br>
+<font color=blue>startY</font>: the y-coordinate of the upper left-hand corner of the rectangle<br>
+<font color=blue>width</font>: the width of the rectangle<br>
+<font color=blue>height</font>: the height of the rectangle<br>
+<font color=blue>color</font>: The color of the rectangle. You can leave this out. If you do, the rectangle will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), and a width and height (two more numbers, four total) then draws a black rectangle in outline of the given width and height with the position (x, y) as the upper left corner. You can add a color as the last argument to set the color of the rectangle.<br>
+<b>Examples:</b> 
+<pre>
+def addSquare(picture, startX, startY, edge):
+  addRect(picture, startX, startY, edge, edge)
+</pre>
+This will take in a picture, start coordinates, and a edge length and call addRect to draw a rectangle with all sides the same length.<br>
+<pre>
+def addBlueSquare(picture, startX, startY, edge):
+  addRect(picture, startX, startY, edge, edge, blue)
+</pre>
+This will take in a picture, start coordinates, and an edge length and call addRect to draw a blue rectangle with all sides the same length.
+_
+addRectFilled|<b>addRectFilled</b>(picture, startX, startY, width, height, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the rectangle on<br>
+<font color=blue>startX</font>: the x-coordinate of the upper left-hand corner of the rectangle<br>
+<font color=blue>startY</font>: the y-coordinate of the upper left-hand corner of the rectangle<br>
+<font color=blue>width</font>: the width of the rectangle<br>
+<font color=blue>height</font>: the height of the rectangle<br>
+<font color=blue>color</font>: The color of the rectangle. You can leave this out. If you do the rectangle will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), and a width and height (two more numbers, four total) then draws a black-filled rectangle of the given width and height with the position (x, y) as the upper left corner.  You can add a color as the last argument to set the color of the rectangle.<br>
+<b>Examples:</b>
+<pre>
+def addSquareFilled(picture, startX, startY, edge):
+  addRectFilled(picture, startX, startY, edge, edge)
+</pre>
+This will take in a picture, start coordinates, and a edge length and call addRectFilled to draw a solid rectangle with all sides the same length.<br>
+<pre>
+def addBlueSquareFilled(picture, startX, startY, edge):
+  addRectFilled(picture, startX, startY, edge, edge, blue)
+</pre>
+This will take in a picture, start coordinates, and a edge length and call addRectFilled to draw a solid blue rectangle with all sides the same length.
+_
+addOval|<b>addOval</b>(picture, startX, startY, width, height, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the oval on<br>
+<font color=blue>startX</font>: the x-coordinate of the upper left-hand corner of the bounding rectangle of the oval<br>
+<font color=blue>startY</font>: the y-coordinate of the upper left-hand corner of the bounding rectangle of the oval<br>
+<font color=blue>width</font>: the width of the oval<br>
+<font color=blue>height</font>: the height of the oval<br>
+<font color=blue>color</font>: The color of the oval. You can leave this out. If you do, the oval will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), and a width and height (two more numbers, four total) then draws a black oval in outline of the given width and height with the position (x, y) as the upper left corner. You can add a color as the last argument to set the color of the oval.<br>
+<b>Examples:</b> 
+<pre>
+def addCircle(picture, startX, startY, radius):
+  addOval(picture, startX, startY, radius, radius)
+</pre>
+This will take in a picture, start coordinates, and a radius length and call addOval to draw a oval with equal width and height.<br>
+<pre>
+def addBlueCircle(picture, startX, startY, radius):
+  addOval(picture, startX, startY, radius, radius, blue)
+</pre>
+This will take in a picture, start coordinates, and an radius length and call addOval to draw a blue oval with equal width and height.
+_
+addOvalFilled|<b>addOvalFilled</b>(picture, startX, startY, width, height, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the oval on<br>
+<font color=blue>startX</font>: the x-coordinate of the upper left-hand corner of the bounding rectangle of the oval<br>
+<font color=blue>startY</font>: the y-coordinate of the upper left-hand corner of the bounding rectangle of the oval<br>
+<font color=blue>width</font>: the width of the oval<br>
+<font color=blue>height</font>: the height of the oval<br>
+<font color=blue>color</font>: The color of the oval. You can leave this out. If you do the oval will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), and a width and height (two more numbers, four total) then draws a black-filled oval of the given width and height with the position (x, y) as the upper left corner. You can add a color as the last argument to set the color of the oval.<br>
+<b>Examples:</b>
+<pre>
+def addCircleFilled(picture, startX, startY, radius):
+  addOvalFilled(picture, startX, startY, radius, radius)
+</pre>
+This will take in a picture, start coordinates, and a radius length and call addOvalFilled to draw a solid oval with equal width and height.<br>
+<pre>
+def addBlueCircleFilled(picture, startX, startY, radius):
+  addOvalFilled(picture, startX, startY, radius, radius, blue)
+</pre>
+This will take in a picture, start coordinates, and a radius length and call addOvalFilled to draw a solid blue oval with equal width and height.
+_
+addArc|<b>addArc</b>(picture, startX, startY, width, height, start, angle, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the arc on<br>
+<font color=blue>startX</font>: the x-coordinate of the center of the arc<br>
+<font color=blue>startY</font>: the y-coordinate of the center of the arc<br>
+<font color=blue>width</font>: the width of the arc<br>
+<font color=blue>height</font>: the height of the arc<br>
+<font color=blue>start</font>: the starting angle of the arc<br>
+<font color=blue>angle</font>: the angle of the arc, relative to the start angle<br>
+<font color=blue>color</font>: The color of the arc. You can leave this out. If you do, the arc will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), a width and height (two more numbers), a starting angle and an angle for the arc (two more numbers, six total) then draws a black arc in outline of the given width, height, and angles with the position (x, y) as the center. You can add a color as the last argument to set the color of the arc.<br>
+<b>Examples:</b> 
+<pre>
+def addSemiCircle(picture, startX, startY, radius, start):
+  addArc(picture, startX, startY, radius, radius, start, 180)
+</pre>
+This will take in a picture, start coordinates, a radius length, and a starting angle and call addArc to draw an arc with equal width and height.<br>
+<pre>
+def addBlueSemiCircle(picture, startX, startY, radius, start):
+  addArc(picture, startX, startY, radius, radius, start, 180, blue)
+</pre>
+This will take in a picture, start coordinates, a radius length, and a starting angle and call addArc to draw a blue arc with equal width and height.
+_
+addArcFilled|<b>addArcFilled</b>(picture, startX, startY, width, height, start, angle, color):<br>
+<font color=blue>picture</font>: the picture you want to draw the arc on<br>
+<font color=blue>startX</font>: the x-coordinate of the center of the arc<br>
+<font color=blue>startY</font>: the y-coordinate of the center of the arc<br>
+<font color=blue>width</font>: the width of the arc<br>
+<font color=blue>height</font>: the height of the arc<br>
+<font color=blue>color</font>: The color of the arc. You can leave this out. If you do the arc will be black.<br>
+Takes a picture, a starting (x, y) position (two numbers), a width and height (two more numbers), a starting angle and an angle for the arc (two more numbers, six total) then draws a black-filled arc in outline of the given width, height, and angles with the position (x, y) as the center. You can add a color as the last argument to set the color of the arc.<br>
+<b>Examples:</b>
+<pre>
+def addFilledSemiCircle(picture, startX, startY, radius, start):
+  addArcFilled(picture, startX, startY, radius, radius, start, 180)
+</pre>
+This will take in a picture, start coordinates, a radius length, and a starting angle and call addArcFilled to draw a filled black arc with equal width and height.<br>
+<pre>
+def addBlueFilledSemiCircle(picture, startX, startY, radius, start):
+  addArcFilled(picture, startX, startY, radius, radius, start, 180, blue)
+</pre>
+This will take in a picture, start coordinates, a radius length, and a starting angle and call addArcFilled to draw a filled blue arc with equal width and height.
+_
+getPixel|<b>getPixel</b>(picture, xpos, ypos):<br>
+<font color=blue>picture</font>: the picture you want to get the pixel from<br>
+<font color=blue>xpos</font>: the x-coordinate of the pixel you want<br>
+<font color=blue>ypos</font>: the y-coordinate of the pixel you want<br>
+Takes a picture, an x position and a y position (two numbers), and returns the Pixel object at that point in the picture.<br>
+<b>Example:</b>
+<pre>
+def getUpperLeftPixel(picture)
+  return getPixel(picture, 1, 1)
+</pre>
+This will take in a picture and return the pixel in the upper left-hand corner, (1, 1). This does the same thing as getPixelAt().
+_
+getPixelAt|<b>getPixelAt</b>(picture, xpos, ypos):<br>
+<font color=blue>picture</font>: the picture you want to get the pixel from<br>
+<font color=blue>xpos</font>: the x-coordinate of the pixel you want<br>
+<font color=blue>ypos</font>: the y-coordinate of the pixel you want<br>
+Takes a picture, an x position and a y position (two numbers), and returns the Pixel object at that point in the picture.<br>
+<b>Example:</b>
+<pre>
+def getUpperLeftPixel(picture)
+  return getPixelAt(picture, 1, 1)
+</pre>
+This will take in a picture and return the pixel in the upper left-hand corner, (1, 1).
+_
+setRed|<b>setRed</b>(pixel, redValue):<br>
+<font color=blue>pixel</font>: the pixel you want to set the red value in.<br>
+<font color=blue>redValue</font>: a number (0 - 255) for the new red value of the pixel<br>
+Takes in a Pixel object and a value (between 0 and 255) and sets the redness of that pixel to the given value.<br>
+<b>Example:</b>
+<pre>
+def zeroRed(pixel):
+  setRed(pixel, 0)
+</pre>
+This will take in a pixel and set its amount of red to 0.
+_
+setGreen|<b>setGreen</b>(pixel, greenValue):<br>
+<font color=blue>pixel</font>l: the pixel you want to set the green value in.<br>
+<font color=blue>greenValue</font>: a number (0 - 255) for the new green value of the pixel<br>
+Takes in a Pixel object and a value (between 0 and 255) and sets the greenness of that pixel to the given value.<br>
+<b>Example:</b>
+<pre>
+def zeroGreen(pixel):
+  setGreen(pixel, 0)
+</pre>
+This will take in a pixel and set its amount of green to 0. 
+_
+setBlue|<b>setBlue</b>(pixel, blueValue):<br>
+<font color=blue>pixel</font>: the pixel you want to set the blue value in.<br>
+<font color=blue>blueValue</font>: a number (0 - 255) for the new blue value of the pixel<br>
+Takes in a Pixel object and a value (between 0 and 255) and sets the blueness of that pixel to the given value.<br>
+<b>Example:</b>
+<pre>
+def zeroBlue(pixel):
+  setBlue(pixel, 0)
+</pre>
+This will take in a pixel and set its amount of blue to 0.
+_
+getRed|<b>getRed</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to get the amount of red from<br>
+<font color=blue>returns</font>: the red value of the pixel<br>
+Takes a Pixel object and returns the value (between 0 and 255) of the amount of redness in that pixel.<br>
+<b>Example:</b>
+<pre>
+def getHalfRed(pixel):
+  red = getRed(pixel)
+  return red / 2
+</pre>
+This takes in a pixel and returns the amount of red in that pixel divided by two.
+_
+getGreen|<b>getGreen</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to get the amount of green from<br>
+<font color=blue>returns</font>: the green value of the pixel<br>
+Takes a Pixel object and returns the value (between 0 and 255) of the amount of greenness in that pixel.<br>
+<b>Example:</b>
+<pre>
+def getHalfGreen(pixel):
+  green = getGreen(pixel)
+  return green / 2
+</pre>
+This takes in a pixel and returns the amount of green in that pixel divided by two.
+_
+getBlue|<b>getBlue</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to get the amount of blue from<br>
+<font color=blue>returns</font>: the blue value of the pixel<br>
+Takes a Pixel object and returns the value (between 0 and 255) of the amount of blueness in that pixel.<br>
+<b>Example:</b>
+<pre>
+def getHalfBlue(pixel):
+  blue = getBlue(pixel)
+  return blue / 2
+</pre>
+This takes in a pixel and returns the amount of blue in that pixel divided by two.
+_
+getColor|<b>getColor</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to extract the color from<br>
+<font color=blue>returns</font>: a Color, the color from the pixel<br>
+Takes a Pixel and returns the Color object at that pixel.<br>
+<b>Example:</b>
+<pre>
+def getDistanceFromRed(pixel):
+  red = makeColor(255, 0, 0)
+  col = getColor(pixel)
+  return distance(red, col)
+</pre>
+This takes in a pixel and returns that pixel's color's distance from red.
+_
+setColor|<b>setColor</b>(pixel, color):<br>
+<font color=blue>pixel</font>: the pixel you want to set the color of<br>
+<font color=blue>color</font>: the Color you want to set the pixel to<br>
+Takes in a pixel and a Color, and sets the pixel to the provided color.
+<b>Example:</b>
+<pre>
+def makeMoreBlue(pixel):
+  myBlue = getBlue(pixel) + 60
+  newColor = makeColor(getRed(pixel), getGreen(pixel), myBlue)
+  setColor(pixel, newColor)
+</pre>
+This will take in a pixel and increase its level of blue by 60.
+_
+getX|<b>getX</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to find the x-coordinate of<br>
+<font color=blue>returns</font>: the x-coordinate of the pixel
+Takes in a pixel object and returns the x position of where that pixel is in the picture.<br>
+<b>Example:</b>
+<pre>
+def getHalfX(pixel):
+  pos = getX(pixel)
+  return pos / 2
+</pre>
+This will take in a pixel and return half of its x-coordinate.
+_
+getY|<b>getY</b>(pixel):<br>
+<font color=blue>pixel</font>: the pixel you want to find the y-coordinate of<br>
+<font color=blue>returns</font>: the y-coordinate of the pixel<br>
+Takes in a pixel object and returns the y position of where that pixel is in the picture.<br>
+<b>Example:</b>
+<pre>
+def getHalfY(pixel):
+  pos = getY(pixel)
+  return pos / 2
+</pre>
+This will take in a pixel and return half of its y-coordinate.
+_
+distance|<b>distance</b>(color1, color2):<br>
+<font color=blue>color1</font>: the first color you want compared<br>
+<font color=blue>color2</font>: the second color you want compared<br>
+Takes two Color objects and returns a single number representing the distance between the colors. The red, green, and blue values of the colors are taken as a point in (x, y, z) space, and the cartesian distance is computed.<br>
+<b>Example:</b>
+<pre>
+def showDistRedAndBlue():
+  red = makeColor(255, 0, 0)
+  blue = makeColor(0, 0, 255)
+  print distance(red, blue)
+</pre>
+This will print the distance between red and blue, 360.62445840513925.
+_
+writePictureTo|<b>writePictureTo</b>(picture, path):<br>
+<font color=blue>picture</font>: the picture you want to be written out to a file<br>
+<font color=blue>path</font>: the path to the file you want the picture written to<br>
+Takes a picture and a file name (string) as input, then writes the picture to the file as a JPEG, PNG, or BMP. (Be sure to end the filename in ".jpg" or ".png" or ".bmp" for the operating system to understand it well.)<br>
+<b>Example:</b>
+<pre>
+def writeTempPic(picture):
+  file = r"C:\Temp\temp.jpg"
+  writePictureTo(picture, file)
+</pre>
+This takes in a picture and writes it to C:\Temp\temp.jpg.
+_
+makeDarker|<b>makeDarker</b>(color):<br>
+<font color=blue>color</font>: the color you want to darken<br>
+<font color=blue>returns</font>: the new, darker color<br>
+Takes a color and returns a slightly darker version of the original color.<br>
+<b>Example:</b>
+<pre>
+def makeMuchDarker(color):
+  return makeDarker(makeDarker(makeDarker(color)))
+</pre>
+Takes in a color and returns a much darker version of it by calling makeDarker three times.
+_
+makeBrighter|<b>makeBrighter</b>(color):<br>
+<font color=blue>color</font>: the color you want to brighten<br>
+<font color=blue>returns</font>: the new, brighter color<br>
+Takes a color and returns a slightly brighter version of the original color. This does the same thing as makeLighter(color).<br>
+<b>Example:</b>
+<pre>
+def makeMuchBrighter(color):
+  return makeBrighter(makeBrighter(makeBrighter(color)))
+</pre>
+Takes in a color and returns a much lighter version of it by calling makeBrighter three times.
+_
+makeLighter|<b>makeLighter</b>(color):<br>
+<font color=blue>color</font>: the color you want to lighten<br>
+<font color=blue>returns</font>: the new, lighter color<br>
+Takes a color and returns a slightly lighter version of the original color. This does the same thing as makeBrighter(color).<br>
+<b>Example:</b>
+<pre>
+def makeMuchLighter(color):
+  return makeLighter(makeLighter(makeLighter(color)))
+</pre>
+Takes in a color and returns a much lighter version of it by calling makeLighter three times.
+_
+makeColor|<b>makeColor</b>(red, green, blue):<br>
+<font color=blue>red</font>: the amount of red you want in the color<br>
+<font color=blue>green</font>: the amount of green you want in the color<br>
+<font color=blue>blue</font>: the amount of blue you want in the picture<br>
+<font color=blue>returns</font>: the color made from the inputs<br>
+Takes three inputs: For the red, green, and blue components (in order), then returns a color object.<br>
+<b>Example:</b>
+<pre>
+def makeGrey(amount):
+  return makeColor(amount, amount, amount)
+</pre>
+This will take in an amount and make a grey color based on that.
+_
+setAllPixelsToAColor|<b>setAllPixelsToAColor</b>(picture, color):<br>
+<font color=blue>picture</font>: the picture to modify<br>
+<font color=blue>color</font>: the color to set each pixel to<br>
+Modifies the whole image so that every pixel in that image is the given color.
+_
+duplicatePicture|<b>duplicatePicture</b>(pic):<br>
+<font color=blue>pic</font>: the picture that you want to duplicate<br>
+<font color=blue>returns</font>: a new picture object, copied from <font color=blue>pic</font>.<br>
+Takes a picture as input, returns a new copy of it.<br>
+<b>Example:</b>
+<pre>
+file = pickAFile()
+mypic = makePicture(file)
+copyofmypic = duplicatePicture(mypic)
+</pre>
+This opens up a file chooser, makes a Picture object using the chosen file, and then creates a second Picture object by copying the first one.
+_
+requestNumber|<b>requestNumber</b>(message):<br>
+<font color=blue>message</font>: the message to prompt the user with<br>
+Opens a message dialog to the user asking for a number
+_
+requestInteger|<b>requestInteger</b>(message):<br>
+<font color=blue>message</font>: the message to prompt the user with<br>
+Opens a message dialog to the user asking for an integer
+_
+requestIntegerInRange|<b>requestIntegerInRange</b>(message, min, max):<br>
+<font color=blue>message</font>: the message to prompt the user with<br>
+<font color=blue>min</font>: the smallest integer allowed<br>
+<font color=blue>max</font>: the largest integer allowed<br>
+Opens a message dialog to the user asking for an integer in a specific range
+_
+requestString|<b>requestString</b>(message):<br>
+<font color=blue>message</font>: the message to prompt the user with<br>
+Opens a message dialog to the user for a string value
+_
+showWarning|<b>showWarning</b>(message):<br>
+<font color=blue>message</font>: the message to show to the user<br>
+Opens a message dialog to the user showing a warning
+_
+showInformation|<b>showInformation</b>(message):<br>
+<font color=blue>message</font>: the message to show to the user<br>
+Opens a message dialog to the user showing information
+_
+showError|<b>showError</b>(message):<br>
+<font color=blue>message</font>: the message to show to the user<br>
+Opens a message dialog to the user showing an error
+_
+playNote|<b>playNote</b>(note, duration, intensity):<br>
+<font color=blue>note</font>: the note (a number &gt; 0) you want to be played.<br>
+<font color=blue>duration</font>: the duration you want the note to be played in milliseconds.<br>
+<font color=blue>intensity</font>: the intensity (a number between 0 and 127) you want the note to be played. You can leave this out. If you do, JES will use 64.<br>
+Plays a note. No return value.<br>
+<b>Example:</b>
+<pre>
+        # this plays a scale
+        intensity = 64
+        dur = 1000
+        playNote(60, dur, intensity)
+        playNote(62, dur, intensity)
+        playNote(64, dur, intensity)
+        playNote(65, dur, intensity)
+        playNote(67, dur, intensity)
+        playNote(69, dur, intensity)
+        playNote(71, dur, intensity)
+        playNote(72, dur, intensity)
+</pre>
+_
+pickAFile|<b>pickAFile</b>():<br>
+<font color=blue>returns</font>: A String, the path to the file chosen in the dialog box.<br>
+Opens a file chooser and lets the user pick a file and returns the complete path name as a string. No input.<br>
+<b>Example:</b>
+<pre>
+def openAnySound():
+  file = pickAFile()
+  return makeSound(file)
+</pre>
+This opens up a file selector dialog.  The user picks a file, and the function returns it as a sound.
+_
+pickAFolder|<b>pickAFolder</b>():<br>
+<font color=blue>returns</font>: A String, the path to the folder chosen in the dialog box.<br>
+Opens a file chooser to let the user pick a folder and returns the complete path name as a string. No input.<br>
+Lets the user pick a folder and returns the complete path name as a string. No input.
+_
+quit|<b>quit</b>():<br>
+Forces JES to stop running the program.
+_
+openPictureTool|<b>openPictureTool</b>(picture)<br>
+<font color=blue>picture</font>: the picture that you want to examine<br>
+Opens the Picture Tool explorer, which lets you examine the pixels of an image.
+_
+openFrameSequencerTool|<b>openFrameSequencerTool</b>(movie)<br>
+<font color=blue>movie</font>: the movie that you want to examine<br>
+Opens the Frame Sequencer Tool explorer, which lets you examine and
+manipulate the frames of a movie.
+_
+openSoundTool|<b>openSoundTool</b>(sound)<br>
+<font color=blue>sound </font>: the sound that you want to examine<br>
+Opens the Sound Tool explorer, which lets you examine the waveform of a sound.
+_
+turn|<b>turn</b>(turtle, degrees):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>degrees</font>: how many degrees to turn. If you leave this out, JES will use 90.<br>
+Turns the turtle; positive numbers of degrees mean turning to the turtle's right, negative numbers of degrees mean turning to the turtle's left<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+penUp(t)
+moveTo(t, int(500/3), 250)
+penDown(t)
+for i in range(0, 360):
+    turn(t, 1)
+    forward(t, 3)
+</pre>
+This will create a world and a turtle. The turtle will move to (166,250) without drawing, then draw a circle 1 degree at a time.
+_
+turnLeft|<b>turnLeft</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Turns the turtle left 90 degrees<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnLeft(t)
+penDown(t)
+forward(t, 30)
+</pre>
+This will create a world and a turtle. The turtle will move ahead 50 without drawing, then turn 90 degrees to the left, and go forward 30 while drawing.
+_
+turnRight|<b>turnRight</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Turns the turtle right 90 degrees
+<b>Example:</b>
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnRight(t)
+penDown(t)
+forward(t, 30)
+</pre>
+This will create a world and a turtle. The turtle will move ahead 50 without drawing, then turn 90 degrees to the right, and go forward 30 while drawing.
+_
+turnToFace|<b>turnToFace</b>(turtle, x, y):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>x</font>: the X coordinate in the world<br>
+<font color=blue>y</font>: the Y coordinate in the world<br>
+Makes the turtle look towards (x, y).<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+turn(t, 63)
+backward(t, 40)
+turnToFace(t, 200, 100)
+forward(t, 300)
+moveTo(t, 150, 150)
+</pre>
+This will create a world and a turtle. The turtle will turn 63 degrees, go backwards 40 pixels, turn to face pixel (200,100), move forward 300 pixels and then move to pixel (150,150).
+<br>
+<b>turnToFace</b>(turtle, otherTurtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>otherTurtle</font>: the turtle that you want <font color=blue>turtle</font> to face<br>
+Makes turtle look towards otherTurtle.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500,500)
+leo = makeTurtle(w)
+mike = makeTurtle(w)
+forward(leo, 40)
+turnRight(leo)
+forward(leo, 30)
+turnToFace(mike, leo)
+forward(mike, 50)
+</pre>
+This will create a world with two turtles. One turtle will move ahead 40 pixels then right 30 pixels. The second turtle will turn to face the first turtle and move ahead 50 pixels.
+_
+forward|<b>forward</b>(turtle, distance):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>distance</font>: how far to go<br>
+Moves the turtle forward<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+turn(t, 63)
+backward(t, 40)
+turnToFace(t, 200, 100)
+forward(t, 300)
+moveTo(t, 150, 150)
+</pre>
+This will create a world and a turtle. The turtle will turn 63 degrees, go backwards 40 pixels, turn to face pixel (200,100), move forward 300 pixels and then move to pixel (150,150).
+_
+backward|<b>backward</b>(turtle, distance):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>distance</font>: how far back to go<br>
+Moves the turtle backward<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+turn(t, 63)
+backward(t, 40)
+turnToFace(t, 200, 100)
+forward(t, 300)
+moveTo(t, 150, 150)
+</pre>
+This will create a world and a turtle. The turtle will turn 63 degrees, go backwards 40 pixels, turn to face pixel (200,100), move forward 300 pixels and then move to pixel (150,150).
+_
+moveTo|<b>moveTo</b>(turtle, x, y):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>x</font>: the X coordinate in the world<br>
+<font color=blue>y</font>: the Y coordinate in the world<br>
+Moves the turtle to the specified location. If the turtle's pen is down, it will draw a line from its old location to the new one.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+turn(t, 63)
+backward(t, 40)
+turnToFace(t, 200, 100)
+forward(t, 300)
+moveTo(t, 150, 150)
+</pre>
+This will create a world and a turtle. The turtle will turn 63 degrees, go backwards 40 pixels, turn to face pixel (200,100), move forward 300 pixels and then move to pixel (150,150).
+_
+makeTurtle|<b>makeTurtle</b>(world):<br>
+<font color=blue>world</font>: a world to put the turtle in<br>
+Makes a turtle and returns it<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+penUp(t)
+moveTo(t, int(500/3), 250)
+penDown(t)
+for i in range(0, 360):
+    turn(t, 1)
+    forward(t, 3)
+</pre>
+_
+penUp|<b>penUp</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Makes it so the turtle doesn't leave a trail when it moves.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnRight(t)
+penDown(t)
+forward(t, 30)
+</pre>
+_
+penDown|<b>penDown</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Makes it so the turtle leaves a trail when it moves.<br>
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnRight(t)
+penDown(t)
+forward(t, 30)
+</pre>
+_
+drop|<b>drop</b>(turtle, picture):<br>
+<font color=blue>turtle</font>: the turtle who will do the dropping<br>
+<font color=blue>picture</font>: the picture that the turtle will drop<br>
+The turtle specified "drops" a picture where it is currently sitting, rotated so that the top of the picture points where the turtle is facing.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld()
+t = makeTurtle(w)
+pic = makePicture("adorable-kitten.jpg")
+turn(t, 180)
+drop(t, pic)
+</pre>
+This creates a world and a turtle, and places adorable-kitten.jpg in the world upside-down.
+_
+getXPos|<b>getXPos</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle whose X position we want<br>
+<font color=blue>returns</font>: An Integer, the X position of turtle.<br>
+Returns the X position of the turtle in question.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld()
+todd = makeTurtle(w)
+toddsxposition = getXPos(todd)
+</pre>
+_
+getYPos|<b>getYPos</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle whose Y position we want<br>
+<font color=blue>returns</font>: An Integer, the X position of turtle.<br>
+Returns the Y position of the turtle in question.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld()
+timmy = makeTurtle(w)
+timmysposition = getYPos(timmy)
+</pre>
+_
+getHeading|<b>getHeading</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle whose heading we want<br>
+<font color=blue>returns</font>: A number, the heading of the turtle<br>
+Returns the degrees of the direction the turtle is facing.<br>
+<b>Example:</b>
+<pre>
+w = makeWorld()
+jane = makeTurtle(w)
+janesheading = getHeading(jane)
+</pre>
+_
+makeWorld|<b>makeWorld</b>(width, height):<br>
+<font color=blue>width</font>: the width for your new world<br>
+<font color=blue>height</font>: the height for your new world<br>
+Returns a new world, where you can put turtles. You can leave out width and
+height. For example, these both work:<br>
+<b>Example:</b>
+<pre>
+earth = makeWorld()
+mars = makeWorld(500, 500)
+</pre>
+_
+getTurtleList|<b>getTurtleList</b>(world):<br>
+<font color=blue>world</font>: the world to get the turtles from<br>
+Returns a list of turtles in the world.
+_
+printNow|<b>printNow</b>(output):<br>
+<font color=blue>output</font>: What we want to print<br>
+Prints the specified output to the JES command area right now, without waiting for buffering. Helpful for debugging, if your program is throwing an exception!
+_
+playMovie|<b>playMovie</b>(movie):<br>
+<font color=blue>movie</font>: the Movie object to play<br>
+Plays the movie within JES.<br>
+<b>Example:</b><br>
+<pre>
+def playMyMovie():
+  myMovie = makeMovieFromInitialFile(r"C:\mymovie\frame001.jpg")
+  playMovie(myMovie)
+</pre>
+_
+writeQuicktime|<b>writeQuicktime</b>(movie, path, framesPerSec):<br>
+<font color=blue>movie</font>: A Movie object that you want to write out. The frames must either all be in the same directory, or the frames must have been written out to a directory since the last change was made.<br>
+<font color=blue>path</font>: the path to the file you want the picture written to<br>
+<font color=blue>framesPerSec</font>: The frame rate for the movie. You can leave this out. If you do, JES will use 16 frames per second.<br>
+Writes a movie out in Quicktime format. Be sure to end the path with ".mov" so that the operating system will understand it properly.
+<b>Example:</b><br>
+<pre>
+def makeQuicktimeMovie():
+  file = pickAFile()
+  myMovie = makeMovieFromInitialFile(file)
+  writeQuicktime(myMovie, "C:/myframes/myMovie.mov")
+</pre>
+_
+writeAVI|<b>writeAVI</b>(movie, path, framesPerSec):<br>
+<font color=blue>movie</font>: A Movie object that you want to write out. The frames must either all be in the same directory, or the frames must have been written out to a directory since the last change was made.<br>
+<font color=blue>path</font>: the path to the file you want the picture written to<br>
+<font color=blue>framesPerSec</font>: The frame rate for the movie. You can leave this out. If you do, JES will use 16 frames per second.<br>
+Writes a movie out in AVI format. Be sure to end the path with ".avi" so that the operating system will understand it properly.
+<b>Example:</b><br>
+<pre>
+def makeAVIMovie():
+  file = pickAFile()
+  myMovie = makeMovieFromInitialFile(file)
+  writeAVI(myMovie, "C:/myframes/myMovie.avi")
+</pre>
+_
+makeMovie|<b>makeMovie</b>():<br>
+No input. Returns a new empty Movie.
+_
+makeMovieFromInitialFile|<b>makeMovieFromInitialFile</b>(filename):<br>
+<font color=blue>filename</font>: A string containing the full path to the first frame of the movie.
+Returns a new movie when you give it a filename of one of the images that should be in the movie, with the other frames in the same directory.<br>
+<b>Example:</b>
+<pre>
+m = makeMovieFromInitialFile('/tmp/frame001.jpg')
+</pre>
+_
+addFrameToMovie|<b>addFrameToMovie</b>(frame, movie):<br>
+<font color=blue>frame</font>: the picture object to add<br>
+<font color=blue>movie</font>: the movie object to add the frame to<br>
+Adds a frame to a movie
+_
+writeFramesToDirectory|<b>writeFramesToDirectory</b>(movie, directory):<br>
+<font color=blue>movie</font>: the movie object to get the frames from<br>
+<font color=blue>directory</font>: the directory to write the images to<br>
+<b>Example:</b>
+<pre>
+writeFramesToDirectory(movie, pickAFolder())
+</pre>
+After you write the frames out, you can encode them into a video file
+with another program. If you are using windows or mac os, you might
+be able to use quicktime. If you are using linux, you might use
+mencoder like this (from the manual):<br>
+<br>
+<b>Encode all *.jpg files in the current dir:</b><br>
+<pre>
+ mencoder  "mf://*.jpg" -mf fps=25 -o output.avi -ovc lavc -lavcopts vcodec=mpeg4
+</pre>
+Also, you could use the writeQuicktime() or writeAVI() methods<br>
+_
+copyInto|<b>copyInto</b>(smallPicture, bigPicture, startX, startY):<br>
+<font color=blue>smallPicture</font>: the picture to paste into the
+big picture<br>
+<font color=blue>bigPicture</font>: the picture to be modified<br>
+<font color=blue>startX</font>: the X coordinate of where to place
+the small picture on the big one<br>
+<font color=blue>startY</font>: the Y coordinate of where to place
+the small picture on the big one<br>
+This modifies the big picture by copying pixels from the small picture
+onto the big one.
+_
+explore|<b>explore</b>(someMedia):<br>
+<font color=blue>someMedia</font>: A Picture, Sound, or Movie that you want to view using Media Tools.<br>
+<b>Example:</b>
+<pre>
+def exploreAPicture():
+  file = pickAFile()
+  pic = makePicture(file)
+  explore(pic)
+</pre>
+This creates a Picture object from a file and opens it in the Media Tools.
+_
+
+makeMovieFromPictures|<b>makeMovieFromPictures</b>(frames, path, framerate):<br>
+<font color=blue>frames</font>: a list of pictures to write out as frames of the movie<br>
+<font color=blue>path</font>: the path to the file where you want the movie written<br>
+<font color=purple>framerate</font>: OPTIONAL the framerate in frames per second you want the movie to play.  If not given, it will default to 30.<br>
+Takes a list of frames and writes them out to a quicktime movie.  Make sure that the file you write out to ends in ".mov".  The movie will be created from the frames in order by index from the first to last.  The speed of the movie may be specified or default to 30.
+_
+openMovie|<b>openMovie</b>(filename):<br>
+<font color=blue>filename</font>: the path to the movie you wish to open in the player<br>
+Opens the movie at the given path into a movie player.
+_
+</body></html>

@@ -1,0 +1,296 @@
+%% samplesrange.tex, chapter of "Introduction to Media Computation"
+
+\chapter{Modifying Samples in a Range}
+
+\begin{exercises}
+
+\begin{ex}
+The sound samples are numbered from 1 to whatever the length of the sound
+is. If we did not add the one, then range(1, getLength(sound)) would yield
+a list that goes from 1 all the way up to but not including the length. To
+offset the last value, we add one to the end of the range.
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def increaseAndDecrease(sound, switchingPoint):
+    for sampleIndex in range(1, getLength(sound) * switchingPoint):
+        value = getSampleValueAt(sound, sampleIndex)
+        setSampleValueAt(sound, sampleIndex, value * 2)
+
+    for sampleIndex in range(getLength(sound) * switchingPoint, getLength(sound) + 1):
+        value = getSampleValueAt(sound, sampleIndex)
+        setSampleValueAt(sound, sampleIndex, value * 0.2)
+\end{example}
+\end{ex}
+
+\begin{ex}
+Rewrite \recref{rec:incdec} so that you normalize the first second
+of a sound, then slowly decrease the sound in steps of $1/5$ for
+each following second.  (How many samples are in a second?
+\code{getSamplingRate} is the number of samples per second for the
+given sound.)
+
+Needs a solution, seriously, Blake.
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def upAndDown(sound):
+    # This will eventually be the magnitude of the largest sample
+    maxSample = 0 
+
+    for sample in getSamples(sound):
+        maxSample = max(maxSample, abs(getSample(sample))
+
+    # Determine what sort of factor you'll need to scale the whole 
+    # sound so that the largest sample doesn't go over
+    factor = 32767.0 / maxSample - 1
+
+    halfway = getLength(sound) / 2
+
+    # Normalize the first half with that factor
+    for index in range(1, halfway):
+        scaleBy = 1 + factor * index / halfway
+        value = getSampleValueAt(sound, index)
+        value = value * scaleBy
+        setSamplevalueAt(sound, index, value)
+
+    # Fade out the last half
+    for index in range(halfway, getLength(sound) + 1):
+
+        # Based on how far you've gone through the loop, 
+        # determine an appropriate factor to scale the samples by
+        factor = 1 - (index - halfway) / (halfway + 0.0)
+
+        value = getSampleValueAt(sound, index)
+        value = value * factor
+        setSampleValueAt(sound, index, value)
+\end{example}
+\end{ex}
+
+\begin{ex}
+What happens if you take out the bit of silence added in to the
+target sound in the splicing example (\recref{rec:splice})?  Try
+out? Can you hear any difference?
+
+/* TO DO */
+\end{ex}
+
+
+\begin{ex}
+I think that if we're going to say ``We the UNITED people'' in the
+splice (\recref{rec:splice}), the ``UNITED'' should be really
+emphasized---really loud.  Change the recipe so that the word
+``united'' is maximally loud (normalized) in the phrase ``united
+people.''
+
+\begin{example}
+def splicePreamble():
+  file= "/Users/guzdial/mediasources/preamble10.wav"
+  source = makeSound(file)
+  target = makeSound(file)
+	
+  target = 17408
+  maxValue = 0
+
+  for sourceIndex in range(33414, 40052):
+    value = getSampleValueAt(source, sourceIndex):
+    maxValue = max(maxValue, abs(value))
+  scaler = 32767.0 / maxValue
+
+  for sourceIndex in range(33414, 40052):
+    value = getSampleValueAt(source, sourceIndex):
+    value = value * scaler
+    setSampleValueAt(target, targetIndex, value)
+    targetIndex = targetIndex + 1
+	
+  for index in range(1, 1000):
+    setSampleValueAt(target, targetIndex, 0)
+    targetIndex = targetIndex + 1
+
+  play(target)
+  return target
+\end{example}
+\end{ex}
+
+
+\begin{ex}
+Try using a stopwatch to time the execution of the recipes in this
+chapter.  Time from hitting return on the command, until the next
+prompt appears.  What is the relationship between execution time
+and the length of the sound?  Is it a linear relationship, i.e.,
+longer sounds take longer to process and shorter sounds take less
+time to process?  Or is it something else?  Compare the individual
+recipes.  Does normalizing a sound take longer than raising (or
+lowering) the amplitude a constant amount?  How much longer?  Does
+it matter if the sound is longer or shorter?
+\end{ex}
+
+\begin{ex}
+\begin{example}
+# This example will generate a sound collage with file A first, then file
+B, then file A again but reversed
+def audioCollage():
+  fileA = pickAFile() # this will be the sound that will also be reversed
+  fileB = pickAFile() # this will be the sound that plays in the middle of
+the other two
+
+  a = makeSound(fileA)
+  b = makeSound(fileB)
+  c = makeSound(fileC)
+  canvas = makeEmptySound(5)
+
+  # Reverse c (which is the first sound)
+  for index in range(1, getLength(c) / 2):
+    left = getSampleValueAt(c, index)
+    right = getSampelValueAt(c, getLength(c) - index + 1)
+    setSampleValueAt(c, getLength(c) - index + 1, left)
+    setSampleValueAt(c, index, right)
+
+  # Start off the target index
+  targetIndex = 1
+
+  # Copy the first sound
+  for index in range(1, getLength(a) + 1):
+    value = getSampleValueAt(a, index)
+    setSampleValueAt(canvas, targetIndex, value)
+    targetIndex = targetIndex + 1
+
+  # Copy the second sound
+  for index in range(1, getLength(b) + 1):
+    value = getSampleValueAt(b, index)
+    setSampleValueAt(canvas, targetIndex, value)
+    targetIndex = targetIndex + 1
+
+  # Copy the third sound
+  for index in range(1, getLength(c) + 1):
+    value = getSampleValueAt(c, index)
+    setSampleValueAt(canvas, targetIndex, value)
+    targetIndex = targetIndex + 1
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+import random
+
+# This assumes that you have your media path set to the speech folder
+
+def makeASentence():
+  # Pick a random file from the list and turn it into a sound
+  noun = random.choice(['computer.wav', 'i.wav', 'it.wav', 'lunch.wav',
+'outside.wav', 'pig.wav', 'sun.wav', 'that.wav'])
+  noun = makeSound(getMediaPath(noun))
+
+  # "Is" is a nice word to put in the middle
+  is = makeSound(getMediaPath('is.wav'))
+
+  # And now a random adjective
+  adj = random.choice(['around.wav', 'clean.wav', 'fun.wav', 'great.wav'])
+  adj = makeSound(getMediaPath(adj))
+
+  # What is the sampling rate of a blank sound made by JES?
+  samRate = int(getSamplingRate(makeEmptySound(1)))
+
+  # How many samples is our sentence going to be?
+  totalLength = getLength(noun) + getLength(is) + getLength(adj) + 2 *
+samRate / 10
+
+  # And how many seconds is that? (remember to round up with a +1 so you have enough space)
+  totalLength = int(totalLength / samRate + 1) 
+
+  # Now we have a proper canvas to put our words on.
+  sentence = makeEmptySound(totalLength)
+	
+  targetIndex = 1
+
+  # Copy the noun
+  for sample in getSamples(noun):
+    value = getSample(sample)
+    setSampleValueAt(sentence, targetIndex, value)
+    targetIndex = targetIndex + 1
+
+  # Pause
+  targetIndex = targetIndex + int(getSamplingRate(sentence) / 10)
+
+  # Copy the "is"
+  for sample in getSamples(is):
+    value = getSample(sample)
+    setSampleValueAt(sentence, targetIndex, value)
+    targetIndex = targetIndex + 1
+
+  # Meditate
+  targetIndex = targetIndex + int(getSamplingRate(sentence) / 10)
+
+  # Copy the adjective
+  for sample in getSamples(adj):
+    value = getSample(sample)
+    setSampleValueAt(sentence, targetIndex, value)
+    targetIndex = targetIndex + 1
+
+  # tada
+  return sentence
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def spliceTest():
+    file = getMediaPath("thisisatest.wav")
+    source = makeSound(file)
+    target = makeSound(file)   # This will be the newly spliced sound
+    targetIndex=1         # targetIndex starts at the beginning
+
+    # Where the word "Test" is in the sound
+    for sourceIndex in range(40327,55770):
+        setSampleValueAt(target, targetIndex,
+            getSampleValueAt(source, sourceIndex))
+        targetIndex = targetIndex + 1
+    play(target)          #Let's hear and return the result
+
+    return target
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+def erasePart():
+    sound = makeSound(getMediaPath('thisisatest.wav'))
+    sr = int(getSamplingRate(sound))
+    for index in range(sr, sr * 2 + 1):
+        setSampleValueAt(sound, index, 0)
+    return sound
+\end{example}
+\end{ex}
+
+\begin{ex}
+\begin{example}
+# Method A
+def backhalfback(file):
+  sound = makeSound(file)
+  full = getLength(sound)
+  halfway = getLength(sound) / 2
+  for index in range(1, halfway / 2):
+    left = halfway + index
+    right = full - index + 1
+    leftValue = getSampleValueAt(sound, left)
+    rightValue = getSampleValueAt(sound, right)
+    setSampleValueAt(sound, left, rightValue)
+    setSampleValueAt(sound, right, leftValue)
+  return sound
+
+# Method B
+def backhalfback(file)
+  source = makeSound(file)
+  target = makeSound(file)
+  targetIndex = getLength(target)
+  for sourceIndex in range(getLength(source) / 2, getLength(source) + 1):
+    value = getSampleValueAt(source, sourceIndex)
+    setSampleValueAt(target, targetIndex, value)
+    targetIndex = targetIndex - 1
+  return target
+\end{example}
+\end{ex}
+
+\end{exercises}

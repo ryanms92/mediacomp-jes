@@ -1,0 +1,312 @@
+<html>
+<head>
+<title>JES Help</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<a name="top"></a><a href="0_Table_of_Contents.html">Table of Contents</a> &gt; Turtles and Worlds
+
+<p>
+JES provides you with turtles, which you may have heard about before if you
+know about LOGO. (if not, don't worry!) Here are some functions you can use
+to work with them and their little worlds.
+</p>
+
+<hr size="1">
+<table width="80%" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td bgcolor="#dddddd" height="107">
+      <b>Turtle Functions in JES</b><br>
+       <br>
+This is a list of functions that you may find useful when you are
+creating programs to manipulate or create turtles and worlds in JES.
+Remember, these functions are part of a special library, and are not
+available in other Jython programming environments.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="5">
+
+
+<tr>
+<td width="25%">makeWorld<br>
+</td>
+<td width="75%">
+<b>makeWorld</b>([width, height]):<br>
+<font color=blue>width</font>: the width for your new world (optional)<br>
+<font color=blue>height</font>: the height for your new world (optional)<br>
+Returns a new world of the specified size, where you can put turtles. Default size is
+640x480. For example, these both work:
+<pre>
+earth = makeWorld()
+mars = makeWorld(500, 500)
+</pre>
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">makeTurtle<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>makeTurtle</b>(world):<br>
+<font color=blue>world</font>: a world to put the turtle in<br>
+Makes a turtle and returns it
+
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+penUp(t)
+moveTo(t, int(500/3), 250)
+penDown(t)
+for i in range(0, 360):
+    turn(t, 1)
+    forward(t, 3)
+</pre>
+</td></tr>
+
+<tr>
+<td>forward<br>
+</td>
+<td>
+<b>forward</b>(turtle, distance):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>distance</font>: how far to go, in pixels<br>
+Moves the turtle in the direction it's facing
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+forward(t, 100)
+</pre>
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">backward<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>backward</b>(turtle, distance):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>distance</font>: how far back to go<br>
+Moves the turtle backwards (relative to where it's facing)
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+
+backward(t, 40)
+</pre>
+</td></tr>
+
+<tr>
+<td>turnLeft<br>
+</td>
+<td>
+<b>turnLeft</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Turns the turtle left 90 degrees
+
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+turnLeft(t)
+forward(t, 30)
+</pre>
+</td> </tr>
+
+<tr>
+<td bgcolor="#eeeeee">turnRight<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>turnRight</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Turns the turtle right 90 degrees
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+turnRight(t)
+forward(t, 30)
+</pre>
+</td></tr>
+
+<tr>
+<td>turn<br>
+</td>
+<td>
+<b>turn</b>(turtle[, degrees]):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>degrees</font>: how many degrees to turn (optional)<br>
+Turns the turtle; positive numbers of degrees mean turning to the turtle's
+right. Default is 90 degrees.
+
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+
+turn(t, 30)
+forward(t, 100)
+</pre>
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">moveTo<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>moveTo</b>(turtle, x, y):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>x</font>: the X coordinate in the world<br>
+<font color=blue>y</font>: the Y coordinate in the world<br>
+
+Moves the turtle to the specified location. If the turtle's pen is down, it
+draws a line from its old position to the new one.
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+
+moveTo(t, 150, 150)
+</pre>
+</td></tr>
+
+
+<tr>
+<td>turnToFace<br>
+</td>
+<td>
+<b>turnToFace</b>(turtle, x[, y]):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+<font color=blue>x</font>: the X coordinate in the world (or a turtle in the world)<br>
+<font color=blue>y</font>: the Y coordinate in the world (optional)<br>
+
+Makes the turtle look towards point (x, y) or towards turtle x if y is unspecified.
+
+<pre>
+w = makeWorld(500, 500)
+t = makeTurtle(w)
+t2 = makeTurtle(w)
+turn(t, 63)
+backward(t, 40)
+turnToFace(t, 200, 100)
+forward(t, 300)
+moveTo(t, 150, 150)
+turnToFace(t, t2)
+</pre>
+</td></tr>
+
+
+
+<tr>
+<td bgcolor="#eeeeee">penUp<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>penUp</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Makes the turtle pick up its pen, so doesn't leave a trail when it moves.
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnRight(t)
+penDown(t)
+forward(t, 30)
+</pre>
+</td></tr>
+
+
+<tr>
+<td>penDown<br>
+</td>
+<td>
+<b>penDown</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to operate on<br>
+Makes the turtle put its pen on the world, so leaves a trail when it moves.
+
+<pre>
+w = makeWorld(300, 200)
+t = makeTurtle(w)
+penUp(t)
+forward(t, 50)
+turnRight(t)
+penDown(t)
+forward(t, 30)
+</pre>
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">drop<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>drop</b>(turtle, picture):<br>
+<font color=blue>turtle</font>: the turtle who will do the dropping<br>
+<font color=blue>picture</font>: the picture that the turtle will drop<br>
+The turtle drops a picture where it is currently sitting, rotated so that
+the top of the picture points where the turtle is facing. (this, for
+example, is one way to flip a picture upside-down)
+
+<pre>
+w = makeWorld()
+t = makeTurtle(w)
+pic = makePicture("adorable-kitten.jpg")
+
+turn(t, 180)
+drop(t, pic)
+</pre>
+</td></tr>
+
+<tr>
+<td>getHeading<br>
+</td>
+<td>
+<b>getHeading</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to get the heading of<br>
+<font color=blue>returns</font>: a floating point number representing the heading of the turtle<br>
+Returns the turtle's current heading.
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">getTurtleList<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>getTurtleList</b>(world):<br>
+<font color=blue>world</font>: the world to get the turtles from<br>
+Returns a list of all turtles in the specified world. (You could, for
+example, tell each one to do something)
+</td></tr>
+
+<tr>
+<td>getXPos<br>
+</td>
+<td>
+<b>getXPos</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to get the X position of<br>
+<font color=blue>returns</font>: the X position of the turtle<br>
+Returns the X coordinate of the turtle's location.
+</td></tr>
+
+<tr>
+<td bgcolor="#eeeeee">getYPos<br>
+</td>
+<td bgcolor="#eeeeee">
+<b>getYPos</b>(turtle):<br>
+<font color=blue>turtle</font>: the turtle to get the Y position of<br>
+<font color=blue>returns</font>: the Y position of the turtle<br>
+Returns the Y coordinate of the turtle's location.
+</td></tr>
+
+</table>
+
+      <p><br>
+        </p>
+      </td>
+
+  </tr>
+  <tr>
+    <td align="right"> <a href="#top"><img src="../auxHelp/images/arro.gif" width="13" height="10" border="0">jump
+      to top</a>
+      <hr size="1">
+       </td>
+  </tr>
+
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,52 @@
+** how to build a .app package for JES!
+Alex Rudnick (alexr@cc.gatech.edu), November 2006, Jan 2007
+
+- open up Jar Bundler (in /Developer/Applications/Java Tools)
+
+- copy the jes directory out of subversion
+  cp -r mediacomp-dev/jes jes-snapshot
+
+- To make the distribution smaller, delete all of the .svn directories that
+  you may have copied over, like this:
+
+cd jes-snapshot
+find . -name '.svn' -exec rm -rf {} \;
+
+- add all of the jars in the jars/ directory, under "classpath and files".
+
+- now add all of the .py, .java, and .class files from "Sources". It's okay
+  to do a "select all" -- we don't need the things in the subdirectories of
+  Sources. Also, add everything from the jython-2.1/Lib directory, not
+  including subdirectories.
+
+- now under "Build Information", use the main class "JESstartup" (if you
+  like, choose the JESstartup.class file from the jes-snapshot directory
+  you created)
+
+- Under "Options", turn on "Use Macintosh Menu Bar", "Anti-alias text",
+  "Anti-alias graphics". Put "1.5*" in the JVM Version box, which means
+  that we will use Java 1.5.
+
+- On the last tab, "Properties", put the VM options "-Xmx512m". Make sure
+  to also click "set working directory to inside application package" and
+  "allow mixed localizations". The defaults are alright for everything
+  else.
+
+- Back on that first tab, use JESi2.icns as the custom icon. Create the
+  application with the "Create Application" button.
+
+- Now, go into the JES.app/Contents/Resources/Java directory, and say:
+
+cp -r ~/mediacomp-dev/jes/JESHelp .
+cp ~/mediacomp-dev/jes/JESAPIHelp.html .
+cp ~/mediacomp-dev/jes/JES*txt .
+cp -r ~/mediacomp-dev/jes/images .
+find . -name '.svn' -exec rm -rf {} \;
+
+Congratulations, you should be ready to go! (this should come out to be
+about 8.2 megabytes total.)
+
+Post the thing to coweb.cc.gatech.edu/mediaComp-teach/26.
+The password for that is "barb", like on the other locked pages.
+And the "password to access the page" is attach:carmen, just like on other
+pages on the coweb.

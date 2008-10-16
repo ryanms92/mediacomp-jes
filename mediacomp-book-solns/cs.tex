@@ -1,0 +1,100 @@
+\chapter{Styles of Programming}
+\begin{exercises}
+
+\begin{ex} %% 14.1
+(a) Weight two blocks against two other blocks.  If each set of two weights
+the same, you know that the heavy block is in the two that
+aren't on the scale.  Then weight those two individually against eachother.
+The heavier one will tip the scale.  If on the first weight,
+one of the pairs of blocks is heavier than the other, the heavy block is in
+that pair.  Weight those two against each other and the heavy
+one will tip the scale.  In either case, you only need to use the scale
+twice.
+\newline
+(b) This is a logarithmic time search similar to a binary search.
+\end{ex}
+
+\begin{ex} %% 14.2
+\end{ex}
+
+\begin{ex} %% 14.3
+Recursive:
+\begin{example}
+def upDown(word):
+  if len(word) == 1:
+    print word
+    return
+  print word
+  upDown(word[:-1])
+  print word
+\end{example}
+
+Iterative:
+\begin{example}
+def upDown(word):
+  for char in range(len(word)):
+    print word[:len(word)-char]
+  for char in range(2,len(word)+1):
+    print word[:char]  
+\end{example}
+\end{ex}
+
+\begin{ex} %% 14.4
+\end{ex}
+
+\begin{ex} %% 14.5
+\end{ex}
+
+\begin{ex} %% 14.6
+An instance is a specific object of the class.  The class is the code that
+the instance is created from.
+Functions are globally accessible.  Methods can only be run from an
+instance of the class it is contained in.
+Objected-Oriented programming uses classes 
+\end{ex}
+
+\begin{ex} %% 14.7
+\begin{example}
+#Original Box class
+class Box:
+  def \_\_init\_\_(self):
+    self.setDefaultColor()
+    self.size=10
+    self.position=(10,10)
+  def setDefaultColor(self):
+    self.color = red
+  def draw(self,canvas):
+    addRectFilled(canvas,self.position[0],self.position[1],self.size,self.size,self.color)
+
+#add these methods
+  def setColor(self,newColor):
+    self.color = newColor
+  def setSize(self,newSize):
+    self.size = newSize
+  def setPosition(self,newPosition):
+    self.position = newPosition
+# new init -- calling added methods
+  def \_\_init\_\_(self):
+    self.setDefaultColor()
+    self.setSize(10)
+    self.setPosition((10,10))
+# new setDefaultColor which calls setColor
+  def setDefaultColor():
+    self.setColor(red)
+\end{example}
+\end{ex}
+
+\begin{ex} %% 14.8
+\begin{example}
+# Two more methods to add to class Box
+def move(self,distance):
+  #adding old position plus new distance to get new position
+  newX = self.position[0] + distance[0]
+  newY = self.position[1] + distance[1]
+  self.setPosition = (newX,newY)
+def grow(self,growth):
+  newSize = self.size + growth
+  self.setSize(newSize)
+\end{example}
+\end{ex}
+\end{exercises}

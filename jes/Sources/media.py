@@ -310,11 +310,23 @@ def setSampleValueAt(sound,index,value):
     if not isinstance(sound, Sound):
         print "setSampleValueAt(sound,index,value): Input is not a sound."
         raise ValueError
+    if index < 1:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than one.  Please try" + " again using an index in the range [1," + str ( getLength( sound ) ) + "]."
+        raise ValueError
+    if index > getLength(sound):
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) )
+        raise ValueError
     sound.setSampleValue(index-1,int(value))
 
 def getSampleValueAt(sound,index):
     if not isinstance(sound,Sound):
         print "getSampleValueAt(sound,index): Input is not a sound."
+        raise ValueError
+    if index < 1:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than one.  Please try" + " again using an index in the range [1," + str ( getLength( sound ) ) + "]."
+        raise ValueError
+    if index > getLength(sound):
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) )
         raise ValueError
     return sound.getSampleValue(index-1)
 
@@ -323,6 +335,12 @@ def getSampleObjectAt(sound,index):
         print "getSampleObjectAt(sound,index): Input is not a sound."
         raise ValueError
     # return sound.getSampleObjectAt(index-1)
+    if index < 1:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than one.  Please try" + " again using an index in the range [1," + str ( getLength( sound ) ) + "]."
+        raise ValueError
+    if index > getLength(sound):
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) )
+        raise ValueError
     return Sample(sound, index-1)
 
 def setSample(sample,value):

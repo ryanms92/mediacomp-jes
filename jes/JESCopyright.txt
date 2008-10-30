@@ -1,4 +1,4 @@
-JES- Jython Environment for Students version 3.1
+JES- Jython Environment for Students version 3.1.1
 Copyright (C) 2008 Brian O'Neill, William Scharfnorth, and Barbara Ericson
 
 JES- Jython Environment for Students version 3.0.6

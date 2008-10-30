@@ -20,11 +20,18 @@ import java.awt.geom.*;
  *       to allow creation of a blank picture with a specified background color
  *
  * <br><br>Additional and updated methods merged by Buck Scharfnorth 22 May 2008
+ *
+ * _PictureIndexOffset added (29 Oct 2008) -Buck
  */
 public class SimplePicture implements DigitalPicture
 {
 
   /////////////////////// Fields /////////////////////////
+  /**
+   * Constant for the index base (0 or 1)
+   * If this is changed, it should also be changed in media.py
+   */
+  public static final int _PictureIndexOffset = 0;
 
   /**
    * the file name associated with the simple picture

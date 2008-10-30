@@ -26,6 +26,8 @@ import javazoom.jl.converter.*;
  * Changes merged by Buck Scharfnorth 22 May 2008
  * default numberOfChannels left to 1
  * stopPlaying() method added
+ *
+ * _SoundIndexOffset added (29 Oct 2008) -Buck
  */
 public class SimpleSound{
 
@@ -45,6 +47,12 @@ public class SimpleSound{
    * Constant for the default sampling rate
    */
   public static final int SAMPLE_RATE = 22050;
+
+  /**
+   * Constant for the index base (0 or 1)
+   * If this is changed, it should also be changed in media.py
+   */
+  public static final int _SoundIndexOffset = 0;
 
   /**
    * Constant for the default sample size in bits
@@ -919,22 +927,22 @@ public class SimpleSound{
      */
     if(endFrame >= getAudioFileFormat().getFrameLength())
     {
-      printError("You are trying to play to index: " + (endFrame+1) +
+      printError("You are trying to play to index: " + (endFrame+_SoundIndexOffset) +
                  ".  The sound only has " +
                  getAudioFileFormat().getFrameLength() +
                  " samples total.");
     }
-    if(startFrame < 0)
+    if(startFrame < _SoundIndexOffset)
     {
       printError("You cannot start playing at index " +
-                 (startFrame+1) +
-                 ".  Choose 1 to start at the begining.");
+                 (startFrame+_SoundIndexOffset) +
+                 ".  Choose " + _SoundIndexOffset + " to start at the begining.");
     }
     if(endFrame < startFrame)
     {
       printError("You cannot start playing at index " +
-                 (startFrame+1) + " and stop playing at index " +
-                 (endFrame+1) + ".  The start index must be before" +
+                 (startFrame+_SoundIndexOffset) + " and stop playing at index " +
+                 (endFrame+_SoundIndexOffset) + ".  The start index must be before" +
                  "the stop index.");
     }
 

@@ -5,43 +5,43 @@ import java.awt.image.BufferedImage;
 import java.text.*;
 
 /**
- * A class that represents a picture.  This class inherits from 
+ * A class that represents a picture.  This class inherits from
  * SimplePicture and allows the student to add functionality to
  * the Picture class. In JES, many "extra" features are already present,
  * available through OO-notation for the advanced media computation
  * students.
- * 
+ *
  * Copyright Georgia Institute of Technology 2004-2005
  * @author Barbara Ericson ericson@cc.gatech.edu
- * 
- * <br>Modified 6 July 2007 Pam Cutter Kalamazoo College  
- * 	 <br>&nbsp&nbsp Added a 3-param constructor to allow the construction of 
+ *
+ * <br>Modified 6 July 2007 Pam Cutter Kalamazoo College
+ * 	 <br>&nbsp&nbsp Added a 3-param constructor to allow the construction of
  * 		pictures of different colors
  * 	 <br>&nbsp&nbsp Added a copyInto method which allows copying as much of
  * 		this picture as will fit into a destination picture
  *   <br>&nbsp&nbsp Added a crop method which returns a new picture which is a
  * 		specified portion of this picture
- * 
+ *
  * <br><br>Kalamazoo additional methods and improved comments merged by Buck Scharfnorth 22 May 2008
  */
- 
-public class Picture extends SimplePicture 
+
+public class Picture extends SimplePicture
 {
   ///////////////////// constructors //////////////////////////////////
-  
+
   /**
-   * Constructor that takes no arguments 
+   * Constructor that takes no arguments
    */
   public Picture ()
   {
     /* not needed but use it to show students the implicit call to super()
-     * child constructors always call a parent constructor 
+     * child constructors always call a parent constructor
      */
-    super();  
+    super();
   }
-  
+
   /**
-   * Constructor that takes a file name and creates the picture 
+   * Constructor that takes a file name and creates the picture
    * @param fileName the name of the file to create the picture from
    */
   public Picture(String fileName)
@@ -49,7 +49,7 @@ public class Picture extends SimplePicture
     // let the parent class handle this fileName
     super(fileName);
   }
-  
+
   /**
    * Constructor that takes the width and height
    * @param width the width of the desired picture
@@ -72,9 +72,9 @@ public class Picture extends SimplePicture
     // let the parent class handle this width and height
     super(width,height,color);
   }
-  
+
   /**
-   * Constructor that takes a picture and creates a 
+   * Constructor that takes a picture and creates a
    * copy of that picture.
    * @param copyPicture the picture to be copied
    */
@@ -83,7 +83,7 @@ public class Picture extends SimplePicture
     // let the parent class do the copy
     super(copyPicture);
   }
-    
+
   /**
    * Constructor that takes a buffered image
    * @param image the buffered image to use
@@ -93,7 +93,7 @@ public class Picture extends SimplePicture
     super(image);
   }
   ////////////////////// methods ///////////////////////////////////////
-  
+
   /**
    * Method to return a string with information about this picture.
    * @return a string with information about the picture such as fileName,
@@ -101,12 +101,12 @@ public class Picture extends SimplePicture
    */
   public String toString()
   {
-    String output = "Picture, filename " + getFileName() + 
-      " height " + getHeight() 
+    String output = "Picture, filename " + getFileName() +
+      " height " + getHeight()
       + " width " + getWidth();
     return output;
   }
-  
+
 /* adding graphics to pictures, for use in JES. (added by alexr, Oct 2006) */
 
     /**
@@ -120,9 +120,9 @@ public class Picture extends SimplePicture
     public void addLine(Color acolor, int x1, int y1, int x2, int y2) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.drawLine(x1 - 1,y1 - 1,x2 - 1,y2 - 1);
+        g.drawLine(x1 - SimplePicture._PictureIndexOffset,y1 - SimplePicture._PictureIndexOffset,x2 - SimplePicture._PictureIndexOffset,y2 - SimplePicture._PictureIndexOffset);
     }
-	 
+
     /**
      * Method to add a line of text to a picture
      *    @param acolor the color of the text
@@ -133,9 +133,9 @@ public class Picture extends SimplePicture
     public void addText(Color acolor, int x, int y, String string) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.drawString(string, x - 1, y - 1);
+        g.drawString(string, x - SimplePicture._PictureIndexOffset, y - SimplePicture._PictureIndexOffset);
     }
-	 
+
     /**
      * Method to add text to a picture withe a particular font style
      *    @param acolor the color of the text
@@ -148,7 +148,7 @@ public class Picture extends SimplePicture
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
         g.setFont(style);
-        g.drawString(string, x - 1, y - 1);
+        g.drawString(string, x - SimplePicture._PictureIndexOffset, y - SimplePicture._PictureIndexOffset);
     }
 
     /**
@@ -162,7 +162,7 @@ public class Picture extends SimplePicture
     public void addRect(Color acolor, int x, int y, int w, int h) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.drawRect(x - 1,y - 1,w,h);
+        g.drawRect(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h);
     }
 
     /**
@@ -176,7 +176,7 @@ public class Picture extends SimplePicture
     public void addRectFilled(Color acolor, int x, int y, int w, int h) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.fillRect(x - 1,y - 1,w,h);
+        g.fillRect(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h);
     }
 
     /**
@@ -190,7 +190,7 @@ public class Picture extends SimplePicture
     public void addOvalFilled(Color acolor, int x, int y, int w, int h) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.fillOval(x - 1,y - 1,w,h);
+        g.fillOval(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h);
     }
 
     /**
@@ -204,7 +204,7 @@ public class Picture extends SimplePicture
     public void addOval(Color acolor, int x, int y, int w, int h) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.drawOval(x - 1,y - 1,w,h);
+        g.drawOval(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h);
     }
 
     /**
@@ -222,9 +222,9 @@ public class Picture extends SimplePicture
 
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.fillArc(x - 1,y - 1,w,h,start,angle);
+        g.fillArc(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h,start,angle);
     }
-    
+
     /**
      * Method to draw the outline of an arc on a picture
      *    @param acolor the color of the arc
@@ -238,7 +238,7 @@ public class Picture extends SimplePicture
     public void addArc(Color acolor,int x, int y, int w, int h, int start, int angle) {
         Graphics g = this.getBufferedImage().getGraphics();
         g.setColor(acolor);
-        g.drawArc(x - 1,y - 1,w,h,start,angle);
+        g.drawArc(x - SimplePicture._PictureIndexOffset,y - SimplePicture._PictureIndexOffset,w,h,start,angle);
     }
 
     /**
@@ -265,24 +265,24 @@ public class Picture extends SimplePicture
     	int heightAvailable = dest.getHeight()-upperLeftY;
     	if (heightAvailable < height)
     		height = heightAvailable;
-    	
+
     	// Copy pixel values from this picture to the destination
     	//  (Should have been implemented with the 7-parameter
     	//   getRGB/setRGB methods from BufferedImage?)
     	for (int x = 0; x < width; x++)
     		for (int y = 0; y < height; y++)
     			dest.setBasicPixel(upperLeftX + x, upperLeftY + y, this.getBasicPixel(x, y));
-    	
+
     }
-   
-    /** 
+
+    /**
      * Returns a cropped version of this picture: copies the pixels in
-     * it starting at the specified upper-left corner and taking as 
+     * it starting at the specified upper-left corner and taking as
      * many pixels as specified by <code>width</code> and <code>height</code>.
-     * The final cropped picture may be smaller than indicated by the 
+     * The final cropped picture may be smaller than indicated by the
      * parameters if the cropping area as specified would go beyond the
      * bounds of this picture.  The cropping area will be <code>0 x 0</code>
-     * if the specified upper-left corner is not in the bounds of the 
+     * if the specified upper-left corner is not in the bounds of the
      * destination picture.
      * @param upperLeftX the x-coord of the upper-left corner
      * @param upperLeftY the y-coord of the upper-left corner
@@ -298,13 +298,13 @@ public class Picture extends SimplePicture
    		int heightAvailable = getHeight()-upperLeftY;
    		if (heightAvailable < height)
    			height = heightAvailable;
-   		
+
    		Picture newPic = new Picture(width, height);
    		for (int sourceX = upperLeftX, destX = 0; destX < width; sourceX++, destX++)
    			for (int sourceY = upperLeftY, destY = 0; destY < height; sourceY++, destY++)
    				newPic.setBasicPixel(destX, destY, this.getBasicPixel(sourceX, sourceY));
    		return newPic;
-   		
+
     }
 } // end of class Picture, put all new methods before this
- 
+

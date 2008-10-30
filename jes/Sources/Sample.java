@@ -6,7 +6,7 @@
  * @author Timmy Douglas timmy@cc
  */
 public class Sample
-{  
+{
 
   /**
    * the sound we point to
@@ -18,8 +18,8 @@ public class Sample
    */
     private int index;
 
-  
-  
+
+
   /**
    * Constructor that takes a file name
    * @param aSound the sound
@@ -27,20 +27,20 @@ public class Sample
    */
     public Sample(Sound aSound, int index) {
         this.index = index;
-        this.sound = aSound;          
+        this.sound = aSound;
     }
-  
+
   /**
-   * Obtains a string representation of this JavaSound. 
+   * Obtains a string representation of this JavaSound.
    * @return a String representation of this JavaSound.
    */
 
   public String toString()
   {
       try {
-          return ("Sample at " + (this.index + 1) + " with value " + this.getValue());
+          return ("Sample at " + (this.index + SimpleSound._SoundIndexOffset) + " with value " + this.getValue());
       } catch (Exception e) {
-          return ("Sample at " + (this.index + 1) + " value unknown");
+          return ("Sample at " + (this.index + SimpleSound._SoundIndexOffset) + " value unknown");
 
       }
   }

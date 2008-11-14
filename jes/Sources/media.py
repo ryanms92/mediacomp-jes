@@ -98,6 +98,7 @@ import Sample
 import Samples
 import MoviePlayer
 import MovieWriter
+import FileChooser
 
 import org.python.core.PyString as String
 
@@ -123,9 +124,10 @@ def setMediaPath(file=None):
     	if (file.endswith(os.sep)):
 	    file = file[0:len(file)-len(os.sep)]
     else:	
-	file = pickAFolder();
-    mediaFolder = file+os.sep
-    print "New media folder: "+mediaFolder
+        file = pickAFolder()
+    if(file != None and file != "null/"):
+        mediaFolder = file+os.sep
+    return mediaFolder
 
 def getMediaPath(filename=None):
     global mediaFolder
@@ -147,9 +149,10 @@ def setMediaFolder(file=None):
     	if(file.endswith(os.sep)):
 	    file = file[0:len(file)-len(os.sep)]
     else:	
-	file = pickAFolder();
-    mediaFolder = file+os.sep
-    print "New media folder: "+mediaFolder
+        file = pickAFolder()
+    if(file != None and file != "null/"):
+        mediaFolder = file+os.sep
+    return mediaFolder
 
 def setTestMediaFolder():
     global mediaFolder
@@ -186,6 +189,7 @@ def setLibPath(directory=None):
     else:
         print "Note: There is no directory at ",directory
         raise ValueError
+    return directory
     
 ##
 ## Global sound functions
@@ -1007,43 +1011,49 @@ def playNote(note, duration, intensity=64):
 # General user tools
 #
 
+#def pickAFile():
+#    global _lastFilePath
+#    import javax.swing
+#    if _lastFilePath != None and os.path.exists(_lastFilePath):
+#        choose = javax.swing.JFileChooser(_lastFilePath)
+#    else:
+#        choose = javax.swing.JFileChooser()
+#    choose.setDialogTitle("Pick A File")
+#    jf = javax.swing.JFrame()
+#    jf.getContentPane().add(choose)
+#    retValue = choose.showOpenDialog(jf)
+#    if retValue == 0:
+#        path = choose.getSelectedFile().getAbsolutePath()
+#        _lastFilePath = os.path.dirname(path)
+#        return path
+#    else:
+#        return ""
+
 def pickAFile():
-    global _lastFilePath
-    import javax.swing
-    if _lastFilePath != None and os.path.exists(_lastFilePath):
-        choose = javax.swing.JFileChooser(_lastFilePath)
-    else:
-        choose = javax.swing.JFileChooser()
-    choose.setDialogTitle("Pick A File")
-    jf = javax.swing.JFrame()
-    jf.getContentPane().add(choose)
-    retValue = choose.showOpenDialog(jf)
-    if retValue == 0:
-        path = choose.getSelectedFile().getAbsolutePath()
-        _lastFilePath = os.path.dirname(path)
-        return path
-    else:
-        return ""
+    return FileChooser.pickAFile()
+
+#def pickAFolder():
+#    global _lastFilePath
+#    import javax.swing
+#    if _lastFilePath != None and os.path.exists(_lastFilePath):
+#        choose = javax.swing.JFileChooser(_lastFilePath)
+#    else:
+#        choose = javax.swing.JFileChooser()
+#    choose.setDialogTitle("Pick A Folder")
+#    choose.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY)
+#    choose.setFileHidingEnabled(1)
+#    jf = javax.swing.JFrame()
+#    jf.getContentPane().add(choose)
+#    retValue = choose.showOpenDialog(jf)
+#    if retValue == 0:
+#        path = choose.getSelectedFile().getAbsolutePath()
+#        _lastFilePath = path
+#        return path
+#    else:
+#        return ""
 
 def pickAFolder():
-    global _lastFilePath
-    import javax.swing
-    if _lastFilePath != None and os.path.exists(_lastFilePath):
-        choose = javax.swing.JFileChooser(_lastFilePath)
-    else:
-        choose = javax.swing.JFileChooser()
-    choose.setDialogTitle("Pick A Folder")
-    choose.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY)
-    choose.setFileHidingEnabled(1)
-    jf = javax.swing.JFrame()
-    jf.getContentPane().add(choose)
-    retValue = choose.showOpenDialog(jf)
-    if retValue == 0:
-        path = choose.getSelectedFile().getAbsolutePath()
-        _lastFilePath = path
-        return path
-    else:
-        return ""
+    return FileChooser.pickADirectory()
 
 def quit():
     sys.exit(0)

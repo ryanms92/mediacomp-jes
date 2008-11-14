@@ -11,11 +11,11 @@ public class JESstartup
 {
     /*synthetic*/ static Class class$JESstartup;
     /*synthetic*/ static Class array$Ljava$lang$String;
-    
+
     public static void main(String[] strings) {
         Frame frame = null;
 
-        frame = SplashWindow.splash("images/JESsplash-v3.png");
+        frame = SplashWindow.splash("images/JESsplash-v4.png");
 
         String [] args = {"Sources/JESProgram.py"};
 
@@ -41,7 +41,7 @@ public class JESstartup
 
         if (frame != null) frame.dispose();
     }
-    
+
     static Class class$(String string) {
         Class var_class;
         try {

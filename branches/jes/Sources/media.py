@@ -115,18 +115,31 @@ true = 1
 false = 0
 
 #Set a path to the media for those who want to have a shortcut (5/14/03 AW)
+#def setMediaPath(file=None):
+#    global mediaFolder
+#    if(file != None):
+#    	if not os.path.isdir(file):
+#	    print "Note: There is no directory at "+file
+#	    raise ValueError
+#    	if (file.endswith(os.sep)):
+#	    file = file[0:len(file)-len(os.sep)]
+#    else:	
+#        file = pickAFolder()
+#    if(file != None and file != "null/"):
+#        mediaFolder = file+os.sep
+#    return mediaFolder
+
 def setMediaPath(file=None):
     global mediaFolder
     if(file != None):
     	if not os.path.isdir(file):
 	    print "Note: There is no directory at "+file
 	    raise ValueError
-    	if (file.endswith(os.sep)):
-	    file = file[0:len(file)-len(os.sep)]
     else:	
         file = pickAFolder()
-    if(file != None and file != "null/"):
-    mediaFolder = file+os.sep
+    if ( file != None and file != ("null"+os.sep) ):
+        mediaFolder = file
+    FileChooser.setMediaPath( mediaFolder )
     return mediaFolder
 
 def getMediaPath(filename=None):
@@ -140,33 +153,39 @@ def getMediaPath(filename=None):
 	return mediaFolder
 
 #And for those who think of things as folders (5/14/03 AW)
+#def setMediaFolder(file=None):
+#    global mediaFolder
+#    if(file != None):
+#    	if not os.path.isdir(file):
+#	    print "Note: There is no directory at "+file
+#	    raise ValueError
+#    	if(file.endswith(os.sep)):
+#	    file = file[0:len(file)-len(os.sep)]
+#    else:	
+#        file = pickAFolder()
+#    if(file != None and file != "null/"):
+#        mediaFolder = file+os.sep
+#    return mediaFolder
+
 def setMediaFolder(file=None):
-    global mediaFolder
-    if(file != None):
-    	if not os.path.isdir(file):
-	    print "Note: There is no directory at "+file
-	    raise ValueError
-    	if(file.endswith(os.sep)):
-	    file = file[0:len(file)-len(os.sep)]
-    else:	
-        file = pickAFolder()
-    if(file != None and file != "null/"):
-    mediaFolder = file+os.sep
-    return mediaFolder
+    return setMediaPath(file)
 
 def setTestMediaFolder():
     global mediaFolder
     mediaFolder = os.getcwd() + os.sep
 
+#def getMediaFolder(filename=None):
+#    global mediaFolder
+#    if(filename != None):
+#        file = mediaFolder+filename
+#        if not os.path.isfile(file):
+#            print "Note: There is no file at "+file
+#        return file
+#    else:
+#    return mediaFolder
+
 def getMediaFolder(filename=None):
-    global mediaFolder
-    if(filename != None):
-    	file = mediaFolder+filename
-    	if not os.path.isfile(file):
-        	print "Note: There is no file at "+file
-    	return file
-    else:
-	return mediaFolder
+    return getMediaPath(filename)
 
 def showMediaFolder():
     global mediaFolder

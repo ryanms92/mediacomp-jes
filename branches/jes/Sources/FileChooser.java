@@ -120,7 +120,7 @@ public class FileChooser
     // pick the directory
     dirName = pickPath(fileChooser);
     
-    return dirName + "/";
+    return dirName + File.separatorChar;
   }
   
    /**
@@ -227,17 +227,17 @@ public class FileChooser
      try {
        
        // get the URL for where we loaded this class 
-       Class currClass = Class.forName("FileChooser");
-       URL classURL = currClass.getResource("FileChooser.class");
-       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
-       String path = fileURL.getPath();
-       path = path.replace("%20"," ");
-       FileInputStream in = new FileInputStream(path);
-       FileOutputStream out = 
-         new FileOutputStream(path);
-       appProperties.store(out, 
-                     "Properties for the Simple Picture class");
-       out.close();
+//       Class currClass = Class.forName("FileChooser");
+//       URL classURL = currClass.getResource("FileChooser.class");
+//       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
+//       String path = fileURL.getPath();
+//       path = path.replace("%20"," ");
+//       FileInputStream in = new FileInputStream(path);
+//       FileOutputStream out =
+//         new FileOutputStream(path);
+//       appProperties.store(out,
+//                     "Properties for the Simple Picture class");
+//       out.close();
        System.out.println("The media directory is now " + 
                           directory);
      } catch (Exception ex) {

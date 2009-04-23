@@ -9,7 +9,7 @@ import javax.swing as swing
 
 ABOUT_TITLE = 'About JES'
 OK_BUTTON_CAPTION = 'OK'
-ABOUT_WINDOW_SIZE = (500,500)
+ABOUT_WINDOW_SIZE = (500,600)
 COPYRIGHT_FILE = 'JESCopyright.txt'
 
 class JESAbout(swing.JFrame, awt.event.ActionListener):

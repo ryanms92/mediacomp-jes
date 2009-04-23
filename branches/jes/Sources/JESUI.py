@@ -307,6 +307,7 @@ class JESUI(swing.JFrame):
 
     def __init__(self, program):
         try:
+            media.setColorWrapAround( program.wrapPixelValues )
             self.soundErrorShown = 0
             self.FocusOwner = None
             self.swing = swing
@@ -372,7 +373,7 @@ class JESUI(swing.JFrame):
 
             # self.program.wrapPixelValues = 1
             self.settingsWindow= None
-	    self.directoryWindow= None
+            self.directoryWindow= None
             self.errorWindow= None
             self.turninWindow=None
             self.namefield = None
@@ -1730,13 +1731,13 @@ class JESUI(swing.JFrame):
                     actionPerformed=self.optionsButtonPressed)
 
         modelabel=swing.JLabel("Mode:")
-        fontlabel=swing.JLabel("Font:")
+        fontlabel=swing.JLabel("Font Size (1-"+str(JESConstants.HIGH_FONT)+"):")
         gutterlabel=swing.JLabel("Line Numbers:")
         blocklabel=swing.JLabel("Show Indentation Help:")
         logginglabel=swing.JLabel("Logging:")
         autosavelabel=swing.JLabel("Auto save on load:")
-	backupsavelabel=swing.JLabel("Save a backup copy on save:")
-	wrappixellabel=swing.JLabel("<html>Modulo pixel color values by 256<br><center>(356 mod 256 = 100)</center></html>")
+        backupsavelabel=swing.JLabel("Save a backup copy on save:")
+        wrappixellabel=swing.JLabel("<html>Modulo pixel color values by 256<br><center>(356 mod 256 = 100)</center></html>")
         skinlabel = swing.JLabel("Skin:")
         showturninlabel = swing.JLabel("Show Turnin Menu")
 
@@ -1781,13 +1782,22 @@ class JESUI(swing.JFrame):
         else:
             self.userExperienceField = swing.JComboBox( JESConstants.USER_MODES_2)
 
-        if int(self.program.userFont) ==  int(JESConstants.LOW_FONT):
-            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_LOW)
-        elif int(self.program.userFont) ==  int(JESConstants.MID_FONT):
-            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_MID)
+#        if int(self.program.userFont) ==  int(JESConstants.LOW_FONT):
+#            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_LOW)
+#        elif int(self.program.userFont) ==  int(JESConstants.MID_FONT):
+#            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_MID)
+#        else:
+#            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_HIGH)
+        fontSizes = range(JESConstants.LOW_FONT, JESConstants.MID_FONT + 1, 2)
+        userFont = int(self.program.userFont)
+        self.userFontField = swing.JComboBox( fontSizes )
+        self.userFontField.setEditable(1)
+        if userFont in fontSizes:
+            self.userFontField.setSelectedItem( userFont )
         else:
-            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_HIGH)
-
+            self.userFontField.insertItemAt( userFont, 0 )
+            self.userFontField.setSelectedItem( userFont )
+        
         self.skinField = swing.JComboBox( listskins(), actionListener=skinActionListener(self) )
 
         cur = currentskin()
@@ -1836,15 +1846,24 @@ class JESUI(swing.JFrame):
     def optionsButtonPressed(self,event):
         if event.source.text=='Done':
             self.program.userExperience = self.userExperienceField.getSelectedItem()
-            self.program.userFont = self.userFontField.getSelectedItem()
+
+            chosenFontSize = self.userFontField.getSelectedItem()
+            if ( not str(chosenFontSize).isdigit() ):
+                chosenFontSize = self.program.userFont
+            elif ( chosenFontSize < 1 ):
+                chosenFontSize = 1
+            elif ( chosenFontSize > JESConstants.HIGH_FONT ):
+                chosenFontSize = JESConstants.HIGH_FONT
+                
+            self.program.userFont = chosenFontSize
             self.program.blockBoxOff = not self.blockBox.isSelected()
             self.program.gutterOn = self.gutterBox.isSelected()
             self.program.logBuffer.saveBoolean=self.loggerBox.isSelected()
 
             self.program.autoSaveOnRun = self.autosaveBox.isSelected()
-	    self.program.backupSave = self.backupSaveBox.isSelected()
-	    self.program.wrapPixelValues = self.wrappixelBox.isSelected()
-            media.wrapAroundPixelValues = self.program.wrapPixelValues
+            self.program.backupSave = self.backupSaveBox.isSelected()
+            self.program.wrapPixelValues = self.wrappixelBox.isSelected()
+            media.setColorWrapAround( self.program.wrapPixelValues )
 
             if(self.program.showTurnin != self.showTurninBox.isSelected()):
                 self.program.showTurnin = self.showTurninBox.isSelected()

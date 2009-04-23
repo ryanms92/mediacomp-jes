@@ -11,7 +11,7 @@ public class JESstartup
 {
     /*synthetic*/ static Class class$JESstartup;
     /*synthetic*/ static Class array$Ljava$lang$String;
-    
+
     public static void main(String[] strings) {
         Frame frame = null;
 
@@ -33,6 +33,8 @@ public class JESstartup
     	    System.exit(1);
     	}
 
+		JESConfig jConfig = new JESConfig();
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException ie) {
@@ -41,7 +43,7 @@ public class JESstartup
 
         if (frame != null) frame.dispose();
     }
-    
+
     static Class class$(String string) {
         Class var_class;
         try {

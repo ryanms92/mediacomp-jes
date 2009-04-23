@@ -1,5 +1,6 @@
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.SwingWorker;
 import java.util.Properties;
 import java.io.*;
 import java.net.*;
@@ -7,7 +8,7 @@ import java.net.*;
 /**
  * A class to make working with a file chooser easier
  * for students.  It uses a JFileChooser to let the user
- * pick a file and returns the choosen file name.
+ * pick a file and returns the chosen file name.
  *
  * Copyright Georgia Institute of Technology 2004
  * @author Barb Ericson ericson@cc.gatech.edu
@@ -17,7 +18,7 @@ public class FileChooser
 
   ///////////////////////////// class fields ///////////////////
    /**
-   * Properities to use during execution
+   * Properties to use during execution
    */
   private static Properties appProperties = null;
 
@@ -31,6 +32,10 @@ public class FileChooser
    */
   private static final String PROPERTY_FILE_NAME =
     "SimplePictureProperties.txt";
+
+  private static JFileChooser fileChooser = null;
+
+  private static String latestPath = null;
 
   /////////////////////// methods /////////////////////////////
 
@@ -50,12 +55,37 @@ public class FileChooser
     JFrame frame = new JFrame();
     frame.setAlwaysOnTop(true);
 
+    File latestFilePath = null;
+    if ( latestPath != null )
+    	latestFilePath = new File(latestPath);
+   	if ( ( latestFilePath != null ) && ( latestFilePath.exists() ) )
+   	{
+		fileChooser.setCurrentDirectory( latestFilePath );
+	}
+	else
+	{
+		File file = new File( getMediaDirectory() );
+		if ( file.exists() )
+		{
+			fileChooser.setCurrentDirectory( file );
+		}
+		else
+		{
+			fileChooser.setCurrentDirectory( new File( System.getProperty("user.home") ) );
+		}
+	}
+
     // get the return value from choosing a file
     int returnVal = fileChooser.showOpenDialog(frame);
 
     // if the return value says the user picked a file
     if (returnVal == JFileChooser.APPROVE_OPTION)
+    {
       path = fileChooser.getSelectedFile().getPath();
+      //update latestPath to the last path just picked
+      latestPath = path;
+    }
+
     return path;
   }
 
@@ -67,27 +97,15 @@ public class FileChooser
    */
   public static String pickAFile()
   {
-    JFileChooser fileChooser = null;
-
     // start off the file name as null
     String fileName = null;
 
-    // get the current media directory
-    String mediaDir = getMediaDirectory();
-
-    /* create a file for this and check that the directory exists
-     * and if it does set the file chooser to use it
-     */
-    try {
-      File file = new File(mediaDir);
-      if (file.exists())
-        fileChooser = new JFileChooser(file);
-    } catch (Exception ex) {
-    }
-
     // if no file chooser yet create one
-    if (fileChooser == null)
-      fileChooser = new JFileChooser();
+//    if (fileChooser == null)
+//      fileChooser = new JFileChooser();
+
+    // allow files to be picked
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 
     // pick the file
     fileName = pickPath(fileChooser);
@@ -102,16 +120,10 @@ public class FileChooser
    */
   public static String pickADirectory()
   {
-    JFileChooser fileChooser = null;
     String dirName = null;
 
-    // get the current media directory
-    String mediaDir = getMediaDirectory();
-
     // if no file chooser yet create one
-    if (mediaDir != null)
-      fileChooser = new JFileChooser(mediaDir);
-    else
+    if (fileChooser == null)
       fileChooser = new JFileChooser();
 
     // allow only directories to be picked
@@ -120,7 +132,7 @@ public class FileChooser
     // pick the directory
     dirName = pickPath(fileChooser);
 
-    return dirName + File.separatorChar;
+    return dirName;
   }
 
    /**
@@ -132,25 +144,6 @@ public class FileChooser
  {
    String path = null;
    String directory = getMediaDirectory();
-
-   // if the directory is null ask the user for it
-   if (directory == null)
-   {
-     SimpleOutput.showError("The media path (directory)" +
-       " has not been set yet!  " +
-       "Please pick the directory " +
-       "that contains your media " +
-       "(usually called mediasources) " +
-       "with the following FileChooser.  " +
-       "The directory name will be stored " +
-       "in a file and remain unchanged unless you use " +
-       "FileChooser.pickMediaPath() or " +
-       "FileChooser.setMediaPath(\"full path name\") " +
-       "(ex: FileChooser.setMediaPath(\"c:/intro-prog-java/mediasources/\")) " +
-       " to change it.");
-     pickMediaPath();
-     directory = getMediaDirectory();
-   }
 
    // get the full path
    path = directory + fileName;
@@ -164,36 +157,7 @@ public class FileChooser
   */
  public static String getMediaDirectory()
  {
-   String directory = null;
-
-
-
-   // check if the application properties are null
-   if (appProperties == null)
-   {
-     appProperties = new Properties();
-
-     // load the properties from a file
-     try {
-       // get the URL for where we loaded this class
-       Class currClass = Class.forName("FileChooser");
-       URL classURL = currClass.getResource("FileChooser.class");
-       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
-       String path = fileURL.getPath();
-       path = path.replace("%20"," ");
-       FileInputStream in = new FileInputStream(path);
-       appProperties.load(in);
-       in.close();
-     } catch (Exception ex) {
-       directory = null;
-     }
-   }
-
-   // get the media directory
-   if (appProperties != null)
-     directory = (String) appProperties.get(MEDIA_DIRECTORY);
-
-   return directory;
+   return JESConfig.getMediaPath();
  }
 
  /**
@@ -202,48 +166,22 @@ public class FileChooser
   */
  public static void setMediaPath(String directory)
  {
-
    // check if the directory exists
-   File file = new File(directory);
-   if (!file.exists())
+   File file = null;
+   if ( directory != null )
+     file = new File( directory );
+   if ( ( file == null ) || ( !file.exists() ) )
    {
      System.out.println("Sorry but " + directory +
                  " doesn't exist, try a different directory.");
-     FileChooser.pickMediaPath();
+   }
+   else
+   {
+	 if ( !directory.endsWith( File.separator ) )
+	 	directory += File.separator;
+     JESConfig.setMediaPath( directory );
    }
 
-   else {
-
-     /* check if there is an application properties object
-      * and if not create one
-      */
-     if (appProperties == null)
-       appProperties = new Properties();
-
-       // set the media directory property
-       appProperties.put(MEDIA_DIRECTORY,directory);
-
-     // write out the application properties to a file
-     try {
-
-       // get the URL for where we loaded this class
-//       Class currClass = Class.forName("FileChooser");
-//       URL classURL = currClass.getResource("FileChooser.class");
-//       URL fileURL = new URL(classURL,PROPERTY_FILE_NAME);
-//       String path = fileURL.getPath();
-//       path = path.replace("%20"," ");
-//       FileInputStream in = new FileInputStream(path);
-//       FileOutputStream out =
-//         new FileOutputStream(path);
-//       appProperties.store(out,
-//                     "Properties for the Simple Picture class");
-//       out.close();
-       System.out.println("The media directory is now " +
-                          directory);
-     } catch (Exception ex) {
-       System.out.println("Couldn't save media path to a file");
-     }
-   }
  }
 
  /**
@@ -253,7 +191,94 @@ public class FileChooser
  public static void pickMediaPath()
  {
    String dir = pickADirectory();
-   setMediaPath(dir);
+
+   File file = null;
+   if ( dir != null )
+     file = new File( dir );
+   if ( ( file == null ) || ( !file.exists() ) )
+   {
+     System.out.println("Sorry but " + dir +
+                 " doesn't exist, try a different directory.");
+   }
+   else
+   {
+	 if ( dir == null )
+	 	return;
+	 if ( !dir.endsWith( File.separator ) )
+	 	dir += File.separator;
+     JESConfig.setMediaPath( dir );
+   }
+ }
+
+ public static void loadFileChooser()
+ {
+	 try
+	 {
+		 //Try to load JFileChooser 5 times - each failed attempt increase wait time by 2 seconds.
+		 for (int tries = 1; tries <= 5; tries++)
+		 {
+			 FileChooserLoader fcLoad = new FileChooserLoader();
+			 //System.out.println("Loading JFileChooser, Attempt " + tries);
+			 //System.out.println("Begin execution of Filechooserloader");
+			 fcLoad.execute();
+			 //System.out.println("Begin sleep 10000");
+			 Thread.sleep( 2000*tries );
+			 //System.out.println("Cancel Filechooserloader");
+			 boolean cancelled = fcLoad.cancel( true );
+			 //System.out.println( cancelled );
+			 if ( cancelled )
+			 	System.out.println("Filechooserloader attempt " + tries + " failed.");
+			 else
+			 {
+			 	fileChooser = fcLoad.get();
+			 	if ( fileChooser != null )
+			 		break;
+			 }
+		 }
+		 //System.out.println("JFileChooser tries completed");
+	 }
+	 catch (InterruptedException e)
+	 {
+		 //e.printStackTrace();
+	 }
+	 catch (java.util.concurrent.ExecutionException e)
+	 {
+		 //System.out.println("Execution exception");
+		 //e.printStackTrace();
+	 }
+ }
+
+ private static class FileChooserLoader extends SwingWorker<JFileChooser, Boolean>
+ {
+	 boolean fcLoaded = false;
+	 public JFileChooser doInBackground()
+	 {
+		 try
+		 {
+			 //Thread.sleep( 9500 );
+			 //Above for testing only
+			 JFileChooser fc = new JFileChooser();
+			 fcLoaded = true;
+			 return fc;
+		 }
+		 catch(Exception e)
+		 {
+			 //System.out.println("Exception in doInBackground");
+			 //e.printStackTrace();
+			 return null;
+		 }
+	 }
+	 /*
+	 public void done()
+	 {
+		 if ( isLoaded() )
+		 	System.out.println("JFileChooser loaded successfully!");
+	 }
+	 public boolean isLoaded()
+	 {
+		 return fcLoaded;
+	 }
+	 */
  }
 
 }

@@ -31,7 +31,7 @@ public class SimplePicture implements DigitalPicture
    * Constant for the index base (0 or 1)
    * If this is changed, it should also be changed in media.py
    */
-  public static final int _PictureIndexOffset = 0;
+  public static final int _PictureIndexOffset = 1;
 
   /**
    * the file name associated with the simple picture

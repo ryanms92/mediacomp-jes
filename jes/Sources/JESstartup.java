@@ -15,7 +15,7 @@ public class JESstartup
     public static void main(String[] strings) {
         Frame frame = null;
 
-        frame = SplashWindow.splash("images/JESsplash-v4.png");
+        frame = SplashWindow.splash("images/JESsplash-v3.png");
 
         String [] args = {"Sources/JESProgram.py"};
 
@@ -32,6 +32,8 @@ public class JESstartup
     	    System.err.flush();
     	    System.exit(1);
     	}
+
+		JESConfig jConfig = new JESConfig();
 
         try {
             Thread.sleep(1000);

@@ -1,4 +1,4 @@
-Welcome to JES 3.0.6!
+Welcome to JES 3.1.2!
 
 JES - The Jython Environment for Students:
 Inside this Software Suite, you will find all the tools you need to make pictures, audio, and video using the Jython language.  For JES to work, you need to register yourself.  When you close this window, you will see another one asking for information about yourself.  Fill in your Name and GT number and press "Save Changes".

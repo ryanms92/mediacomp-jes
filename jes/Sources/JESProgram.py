@@ -16,6 +16,7 @@ import JESStdOutputBuffer
 import JESFileChooser
 import JESLogBuffer
 import JESUI
+import FileChooser
 import os
 import java.io as io
 import java.lang as lang
@@ -41,20 +42,21 @@ class JESProgram:
     def __init__(self):
         #"@sig public JESProgram()"
        #swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-    
+        FileChooser.loadFileChooser()
         self.userExperience =JESConstants.BEGINNER_MODE
         self.gutterOn = 1
         self.blockBoxOff = 0
         self.autoSaveOnRun = 0
-	self.backupSave = 1 
+        self.backupSave = 1 
         self.wrapPixelValues = 1
         self.userFont=self.grabFontSize()
         self.showTurnin = 0
         self.skin = ''
         self.webDefinitions = JESConstants.WEB_DEFINITIONS
+        self.mediaFolder = ''
 
         self.logBuffer=JESLogBuffer.JESLogBuffer(self)
-	self.logBuffer.saveBoolean = 1;
+        self.logBuffer.saveBoolean = 1;
 	
         # let's just read the config file once, and if
         # it's no there, we'll handle it right now.
@@ -560,9 +562,10 @@ class JESProgram:
             self.blockBoxOff = int(array[JESConstants.CONFIG_BLOCK])
             self.webDefinitions = array[JESConstants.CONFIG_WEB_TURNIN]
             self.autoSaveOnRun = int(array[JESConstants.CONFIG_AUTOSAVEONRUN])
-	    self.backupSave = int(array[JESConstants.CONFIG_BACKUPSAVE])
-	    self.wrapPixelValues = int(array[JESConstants.CONFIG_WRAPPIXELVALUES])
-	    self.logBuffer.saveBoolean = int(array[JESConstants.CONFIG_LOGBUFFER])
+            self.backupSave = int(array[JESConstants.CONFIG_BACKUPSAVE])
+            self.mediaFolder = array[JESConstants.CONFIG_MEDIAPATH]
+            self.wrapPixelValues = int(array[JESConstants.CONFIG_WRAPPIXELVALUES])
+            self.logBuffer.saveBoolean = int(array[JESConstants.CONFIG_LOGBUFFER])
             self.skin = array[JESConstants.CONFIG_SKIN] ## string value
             self.showTurnin = int(array[JESConstants.CONFIG_SHOWTURNIN])
             # print "check, program.skin:", self.skin
@@ -635,11 +638,12 @@ class JESProgram:
                                    [JESConstants.CONFIG_GUTTER, self.gutterOn],
                                    [JESConstants.CONFIG_BLOCK, self.blockBoxOff],
                                    [JESConstants.CONFIG_WRAPPIXELVALUES, self.wrapPixelValues],
-				   [JESConstants.CONFIG_AUTOSAVEONRUN, self.autoSaveOnRun],
-				   [JESConstants.CONFIG_BACKUPSAVE, self.backupSave],
+                                   [JESConstants.CONFIG_AUTOSAVEONRUN, self.autoSaveOnRun],
+                                   [JESConstants.CONFIG_BACKUPSAVE, self.backupSave],
                                    [JESConstants.CONFIG_SHOWTURNIN, self.showTurnin],
-				   [JESConstants.CONFIG_SKIN, self.skin],
-				   [JESConstants.CONFIG_LOGBUFFER, self.logBuffer.saveBoolean] ])
+                                   [JESConstants.CONFIG_SKIN, self.skin],
+                                   [JESConstants.CONFIG_LOGBUFFER, self.logBuffer.saveBoolean],
+                                   [JESConstants.CONFIG_MEDIAPATH, self.mediaFolder] ])
 
 
 ################################################################################

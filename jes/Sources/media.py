@@ -394,9 +394,6 @@ plain = awt.Font.PLAIN
 ## Global color functions
 ##
 
-# this needs to be set to the same value as self.wrapPixelValues in JESUI.py
-wrapAroundPixelValues = 0
-
 # Buck Scharfnorth (28 May 2008): if bool == 1 colors will be (value % 256)
 # 				  if bool == 0 colors will be truncated to 0 or 255
 # THIS GLOBAL FUNCTION DOES NOT CHANGE JES SETTINGS - this value is prefered
@@ -404,21 +401,16 @@ wrapAroundPixelValues = 0
 # Running setColorWrapAround(bool) where bool is the default value, re-saving options,
 # or by restarting JES
 def setColorWrapAround(bool):
-    global wrapAroundPixelValues
-    if bool == 0:
-        wrapAroundPixelValues = 0
-    else:
-    	wrapAroundPixelValues = 1
-    JESConfig.setColorWrapAround( wrapAroundPixelValues )
+    JESConfig.getInstance().setBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES, bool )
 
 # Buck Scharfnorth (28 May 2008): Gets the current ColorWrapAround Value
 def getColorWrapAround():
-    return wrapAroundPixelValues
+    return JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES)
 
 # Buck Scharfnorth (28 May 2008): Modified to no longer assume the value is 0-255
 def _checkPixel(raw):
     value = int(raw)
-    if wrapAroundPixelValues:
+    if getColorWrapAround():
         value = (value % 256)
     else:
         if value < 0:
@@ -519,11 +511,24 @@ class Color:
       return self.color.brighter()
 
 def pickAColor():
-    retValue = swing.JColorChooser().showDialog(swing.JFrame(),"Choose a color", awt.Color(0,0,0))
-    if retValue != None:
-        return Color(retValue.getRed(),retValue.getGreen(),retValue.getBlue())
-    else:
-        return Color(0,0,0)
+    ## Dorn 5/8/2009:  Edited to be thread safe since this code is executed from an
+    ## interpreter JESThread and will result in an update to the main JES GUI due to 
+    ## it being a modal dialog.
+    from java.lang import Runnable
+
+    class pickAColorRunner(Runnable):
+	color = Color(0,0,0)
+	def run(self):
+	    retValue = swing.JColorChooser().showDialog(swing.JFrame(),"Choose a color", awt.Color(0,0,0))
+	    if retValue != None:
+	        self.color = Color(retValue.getRed(),retValue.getGreen(),retValue.getBlue())
+
+    runner = pickAColorRunner()
+    swing.SwingUtilities.invokeAndWait(runner)
+    
+    return runner.color
+
+
 
 #Constants
 black = Color(0,0,0)
@@ -983,9 +988,13 @@ def playNote(note, duration, intensity=64):
 #
 
 def pickAFile():
+    ## Note: this needs to be done in a threadsafe manner, see FileChooser
+    ## for details how this is accomplished.
     return FileChooser.pickAFile()
 
 def pickAFolder():
+    ## Note: this needs to be done in a threadsafe manner, see FileChooser
+    ## for details how this is accomplished.
     dir = FileChooser.pickADirectory()
     if ( dir != None ):
         return dir + os.sep

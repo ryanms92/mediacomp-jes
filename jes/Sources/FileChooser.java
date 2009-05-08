@@ -157,7 +157,7 @@ public class FileChooser
   */
  public static String getMediaDirectory()
  {
-   return JESConfig.getMediaPath();
+   return JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MEDIAPATH);
  }
 
  /**
@@ -179,7 +179,7 @@ public class FileChooser
    {
 	 if ( !directory.endsWith( File.separator ) )
 	 	directory += File.separator;
-     JESConfig.setMediaPath( directory );
+     JESConfig.getInstance().setStringProperty(JESConfig.CONFIG_MEDIAPATH, directory);
    }
 
  }
@@ -206,7 +206,7 @@ public class FileChooser
 	 	return;
 	 if ( !dir.endsWith( File.separator ) )
 	 	dir += File.separator;
-     JESConfig.setMediaPath( dir );
+     	JESConfig.getInstance().setStringProperty(JESConfig.CONFIG_MEDIAPATH, dir);
    }
  }
 

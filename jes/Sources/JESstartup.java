@@ -33,7 +33,8 @@ public class JESstartup
     	    System.exit(1);
     	}
 
-		JESConfig jConfig = new JESConfig();
+	// Force reading the config file now
+	JESConfig.getInstance();
 
         try {
             Thread.sleep(1000);

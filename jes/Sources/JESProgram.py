@@ -16,7 +16,6 @@ import JESStdOutputBuffer
 import JESFileChooser
 import JESLogBuffer
 import JESUI
-import FileChooser
 import os
 import java.io as io
 import java.lang as lang
@@ -42,7 +41,6 @@ class JESProgram:
     def __init__(self):
         #"@sig public JESProgram()"
        #swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        FileChooser.loadFileChooser()
         self.userExperience =JESConstants.BEGINNER_MODE
         self.gutterOn = 1
         self.blockBoxOff = 0

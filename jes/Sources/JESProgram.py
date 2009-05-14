@@ -5,7 +5,9 @@
 #5/20/03: added loadSuccess to be called when a JESThread has successfully loaded
 #         code. - AdamW
 #18 Jul 2007: Added option for backup save.
+#5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESAbout
 import JESIntroduction
 import JESExceptionRecord
@@ -41,26 +43,26 @@ class JESProgram:
     def __init__(self):
         #"@sig public JESProgram()"
        #swing.UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        self.userExperience =JESConstants.BEGINNER_MODE
-        self.gutterOn = 1
-        self.blockBoxOff = 0
-        self.autoSaveOnRun = 0
-        self.backupSave = 1 
-        self.wrapPixelValues = 1
-        self.userFont=self.grabFontSize()
-        self.showTurnin = 0
-        self.skin = ''
-        self.webDefinitions = JESConstants.WEB_DEFINITIONS
-        self.mediaFolder = ''
+#        self.userExperience = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MODE);
+#        self.gutterOn = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_GUTTER);
+#        self.blockBoxOff = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BLOCK);
+#        self.autoSaveOnRun = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_AUTOSAVEONRUN);
+#        self.backupSave = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BACKUPSAVE);
+#        self.wrapPixelValues = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES);
+#        self.userFont = JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT);
+#        self.showTurnin = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_SHOWTURNIN);
+#        self.skin = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_SKIN);
+#        self.webDefinitions = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_WEB_TURNIN);
+#        self.mediaFolder = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MEDIAPATH);
 
         self.logBuffer=JESLogBuffer.JESLogBuffer(self)
-        self.logBuffer.saveBoolean = 1;
+#        self.logBuffer.saveBoolean = JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_LOGBUFFER);
 	
         # let's just read the config file once, and if
         # it's no there, we'll handle it right now.
         # self.preCheckForConfigFile()
-        self.getSettingsLater = 0
-        self.loadConfigFile()
+        # self.getSettingsLater = 0
+        # self.loadConfigFile()
 
         self.textForCommandWindow = ''
         self.aboutWindow = None
@@ -79,29 +81,34 @@ class JESProgram:
         self.varsToHighlight = self.interpreter.getVarsToHighlight()
 
         self.chooser = JESFileChooser.JESFileChooser()
-        self.defaultPath = self.chooser.getCurrentDirectory()
+        self.defaultPath = io.File( JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MEDIAPATH) )
         self.setHelpArray()
         self.loadSuccess()
 
-        self.gui.changeSkin(self.skin)
+        self.gui.changeSkin( JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_SKIN) )
         self.gui.show()
 
-        if self.blockBoxOff:
+        if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BLOCK):
             self.gui.editor.removeBox()
-        elif not self.blockBoxOff:
+        else:
             self.gui.editor.addBox()
 
-        if self.gutterOn:
+        if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_GUTTER):
             self.gui.turnOnGutter()
-        elif self.gutterOn == 0:
+        else:
             self.gui.turnOffGutter()
 
         # self.checkForConfigFile()
             ## do these once we're started...
 
         # later is now!
-        if self.getSettingsLater:
+        #if self.getSettingsLater:
             #self.openSettingsGUI()
+            #self.openIntroductionWindow()
+
+        #Show introduction window if settings could not be loaded (Either new JES user or bad write permissions)
+        if not JESConfig.getInstance().isConfigLoaded():
+            self.openSettingsGUI()
             self.openIntroductionWindow()
             
         #self.gui.repaint()
@@ -185,14 +192,13 @@ class JESProgram:
                 self.gui.editor.modified = 0
                 self.gui.setFileName(os.path.basename(self.filename))
                 
-		#Now write the backup
-		if(self.backupSave):
-		    backupPath = filePath+"bak"
-		    fileWriter = io.FileWriter(backupPath, 0)
-		    fileWriter.write(text)
-		    fileWriter.close()
-
-		return 1
+                #Now write the backup
+                if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BACKUPSAVE):
+                    backupPath = filePath+"bak"
+                    fileWriter = io.FileWriter(backupPath, 0)
+                    fileWriter.write(text)
+                    fileWriter.close()
+                return 1
             else:
                 return self.saveAs()
         except:
@@ -206,49 +212,49 @@ class JESProgram:
 #     save the file as.  If the user selects cancel, nothing happens.
 ################################################################################
     def saveAs(self):
-       try:
-        self.chooser.setCurrentDirectory(self.defaultPath)
-        text = self.gui.editor.getText()
-        self.chooser.setApproveButtonText("Save File")
-
-        returnVal = self.chooser.showSaveDialog(self.gui)
-        if returnVal ==  0: #User has chosen a file, so now it can be saved
-            #DNR
-            #file = open(self.chooser.getSelectedFile().getPath(),'w+')
-            #self.gui.setFileName(self.chooser.getSelectedFile().getName())
-            #text = text.splitlines(1)
-            #file.writelines(text)
-            #self.filename = file.name
-            #file.close()
-            #Commented out by AW: Trying to see if using java instead of jython
-            #gets rid of the newline errors
-
-            filePath = self.chooser.getSelectedFile().getPath()
-            self.filename = os.path.normpath(filePath)
-
-            fileWriter = io.FileWriter(filePath, 0)
-            fileWriter.write(text)
-            fileWriter.close()
+        try:
+            self.chooser.setCurrentDirectory(self.defaultPath)
+            text = self.gui.editor.getText()
+            self.chooser.setApproveButtonText("Save File")
             
-            self.defaultPath = self.chooser.getCurrentDirectory()
-            self.gui.editor.modified = 0
-            self.gui.setFileName(os.path.basename(self.filename))
-            self.logBuffer.saveLogFile(self.filename)
+            returnVal = self.chooser.showSaveDialog(self.gui)
+            if returnVal ==  0: #User has chosen a file, so now it can be saved
+                #DNR
+                #file = open(self.chooser.getSelectedFile().getPath(),'w+')
+                #self.gui.setFileName(self.chooser.getSelectedFile().getName())
+                #text = text.splitlines(1)
+                #file.writelines(text)
+                #self.filename = file.name
+                #file.close()
+                #Commented out by AW: Trying to see if using java instead of jython
+                #gets rid of the newline errors
 
-	    #Now write the backup
-	    if(self.backupSave):
-		backupPath = filePath+"bak"
-	    	fileWriter = io.FileWriter(backupPath, 0)
-	    	fileWriter.write(text)
-	    	fileWriter.close()
+                filePath = self.chooser.getSelectedFile().getPath()
+                self.filename = os.path.normpath(filePath)
 
-	    return 1
+                fileWriter = io.FileWriter(filePath, 0)
+                fileWriter.write(text)
+                fileWriter.close()
+
+                self.defaultPath = self.chooser.getCurrentDirectory()
+                self.gui.editor.modified = 0
+                self.gui.setFileName(os.path.basename(self.filename))
+                self.logBuffer.saveLogFile(self.filename)
+
+                #Now write the backup
+                if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BACKUPSAVE):
+                    backupPath = filePath+"bak"
+                    fileWriter = io.FileWriter(backupPath, 0)
+                    fileWriter.write(text)
+                    fileWriter.close()
+
+            return 1
         
-       except lang.Exception, e:
-       #TODO - fix
-         #Error handling for saveAs
-         e.printStackTrace()
-         return 0
+        except lang.Exception, e:
+        #TODO - fix
+            #Error handling for saveAs
+            e.printStackTrace()
+            return 0
 
 ################################################################################
 # Function name: checkForSave
@@ -543,31 +549,31 @@ class JESProgram:
 #      brought up so that the user can create the settings file.
 #
 ################################################################################
-    def loadConfigFile(self):
-        array = self.readFromConfigFile()
-
-        if(None == array):
-            print "No config file found, making a new one!"
-            #Config File doesn't exist, need to create, also need to introduce
-            #the user to JES.
-
-            self.makeNewConfigFile('','','',JESConstants.BEGINNER_MODE, JESConstants.MID_FONT, '')
-            self.getSettingsLater = 1
-        else:
-            self.userExperience=array[JESConstants.CONFIG_MODE]
-            self.userFont=int(array[JESConstants.CONFIG_FONT])
-            self.gutterOn = int(array[JESConstants.CONFIG_GUTTER])
-            self.blockBoxOff = int(array[JESConstants.CONFIG_BLOCK])
-            self.webDefinitions = array[JESConstants.CONFIG_WEB_TURNIN]
-            self.autoSaveOnRun = int(array[JESConstants.CONFIG_AUTOSAVEONRUN])
-            self.backupSave = int(array[JESConstants.CONFIG_BACKUPSAVE])
-            self.mediaFolder = array[JESConstants.CONFIG_MEDIAPATH]
-            self.wrapPixelValues = int(array[JESConstants.CONFIG_WRAPPIXELVALUES])
-            self.logBuffer.saveBoolean = int(array[JESConstants.CONFIG_LOGBUFFER])
-            self.skin = array[JESConstants.CONFIG_SKIN] ## string value
-            self.showTurnin = int(array[JESConstants.CONFIG_SHOWTURNIN])
-            # print "check, program.skin:", self.skin
-
+#    def loadConfigFile(self):
+#        array = self.readFromConfigFile()
+#
+#        if(None == array):
+#            print "No config file found, making a new one!"
+#            #Config File doesn't exist, need to create, also need to introduce
+#            #the user to JES.
+#
+#            self.makeNewConfigFile('','','',JESConstants.BEGINNER_MODE, JESConstants.MID_FONT, '')
+#            self.getSettingsLater = 1
+#        else:
+#            self.userExperience=array[JESConstants.CONFIG_MODE]
+#            self.userFont=int(array[JESConstants.CONFIG_FONT])
+#            self.gutterOn = int(array[JESConstants.CONFIG_GUTTER])
+#            self.blockBoxOff = int(array[JESConstants.CONFIG_BLOCK])
+#            self.webDefinitions = array[JESConstants.CONFIG_WEB_TURNIN]
+#            self.autoSaveOnRun = int(array[JESConstants.CONFIG_AUTOSAVEONRUN])
+#            self.backupSave = int(array[JESConstants.CONFIG_BACKUPSAVE])
+#            self.mediaFolder = array[JESConstants.CONFIG_MEDIAPATH]
+#            self.wrapPixelValues = int(array[JESConstants.CONFIG_WRAPPIXELVALUES])
+#            self.logBuffer.saveBoolean = int(array[JESConstants.CONFIG_LOGBUFFER])
+#            self.skin = array[JESConstants.CONFIG_SKIN] ## string value
+#            self.showTurnin = int(array[JESConstants.CONFIG_SHOWTURNIN])
+#            # print "check, program.skin:", self.skin
+#
 ################################################################################
 # Function name: makeNewConfigFile
 # Parameters: self, name, gt, mail
@@ -576,21 +582,21 @@ class JESProgram:
 #        If an IO Error occurs, an error message is printed to the transcript.
 #
 ################################################################################
-    def makeNewConfigFile(self,name,gt,mail,usermode,font,email):
-        try:
-            self.saveOptions()
-
-            self.writeConfigListToFile( [[JESConstants.CONFIG_NAME, name],
-                                         [JESConstants.CONFIG_GT, gt],
-                                         [JESConstants.CONFIG_MAIL, mail],
-                                         [JESConstants.CONFIG_MODE, usermode],
-                                         [JESConstants.CONFIG_FONT, font],
-                                         [JESConstants.CONFIG_EMAIL_ADDR, email]])
-        except Exception, inst:
-            print type(inst)     # the exception instance
-            print inst.args      # arguments stored in .args
-            print 'Warning.  An unexpected IO Error has occurred in writeToConfigFile in JESProgram' 
-
+#    def makeNewConfigFile(self,name,gt,mail,usermode,font,email):
+#        try:
+#            self.saveOptions()
+#
+#            self.writeConfigListToFile( [[JESConstants.CONFIG_NAME, name],
+#                                         [JESConstants.CONFIG_GT, gt],
+#                                         [JESConstants.CONFIG_MAIL, mail],
+#                                         [JESConstants.CONFIG_MODE, usermode],
+#                                         [JESConstants.CONFIG_FONT, font],
+#                                         [JESConstants.CONFIG_EMAIL_ADDR, email]])
+#        except Exception, inst:
+#            print type(inst)     # the exception instance
+#            print inst.args      # arguments stored in .args
+#            print 'Warning.  An unexpected IO Error has occurred in writeToConfigFile in JESProgram' 
+#
 ################################################################################
 # Function name: writeConfigListToFile
 # Parameters:
@@ -601,47 +607,47 @@ class JESProgram:
 #     the configuration file.  The property list is in the format:
 #     [[JESConstants.CONFIG_GT, gtXXXXX], [JESConstants.CONFIG_GUTTER, 0], ...]
 ################################################################################
-    def writeConfigListToFile(self, array):
-        try:
-            oldarray = self.readFromConfigFile()
-            if(None == oldarray):
-                oldarray = [''] * JESConstants.CONFIG_NLINES
+#    def writeConfigListToFile(self, array):
+#        try:
+#            oldarray = self.readFromConfigFile()
+#            if(None == oldarray):
+#                oldarray = [''] * JESConstants.CONFIG_NLINES
+#
+#            # handle the "not there" case in the read function.
+#            ## if len(oldarray) < JESConfig.CONFIG_NLINES:
+#            ##     oldarray += [''] * (JESCONFIG.CONFIG_NLINES - len(oldarray))
+#
+#            for i in range(0, len(oldarray)):
+#                for element in array:
+#                    if element[0] == i:
+#                        oldarray[i] = element[1]
+#
+#            homedir=os.path.expanduser("~")
+#            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'w')
+#            #print oldarray
+#            for element in oldarray:
+#                f.write(str(element))
+#                f.write("\n")
+#            f.close()
+#        except Exception, e:
+#            print type(e)     # the exception instance
+#            print e.args      # arguments stored in .args
+#            print 'Warning: An unexpecter IO Error has occurred in writeConfigListToFile in JESProgram' 
+################################################################################
 
-            # handle the "not there" case in the read function.
-            ## if len(oldarray) < JESConfig.CONFIG_NLINES:
-            ##     oldarray += [''] * (JESCONFIG.CONFIG_NLINES - len(oldarray))
-
-            for i in range(0, len(oldarray)):
-                for element in array:
-                    if element[0] == i:
-                        oldarray[i] = element[1]
-
-            homedir=os.path.expanduser("~")
-            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'w')
-            #print oldarray
-            for element in oldarray:
-                f.write(str(element))
-                f.write("\n")
-            f.close()
-        except Exception, e:
-            print type(e)     # the exception instance
-            print e.args      # arguments stored in .args
-            print 'Warning: An unexpecter IO Error has occurred in writeConfigListToFile in JESProgram' 
-
-
-    def saveOptions(self):
-        "Write out the current options to the config file"
-        self.writeConfigListToFile([[JESConstants.CONFIG_MODE, self.userExperience],
-                                   [JESConstants.CONFIG_FONT, self.userFont],
-                                   [JESConstants.CONFIG_GUTTER, self.gutterOn],
-                                   [JESConstants.CONFIG_BLOCK, self.blockBoxOff],
-                                   [JESConstants.CONFIG_WRAPPIXELVALUES, self.wrapPixelValues],
-                                   [JESConstants.CONFIG_AUTOSAVEONRUN, self.autoSaveOnRun],
-                                   [JESConstants.CONFIG_BACKUPSAVE, self.backupSave],
-                                   [JESConstants.CONFIG_SHOWTURNIN, self.showTurnin],
-                                   [JESConstants.CONFIG_SKIN, self.skin],
-                                   [JESConstants.CONFIG_LOGBUFFER, self.logBuffer.saveBoolean],
-                                   [JESConstants.CONFIG_MEDIAPATH, self.mediaFolder] ])
+#    def saveOptions(self):
+#        "Write out the current options to the config file"
+#        self.writeConfigListToFile([[JESConstants.CONFIG_MODE, self.userExperience],
+#                                   [JESConstants.CONFIG_FONT, self.userFont],
+#                                   [JESConstants.CONFIG_GUTTER, self.gutterOn],
+#                                   [JESConstants.CONFIG_BLOCK, self.blockBoxOff],
+#                                   [JESConstants.CONFIG_WRAPPIXELVALUES, self.wrapPixelValues],
+#                                   [JESConstants.CONFIG_AUTOSAVEONRUN, self.autoSaveOnRun],
+#                                   [JESConstants.CONFIG_BACKUPSAVE, self.backupSave],
+#                                   [JESConstants.CONFIG_SHOWTURNIN, self.showTurnin],
+#                                   [JESConstants.CONFIG_SKIN, self.skin],
+#                                   [JESConstants.CONFIG_LOGBUFFER, self.logBuffer.saveBoolean],
+#                                   [JESConstants.CONFIG_MEDIAPATH, self.mediaFolder] ])
 
 
 ################################################################################
@@ -653,41 +659,42 @@ class JESProgram:
 #       In the case where it doesn't exist, return an array of the right
 #       length, with zeroes.
 ################################################################################
-    def readFromConfigFile(self):
-        try:
-            homedir=os.path.expanduser("~")
-            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'r')
-            text=f.read()
-            f.close()
-            array=text.splitlines()
+#    def readFromConfigFile(self):
+#        try:
+#            homedir=os.path.expanduser("~")
+#            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'r')
+#            text=f.read()
+#            f.close()
+#            array=text.splitlines()
+#
+#            if(len(array) < JESConstants.CONFIG_NLINES):
+#                print "you must be upgrading; adding blanks..."
+#
+#            while (len(array) < JESConstants.CONFIG_NLINES):
+#                array += ["0"]
+#
+#            return array
+#        except Exception, e:
+#            print type(e)     # the exception instance
+#            # print e.args      # arguments stored in .args
+#            # print "not failing silently!!"
+#            # return ['0'] * JESConstants.CONFIG_NLINES
+#            return None
+################################################################################
 
-            if(len(array) < JESConstants.CONFIG_NLINES):
-                print "you must be upgrading; adding blanks..."
+#    def grabSubmissionAddress():
+#        return JESConstants.TO_ADDR
 
-            while (len(array) < JESConstants.CONFIG_NLINES):
-                array += ["0"]
-
-            return array
-        except Exception, e:
-            print type(e)     # the exception instance
-            # print e.args      # arguments stored in .args
-            # print "not failing silently!!"
-            # return ['0'] * JESConstants.CONFIG_NLINES
-            return None
-
-    def grabSubmissionAddress():
-        return JESConstants.TO_ADDR
-
-    def grabFontSize(self):
-        try:
-            homedir=os.path.expanduser("~")
-            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'r')
-            text=f.read()
-            f.close()
-            array=text.splitlines()
-            return string.atoi(array[JESConstants.CONFIG_FONT])
-        except:
-            return JESConstants.FONT_SIZE       
+#    def grabFontSize(self):
+#        try:
+#            homedir=os.path.expanduser("~")
+#            f=open(homedir+io.File.separator+JESConstants.JES_CONFIG_FILE_NAME,'r')
+#            text=f.read()
+#            f.close()
+#            array=text.splitlines()
+#            return string.atoi(array[JESConstants.CONFIG_FONT])
+#        except:
+#            return JESConstants.FONT_SIZE       
 
 ## locally useful util functions.
 def getdigits(str):

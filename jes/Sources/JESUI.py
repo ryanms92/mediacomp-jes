@@ -8,7 +8,9 @@
 #          Prompt for saving changes on exit, and cancel option for
 #          users at promptSave. Support for "redo" - Buck Scharfnorth
 #          (hideRight for help fixed as of 7/04/08)
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESHomeworkTurninThread
 import JESCommandWindow
 import JESConstants
@@ -307,7 +309,7 @@ class JESUI(swing.JFrame):
 
     def __init__(self, program):
         try:
-            media.setColorWrapAround( program.wrapPixelValues )
+#            media.setColorWrapAround( program.wrapPixelValues )
             self.soundErrorShown = 0
             self.FocusOwner = None
             self.swing = swing
@@ -351,7 +353,7 @@ class JESUI(swing.JFrame):
             self.gutter = JESGutter(self.editor, self.editor.getFont())
             self.gutter.setPreferredSize(awt.Dimension(25,300))
             self.gutter.setBorder(swing.BorderFactory.createEtchedBorder())
-            if self.program.gutterOn:
+            if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_GUTTER):
                 self.docpane.add(self.gutter)
             self.docpane.add(self.editor)
 
@@ -582,9 +584,9 @@ class JESUI(swing.JFrame):
             self.helplist = []
 
             editorDocument = self.editor.getDocument()
-            editorDocument.changeFontSize(self.program.userFont)
+            editorDocument.changeFontSize(JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT))
             commandDocument = self.commandWindow.getDocument()
-            commandDocument.changeFontSize(self.program.userFont)
+            commandDocument.changeFontSize(JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT))
 
         except:
             import traceback
@@ -608,7 +610,7 @@ class JESUI(swing.JFrame):
 
         for eachMenu in MENU_OPTIONS:
 
-            if eachMenu[0] == TURNIN_TITLE and not self.program.showTurnin:
+            if eachMenu[0] == TURNIN_TITLE and not JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_SHOWTURNIN):
                 continue
 
             newMenu = swing.JMenu(eachMenu[0], actionPerformed=self.actionPerformed)
@@ -728,7 +730,8 @@ class JESUI(swing.JFrame):
                     SwingUtilities.updateComponentTreeUI(self.optionsWindow);
                     self.optionsWindow.pack()
 
-                self.program.skin = str(skin.getName())
+                JESConfig.getInstance().setStringProperty( JESConfig.CONFIG_SKIN, skin.getName() )
+                #self.program.skin = str(skin.getName())
                 # for some reason this is needed or the commandWindow will go dead
 #                self.program.interpreter.runCommand("printNow('')")
 #                self.commandWindow.restoreConsole('run')
@@ -822,7 +825,7 @@ class JESUI(swing.JFrame):
             bugreporter = JESBugReporter()
         elif (actionCommand == LOAD_BUTTON_CAPTION) or (actionCommand == COMMAND_LOAD):
             if self.editor.modified:
-                if self.program.autoSaveOnRun:
+                if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_AUTOSAVEONRUN):
                     self.program.saveFile()
                     self.program.loadFile()
                 #modified for promptSave cancel button - Buck Scharfnorth 29 May 2008
@@ -855,7 +858,8 @@ class JESUI(swing.JFrame):
             self.program.interpreter.toggle_debug_mode()
 
         elif actionCommand == AUTOSAVE:
-            self.program.autoSaveOnRun = not self.program.autoSaveOnRun
+            JESConfig.getInstance().setBooleanProperty(JESConfig.CONFIG_AUTOSAVEONRUN, not JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_AUTOSAVEONRUN) )
+            #self.program.autoSaveOnRun = not self.program.autoSaveOnRun
 
         elif actionCommand == COMMAND_PICTURE_TOOL:
             self.loadPictureTool()
@@ -985,8 +989,10 @@ class JESUI(swing.JFrame):
         if self.editor.modified:
             isSaved = self.promptSave(PROMPT_EXIT_MESSAGE)
             if isSaved > -1:
+                JESConfig.getInstance().writeConfig()
                 self.program.closeProgram()
         else:
+            JESConfig.getInstance().writeConfig()
             self.program.closeProgram()
 
 ################################################################################
@@ -1167,13 +1173,14 @@ class JESUI(swing.JFrame):
 #     Prints the current Document contained in JES
 ################################################################################
     def printCommand(self):
-        try:
-            #Sets up local variables according to an existing config file.
-            array=self.program.readFromConfigFile()
-            name=array[JESConstants.CONFIG_NAME]
-        except:
-            #If we have a problem, just set them all to the empty string
-            name='Unknown'
+        name = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME)
+#        try:
+#            #Sets up local variables according to an existing config file.
+#            array=self.program.readFromConfigFile()
+#            name=array[JESConstants.CONFIG_NAME]
+#        except:
+#            #If we have a problem, just set them all to the empty string
+#            name='Unknown'
         isSaved=1
         if self.editor.modified:
             #modified for promptSave cancel button - Buck Scharfnorth 29 May 2008
@@ -1225,14 +1232,16 @@ class JESUI(swing.JFrame):
 
 
     def UpdateName(self):
-        try:
-            array=self.program.readFromConfigFile()
-            name=array[JESConstants.CONFIG_NAME]
-            name='Current User: '+ name + '   '
-            self.nameStatusLabel.text =name
-            self.nameStatusLabel.setForeground(awt.Color.black)
-        except:
-            self.nameStatusLabel.text ='Not Registered   '
+        self.nameStatusLabel.text = 'Current User: ' + JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME)
+        self.nameStatusLabel.setForeground(awt.Color.black)
+#        try:
+#            array=self.program.readFromConfigFile()
+#            name=array[JESConstants.CONFIG_NAME]
+#            name='Current User: '+ name + '   '
+#            self.nameStatusLabel.text =name
+#            self.nameStatusLabel.setForeground(awt.Color.black)
+#        except:
+#            self.nameStatusLabel.text ='Not Registered   '
 
 ################################################################################
 # Function name: SetHelpFiles
@@ -1291,26 +1300,26 @@ class JESUI(swing.JFrame):
 ################################################################################
     def openSettings(self):
         if self.settingsWindow== None:
-            try:
-                #Sets up local variables according to an existing config file.
-                array=self.program.readFromConfigFile()
-                name=array[JESConstants.CONFIG_NAME]
-                gt=array[JESConstants.CONFIG_GT]
-
-                if(array[JESConstants.CONFIG_MAIL] == ''):
-                    mail=JESConstants.MAIL_SERVER #default to mail.gatech.edu
-                else:
-                    mail=array[JESConstants.CONFIG_MAIL]
-
-                mailaddr = array[JESConstants.CONFIG_EMAIL_ADDR]
-                webDefs = array[JESConstants.CONFIG_WEB_TURNIN]
-            except:
-                #If we have a problem, just set them all to the empty string
-                name=''
-                gt=''
-                mailaddr = ''
-                mail = JESConstants.MAIL_SERVER
-                webDefs = JESConstants.WEB_DEFINITIONS
+#            try:
+#                #Sets up local variables according to an existing config file.
+#                array=self.program.readFromConfigFile()
+#                name=array[JESConstants.CONFIG_NAME]
+#                gt=array[JESConstants.CONFIG_GT]
+#
+#                if(array[JESConstants.CONFIG_MAIL] == ''):
+#                    mail=JESConstants.MAIL_SERVER #default to mail.gatech.edu
+#                else:
+#                    mail=array[JESConstants.CONFIG_MAIL]
+#
+#                mailaddr = array[JESConstants.CONFIG_EMAIL_ADDR]
+#                webDefs = array[JESConstants.CONFIG_WEB_TURNIN]
+#            except:
+#                #If we have a problem, just set them all to the empty string
+#                name=''
+#                gt=''
+#                mailaddr = ''
+#                mail = JESConstants.MAIL_SERVER
+#                webDefs = JESConstants.WEB_DEFINITIONS
             #Creating the window
             self.settingsWindow=swing.JFrame("JES Settings")
             self.settingsWindow.contentPane.layout = awt.GridLayout(0,2)
@@ -1319,15 +1328,15 @@ class JESUI(swing.JFrame):
                     actionPerformed=self.settingsButtonPressed)
             cancelbutton= swing.JButton("Cancel",preferredSize=(100,20),
                     actionPerformed=self.settingsButtonPressed)
-            self.namefield= swing.JTextField(name,preferredSize=(200,20))
+            self.namefield= swing.JTextField(JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME),preferredSize=(200,20))
             namelabel=swing.JLabel("Name:")
-            self.gtfield= swing.JTextField(gt,preferredSize=(200,20))
+            self.gtfield= swing.JTextField(JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_GT),preferredSize=(200,20))
             gtlabel=swing.JLabel("Student #:")
-            self.mailaddrfield= swing.JTextField(mailaddr,preferredSize=(200,20))
+            self.mailaddrfield= swing.JTextField(JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_EMAIL_ADDR),preferredSize=(200,20))
             mailaddrlabel=swing.JLabel("Email Address:")
-            self.mailfield= swing.JTextField(mail,preferredSize=(200,20))
+            self.mailfield= swing.JTextField(JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MAIL),preferredSize=(200,20))
             maillabel=swing.JLabel("Mail Server:")
-            self.webDefsField = swing.JTextField(webDefs, preferredSize=(200,20))
+            self.webDefsField = swing.JTextField(JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_WEB_TURNIN), preferredSize=(200,20))
             webDefslabel = swing.JLabel("Turnin Definitions:")
             self.settingsWindow.contentPane.add(namelabel)
             self.settingsWindow.contentPane.add(self.namefield)
@@ -1400,18 +1409,19 @@ class JESUI(swing.JFrame):
             pass
             self.settingsWindow.hide()
         else:
-            list = []
-            if self.namefield.text != None:
-                list.append([JESConstants.CONFIG_NAME, self.namefield.text])
-            if self.gtfield.text != None:
-                list.append([JESConstants.CONFIG_GT, self.gtfield.text])
-            if self.mailfield.text != None:
-                list.append([JESConstants.CONFIG_MAIL, self.mailfield.text])
-            if self.mailaddrfield.text != None:
-                list.append([JESConstants.CONFIG_EMAIL_ADDR, self.mailaddrfield.text])
-            if self.webDefsField.text != None:
-                list.append([JESConstants.CONFIG_WEB_TURNIN, self.webDefsField.text])
-            self.program.writeConfigListToFile(list)
+            JESConfig.getInstance().writeConfig()
+#            list = []
+#            if self.namefield.text != None:
+#                list.append([JESConstants.CONFIG_NAME, self.namefield.text])
+#            if self.gtfield.text != None:
+#                list.append([JESConstants.CONFIG_GT, self.gtfield.text])
+#            if self.mailfield.text != None:
+#                list.append([JESConstants.CONFIG_MAIL, self.mailfield.text])
+#            if self.mailaddrfield.text != None:
+#                list.append([JESConstants.CONFIG_EMAIL_ADDR, self.mailaddrfield.text])
+#            if self.webDefsField.text != None:
+#                list.append([JESConstants.CONFIG_WEB_TURNIN, self.webDefsField.text])
+#            self.program.writeConfigListToFile(list)
             self.UpdateName()
             self.settingsWindow.hide()
 
@@ -1471,13 +1481,13 @@ class JESUI(swing.JFrame):
             self.listPane=swing.JScrollPane(self.list)
             self.listPane.preferredSize=(100,100)
             try:
-                array=self.program.readFromConfigFile()
-                name=array[JESConstants.CONFIG_NAME]
-                gt=array[JESConstants.CONFIG_GT]
-                mail=array[JESConstants.CONFIG_MAIL]
-                namelabel=swing.JLabel("Name: "+name)
+#                array=self.program.readFromConfigFile()
+#                name=array[JESConstants.CONFIG_NAME]
+#                gt=array[JESConstants.CONFIG_GT]
+#                mail=array[JESConstants.CONFIG_MAIL]
+                namelabel=swing.JLabel("Name: "+JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME))
                 maillabel=swing.JLabel("Media Files Attached: ")
-                gtlabel=swing.JLabel("Student ID#: "+gt)
+                gtlabel=swing.JLabel("Student ID#: "+JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_GT))
                 blanklabel=swing.JLabel("")
 
                 #Layout the components
@@ -1551,7 +1561,7 @@ class JESUI(swing.JFrame):
         if event.source.text=='Turnin':
             try:
                 isSaved=1
-                array=self.program.readFromConfigFile()
+#                array=self.program.readFromConfigFile()
 
                 title= self.titlefield.getSelectedItem()
                 if self.editor.modified:
@@ -1561,7 +1571,7 @@ class JESUI(swing.JFrame):
                     isSaved=0
                 #modified for promptSave cancel button - Buck Scharfnorth 29 May 2008
                 if isSaved > 0:
-                    if array[JESConstants.CONFIG_GT] == '':
+                    if JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_GT) == '':
                         self.turninWindow.dispose()
                         self.errorWindow=swing.JFrame()
                         swing.JOptionPane.showMessageDialog(self,
@@ -1569,7 +1579,7 @@ class JESUI(swing.JFrame):
                                                             'Turnin cannot complete.',
                                                             swing.JOptionPane.WARNING_MESSAGE)
                         self.openSettings()
-                    elif array[JESConstants.CONFIG_EMAIL_ADDR] == '':
+                    elif JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_EMAIL_ADDR) == '':
                         self.turninWindow.dispose()
                         self.errorWindow=swing.JFrame()
                         swing.JOptionPane.showMessageDialog(self,
@@ -1577,7 +1587,7 @@ class JESUI(swing.JFrame):
                                                             'Turnin cannot complete.',
                                                             swing.JOptionPane.WARNING_MESSAGE)
                         self.openSettings()
-                    elif array[JESConstants.CONFIG_NAME] == '':
+                    elif JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME) == '':
                         self.turninWindow.dispose()
                         self.errorWindow=swing.JFrame()
                         swing.JOptionPane.showMessageDialog(self,
@@ -1588,7 +1598,7 @@ class JESUI(swing.JFrame):
                     else:
                         if title !='Assignments':
                             filename=self.program.filename
-                            gt=array[JESConstants.CONFIG_GT]
+#                            gt=array[JESConstants.CONFIG_GT]
                             zip=self.buildFileArchive(gt,title,filename)
                             j = JESHomeworkSubmission.JESHomeworkSubmission(title,filename,zip)
                             thread = JESHomeworkTurninThread.JESHomeworkTurninThread(j,self,zip)
@@ -1675,7 +1685,7 @@ class JESUI(swing.JFrame):
             if name.strip() != fileToSend.strip():
                file.write(name,os.path.basename(name),zipfile.ZIP_DEFLATED)
         file.write(fileToSend,os.path.basename(fileToSend),zipfile.ZIP_DEFLATED)
-        if self.program.logBuffer.saveBoolean:
+        if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_LOGBUFFER):
             file.write(fileToSend+'log',os.path.basename(fileToSend+'log'),zipfile.ZIP_DEFLATED)
         #Create and add a text file with the notes to the TA:
         notesTA = open(".notesTA.txt", "w")
@@ -1741,43 +1751,16 @@ class JESUI(swing.JFrame):
         skinlabel = swing.JLabel("Skin:")
         showturninlabel = swing.JLabel("Show Turnin Menu")
 
-        if self.program.autoSaveOnRun:
-            self.autosaveBox = swing.JCheckBox("", 1)
-        else:
-            self.autosaveBox = swing.JCheckBox("", 0)
-
-	if self.program.backupSave:
-	    self.backupSaveBox = swing.JCheckBox("",1)
-	else:
-	    self.backupSaveBox = swing.JCheckBox("",0)
-
-        if self.program.wrapPixelValues:
-            self.wrappixelBox = swing.JCheckBox("", 1)
-        else:
-            self.wrappixelBox = swing.JCheckBox("", 0)
-
-        if self.program.gutterOn:
-            self.gutterBox = swing.JCheckBox("", 1)
-        else:
-            self.gutterBox = swing.JCheckBox("", 0)
-
-        if self.program.showTurnin:
-            self.showTurninBox = swing.JCheckBox("", 1)
-        else:
-            self.showTurninBox = swing.JCheckBox("", 0)
-
+        self.autosaveBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_AUTOSAVEONRUN) )
+        self.backupSaveBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BACKUPSAVE) )
+        self.wrappixelBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES) )
+        self.gutterBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_GUTTER) )
+        self.showTurninBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_SHOWTURNIN) )
         ## alexr flopped the sense of this checkbox
-        if not self.program.blockBoxOff:
-            self.blockBox = swing.JCheckBox("", 1)
-        else:
-            self.blockBox = swing.JCheckBox("", 0)
+        self.blockBox = swing.JCheckBox( "", not JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BLOCK) )
+        self.loggerBox = swing.JCheckBox( "", JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_LOGBUFFER) )
 
-        if self.program.logBuffer.saveBoolean:
-            self.loggerBox = swing.JCheckBox("", 1)
-        else:
-            self.loggerBox = swing.JCheckBox("", 0)
-            
-        if self.program.userExperience ==  JESConstants.BEGINNER_MODE:
+        if JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MODE) ==  JESConstants.BEGINNER_MODE:
             self.userExperienceField = swing.JComboBox( JESConstants.USER_MODES)
         else:
             self.userExperienceField = swing.JComboBox( JESConstants.USER_MODES_2)
@@ -1789,7 +1772,7 @@ class JESUI(swing.JFrame):
 #        else:
 #            self.userFontField = swing.JComboBox( JESConstants.FONT_MODE_HIGH)
         fontSizes = range(JESConstants.LOW_FONT, JESConstants.MID_FONT + 1, 2)
-        userFont = int(self.program.userFont)
+        userFont = int(JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT))
         self.userFontField = swing.JComboBox( fontSizes )
         self.userFontField.setEditable(1)
         if userFont in fontSizes:
@@ -1827,8 +1810,8 @@ class JESUI(swing.JFrame):
         self.optionsWindow.contentPane.add(autosavelabel)
         self.optionsWindow.contentPane.add(self.autosaveBox)
 
-	self.optionsWindow.contentPane.add(backupsavelabel)
-	self.optionsWindow.contentPane.add(self.backupSaveBox)
+        self.optionsWindow.contentPane.add(backupsavelabel)
+        self.optionsWindow.contentPane.add(self.backupSaveBox)
         # self.optionsWindow.contentPane.add(self.autoopenBox)
 
         self.optionsWindow.contentPane.add(wrappixellabel)
@@ -1845,50 +1828,47 @@ class JESUI(swing.JFrame):
 
     def optionsButtonPressed(self,event):
         if event.source.text=='Done':
-            self.program.userExperience = self.userExperienceField.getSelectedItem()
+            JESConfig.getInstance().setStringProperty( JESConfig.CONFIG_MODE, self.userExperienceField.getSelectedItem() )
 
             chosenFontSize = self.userFontField.getSelectedItem()
             if ( not str(chosenFontSize).isdigit() ):
-                chosenFontSize = self.program.userFont
+                chosenFontSize = JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT);
             elif ( chosenFontSize < 1 ):
                 chosenFontSize = 1
             elif ( chosenFontSize > JESConstants.HIGH_FONT ):
                 chosenFontSize = JESConstants.HIGH_FONT
                 
-            self.program.userFont = chosenFontSize
-            self.program.blockBoxOff = not self.blockBox.isSelected()
-            self.program.gutterOn = self.gutterBox.isSelected()
-            self.program.logBuffer.saveBoolean=self.loggerBox.isSelected()
-
-            self.program.autoSaveOnRun = self.autosaveBox.isSelected()
-            self.program.backupSave = self.backupSaveBox.isSelected()
-            self.program.wrapPixelValues = self.wrappixelBox.isSelected()
-            media.setColorWrapAround( self.program.wrapPixelValues )
-
-            if(self.program.showTurnin != self.showTurninBox.isSelected()):
-                self.program.showTurnin = self.showTurninBox.isSelected()
+            JESConfig.getInstance().setIntegerProperty( JESConfig.CONFIG_FONT, chosenFontSize )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_BLOCK, not self.blockBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_GUTTER, self.gutterBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_LOGBUFFER, self.loggerBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_AUTOSAVEONRUN, self.autosaveBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_BACKUPSAVE, self.backupSaveBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_WRAPPIXELVALUES, self.wrappixelBox.isSelected() )
+            if( JESConfig.getInstance().getBooleanProperty( JESConfig.CONFIG_SHOWTURNIN ) != self.showTurninBox.isSelected() ):
+                JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_SHOWTURNIN, self.showTurninBox.isSelected() )
                 self.addmenu()
                 self.pack()
                 ## self.update(self.getGraphics())
 
-            self.program.saveOptions()
+            JESConfig.getInstance().writeConfig()
 
             self.optionsWindow.dispose()
             # change fonts on the fly.
             editorDocument = self.editor.getDocument()
-            editorDocument.changeFontSize(self.program.userFont)
+            editorDocument.changeFontSize(chosenFontSize)
             commandDocument = self.commandWindow.getDocument()
-            commandDocument.changeFontSize(self.program.userFont)
+            commandDocument.changeFontSize(chosenFontSize)
 
-            if self.program.blockBoxOff:
+            if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BLOCK):
                 self.editor.removeBox()
             else:
                 self.editor.addBox()
 
-            if self.program.gutterOn == 0:
-                self.turnOffGutter()
-            else:
+            if JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_GUTTER):
                 self.turnOnGutter()
+            else:
+                self.turnOffGutter()
 
         else:
             self.optionsWindow.dispose()

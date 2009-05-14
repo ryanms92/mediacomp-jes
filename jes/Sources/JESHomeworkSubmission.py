@@ -2,7 +2,9 @@
 #Copyright (C) 2002  Jason Ergle, Claire Bailey, David Raines
 #See JESCopyright.txt for full licensing information
 #This class, Copyright 2003  Adam Wilson, Yu Cheung Ho, Larry Olson, Eric Mickley
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import smtplib
 import JESConstants
 import JESAddressFinder
@@ -37,15 +39,15 @@ import java.lang.System as system
 ####################################################################
 class JESHomeworkSubmission:
     def __init__(self, hwTitle, fileName, zipFile):
-	config = self.readFromConfigFile()
-	self.studentName =  config[JESConstants.CONFIG_NAME]
-	self.gtNumber = config[JESConstants.CONFIG_GT]
-	self.mailServer = config[JESConstants.CONFIG_MAIL]
-	self.studentEmail = config[JESConstants.CONFIG_EMAIL_ADDR]
+#       config = self.readFromConfigFile()
+        self.studentName =  JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME)
+        self.gtNumber = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_GT)
+        self.mailServer = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MAIL)
+        self.studentEmail = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_EMAIL_ADDR)
         self.cowebPort = 80
-	self.hwTitle = hwTitle
-	self.fileName = fileName
-	self.zipFile = zipFile
+        self.hwTitle = hwTitle
+        self.fileName = fileName
+        self.zipFile = zipFile
 
 
 
@@ -94,7 +96,7 @@ class JESHomeworkSubmission:
             a,b,c=sys.exc_info()
             print a,b,c
             emailError = 1
-	try:
+        try:
             if doCoWeb:
                 self.cowebTurnin()
         except Exception:
@@ -116,7 +118,7 @@ class JESHomeworkSubmission:
 #     it sends the email through the defined SMTP server.
 ####################################################################
     def emailTurnin(self):
-	#Get email information
+        #Get email information
         try:
             addr = JESAddressFinder.JESAddressFinder()
             taEmail = addr.getTargetAddress(self.gtNumber, self.hwTitle)
@@ -125,10 +127,10 @@ class JESHomeworkSubmission:
                 return            
             
             filehandle = open(self.zipFile,"rb")
-	   #CONSTRUCT EMAIL
-	   #Build the email from all the parts of information:
+           #CONSTRUCT EMAIL
+           #Build the email from all the parts of information:
             subject = "%s : %s : %s : %s" % \
-		      (self.hwTitle, self.studentName, self.gtNumber, self.fileName)  
+                      (self.hwTitle, self.studentName, self.gtNumber, self.fileName)  
             msgBody = 'From: %s\n' % self.studentEmail
             msgBody += 'Subject: %s\n' % subject
             file = StringIO.StringIO()
@@ -148,9 +150,9 @@ class JESHomeworkSubmission:
             mime.lastpart()
             msgBody += file.getvalue()
             filehandle.close()
-	   #END CONSTRUCT EMAIL
-	    #SEND EMAIL:
-	    servObj = smtplib.SMTP(self.mailServer)
+           #END CONSTRUCT EMAIL
+            #SEND EMAIL:
+            servObj = smtplib.SMTP(self.mailServer)
             servObj.sendmail(self.studentEmail, taEmail, msgBody)
         except:
             print "Student E-mail: " + self.studentEmail + "\n"
@@ -158,7 +160,7 @@ class JESHomeworkSubmission:
             a,b,c=sys.exc_info()
             print a,b,c
             raise StandardError, "Error emailing assignment."
-	
+
 
 
 
@@ -170,30 +172,29 @@ class JESHomeworkSubmission:
 #     turnin definitions via the .attach script.
 ####################################################################
     def cowebTurnin(self):
-	try:
-	    filehandle = open(self.zipFile,"rb")
+        try:
+            filehandle = open(self.zipFile,"rb")
             url = net.URL(JESConstants.HW_COWEB_ADDRESS_URL)
             host = url.getHost()
             port = url.getPort()
-	    finder = JESURLFinder.JESURLFinder()
+            finder = JESURLFinder.JESURLFinder()
             turninURL = finder.getTargetURL(self.gtNumber, string.strip(self.hwTitle))
             if(turninURL == -1): # check if url is not found - RJC
                 raise StandardError, "Unable to find a valid upload url for assignment."           
             
-	    selector = string.strip(turninURL[turninURL.find("/"):]) + JESConstants.HW_COWEB_ATTACH_SUFFIX
+            selector = string.strip(turninURL[turninURL.find("/"):]) + JESConstants.HW_COWEB_ATTACH_SUFFIX
             fields = [['specific', 'true'], ['reference', 'true']]
-	    files = [['filestuff', os.path.basename(self.zipFile), filehandle.read()]]
+            files = [['filestuff', os.path.basename(self.zipFile), filehandle.read()]]
             response = self.post_multipart(host, port, selector, fields, files)
-	    if response.status < 200 or response.status > 399:
-	    	system.out.println("Server resonded with unsuccessful message")
-		raise StandardError
-	    return response
-	except:
+            if response.status < 200 or response.status > 399:
+                system.out.println("Server resonded with unsuccessful message")
+                raise StandardError
+            return response
+        except:
             import sys
             a,b,c = sys.exc_info()
             print a,b,c
-	    raise StandardError, "Error turning in to the Coweb."
-	
+            raise StandardError, "Error turning in to the Coweb."
 
 ################################################################################
 # Function name: readFromConfigFile

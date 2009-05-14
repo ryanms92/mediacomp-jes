@@ -8,7 +8,9 @@
 #	   to prevent multiple highlightings which can't be undone. -AdamW
 # 5/15/03: added comment and string highlighting. - AdamW
 # 5/29/08: added support for "redo" - Buck Scharfnorth
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESConstants
 import JESUndoableEdit
 import java.awt as awt
@@ -48,39 +50,40 @@ class JESEditorDocument(HighlightingStyledDocument):
         self.jesEnvironmentWordAttrib = swing.text.SimpleAttributeSet()
         self.errorLineAttrib = swing.text.SimpleAttributeSet()
         self.highlightLineAttrib = swing.text.SimpleAttributeSet()
-	self.commentAttrib = swing.text.SimpleAttributeSet()
-	self.stringAttrib = swing.text.SimpleAttributeSet()
+        self.commentAttrib = swing.text.SimpleAttributeSet()
+        self.stringAttrib = swing.text.SimpleAttributeSet()
         self.lParenAttrib = swing.text.SimpleAttributeSet()
         self.rParenAttrib = swing.text.SimpleAttributeSet()
-	self.needToSetEnvironment = 1
+        self.needToSetEnvironment = 1
+        self.fontSize = JESConfig.getInstance().getIntegerProperty( JESConfig.CONFIG_FONT )
 
-	swing.text.StyleConstants.setForeground(self.stringAttrib, JESConstants.STRING_COLOR)
+        swing.text.StyleConstants.setForeground(self.stringAttrib, JESConstants.STRING_COLOR)
         swing.text.StyleConstants.setFontFamily(self.stringAttrib, "Monospaced");
 
-	swing.text.StyleConstants.setForeground(self.commentAttrib, JESConstants.COMMENT_COLOR)
+        swing.text.StyleConstants.setForeground(self.commentAttrib, JESConstants.COMMENT_COLOR)
         swing.text.StyleConstants.setFontFamily(self.commentAttrib, "Monospaced");
 
         swing.text.StyleConstants.setForeground(self.jesEnvironmentWordAttrib, JESConstants.ENVIRONMENT_WORD_COLOR)
         swing.text.StyleConstants.setBold(self.jesEnvironmentWordAttrib, KEYWORD_BOLD)
-        swing.text.StyleConstants.setFontSize(self.jesEnvironmentWordAttrib, self.editor.program.userFont)
-        swing.text.StyleConstants.setFontSize(self.textAttrib, self.editor.program.userFont)
+        swing.text.StyleConstants.setFontSize(self.jesEnvironmentWordAttrib, self.fontSize)
+        swing.text.StyleConstants.setFontSize(self.textAttrib, self.fontSize)
         swing.text.StyleConstants.setBackground(self.textAttrib, awt.Color.white)
         swing.text.StyleConstants.setFontFamily(self.jesEnvironmentWordAttrib, "Monospaced");
         swing.text.StyleConstants.setFontFamily(self.textAttrib, "Monospaced");
 
         swing.text.StyleConstants.setForeground(self.keywordAttrib, JESConstants.KEYWORD_COLOR)
         swing.text.StyleConstants.setBold(self.keywordAttrib, KEYWORD_BOLD)
-        swing.text.StyleConstants.setFontSize(self.keywordAttrib, self.editor.program.userFont)
+        swing.text.StyleConstants.setFontSize(self.keywordAttrib, self.fontSize)
         swing.text.StyleConstants.setFontFamily(self.keywordAttrib, "Monospaced");
 
         swing.text.StyleConstants.setForeground(self.lParenAttrib, JESConstants.LPAREN_COLOR)
         swing.text.StyleConstants.setBold(self.lParenAttrib, INVALID_PAREN_BOLD)
-        swing.text.StyleConstants.setFontSize(self.lParenAttrib, self.editor.program.userFont)
+        swing.text.StyleConstants.setFontSize(self.lParenAttrib, self.fontSize)
         swing.text.StyleConstants.setFontFamily(self.lParenAttrib, "Monospaced");
 
         swing.text.StyleConstants.setForeground(self.rParenAttrib, JESConstants.RPAREN_COLOR)
         swing.text.StyleConstants.setBold(self.rParenAttrib, INVALID_PAREN_BOLD)
-        swing.text.StyleConstants.setFontSize(self.rParenAttrib, self.editor.program.userFont)
+        swing.text.StyleConstants.setFontSize(self.rParenAttrib, self.fontSize)
         swing.text.StyleConstants.setFontFamily(self.rParenAttrib, "Monospaced");
 
         swing.text.StyleConstants.setForeground(self.errorLineAttrib, ERROR_LINE_FONT_COLOR)
@@ -129,13 +132,11 @@ class JESEditorDocument(HighlightingStyledDocument):
         swing.text.StyleConstants.setFontSize(self.commentAttrib, newFontSize)
         swing.text.StyleConstants.setFontSize(self.stringAttrib, newFontSize)
         swing.text.StyleConstants.setFontSize(self.textAttrib, newFontSize)
-        swing.text.StyleConstants.setFontSize(self.jesEnvironmentWordAttrib,
-newFontSize)
+        swing.text.StyleConstants.setFontSize(self.jesEnvironmentWordAttrib, newFontSize)
         swing.text.StyleConstants.setFontSize(self.rParenAttrib, newFontSize)
         swing.text.StyleConstants.setFontSize(self.lParenAttrib, newFontSize);
         swing.text.StyleConstants.setFontSize(self.keywordAttrib, newFontSize)
-        HighlightingStyledDocument.updateHighlightingInRange(self, 0,
-HighlightingStyledDocument.getLength(self))
+        HighlightingStyledDocument.updateHighlightingInRange(self, 0, HighlightingStyledDocument.getLength(self))
         self.editor.gui.gutter.repaint()
 
 ################################################################################
@@ -211,7 +212,7 @@ HighlightingStyledDocument.getLength(self))
     def removeLineHighlighting(self):
 	#Unhighlight a line if showHighlightLine was called earlier
         self.editor.gui.gutter.removeLineMark()
-	self.editor.gui.gutter.repaint()
+        self.editor.gui.gutter.repaint()
         #if self.highlightLineStart >= 0:
             #self.
             #HighlightingStyledDocument.updateHighlightingInRange(self, self.highlightLineStart,

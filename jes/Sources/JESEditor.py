@@ -3,7 +3,9 @@
 #See JESCopyright.txt for full licensing information
 #Revisions:
 # 5/29/08: added support for "redo" - Buck Scharfnorth
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESConstants
 import JESEditorDocument
 import java.awt as awt
@@ -100,7 +102,7 @@ class JESEditor(swing.JTextPane,
         col = elementIndex + 1
         self.gui.UpdateRowCol(row, col)
         self.checkIfOnKeyword()
-        if not self.program.blockBoxOff:
+        if not JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_BLOCK):
             self.updateBox(offset)
             #print str(self.isBlank(offset))
             self.repaint()

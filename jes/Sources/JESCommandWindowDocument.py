@@ -1,7 +1,9 @@
 #JES- Jython Environment for Students
 #Copyright (C) 2002  Jason Ergle, Claire Bailey, David Raines, Joshua Sklare
 #See JESCopyright.txt for full licensing information
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESCommandWindow
 import JESConstants
 import java.awt as awt
@@ -29,8 +31,7 @@ class JESCommandWindowDocument(DefaultStyledDocument):
     def __init__(self, command):
         self.command = command
         self.textAttrib = swing.text.SimpleAttributeSet()
-        swing.text.StyleConstants.setFontSize(self.textAttrib,
-                                              self.command.program.userFont)
+        swing.text.StyleConstants.setFontSize(self.textAttrib, JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT))
         swing.text.StyleConstants.setForeground(self.textAttrib, colors.yellow)
 
 ################################################################################

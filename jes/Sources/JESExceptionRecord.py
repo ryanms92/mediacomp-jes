@@ -1,7 +1,9 @@
 #JES- Jython Environment for Students
 #Copyright (C) 2002  Jason Ergle, Claire Bailey, David Raines, Joshua Sklare
 #See JESCopyright.txt for full licensing information
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
+import JESConfig
 import JESConstants
 import sys
 #import test
@@ -320,7 +322,7 @@ class JESExceptionRecord:
 # message.
 ######################################################################
     def getNameOfExcMsg(self,exc_type,exc_value):
-        if self.programObj.userExperience == JESConstants.EXPERT_MODE:
+        if JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MODE) == JESConstants.EXPERT_MODE:
             
 
             return "%s: %s\n" % (exc_type.__name__, exc_value)
@@ -363,7 +365,7 @@ class JESExceptionRecord:
     
     def getStackMsg(self,txtStack):
         
-        if self.programObj.userExperience == JESConstants.EXPERT_MODE:
+        if JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MODE) == JESConstants.EXPERT_MODE:
             stackMsg = ''
 
             count = 1

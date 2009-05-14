@@ -2,8 +2,9 @@
 # Copyright (C) 2002-2007 the JES team 
 # See JESCopyright.txt for full licensing information
 # This class, Copyright 2007, Alex Rudnick
+# 5/13/09: Changes for redesigning configuration writing from python to java -Buck
 
-
+import JESConfig
 import java.awt as awt
 import java.util as util
 import java.awt.Event as Event
@@ -106,8 +107,9 @@ class JESBugReporter(swing.JFrame):
         # (submit) (cancel)
 
     def buildBugReport(self):
-        config = self.readFromConfigFile()
-	studentName = config[JESConstants.CONFIG_NAME]
+        studentName = JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_NAME)
+#        config = self.readFromConfigFile()
+#        studentName = config[JESConstants.CONFIG_NAME]
 
         if(len(studentName) > 0):
             firstname = studentName.split()[0]
@@ -142,16 +144,16 @@ class JESBugReporter(swing.JFrame):
         data = response.read()
         conn.close()
 
-    def readFromConfigFile(self):
-        try:
-            homedir=os.path.expanduser("~")
-            f=open(homedir+io.File.separator + JESConstants.JES_CONFIG_FILE_NAME,'r')
-            text=f.read()
-            f.close()
-            array=text.splitlines()
-            return array
-        except:
-            print "Error reading configuration file."
-            return ['Somebody']
+#    def readFromConfigFile(self):
+#        try:
+#            homedir=os.path.expanduser("~")
+#            f=open(homedir+io.File.separator + JESConstants.JES_CONFIG_FILE_NAME,'r')
+#            text=f.read()
+#            f.close()
+#            array=text.splitlines()
+#            return array
+#        except:
+#            print "Error reading configuration file."
+#            return ['Somebody']
             ## slightly gross; we're assuming that the name is always going
             ## to be the first thing in the file.

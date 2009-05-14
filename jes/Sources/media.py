@@ -396,10 +396,9 @@ plain = awt.Font.PLAIN
 
 # Buck Scharfnorth (28 May 2008): if bool == 1 colors will be (value % 256)
 # 				  if bool == 0 colors will be truncated to 0 or 255
-# THIS GLOBAL FUNCTION DOES NOT CHANGE JES SETTINGS - this value is prefered
-# colorWrapAround can be restored to its value in the JES options menu by:
-# Running setColorWrapAround(bool) where bool is the default value, re-saving options,
-# or by restarting JES
+# updated (13 May 2009): 
+# THIS GLOBAL FUNCTION CHANGES JES SETTINGS - this value overwrites
+# the value in the JES options menu.
 def setColorWrapAround(bool):
     JESConfig.getInstance().setBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES, bool )
 

@@ -100,6 +100,7 @@ import MoviePlayer
 import MovieWriter
 import FileChooser
 import JESConfig
+from JESInputManager import JESInputManager
 
 import org.python.core.PyString as String
 
@@ -964,11 +965,14 @@ def requestString(message):
     return SimpleInput.getString(message)
 
 
+#5/15/09 Dorn: Updated input and raw_input to read from the console
 def input(message=None):
-    return eval( SimpleInput.getString(message) )
+    im = JESInputManager()
+    return eval(im.readInput(message))
 
 def raw_input(message=None):
-    return SimpleInput.getString(message)
+    im = JESInputManager()
+    return im.readInput(message)
     
 
 def showWarning(message):

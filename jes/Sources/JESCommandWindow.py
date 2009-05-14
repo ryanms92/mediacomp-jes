@@ -3,10 +3,14 @@
 #See JESCopyright.txt for full licensing information
 #Revisions:
 # 5/29/08: Added support for Redo - Buck Scharfnorth
+# 5/14/09: Made input and raw_input work through the console
 
 import JESConstants
 import JESCommandWindowDocument
 import JESCommandHistory
+
+#Dorn: for input and raw_input
+from JESInputManager import JESInputManager
 
 import string
 import sys
@@ -54,6 +58,11 @@ class JESCommandWindow(swing.JTextPane,
     def __init__(self, gui):
         self.program = gui.program
         self.gui = gui
+
+	# 5/14/09 Dorn:  added these lines to allow the input manager to 
+	# communicated with the command window to read for input and raw_input
+	self.inputManager = JESInputManager()
+	self.inputManager.setCommandWindow(self)
 
         self.inMultiLineCommand = None
         self.setDocument(JESCommandWindowDocument.JESCommandWindowDocument(self))
@@ -279,7 +288,18 @@ class JESCommandWindow(swing.JTextPane,
 
         #line = string.join(string.split(line,'\n'),'')
 
+	#5/14/09 Dorn: Before doing anything check to see if this is input
+	#needed for raw_input or input.  If so, we'll send the value to the
+	#inputManager and return early.  This must also be threadsafe
+	if self.inputManager.isWaiting():
+		#remove the \n from the end of the string
+		line = string.join(string.split(line,'\n'),'')
 
+		#disable keyboard again and send the value back
+		self.setKeymap(None);
+		self.inputManager.setReturnValue(line)
+		self.inputManager.setWaiting(False)
+		return
 
 
         # DNR - boolean, does the line end in a colon

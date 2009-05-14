@@ -938,6 +938,10 @@ def duplicatePicture(picture):
 
 ##
 # Input and Output interfaces
+#
+# Note: These calls must be done in a threadsafe manner since the JESThread will be
+# executing them rather than the GUI's event dispatch thread.  See SimpleInput/Output.java
+# for the threadsafe execution.
 ##
 
 #  radius = SimpleInput.getNumber("Enter the radius of the cylinder")
@@ -959,11 +963,13 @@ def requestIntegerInRange(message, min, max):
 def requestString(message):
     return SimpleInput.getString(message)
 
+
 def input(message=None):
     return eval( SimpleInput.getString(message) )
 
 def raw_input(message=None):
     return SimpleInput.getString(message)
+    
 
 def showWarning(message):
     return SimpleOutput.showWarning(message)

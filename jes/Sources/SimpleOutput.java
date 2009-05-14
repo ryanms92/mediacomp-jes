@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.SwingUtilities;
 import java.text.*;
 
 /**
@@ -7,6 +8,8 @@ import java.text.*;
  * 
  * Copyright Georgia Institute of Technology 2004
  * @author Barb Ericson ericson@cc.gatech.edu
+ *
+ * 14 May 2009:  Edited by Dorn to ensure all JOptionPane calls to show are threadsafe.
  */
 public class SimpleOutput
 {
@@ -18,8 +21,7 @@ public class SimpleOutput
   public static void showWarning(String message)
   {
     message = addNewLines(message);
-    JOptionPane.showMessageDialog(null,message,"Warning Display",
-                                  JOptionPane.WARNING_MESSAGE);
+    safeOutputDialog(message, "Warning Display", JOptionPane.WARNING_MESSAGE);
   }
   
   /**
@@ -29,8 +31,7 @@ public class SimpleOutput
   public static void showError(String message)
   {
     message = addNewLines(message);
-    JOptionPane.showMessageDialog(null,message,"Error Display",
-                                  JOptionPane.ERROR_MESSAGE);
+    safeOutputDialog(message, "Error Display", JOptionPane.ERROR_MESSAGE);
   }
   
   /**
@@ -40,8 +41,7 @@ public class SimpleOutput
   public static void showInformation(String message)
   {
     message = addNewLines(message);
-    JOptionPane.showMessageDialog(null, message, "Information Display",
-                                  JOptionPane.INFORMATION_MESSAGE);
+    safeOutputDialog(message, "Information Display", JOptionPane.INFORMATION_MESSAGE);
   }
   
   /**
@@ -91,6 +91,27 @@ public class SimpleOutput
       result = result + currLine;
     
     return result;
+  }
+
+  private static void safeOutputDialog(final String message, final String title, final int messageType)
+  {
+
+	Runnable promptStringRunner =
+		new Runnable() {
+			public void run() {
+				JOptionPane.showMessageDialog(null, message, title, messageType);
+			}
+		};
+
+	try
+	{
+		SwingUtilities.invokeAndWait(promptStringRunner);
+	}
+	catch(Exception e)
+	{
+		//do nothing
+	}
+
   }
   
 } // end of SimpleOutput class

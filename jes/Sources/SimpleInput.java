@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 /**
  * Class to make it easy to get input
@@ -9,6 +10,9 @@ import javax.swing.*;
  *
  * 30 June 2008: Edited by Brian so that all number methods return Doubles and Integers
  * so that it is possible to return null/None
+ *
+ * 14 May 2009: Edited by Dorn to ensure all JOptionPane calls to show are threadsafe.
+ *
  */
 public class SimpleInput
 {
@@ -30,7 +34,7 @@ public class SimpleInput
     do
     {
       // get the user's answer as a string
-       answerString = JOptionPane.showInputDialog(message);
+       answerString = safeInputDialog(message);
        
        // try to convert to a number
        try {
@@ -69,7 +73,7 @@ public class SimpleInput
     do
     {
       // get the user's answer as a string
-       answerString = JOptionPane.showInputDialog(message);
+       answerString = safeInputDialog(message);
        
        // try to convert to a number
        try {
@@ -114,7 +118,7 @@ public class SimpleInput
     do
     {
       // get the user's answer as a string
-       answerString = JOptionPane.showInputDialog(message);
+       answerString = safeInputDialog(message);
        
        // try to convert to a number
        try {
@@ -172,7 +176,7 @@ public class SimpleInput
     String answer = null;
     
     do {
-      answer = JOptionPane.showInputDialog(message);
+      answer = safeInputDialog(message);
       okay = true;
       
       // if null try again
@@ -183,5 +187,34 @@ public class SimpleInput
     // return the answer
     return answer;
   }
-  
+ 
+  /**
+   * Method to prompt for a string by the user in a 
+   * threadsafe manner.
+   * @param message the message to display to the user
+   * @return the input string
+   */
+  private static String safeInputDialog(final String message)
+  {
+	final String[] answer = new String[1];
+
+	Runnable promptStringRunner =
+		new Runnable() {
+			public void run() {
+				answer[0] = JOptionPane.showInputDialog(message);
+			}
+		};
+
+	try
+	{
+		SwingUtilities.invokeAndWait(promptStringRunner);
+		return answer[0];
+	}
+	catch(Exception e)
+	{
+		return null;
+	}
+
+  }
+
 } // end of SimpleInput class

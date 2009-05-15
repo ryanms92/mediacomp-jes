@@ -32,7 +32,7 @@ class JESBugReporter(swing.JFrame):
     def __init__(self):
         self.contentPane.layout = swing.BoxLayout(self.contentPane,
             swing.BoxLayout.Y_AXIS)
-	self.setLocationRelativeTo(None)
+	
         self.add(swing.JLabel(BUGREPORTMESSAGE))
 
         self.add(swing.Box.createVerticalStrut(10))
@@ -86,6 +86,7 @@ class JESBugReporter(swing.JFrame):
         self.pack()
 
         self.size = (450, 400)
+	self.setLocationRelativeTo(None)
         self.show()
 
     def actionPerformed(self, event):

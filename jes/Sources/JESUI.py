@@ -1736,7 +1736,7 @@ class JESUI(swing.JFrame):
         self.optionsWindow=swing.JFrame('JES Options')
 	
         self.optionsWindow.contentPane.layout = awt.GridLayout(11,2)
-        self.optionsWindow.size = (350,550)
+        #self.optionsWindow.size = (350,550)
 
         donebutton = swing.JButton("Done",preferredSize=(100,20),
                     actionPerformed=self.optionsButtonPressed)
@@ -1825,8 +1825,11 @@ class JESUI(swing.JFrame):
 
         self.optionsWindow.contentPane.add(cancelbutton)
         self.optionsWindow.contentPane.add(donebutton)
-        self.optionsWindow.setLocationRelativeTo(None)
+
+        #self.optionsWindow.size = (400,400)
         self.optionsWindow.pack()
+        self.optionsWindow.setLocationRelativeTo(None)
+
         self.optionsWindow.show()
 
     def optionsButtonPressed(self,event):

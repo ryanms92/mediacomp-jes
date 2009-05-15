@@ -317,6 +317,8 @@ class JESUI(swing.JFrame):
             self.size = JESConstants.INITIAL_WINDOW_SIZE
             self.windowClosing = self.exit
 
+	    self.setLocationRelativeTo(None)
+
             #line added to allow saving changes before exit. - 29 May 2008 by Buck Scharfnorth
             self.setDefaultCloseOperation(swing.WindowConstants.DO_NOTHING_ON_CLOSE)
 
@@ -1732,6 +1734,7 @@ class JESUI(swing.JFrame):
     ################################################################################
     def openOptions(self):
         self.optionsWindow=swing.JFrame('JES Options')
+	
         self.optionsWindow.contentPane.layout = awt.GridLayout(11,2)
         self.optionsWindow.size = (350,550)
 
@@ -1822,7 +1825,7 @@ class JESUI(swing.JFrame):
 
         self.optionsWindow.contentPane.add(cancelbutton)
         self.optionsWindow.contentPane.add(donebutton)
-
+        self.optionsWindow.setLocationRelativeTo(None)
         self.optionsWindow.pack()
         self.optionsWindow.show()
 

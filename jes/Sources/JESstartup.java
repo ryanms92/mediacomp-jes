@@ -15,7 +15,7 @@ public class JESstartup
     public static void main(String[] strings) {
         Frame frame = null;
 
-        frame = SplashWindow.splash("images/JESsplash-v3.png");
+        frame = SplashWindow.splash("images/JESsplash-v42.png");
 
         String [] args = {"Sources/JESProgram.py"};
 

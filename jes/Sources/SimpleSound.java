@@ -52,7 +52,7 @@ public class SimpleSound{
    * Constant for the index base (0 or 1)
    * If this is changed, it should also be changed in media.py
    */
-  public static final int _SoundIndexOffset = 1;
+  public static final int _SoundIndexOffset = 0;
 
   /**
    * Constant for the default sample size in bits

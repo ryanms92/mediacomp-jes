@@ -165,8 +165,6 @@ def setLibPath(directory=None):
 ##
 ## Global sound functions
 ##
-## Buck (29 Oct 2008): Added _SoundIndexOffset for easily changing index base (0 or 1 usually).
-_SoundIndexOffset = 1
 def makeSound(filename):
     global mediaFolder
     if not os.path.isabs(filename):
@@ -253,7 +251,7 @@ def playInRange(sound,start,stop):
                 print "playInRange(sound,start,stop):  Input is not a sound."
                 raise ValueError
         # sound.playInRange(start,stop)
-        sound.playAtRateInRange(1,start-_SoundIndexOffset,stop-_SoundIndexOffset)
+        sound.playAtRateInRange(1,start-Sound._SoundIndexOffset,stop-Sound._SoundIndexOffset)
 
 #20June03 new functionality in JavaSound (ellie)
 def blockingPlayInRange(sound,start,stop):
@@ -261,21 +259,21 @@ def blockingPlayInRange(sound,start,stop):
                 print "blockingPlayInRange(sound,start,stop): Input is not a sound."
                 raise ValueError
         # sound.blockingPlayInRange(start,stop)
-        sound.blockingPlayAtRateInRange(1,start-_SoundIndexOffset,stop-_SoundIndexOffset)
+        sound.blockingPlayAtRateInRange(1,start-Sound._SoundIndexOffset,stop-Sound._SoundIndexOffset)
 
 #20June03 new functionality in JavaSound (ellie)
 def playAtRateInRange(sound,rate,start,stop):
         if not isinstance(sound,Sound):
                 print "playAtRateInRAnge(sound,rate,start,stop): Input is not a sound."
                 raise ValueError
-        sound.playAtRateInRange(rate,start - _SoundIndexOffset,stop - _SoundIndexOffset)
+        sound.playAtRateInRange(rate,start - Sound._SoundIndexOffset,stop - Sound._SoundIndexOffset)
 
 #20June03 new functionality in JavaSound (ellie)
 def blockingPlayAtRateInRange(sound,rate,start,stop):
         if not isinstance(sound, Sound):
                 print "blockingPlayAtRateInRange(sound,rate,start,stop):  Input is not a sound."
                 raise ValueError
-        sound.blockingPlayAtRateInRange(rate, start - _SoundIndexOffset,stop - _SoundIndexOffset)
+        sound.blockingPlayAtRateInRange(rate, start - Sound._SoundIndexOffset,stop - Sound._SoundIndexOffset)
 
 def getSamplingRate(sound):
     if not isinstance(sound, Sound):
@@ -287,38 +285,38 @@ def setSampleValueAt(sound,index,value):
     if not isinstance(sound, Sound):
         print "setSampleValueAt(sound,index,value): Input is not a sound."
         raise ValueError
-    if index < _SoundIndexOffset:
-        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(_SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(_SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + _SoundIndexOffset ) + "]."
+    if index < Sound._SoundIndexOffset:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(Sound._SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(Sound._SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + Sound._SoundIndexOffset ) + "]."
         raise ValueError
-    if index > getLength(sound) - 1 + _SoundIndexOffset:
-        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + _SoundIndexOffset )
+    if index > getLength(sound) - 1 + Sound._SoundIndexOffset:
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + Sound._SoundIndexOffset )
         raise ValueError
-    sound.setSampleValue(index-_SoundIndexOffset,int(value))
+    sound.setSampleValue(index-Sound._SoundIndexOffset,int(value))
 
 def getSampleValueAt(sound,index):
     if not isinstance(sound,Sound):
         print "getSampleValueAt(sound,index): Input is not a sound."
         raise ValueError
-    if index < _SoundIndexOffset:
-        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(_SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(_SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + _SoundIndexOffset ) + "]."
+    if index < Sound._SoundIndexOffset:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(Sound._SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(Sound._SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + Sound._SoundIndexOffset ) + "]."
         raise ValueError
-    if index > getLength(sound) - 1 + _SoundIndexOffset:
-        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + _SoundIndexOffset )
+    if index > getLength(sound) - 1 + Sound._SoundIndexOffset:
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + Sound._SoundIndexOffset )
         raise ValueError
-    return sound.getSampleValue(index-_SoundIndexOffset)
+    return sound.getSampleValue(index-Sound._SoundIndexOffset)
 
 def getSampleObjectAt(sound,index):
     if not isinstance(sound, Sound):
         print "getSampleObjectAt(sound,index): Input is not a sound."
         raise ValueError
-    # return sound.getSampleObjectAt(index-_SoundIndexOffset)
-    if index < _SoundIndexOffset:
-        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(_SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(_SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + _SoundIndexOffset ) + "]."
+    # return sound.getSampleObjectAt(index-Sound._SoundIndexOffset)
+    if index < Sound._SoundIndexOffset:
+        print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(Sound._SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(Sound._SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + Sound._SoundIndexOffset ) + "]."
         raise ValueError
-    if index > getLength(sound) - 1 + _SoundIndexOffset:
-        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + _SoundIndexOffset )
+    if index > getLength(sound) - 1 + Sound._SoundIndexOffset:
+        print "You are trying to access the sample at index: " + str( index ) + ", but the last valid index is at " + str( getLength( sound ) - 1 + Sound._SoundIndexOffset )
         raise ValueError
-    return Sample(sound, index-_SoundIndexOffset)
+    return Sample(sound, index-Sound._SoundIndexOffset)
 
 def setSample(sample,value):
     if not isinstance(sample,Sample):
@@ -548,8 +546,6 @@ cyan = Color(0,255,255)
 ##
 ## Global picture functions
 ##
-## Buck (29 Oct 2008): Added _PictureIndexOffset for easily changing index base (0 or 1 usually).
-_PictureIndexOffset = 1
 def makePicture(filename):
     global mediaFolder
     if not os.path.isabs(filename):
@@ -720,19 +716,19 @@ def addArcFilled(picture,x,y,w,h,start,angle,acolor=black):
 ## note the -1; in JES we think of pictures as starting at (1,1) but not
 ## in the Java.
 ##
-## 29 Oct 2008: -1 changed to _PictureIndexOffset
+## 29 Oct 2008: -1 changed to Picture._PictureIndexOffset
 def getPixel(picture,x,y):
     if not isinstance(picture, Picture):
         print "getPixel(picture,x,y): Input is not a picture"
         raise ValueError
-    if ( x < _PictureIndexOffset ) or ( x > getWidth(picture) - 1 + _PictureIndexOffset ):
-        print "getPixel(picture,x,y): x (= %s) is less than %s or bigger than the width (= %s)" % (x,_PictureIndexOffset,getWidth(picture) - 1 + _PictureIndexOffset)
+    if ( x < Picture._PictureIndexOffset ) or ( x > getWidth(picture) - 1 + Picture._PictureIndexOffset ):
+        print "getPixel(picture,x,y): x (= %s) is less than %s or bigger than the width (= %s)" % (x,Picture._PictureIndexOffset,getWidth(picture) - 1 + Picture._PictureIndexOffset)
         raise ValueError
-    if ( y < _PictureIndexOffset ) or ( y > getHeight(picture) - 1 + _PictureIndexOffset ):
-        print "getPixel(picture,x,y): y (= %s) is less than %s or bigger than the height (= %s)" % (y,_PictureIndexOffset,getHeight(picture) - 1 + _PictureIndexOffset)
+    if ( y < Picture._PictureIndexOffset ) or ( y > getHeight(picture) - 1 + Picture._PictureIndexOffset ):
+        print "getPixel(picture,x,y): y (= %s) is less than %s or bigger than the height (= %s)" % (y,Picture._PictureIndexOffset,getHeight(picture) - 1 + Picture._PictureIndexOffset)
         raise ValueError
 
-    return picture.getPixel(x - _PictureIndexOffset, y - _PictureIndexOffset)
+    return picture.getPixel(x - Picture._PictureIndexOffset, y - Picture._PictureIndexOffset)
 
 #Added as a better name for getPixel
 def getPixelAt(picture,x,y):
@@ -796,13 +792,13 @@ def getX(pixel):
     if not isinstance(pixel, Pixel):
         print "getX(pixel): Input is not a pixel"
         raise ValueError
-    return pixel.getX() + _PictureIndexOffset
+    return pixel.getX() + Picture._PictureIndexOffset
 
 def getY(pixel):
     if not isinstance(pixel,Pixel):
         print "getY(pixel): Input is not a pixel"
         raise ValueError
-    return pixel.getY() + _PictureIndexOffset
+    return pixel.getY() + Picture._PictureIndexOffset
 
 def distance(c1,c2):
     if not isinstance(c1, Color):
@@ -880,19 +876,19 @@ def copyInto(smallPicture, bigPicture, startX, startY):
     if not bigPicture.__class__ == Picture:
         print "copyInto(smallPicture, bigPicture, startX, startY): bigPicture must be a picture"
         raise ValueError
-    if (startX < _PictureIndexOffset) or (startX > getWidth(bigPicture) - 1 + _PictureIndexOffset):
+    if (startX < Picture._PictureIndexOffset) or (startX > getWidth(bigPicture) - 1 + Picture._PictureIndexOffset):
         print "copyInto(smallPicture, bigPicture, startX, startY): startX must be within the bigPicture"
         raise ValueError
-    if (startY < _PictureIndexOffset) or (startY > getHeight(bigPicture) - 1 + _PictureIndexOffset):
+    if (startY < Picture._PictureIndexOffset) or (startY > getHeight(bigPicture) - 1 + Picture._PictureIndexOffset):
         print "copyInto(smallPicture, bigPicture, startX, startY): startY must be within the bigPicture"
         raise ValueError
-    if (startX + getWidth(smallPicture) - 1) > (getWidth(bigPicture) - 1 + _PictureIndexOffset) or \
-            (startY + getHeight(smallPicture) - 1) > (getHeight(bigPicture) - 1 + _PictureIndexOffset):
+    if (startX + getWidth(smallPicture) - 1) > (getWidth(bigPicture) - 1 + Picture._PictureIndexOffset) or \
+            (startY + getHeight(smallPicture) - 1) > (getHeight(bigPicture) - 1 + Picture._PictureIndexOffset):
         print "copyInto(smallPicture, bigPicture, startX, startY): smallPicture won't fit into bigPicture"
         raise ValueError
 
-    xOffset = startX - _PictureIndexOffset
-    yOffset = startY - _PictureIndexOffset
+    xOffset = startX - Picture._PictureIndexOffset
+    yOffset = startY - Picture._PictureIndexOffset
 
     for x in range(0, getWidth(smallPicture)):
         for y in range(0, getHeight(smallPicture)):

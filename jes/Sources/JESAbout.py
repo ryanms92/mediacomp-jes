@@ -23,6 +23,7 @@ class JESAbout(swing.JFrame, awt.event.ActionListener):
     def __init__(self):
         self.size = ABOUT_WINDOW_SIZE
         self.title = ABOUT_TITLE
+        self.setLocationRelativeTo(None)
         self.contentPane.setLayout(swing.BoxLayout(self.contentPane,
                                                    swing.BoxLayout.Y_AXIS))
 
@@ -32,6 +33,7 @@ class JESAbout(swing.JFrame, awt.event.ActionListener):
         #Load copyright information from the JES copyright file
         copyrightFile = open(COPYRIGHT_FILE, 'r')
         copyrightInfoArea.text = copyrightFile.read()
+	copyrightInfoArea.setCaretPosition(0)
         copyrightFile.close()
 
         okButton = swing.JButton(OK_BUTTON_CAPTION, actionListener=self)

@@ -97,6 +97,7 @@ public class JESConfig
 	private ArrayList<String> properties;
 	private String[] defaults = {"","","","Normal","12","","1","0","","0","","1","","0","1","1",""};
 	private boolean configLoaded = true;
+	private boolean sessionWrapAround = true;
   /**
    * A constructor to preload JES settings or load defaults if settings file cannot be read.
    */
@@ -111,6 +112,7 @@ public class JESConfig
 
 		if ( !(new File(getStringProperty(CONFIG_MEDIAPATH))).exists() )
 			setStringProperty( CONFIG_MEDIAPATH, System.getProperty("user.home") );
+		sessionWrapAround = getBooleanProperty(CONFIG_WRAPPIXELVALUES);
 	}
 
   /**
@@ -123,6 +125,28 @@ public class JESConfig
 			theInstance = new JESConfig();
 
 		return theInstance;
+	}
+
+  /**
+   * Method to get the current value of the pixel wrap around option.
+   * getSessionWrapAround and setSessionWrapAround will ignore the value
+   * in user settings.
+   * @return the boolean value of the pixel wrap around
+   */
+	public boolean getSessionWrapAround()
+	{
+		return sessionWrapAround;
+	}
+
+  /**
+   * Method to set the current value of the pixel wrap around option.
+   * getSessionWrapAround and setSessionWrapAround will ignore the value
+   * in user settings.
+   * @param value the new value for the pixel wrap around
+   */
+	public void setSessionWrapAround( boolean value )
+	{
+		sessionWrapAround = value;
 	}
 
   /**

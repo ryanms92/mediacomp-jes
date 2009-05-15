@@ -1845,6 +1845,8 @@ class JESUI(swing.JFrame):
             JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_AUTOSAVEONRUN, self.autosaveBox.isSelected() )
             JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_BACKUPSAVE, self.backupSaveBox.isSelected() )
             JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_WRAPPIXELVALUES, self.wrappixelBox.isSelected() )
+            JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_WRAPPIXELVALUES, self.wrappixelBox.isSelected() )
+            JESConfig.getInstance().setSessionWrapAround( self.wrappixelBox.isSelected() )
             if( JESConfig.getInstance().getBooleanProperty( JESConfig.CONFIG_SHOWTURNIN ) != self.showTurninBox.isSelected() ):
                 JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_SHOWTURNIN, self.showTurninBox.isSelected() )
                 self.addmenu()

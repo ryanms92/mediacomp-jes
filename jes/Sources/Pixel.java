@@ -274,7 +274,7 @@ public class Pixel
    */
   private static int correctValue(int value)
   {
-	if ( JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES))
+	if ( JESConfig.getInstance().getSessionWrapAround() )
 		value = (value % 256);
 	else
 	{

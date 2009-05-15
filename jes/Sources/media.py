@@ -401,11 +401,11 @@ plain = awt.Font.PLAIN
 # THIS GLOBAL FUNCTION CHANGES JES SETTINGS - this value overwrites
 # the value in the JES options menu.
 def setColorWrapAround(bool):
-    JESConfig.getInstance().setBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES, bool )
+    JESConfig.getInstance().setSessionWrapAround( bool )
 
 # Buck Scharfnorth (28 May 2008): Gets the current ColorWrapAround Value
 def getColorWrapAround():
-    return JESConfig.getInstance().getBooleanProperty(JESConfig.CONFIG_WRAPPIXELVALUES)
+    return JESConfig.getInstance().getSessionWrapAround()
 
 # Buck Scharfnorth (28 May 2008): Modified to no longer assume the value is 0-255
 def _checkPixel(raw):
@@ -1181,11 +1181,11 @@ def printNow(text):
 class Movie:
     def __init__(self): # frames are filenames
         self.frames = []
-	self.dir = None
+        self.dir = None
 
     def addFrame(self, frame):
         self.frames.append(frame)
-	self.dir = None
+        self.dir = None
 
     def __len__(self):
         return len(self.frames)
@@ -1205,9 +1205,9 @@ class Movie:
         #for frameindex in range(0, self.listModel.size()):
             #fs.addFrame(Picture(self.listModel.get(frameindex)))
             #fs.play(self.fps)
-	for frameindex in range(0, len(self.frames)):
-	    fs.addFrame(Picture(self.frames[frameindex]))
-	self.dir = directory
+        for frameindex in range(0, len(self.frames)):
+            fs.addFrame(Picture(self.frames[frameindex]))
+        self.dir = directory
 
     def play(self):
         import java.util.ArrayList as ArrayList
@@ -1217,76 +1217,76 @@ class Movie:
         MoviePlayer(list).playMovie()
 
     def writeQuicktime(self, destPath, framesPerSec = 16):
-	global mediaFolder
-	if not os.path.isabs(destPath):
-	    destPath = mediaFolder + destPath
+        global mediaFolder
+        if not os.path.isabs(destPath):
+            destPath = mediaFolder + destPath
         destPath = "file://"+destPath
-	if framesPerSec <= 0:
-	    print "writeQuicktime(filename, framesPerSec): Frame Rate must be a positive number."
-	    raise ValueError
-	if self.frames == []: #Is movie empty?
-	    print "writeQuicktime(filename, framesPerSec): Movie has no frames. Cannot write empty Movie"
-	    raise ValueError
-    	elif self.dir == None and len(self.frames) == 1: #Is movie only 1 frame but never written out
-	    frame = self.frames[0]
-	    self.dir = frame[:(frame.rfind(os.sep))]
-	elif self.dir == None and len(self.frames) > 1: #Are movie frames all in the same directory? 
-	    sameDir = 1
-	    frame = self.frames[0]
-	    frame = frame.replace('/', os.sep)
-            framesDir = frame[:(frame.rfind(os.sep))] #Parse directory of first frame
-	    thisDir = framesDir
-	    frameNum = 1
-	    while(sameDir and frameNum < len(self.frames)):
-		frame = self.frames[frameNum]
-		frame = frame.replace('/', os.sep) #Eliminate possibility of / vs. \ causing problems
-		thisDir = frame[:(frame.rfind(os.sep))]
-		frameNum = frameNum+1
-		if(framesDir <> thisDir):
-		    sameDir = 0
-	    if(sameDir): #Loop ended because we ran out of frames
-		self.dir = framesDir
-	    else: #Loop ended because sameDir became false
-		print "writeQuicktime(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
-		raise ValueError
-	writer = MovieWriter(self.dir, framesPerSec, destPath)
-	writer.writeQuicktime()
-	
-    def writeAVI(self, destPath, framesPerSec = 16):
-	global mediaFolder
-	if not os.path.isabs(destPath):
-	    destPath = mediaFolder + destPath
-	destPath = "file://"+destPath
-	if framesPerSec <= 0:
-	    print "writeAVI(framesPerSec): Frame Rate must be a positive number."
-	    raise ValueError
-	if self.frames == []: #Is movie empty?
-	    print "writeAVI(framesPerSec): Movie has no frames. Cannot write empty Movie"
-	    raise ValueError
+        if framesPerSec <= 0:
+            print "writeQuicktime(filename, framesPerSec): Frame Rate must be a positive number."
+            raise ValueError
+        if self.frames == []: #Is movie empty?
+            print "writeQuicktime(filename, framesPerSec): Movie has no frames. Cannot write empty Movie"
+            raise ValueError
         elif self.dir == None and len(self.frames) == 1: #Is movie only 1 frame but never written out
-	    frame = self.frames[0]
-	    self.dir = frame[:(frame.rfind(os.sep))]
-	elif self.dir == None and len(self.frames) > 1: #Are movie frames all in the same directory? 
-	    sameDir = 1
-	    frame = self.frames[0]
-	    frame = frame.replace('/', os.sep)
+            frame = self.frames[0]
+            self.dir = frame[:(frame.rfind(os.sep))]
+        elif self.dir == None and len(self.frames) > 1: #Are movie frames all in the same directory? 
+            sameDir = 1
+            frame = self.frames[0]
+            frame = frame.replace('/', os.sep)
             framesDir = frame[:(frame.rfind(os.sep))] #Parse directory of first frame
-	    thisDir = framesDir
-	    frameNum = 1
-	    while(sameDir and frameNum < len(self.frames)):
-		frame = self.frames[frameNum]
-		frame = frame.replace('/', os.sep)
-		thisDir = frame[:(frame.rfind(os.sep))]
-		frameNum = frameNum+1
-		if(framesDir <> thisDir):
-		    sameDir = 0
-	    if(sameDir): #Loop ended because we ran out of frames
-		self.dir = framesDir
-	    else: #Loop ended because sameDir became false
-		print "writeAVI(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
-		raise ValueError
-	writer = MovieWriter(self.dir, framesPerSec, destPath)
-	writer.writeAVI()
+            thisDir = framesDir
+            frameNum = 1
+            while(sameDir and frameNum < len(self.frames)):
+                frame = self.frames[frameNum]
+                frame = frame.replace('/', os.sep) #Eliminate possibility of / vs. \ causing problems
+                thisDir = frame[:(frame.rfind(os.sep))]
+                frameNum = frameNum+1
+                if(framesDir <> thisDir):
+                    sameDir = 0
+            if(sameDir): #Loop ended because we ran out of frames
+                self.dir = framesDir
+            else: #Loop ended because sameDir became false
+                print "writeQuicktime(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
+                raise ValueError
+        writer = MovieWriter(self.dir, framesPerSec, destPath)
+        writer.writeQuicktime()
+        
+    def writeAVI(self, destPath, framesPerSec = 16):
+        global mediaFolder
+        if not os.path.isabs(destPath):
+            destPath = mediaFolder + destPath
+        destPath = "file://"+destPath
+        if framesPerSec <= 0:
+            print "writeAVI(framesPerSec): Frame Rate must be a positive number."
+            raise ValueError
+        if self.frames == []: #Is movie empty?
+            print "writeAVI(framesPerSec): Movie has no frames. Cannot write empty Movie"
+            raise ValueError
+        elif self.dir == None and len(self.frames) == 1: #Is movie only 1 frame but never written out
+            frame = self.frames[0]
+            self.dir = frame[:(frame.rfind(os.sep))]
+        elif self.dir == None and len(self.frames) > 1: #Are movie frames all in the same directory? 
+            sameDir = 1
+            frame = self.frames[0]
+            frame = frame.replace('/', os.sep)
+            framesDir = frame[:(frame.rfind(os.sep))] #Parse directory of first frame
+            thisDir = framesDir
+            frameNum = 1
+            while(sameDir and frameNum < len(self.frames)):
+                frame = self.frames[frameNum]
+                frame = frame.replace('/', os.sep)
+                thisDir = frame[:(frame.rfind(os.sep))]
+                frameNum = frameNum+1
+                if(framesDir <> thisDir):
+                    sameDir = 0
+            if(sameDir): #Loop ended because we ran out of frames
+                self.dir = framesDir
+            else: #Loop ended because sameDir became false
+                print "writeAVI(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
+                raise ValueError
+        writer = MovieWriter(self.dir, framesPerSec, destPath)
+        writer.writeAVI()
 
 def playMovie( movie ):
     if isinstance( movie, Movie ):
@@ -1297,20 +1297,20 @@ def playMovie( movie ):
 
 def writeQuicktime(movie, destPath, framesPerSec = 16):
     if not (isinstance(movie, Movie)):
-	print "writeQuicktime(Movie, framesPerSec): Input is not a Movie object."
-	raise ValueError
+        print "writeQuicktime(Movie, framesPerSec): Input is not a Movie object."
+        raise ValueError
     if framesPerSec <= 0:
-	print "writeQuicktime(Movie, framesPerSec): Frame rate must be a positive number."
-	raise ValueError
+        print "writeQuicktime(Movie, framesPerSec): Frame rate must be a positive number."
+        raise ValueError
     movie.writeQuicktime(destPath, framesPerSec)
 
 def writeAVI(movie, destPath, framesPerSec = 16):
     if not (isinstance(movie, Movie)):
-	print "writeAVI(Movie, framesPerSec): Input is not a Movie object."
-	raise ValueError
+        print "writeAVI(Movie, framesPerSec): Input is not a Movie object."
+        raise ValueError
     if framesPerSec <= 0:
-	print "writeAVI(Movie, framesPerSec): Frame rate must be a positive number."
-	raise ValueError
+        print "writeAVI(Movie, framesPerSec): Frame rate must be a positive number."
+        raise ValueError
     movie.writeAVI(destPath, framesPerSec)
 
 def makeMovie():

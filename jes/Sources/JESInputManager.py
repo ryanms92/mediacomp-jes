@@ -54,6 +54,7 @@ class JESInputManager(Borg):
 	    def run(self):
 		#display the message and reenable the window to editing
 		self.commandWindow.showText(self.message)
+		self.commandWindow.setCaretPosition(self.commandWindow.document.getLength() )
 		self.commandWindow.setKeymap(self.commandWindow.my_keymap)
 
 

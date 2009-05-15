@@ -83,7 +83,7 @@ class JESProgram:
         self.chooser = JESFileChooser.JESFileChooser()
         self.defaultPath = io.File( JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MEDIAPATH) )
         self.setHelpArray()
-        self.loadSuccess()
+	#self.loadSuccess(), 5/15/09 Dorn: removed as unnecessary and breaks due to needed code in loadSuccess for input
 
         self.gui.changeSkin( JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_SKIN) )
         self.gui.show()
@@ -321,6 +321,7 @@ class JESProgram:
 
                 # error 4. didn't occur,
                 # give the command area the focus
+		self.gui.commandWindow.showText(" ======= Loading Progam =======\n")
                 self.interpreter.load( self.filename)   
                 self.gui.commandWindow.requestFocus()
                 self.gui.editor.getDocument().removeErrorHighlighting()

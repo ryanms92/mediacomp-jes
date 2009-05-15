@@ -448,13 +448,19 @@ class JESCommandWindow(swing.JTextPane,
                 self.showText(">>> ")
 
             self.oldPos = self.document.getLength()
-
+	#5/14/09 Dorn: added in a condition for LOAD since we added a notice of load on the console
+	elif mode == "load":     
+	    self.showText(">>> ")
+	    self.oldPos = self.document.getLength()
         else:
             pass
         self.currentPos = self.document.getLength()
         self.setCaretPosition( self.currentPos )
         self.setKeymap(self.my_keymap)
         self.commandHistory.setPartialCommand('')
+
+
+
 
     def printNowUpdate(self,text):
         if not text == '':

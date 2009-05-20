@@ -1,0 +1,30 @@
+#summary Wish and Todo list for development
+
+Fixit and Wish list
+    * JavaFX  --- need to talk to mark/barb asap
+    * JMusic --- need to talk to mark/barb asap
+    * need to discuss versioning and release strategies
+
+    * More unit tests
+    * FrameSequencer
+    * setLibPath — check functionality
+    * New Samples Object in Jython that works with getSamples() and getSampleAt() and prints correctly
+    * Tk module?
+    * New Jarbundler version?
+    * Start port to jython 2.5
+
+TODO List Dorn
+    * Look at the debugger for threadding/performance issues
+    * Add a Pause Button to debugger
+    * Why does () matching sometimes lead to Java hanging?  (HighlightingStyledDocument)
+
+TODO List Buck
+    * Sanity test 4.2 beta for monica
+    * 4.0 Help files
+    * Get writeAVI() working
+
+Completed items
+    * Why does pickAFile() hang?  --- Believed to be non thread safe operations with GUI components being created/edited in the interpreter thread.  Dorn fixed 5/8/09 by refactoring code in media.py and FileChooser.java.
+    * Fix input() and raw_input() to work from Console Dorn fixed 5/14/09 with edits to media.py, JESCommandWindow.py, JESInputManager.py, SimpleInput.java, and SimpleOutput.java.
+    * Config writer for java: redesigning configuration writing from python to java -- buck working on it -- need to update all the evil code where we use this and make config writing work (and be done consistently and on exit)
+    * about dialogs and splash screen need to be updated to reflect similar version numbers -- 4.2beta is what we sent to Monica for summer 2009

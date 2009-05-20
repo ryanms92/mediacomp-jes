@@ -23,6 +23,7 @@ class JESIntroduction(swing.JFrame, awt.event.ActionListener):
     def __init__(self):
         self.size = ABOUT_WINDOW_SIZE
         self.title = ABOUT_TITLE
+	self.setLocationRelativeTo(None)
         self.contentPane.setLayout(swing.BoxLayout(self.contentPane,
                                                    swing.BoxLayout.Y_AXIS))
 

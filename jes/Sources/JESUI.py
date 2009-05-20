@@ -1357,6 +1357,7 @@ class JESUI(swing.JFrame):
             self.settingsWindow.contentPane.add(cancelbutton)
             self.settingsWindow.contentPane.add(savebutton)
             self.settingsWindow.pack()
+	    self.settingsWindow.setLocationRelativeTo(None)
             self.settingsWindow.show()
         else:
             self.settingsWindow.show()
@@ -1543,6 +1544,7 @@ class JESUI(swing.JFrame):
                 #self.turninWindow.contentPane.add(cancelbutton)
                 #self.turninWindow.contentPane.add(turninbutton)
                 self.turninWindow.pack()
+		self.turninWindow.setLocationRelativeTo(None)
                 self.turninWindow.show()
             except:
                 a="JES needs to know who you are to turn in something.  \n"

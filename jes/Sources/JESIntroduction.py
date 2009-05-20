@@ -9,7 +9,7 @@ import javax.swing as swing
 
 ABOUT_TITLE = 'Welcome to JES!'
 OK_BUTTON_CAPTION = 'OK'
-ABOUT_WINDOW_SIZE = (600,400)
+ABOUT_WINDOW_SIZE = (300,300)
 INTRODUCTION_FILE = 'JESIntro.txt'
 
 class JESIntroduction(swing.JFrame, awt.event.ActionListener):
@@ -23,7 +23,7 @@ class JESIntroduction(swing.JFrame, awt.event.ActionListener):
     def __init__(self):
         self.size = ABOUT_WINDOW_SIZE
         self.title = ABOUT_TITLE
-	self.setLocationRelativeTo(None)
+        self.setLocationRelativeTo(None)
         self.contentPane.setLayout(swing.BoxLayout(self.contentPane,
                                                    swing.BoxLayout.Y_AXIS))
 

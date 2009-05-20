@@ -108,8 +108,8 @@ class JESProgram:
 
         #Show introduction window if settings could not be loaded (Either new JES user or bad write permissions)
         if not JESConfig.getInstance().isConfigLoaded():
-            self.openSettingsGUI()
             self.openIntroductionWindow()
+            #self.openSettingsGUI()
             
         #self.gui.repaint()
 

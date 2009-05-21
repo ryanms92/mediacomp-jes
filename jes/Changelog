@@ -1,5 +1,14 @@
-Changes Since JES 3.1
+Changes Since JES 4.0
+pickAFile and other JFileChooser related calls now thread safe
+input and raw_input now accept input through command window
+MediaPath now saves on close.
+JES settings reworked internally
+removed turnin settings dialog an first launch
+Centered JES and dialog windows on startup
+Minor bugfixes
 
+Changes Since JES 3.1
+0-based indexing on sounds and pictures
 Oct 21 - Fixed SimpleSound, out of range error dialogs and moved some messages to media.py	
 Oct 21 - Fixed double ">>>" at startup.
 Oct 21 - Fixed 'None' title bug on Picture Frame

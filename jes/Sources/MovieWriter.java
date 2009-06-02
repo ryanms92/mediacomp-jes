@@ -4,9 +4,9 @@ import java.net.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
-/** 
+/**
  * Class to write out an AVI or Quicktime movie from
- * a series of JPEG (jpg) frames in a directory 
+ * a series of JPEG (jpg) frames in a directory
  * @author Barb Ericson ericson@cc.gatech.edu
  *
  * Depreciated File.toURL() replaced with File.toURI().toURL()
@@ -22,7 +22,7 @@ import java.awt.image.BufferedImage;
 public class MovieWriter
 {
   ///////////////// fields ///////////////////////////
-  
+
   /** the directory to read the frames from */
   private String framesDir = null;
   /** the number of frames per second */
@@ -31,11 +31,11 @@ public class MovieWriter
   private String movieName = null;
   /** the output url for the movie */
   private String outputURL = null;
-  
+
   ////////////////// constructors //////////////////////
-  
+
   /**
-   * No arg constructor 
+   * Constructor that takes no arguments
    */
   public MovieWriter()
   {
@@ -43,7 +43,7 @@ public class MovieWriter
     movieName = getMovieName();
     outputURL = getOutputURL();
   }
-  
+
   /**
    * Constructor that takes the directory that
    * has the frames
@@ -58,7 +58,7 @@ public class MovieWriter
     movieName = getMovieName();
     outputURL = getOutputURL();
   }
-  
+
   /**
    * Constructor that takes the frame rate
    * @param theFrameRate the number of frames per second
@@ -70,7 +70,7 @@ public class MovieWriter
     movieName = getMovieName();
     outputURL = getOutputURL();
   }
-  
+
   /**
    * Constructor that takes the frame rate and the
    * directory that the frames are stored in
@@ -87,10 +87,10 @@ public class MovieWriter
     movieName = getMovieName();
     outputURL = getOutputURL();
   }
-  
+
   /**
    * Constructor that takes the directory with the frames
-   * the frame rate, and the output url (dir,name, 
+   * the frame rate, and the output url (dir,name,
    * and extendsion)
    * @param theFramesDir the directory that holds the frame
    * @param theFrameRate the number of frames per second
@@ -107,10 +107,10 @@ public class MovieWriter
     this.frameRate = theFrameRate;
     this.outputURL = theOutputURL;
   }
-  
-  
+
+
   /////////////////// methods //////////////////////////
-  
+
   /**
    * Method to get the movie name from the directory
    * where the frames are stored
@@ -121,10 +121,10 @@ public class MovieWriter
     File dir = new File(framesDir);
     return dir.getName();
   }
-  
+
   /**
    * Method to create the output URL from the directory
-   * the frames are stored in.  
+   * the frames are stored in.
    * @return the URL for the output movie file
    */
   private String getOutputURL()
@@ -140,9 +140,9 @@ public class MovieWriter
       }
     }
     //return myURL.toString();
-    return myURL.toString().replace("%20", " "); 
+    return myURL.toString().replace("%20", " ");
   }
-  
+
   /**
    * Method to get the list of jpeg frames
    * @return a list of full path names for the frames
@@ -153,7 +153,7 @@ public class MovieWriter
     File dir = new File(framesDir);
     String[] filesArray = dir.list();
     List<String> files = new ArrayList<String>();
-    long lenFirst = 0; 
+    long lenFirst = 0;
     for (String fileName : filesArray)
     {
       // only continue if jpg picture
@@ -161,7 +161,7 @@ public class MovieWriter
       {
         File f = new File(framesDir + fileName);
         // check for imcomplete image
-        if (lenFirst == 0 || 
+        if (lenFirst == 0 ||
             f.length() > (lenFirst / 2))
         {
           // image okay so far
@@ -178,7 +178,7 @@ public class MovieWriter
     }
     return files;
   }
-  
+
   /**
    * Method to write the movie frames in AVI format
    */
@@ -192,7 +192,7 @@ public class MovieWriter
     imageToMovie.doItAVI(p.getWidth(),p.getHeight(),
                          frameRate,frameNames,outputURL);
   }
-  
+
   /**
    * Method to write the movie frames as quicktime
    */
@@ -206,10 +206,10 @@ public class MovieWriter
     imageToMovie.doItQuicktime(p.getWidth(),p.getHeight(),
                          frameRate,frameNames,outputURL);
   }
-   
+
   public static void main(String[] args)
   {
-    MovieWriter writer = 
+    MovieWriter writer =
       new MovieWriter("c:/Temp/tr1/");
     writer.writeQuicktime();
     writer.writeAVI();

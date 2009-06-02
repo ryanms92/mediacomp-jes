@@ -8,6 +8,7 @@ import java.awt.event.*;
 
 /**
  * Class that can play movies from multiple frames
+ * <br>
  * Copyright Georgia Institute of Technology 2007
  * @author Barb Ericson ericson@cc.gatech.edu
  */
@@ -112,6 +113,10 @@ public class MoviePlayer
     playMovie();
   }
 
+  /**
+   * Method to set the frames per second to show the movie
+   * @param rate the number of frames to show per second
+   */
   public void setFrameRate(int rate)
   {
     animationPanel.setFramesPerSec(rate);

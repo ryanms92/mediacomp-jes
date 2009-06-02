@@ -5,6 +5,7 @@ import java.awt.Robot;
 /**
  * Class that is Runnable to start Movie Capture and
  * stop it
+ * <br>
  * Copyright Georgia Institute of Technology 2007
  * @author Barb Ericson ericson@cc.gatech.edu
  */
@@ -18,10 +19,10 @@ public class StartMovieCapture implements Runnable
   private Rectangle region = null;
   /** the active thread */
   private Thread active = null;
-  
+
   /**
-   * Constructor that takes the frame sequencer, number of 
-   * frames per second, and the region to capture 
+   * Constructor that takes the frame sequencer, number of
+   * frames per second, and the region to capture
    * @param sequencer the frame sequencer
    * @param framesPerSec the number of frames per second
    * @param area the region to capture
@@ -34,7 +35,7 @@ public class StartMovieCapture implements Runnable
     framesPerSecond = framesPerSec;
     region = area;
   }
-  
+
   /**
    * Method to capture a movie until the stop
    * method is called and sets the active thread
@@ -65,17 +66,17 @@ public class StartMovieCapture implements Runnable
       }
     }
   }
-    
+
 
   /**
-   * Method to start the thread 
+   * Method to start the thread
    */
   public void run()
   {
     active = Thread.currentThread();
     captureMovie();
   }
-  
+
   /**
    * Method to stop the thread
    */

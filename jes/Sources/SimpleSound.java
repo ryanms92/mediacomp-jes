@@ -6,19 +6,19 @@ import javazoom.jl.converter.*;
 /**
  * The <code>SimpleSound</code> class is an implementation of the
  * Java Sound API specifically designed for use with students.
+ * <br>
  * http://java.sun.com/products/java-media/sound/index.html
  * <p>
  * This class allows for easy playback, and manipulation of AU,
  * AIFF, and WAV files.
  * <p>
- *
  * Code & ideas for this class related to playing and
  * viewing the sound were borrowed from the Java Sound Demo:
  * http://java.sun.com/products/java-media/sound/
  * samples/JavaSoundDemo/
- *
+ * <br>
  * Also, some code borrowed from Tritonus as noted.
- *
+ * <br>
  * Copyright Georgia Institute of Technology 2004
  * @author Ellie Harmon, ellie@cc.gatech.edu
  * @author Barbara Ericson ericson@mindspring.com
@@ -50,7 +50,6 @@ public class SimpleSound{
 
   /**
    * Constant for the index base (0 or 1)
-   * If this is changed, it should also be changed in media.py
    */
   public static final int _SoundIndexOffset = 0;
 
@@ -260,8 +259,7 @@ public class SimpleSound{
   }
 
   /**
-   * Constructor that creates a new SimpleSound by copying a passed
-   * SimpleSound
+   * Constructor that creates a new SimpleSound by copying a passed SimpleSound
    * @param sound the sound to copy
    */
   public SimpleSound(SimpleSound sound)
@@ -282,9 +280,8 @@ public class SimpleSound{
   ///////////////////////// accessors ///////////////////////////
 
   /**
-   * Method that returns the byte array representation of this
-   * simple sound.
-   * @return     the sound represented as a byte array
+   * Method that returns the byte array representation of this simple sound.
+   * @return the sound represented as a byte array
    */
   public byte[] getBuffer()
   {
@@ -292,8 +289,7 @@ public class SimpleSound{
   }
 
   /**
-   * Method that returns the AudioFileFormat describing this
-   * simple sound.
+   * Method that returns the AudioFileFormat describing this simple sound.
    * @return the AudioFileFormat describing this sound
    * @see AudioFileFormat
    */
@@ -351,16 +347,6 @@ public class SimpleSound{
   {
     return fileName;
   }
-
-  /**
-   * Old Method to get the value of the debug flag
-   * @return true if in debug mode else false
-
-  public boolean getDEBUG()
-  {
-    return DEBUG;
-  }
-   */
 
   ////////////////////////////// modifiers ////////////////////////
 
@@ -724,8 +710,8 @@ public class SimpleSound{
   //////////////////////// Methods for playing the sound //////////
 
   /**
-   * Creates a new Playback thread and starts it.   The thread is
-   * guarranteed to finish playing the sound as long as the program
+   * Creates a new Playback thread and starts it.  The thread is
+   * guaranteed to finish playing the sound as long as the program
    * doesn't exit before it is done.  This method does not block,
    * however.  So, if you invoke <code>play()</code> multiple times
    * in a row, sounds will simply play on
@@ -1022,7 +1008,7 @@ public class SimpleSound{
     setAudioFileFormat(oldAFF);//restore the file format
   }
 
-   /**
+  /**
    * Stops playing the sound by calling the stopPlaying()
    * method of all Playback threads belonging to the sound.
    */
@@ -1129,6 +1115,8 @@ public class SimpleSound{
 
   /**
    * Method to report an index exception for this sound
+   * @param index the index
+   * @param ex the exception (unused)
    */
   private void reportIndexException(int index, Exception ex)
   {
@@ -1268,8 +1256,6 @@ public class SimpleSound{
     //default is to getLeftSample
 
     return getSampleValue(frameNum);
-
-
   }
 
   /**
@@ -1412,7 +1398,7 @@ public class SimpleSound{
    * @param frameNum the index of the frame to change
    * @param theFrame the byte array that will be copied into this sound's
    *                 buffer in place of the specified frame.
-   *@throws SoundException if the frameNumber is invalid.
+   * @throws SoundException if the frameNumber is invalid.
    */
   public void setFrame(int frameNum, byte[] theFrame) throws SoundException
   {
@@ -1555,13 +1541,22 @@ public class SimpleSound{
     }
   }//setSample(int, int)
 
+  /**
+   * Method to set the left sample value at the passed index to the passed value
+   * @param frameNum the index of the frame where the sample should be changed
+   * @param sample an integer representation of the new sample
+   */
   public void setLeftSample(int frameNum, int sample) throws SoundException
   {
     setSampleValue(frameNum, sample);
   }
 
-  public void setRightSample(int frameNum, int sample)
-    throws SoundException
+  /**
+   * Method to set the right sample value at the passed index to the passed value
+   * @param frameNum the index of the frame where the sample should be changed
+   * @param sample an integer representation of the new sample
+   */
+  public void setRightSample(int frameNum, int sample) throws SoundException
   {
     AudioFormat format = getAudioFileFormat().getFormat();
     int sampleSizeInBits = format.getSampleSizeInBits();
@@ -1671,6 +1666,7 @@ public class SimpleSound{
     new SoundExplorer(sound,this.isStereo());
   }
 
+  //TODO: is there a reason this is here?
   /**
    * Method to play a note using MIDI
    * @param key the piano key to play
@@ -1683,8 +1679,8 @@ public class SimpleSound{
 
   /**
    * Method to convert a mp3 sound into a wav sound
-   * @param mp3File
-   * @param wavFile
+   * @param mp3File the file name of the mp3 to convert
+   * @param wavFile the file name to save the wav to
    */
   public static void convert(String mp3File, String wavFile)
   {

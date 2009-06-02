@@ -1,17 +1,20 @@
-/* JESstartup - Decompiled by JODE
- * Visit http://jode.sourceforge.net/
- */
 import java.awt.Frame;
 import java.awt.Toolkit;
 import java.net.URL;
 import org.python.util.jython;
 import java.io.File;
 
+/**
+ * The main launcher class for JES
+ */
 public class JESstartup
 {
     /*synthetic*/ static Class class$JESstartup;
     /*synthetic*/ static Class array$Ljava$lang$String;
 
+	/**
+ 	* The main method which launches JES
+ 	*/
     public static void main(String[] strings) {
         Frame frame = null;
 

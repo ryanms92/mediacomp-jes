@@ -19,39 +19,40 @@ public class JESGutter extends JComponent implements DocumentListener
 {
     /* Line indention levels */
     private Vector indents = new Vector();
-    
+
     /* Line YLocation levels */
     private int[] ylocs;
-    
+
     /* Gutter Font */
     private Font gutterFont = new Font("Monospaced", Font.PLAIN, 10);
-    
+
     /* Regular expression for matching newlines */
     private Pattern newlineReg = Pattern.compile("\n");
-    
+
     /* The Text Component the gutter marks lines */
     private JEditorPane text = new JEditorPane();
-    
+
     /* The number of lines in the document */
     private int numLines = 0;
-    
+
     /* The number of lines in the document before a change */
     private int oldLines = 0;
-    
+
     /* The font used in the editor */
     private Font editorFont = new Font("Monospaced", Font.PLAIN, 12);
-    
+
     /* Line Height */
     private float lineHeight = 12.0f;
-    
+
     /*Line mark */
-    private int lineMark = -1; 
+    private int lineMark = -1;
 
     private static final long serialVersionUID = 7526471155622776147L;
-    
+
     /**
-     * Class constructor
-     * Creates a Gutter object with a given TextComponent.
+     * Creates a Gutter object with a given TextComponent and Font.
+     * @param tc the TextComponent
+     * @param f the Font
      */
     public JESGutter(JEditorPane tc, Font f)
     {
@@ -60,60 +61,55 @@ public class JESGutter extends JComponent implements DocumentListener
         editorFont = f;
         lineHeight = editorFont.getSize2D();
     }
-    
-    
+
+
     /**
-     * setLine
      * Adds a line to the gutter.  includes indentation information and y height.
-     * @param line The line number being added
-     * @param indent The indentation level of the line
-     * @param height The Y location information of the bottom of the line
+     * @param line the line number being added
+     * @param indent the indentation level of the line
+     * @param height the Y location information of the bottom of the line
      */
     public void setLine(int line, int indent, int height)
     {
     }
-    
+
     /**
-     * setDocument
      * Sets the document for the gutter to listen for changes in.  When a change
      * occurs check to see if a newline was added or removed.
-     * @param doc The document to listen to
+     * @param doc the document to listen to
      */
     public void setDocument(Document doc)
     {
         doc.addDocumentListener(this);
     }
-    
+
     /**
-     * setTextComponent()
-     * Sets th etext component the gutter models itself after
-     * @param tc The text component
+     * Sets the TextComponent the gutter models itself after
+     * @param tc the TextComponent
      */
     public void setTextComponent(JEditorPane tc)
     {
         text = tc;
     }
-    
+
     /**
-     * setLineMark
      * Sets the line do demarcate on the gutter
+     * @param line the line to mark
      */
     public void setLineMark(int line)
     {
         lineMark = line;
     }
-    
+
     /**
-     * removeLineMark
      * Removes the line demarcation from the gutter
      */
     public void removeLineMark()
     {
         lineMark = -1;
     }
-    
+
     /**
-     * paint
      * Paints gutter information to the graphics object
      */
     public void paint(Graphics g)
@@ -154,10 +150,9 @@ public class JESGutter extends JComponent implements DocumentListener
         }
         super.paint(g);
     }
-   
-    
+
+
     /**
-     * updateLines
      * Recounts the number of lines in the Document, and updates the lines
      * list to have the new last few lines.
      */
@@ -166,23 +161,21 @@ public class JESGutter extends JComponent implements DocumentListener
         numLines = text.getDocument().getDefaultRootElement().getElementCount();
         repaint();
     }
-    
+
     /**
-     * Method: changedUpdate
      * Gives notification that an attribute or set of attributes changed.
      * @param e The DocumentEvent describing the change
      */
     public void changedUpdate(DocumentEvent e)
     {
     }
-    
+
     /**
-     * Method: insertUpdate
      * Gives notification that there was text inserted into the document.
      * @param e the DocumentEvent describing the insert
      */
     public void insertUpdate(DocumentEvent e)
-    {	
+    {
         try
         {
             Document doc = e.getDocument();
@@ -193,9 +186,8 @@ public class JESGutter extends JComponent implements DocumentListener
                 updateLines();
         }catch (Exception ex){}
     }
-    
+
     /**
-     * Method: removeUpdate
      * Gives notifications that text was removed from the document.
      * @param e the DocumentEvent describing the removal
      */
@@ -211,5 +203,5 @@ public class JESGutter extends JComponent implements DocumentListener
                 updateLines();
         }catch (Exception ex){}
     }
-    
+
   }

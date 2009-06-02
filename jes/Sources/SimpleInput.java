@@ -4,7 +4,7 @@ import javax.swing.SwingUtilities;
 /**
  * Class to make it easy to get input
  * from a user using JOptionPane
- * 
+ * <br>
  * Copyright Georgia Institute of Technology 2004
  * @author Barb Ericson ericson@cc.gatech.edu
  *
@@ -16,12 +16,11 @@ import javax.swing.SwingUtilities;
  */
 public class SimpleInput
 {
-  /** 
+  /**
    * Method to allow the user to input a number.
    * the dialog will keep appearing till a valid
    * number is input.
-   * @param message the message to display to 
-   * the user in the dialog
+   * @param message the message to display to the user in the dialog
    * @return the number as a double
    */
   public static Double getNumber(String message)
@@ -29,13 +28,13 @@ public class SimpleInput
     boolean okay = true; // start out okay
     String answerString = null; // answer as a string
     Double answer = new Double(0.0);
-    
+
     // Try to get a number using an input dialog
     do
     {
       // get the user's answer as a string
        answerString = safeInputDialog(message);
-       
+
        // try to convert to a number
        try {
          answer = new Double(answerString);
@@ -50,17 +49,16 @@ public class SimpleInput
 		 return null;
        }
     } while (!okay);
-    
+
     // return the answer as a number
     return answer;
   }
- 
-  /** 
+
+  /**
    * Method to allow the user to input an integer.
    * The dialog will keep appearing till a valid
    * number is input.
-   * @param message the message to display to 
-   * the user in the dialog
+   * @param message the message to display to the user in the dialog
    * @return the number as an integer
    */
   public static Integer getIntNumber(String message)
@@ -68,13 +66,13 @@ public class SimpleInput
     boolean okay = true; // start out okay
     String answerString = null; // answer as a string
     Integer answer = new Integer(0);
-    
+
     // Try to get a number using an input dialog
     do
     {
       // get the user's answer as a string
        answerString = safeInputDialog(message);
-       
+
        // try to convert to a number
        try {
          answer = new Integer(answerString);
@@ -89,16 +87,16 @@ public class SimpleInput
 		 return null;
        }
     } while (!okay);
-    
+
     // return the answer as a number
     return answer;
   }
-  
-  
+
+
   /**
    * Method to get an integer between a minimum
    * and maximum (inclusive)
-   * @param message the message to display to 
+   * @param message the message to display to the user in the dialog
    * @param min the minimum number
    * @param max the maximum number
    * @return the user entered integer
@@ -110,20 +108,20 @@ public class SimpleInput
     boolean okay = true; // start out okay
     String answerString = null; // answer as a string
     String failMessage = "Try again.  That wasn't an " +
-           "integer between " + min + 
+           "integer between " + min +
            " and " + max + "!";
     Integer answer = new Integer(0);
-    
+
     // Try to get a number using an input dialog
     do
     {
       // get the user's answer as a string
        answerString = safeInputDialog(message);
-       
+
        // try to convert to a number
        try {
          answer = new Integer(answerString);
-         
+
          /* check that the answer is in the
           * allowed range
           */
@@ -146,50 +144,49 @@ public class SimpleInput
 		 return null;
        }
     } while (!okay);
-    
+
     // return the answer as a number
     return answer;
-  } 
-  
+  }
+
   /**
    * Method to get the name of a directory
    * @param message the message to display to the user
-   * @return the pathname for a directory 
+   * @return the pathname for a directory
    */
   public static String getDirectory(String message)
   {
     String name = getString(message);
     return name;
   }
-  
+
   /**
    * Method to get a string input by the user.
-   * The dialog will keep appearing till a 
+   * The dialog will keep appearing till a
    * string is entered.
-   * @param message the message to display to
-   * the user
+   * @param message the message to display to the user
    * @return the input string
    */
   public static String getString(String message)
   {
     boolean okay = true;
     String answer = null;
-    
+
     do {
       answer = safeInputDialog(message);
       okay = true;
-      
+
       // if null try again
       if (answer == null)
         return null;
     } while (!okay);
-    
+
     // return the answer
     return answer;
   }
- 
+
   /**
-   * Method to prompt for a string by the user in a 
+   * Method to prompt for a string by the user in a
    * threadsafe manner.
    * @param message the message to display to the user
    * @return the input string

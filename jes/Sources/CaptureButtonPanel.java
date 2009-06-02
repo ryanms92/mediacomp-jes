@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.net.*;
 
 /**
- * Class ButtonPanel:  holds buttons for video capture
+ * Class that holds buttons for video capture<br>
  * Copyright Georgia Institute of Technology 2005
  * @author Barb Ericson ericson@cc.gatech.edu
  *
@@ -16,13 +16,13 @@ import java.net.*;
  */
 public class CaptureButtonPanel extends JPanel
 {
-  
+
   ///////////////////// Public Attributes ////////////////////////
-  
+
   ////////////////////// Private Attributes //////////////////////
-  
+
   /** help button */
-  private JButton helpButton; 
+  private JButton helpButton;
   /** button to capture the screen */
   private JButton captureScreenButton; // screen capture button
   /** button to start picking a region to capture */
@@ -47,41 +47,41 @@ public class CaptureButtonPanel extends JPanel
   private JLabel frameRateLabel = null;
   /** label for directory */
   private JLabel directoryLabel = null;
-  
+
   //////////////////////// Constructors ////////////////////////////
-  
-  /** A constructor that takes no arguments */
+
+  /** Constructor that takes no arguments */
   public CaptureButtonPanel ()
   {
     // initialize the panel
     init();
   }
-  
-  /** A constructor that takes the object that handles the video
+
+  /** Constructor that takes the object that handles the video
     * capture and the object that handles the region selection
    * @param theHandler    the handler of the video capture
    * @param regionIntHandler the handler of the region selection
    */
-  public CaptureButtonPanel (VideoCapturer theHandler, 
+  public CaptureButtonPanel (VideoCapturer theHandler,
                       RegionInterface regionIntHandler)
   {
     // set the handler
     videoHandler = theHandler;
     regionHandler = regionIntHandler;
-    
+
     // initialize the panel
     init();
   }
-  
+
   /////////////////// Private Methods ///////////////////////////////
-  
+
   /** Method to initialize the panel */
   private void init()
   {
     this.setLayout(new BorderLayout());
     JPanel buttonPanel = new JPanel();
     JPanel infoPanel = new JPanel();
-    
+
     // set up info panel
     directoryLabel = new JLabel("Directory: ");
     FrameSequencer frameSequencer = videoHandler.getFrameSequencer();
@@ -113,7 +113,7 @@ public class CaptureButtonPanel extends JPanel
       }
     });
     infoPanel.add(scrollPane);
-    
+
     // add help button
     helpButton = new JButton("Help");
     helpButton.setToolTipText("Click here to see help");
@@ -124,9 +124,9 @@ public class CaptureButtonPanel extends JPanel
     });
     infoPanel.add(helpButton);
     //infoPanel.add(frameRateTextField);
-    
+
     // set up button panel
-    
+
     // create the capture screen button
     captureScreenButton = new JButton("Capture Screen");
     captureScreenButton.setToolTipText("Click here to capture the"+
@@ -143,11 +143,11 @@ public class CaptureButtonPanel extends JPanel
         }
       }
     });
-    
+
     // create the pick region button
     pickRegionButton = new JButton("Pick Region");
     pickRegionButton.setToolTipText("Click here to pick a region to capture."+
-                               "  Then click on the top left corner and "+ 
+                               "  Then click on the top left corner and "+
                           "drag the cursor to the bottom right of the region");
     pickRegionButton.setEnabled(false);
     buttonPanel.add(pickRegionButton);
@@ -160,12 +160,12 @@ public class CaptureButtonPanel extends JPanel
         }
       }
     });
-    
+
 //    JLabel label = new JLabel("Number of Seconds to Capture: ");
 //    secField = new JTextField("3",3);
 //    add(label);
 //    add(secField);
-    
+
     // create the start capture button
     startButton = new JButton("Start Capture");
     startButton.setToolTipText("Click here to start the video capture");
@@ -187,7 +187,7 @@ public class CaptureButtonPanel extends JPanel
         }
       }
     });
-    
+
     // create the stop capture button
     stopButton = new JButton("Stop Capture");
     stopButton.setToolTipText("Click here to stop the video capture");
@@ -205,7 +205,7 @@ public class CaptureButtonPanel extends JPanel
         }
       }
     });
-    
+
     // create the play movie button
     playButton = new JButton("Play Movie");
     playButton.setToolTipText("Click here to play the captured video");
@@ -217,11 +217,11 @@ public class CaptureButtonPanel extends JPanel
           videoHandler.playMovie();
       }
     });
-    
+
     this.add(infoPanel,BorderLayout.NORTH);
     this.add(buttonPanel,BorderLayout.SOUTH);
   }
-  
+
   /**
    * Method to show help
    */
@@ -229,18 +229,18 @@ public class CaptureButtonPanel extends JPanel
   {
     String name = null;
      try {
-       // get the URL for where we loaded this class 
+       // get the URL for where we loaded this class
        Class currClass = Class.forName("CaptureButtonPanel");
        URL classURL = currClass.getResource("CaptureButtonPanel.class");
        JFrame helpFrame = new JFrame("Help");
        helpFrame.setAlwaysOnTop(true);
 //       name = classURL.getPath();
 //       int pos = name.lastIndexOf("/");
-//       name = "file:///" + 
+//       name = "file:///" +
 //         name.substring(1,pos) +
 //            "/help/CaptureAliceMovie.html";
        URL url = new URL(classURL,"help/CaptureAliceMovie.html");
-       JEditorPane pane = 
+       JEditorPane pane =
          new JEditorPane(url);
        JScrollPane scrollPane = new JScrollPane(pane);
        helpFrame.setSize(new Dimension(900,800));
@@ -252,22 +252,22 @@ public class CaptureButtonPanel extends JPanel
                          name);
     }
   }
-  
+
   ///////////////////// Main Method for Testing /////////////////////////
   public static void main (String argv[])
   {
     // create a frame
     JFrame frame = new JFrame();
-    
+
     // create a ButtonPanel
     CaptureButtonPanel buttonPanel = new CaptureButtonPanel();
-    
+
     // add the buttonPanel to the frame
     frame.getContentPane().add(buttonPanel);
     frame.pack(); // shrink to fit preferred size
     frame.setVisible(true); // show the frame
   }
-  
+
 }
 
 

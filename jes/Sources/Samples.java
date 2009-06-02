@@ -1,13 +1,13 @@
 import java.util.Vector;
 
 /**
- * Class that represents a sample. this is for JES, and
- * beware arrays are 1-index..?
+ * Class that represents a list of samples
+ * <br>
  * Copyright Georgia Institute of Technology 2006
  * @author Timmy Douglas timmy@cc
  */
 public class Samples
-{  
+{
 
   /**
    * the sound we point to
@@ -19,11 +19,9 @@ public class Samples
    */
     private Sample[] samples;
 
-  
-  
   /**
-   * Constructor that takes a file name
-   * @param aSound the name of the file to read the sound from
+   * Constructor that takes a sound
+   * @param aSound the sound
    */
     public Samples(Sound aSound)
     {
@@ -33,11 +31,11 @@ public class Samples
             samples[i] = new Sample(aSound, i);
         }
     }
-  
 
   /**
-   * @param aSound the name of the file to read the sound from
-   * @return samples
+   * Method to get the array of samples from a sound
+   * @param aSound the sound
+   * @return the array of samples
    */
     static public Sample[] getSamples(Sound aSound)
     {
@@ -47,68 +45,53 @@ public class Samples
         }
         return samples;
     }
-  
-
 
   /**
-   * Obtains a string representation of this JavaSound. 
-   * @return a String representation of this JavaSound.
+   * Obtains a string representation of this array of Samples.
+   * @return a String representation of this array of Samples.
    */
-
-  public String toString()
-  {
-      return ("Samples, length " + this.sound.getLength());
-  }
+    public String toString()
+    {
+        return ("Samples, length " + this.sound.getLength());
+    }
 
   /**
-   * gets item
+   * Method to get a specific Sample
+   * @param index the index to get the sample from
+   * @return the sample
+   */
+    public Sample getSample(int index)
+    {
+        return this.samples[index];
+    }
+
+  /**
+   * Method to set the value of a specific Sample
    * @param index the index to get the sample
-   * @return a sample
+   * @param value the value to set it to
    */
-
-  public Sample getSample(int index)
-  {
-      return this.samples[index];
-  }
-
-
-    /**
-     * sets item
-     * @param index the index to get the sample
-     * @param value the value to set it to
-     */
-    
-    
     public void setSample(int index, int value) throws SoundException
     {
         this.samples[index].setValue(value);
     }
 
-
-    /**
-     * sets item
-     * @param index the index to get the sample
-     * @param value the value to set it to
-     */
-    
-
-    
+  /**
+   * Method to set the value of a specific Sample
+   * @param index the index to get the sample
+   * @param value the value to set it to
+   */
     public void setSample(int index, double value) throws SoundException
     {
         this.setSample(index, Math.round(value));
     }
 
-
   /**
-   * get sound object
+   * Method to get these Samples' sound object
    * @return a sound object
    */
-
   public Sound getSound()
   {
       return this.sound;
   }
-
-
 
 }

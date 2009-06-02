@@ -5,16 +5,16 @@ import java.awt.Color;
  * location in a picture.  A pixel knows how to get and set the red,
  * green, blue, and alpha values in the picture.  A pixel also knows
  * how to get and set the color using a Color object.
- *
+ * <br>
  * Copyright Georgia Institute of Technology 2004
  * @author Barb Ericson ericson@cc.gatech.edu
  *
- * <br>Modified 6 July 2007 Pam Cutter Kalamazoo College
- *   <br>&nbsp&nbsp Added a field to hold the pixel's color.  Updated the get/set
- *      color methods to reflect this new field.  Commented out
- * 		original code.
+ * Modified 6 July 2007 Pam Cutter Kalamazoo College
+ *    Added a field to hold the pixel's color.  Updated the get/set
+ *     color methods to reflect this new field.  Commented out
+ *     original code.
  *
- * <br><br>Kalamazoo additional methods merged by Buck Scharfnorth 22 May 2008
+ * Kalamazoo additional methods merged by Buck Scharfnorth 22 May 2008
  */
 public class Pixel
 {
@@ -78,22 +78,7 @@ public class Pixel
    * It will be from 0-255.
    * @return the amount of alpha (transparency)
    */
-  public int getAlpha() {
-
-    /* get the value at the location from the picture as a 32 bit int
-     * with alpha, red, green, blue each taking 8 bits from left to right
-     */
-    //int value = picture.getBasicPixel(x,y);
-
-    // get the alpha value (starts at 25 so shift right 24)
-    // then and it with all 1's for the first 8 bits to keep
-    // end up with from 0 to 255
-    //int alpha = (value >> 24) & 0xff;
-
-    //return alpha;
-
-  	return pxColor.getAlpha();
-  }
+  public int getAlpha() { return pxColor.getAlpha(); }
 
 
   /**
@@ -102,22 +87,7 @@ public class Pixel
    * you can have.
    * @return the amount of red from 0 for none to 255 for max
    */
-  public int getRed() {
-
-    /* get the value at the location from the picture as a 32 bit int
-     * with alpha, red, green, blue each taking 8 bits from left to right
-     */
-    //int value = picture.getBasicPixel(x,y);
-
-    // get the red value (starts at 17 so shift right 16)
-    // then and it with all 1's for the first 8 bits to keep
-    // end up with from 0 to 255
-    //int red = (value >> 16) & 0xff;
-
-    //return red;
-
-	 return pxColor.getRed();
-  }
+  public int getRed() { return pxColor.getRed(); }
 
   /**
    * Method to get the red value from a pixel represented as an int
@@ -136,20 +106,7 @@ public class Pixel
    * you can have.
    * @return the amount of green from 0 for none to 255 for max
    */
-  public int getGreen() {
-
-    /* get the value at the location from the picture as a 32 bit int
-     * with alpha, red, green, blue each taking 8 bits from left to right
-     */
-    //int value = picture.getBasicPixel(x,y);
-
-    // get the green value (starts at 9 so shift right 8)
-    //int green = (value >>  8) & 0xff;
-
-    //return green;
-
-    return pxColor.getGreen();
-  }
+  public int getGreen() { return pxColor.getGreen(); }
 
   /**
    * Method to get the green value from a pixel represented as an int
@@ -168,19 +125,7 @@ public class Pixel
    * you can have.
    * @return the amount of blue from 0 for none to 255 for max
    */
-  public int getBlue() {
-
-    /* get the value at the location from the picture as a 32 bit int
-     * with alpha, red, green, blue each taking 8 bits from left to right
-     */
-    //int value = picture.getBasicPixel(x,y);
-
-    // get the blue value (starts at 0 so no shift required)
-    //int blue = value & 0xff;
-
-    //return blue;
-    return pxColor.getBlue();
-  }
+  public int getBlue() { return pxColor.getBlue(); }
 
   /**
    * Method to get the blue value from a pixel represented as an int
@@ -197,28 +142,7 @@ public class Pixel
    * Method to get a color object that represents the color at this pixel.
    * @return a color object that represents the pixel color
    */
-  public Color getColor()
-  {
-     /* get the value at the location from the picture as a 32 bit int
-     * with alpha, red, green, blue each taking 8 bits from left to right
-     */
-    //int value = picture.getBasicPixel(x,y);
-
-    // get the red value (starts at 17 so shift right 16)
-    // then and it with all 1's for the first 8 bits to keep
-    // end up with from 0 to 255
-    //int red = (value >> 16) & 0xff;
-
-    // get the green value (starts at 9 so shift right 8)
-    //int green = (value >>  8) & 0xff;
-
-    // get the blue value (starts at 0 so no shift required)
-    //int blue = value & 0xff;
-
-    //return new Color(red,green,blue);
-
-    return pxColor;
-  }
+  public Color getColor() { return pxColor; }
 
   /**
    * Method to set the pixel color to the passed in color object.
@@ -226,16 +150,8 @@ public class Pixel
    */
   public void setColor(Color newColor)
   {
-    // set the red, green, and blue values
-    //int red = newColor.getRed();
-    //int green = newColor.getGreen();
-    //int blue = newColor.getBlue();
-
-    // update the associated picture
-    //updatePicture(this.getAlpha(),red,green,blue);
-
-    pxColor = newColor;
-    picture.setBasicPixel(x, y, newColor.getRGB());
+	pxColor = newColor;
+	picture.setBasicPixel(x, y, newColor.getRGB());
   }
 
   /**
@@ -328,7 +244,7 @@ public class Pixel
     setColor(pxColor.getRed(), pxColor.getGreen(), value, pxColor.getAlpha());
   }
 
-   /**
+  /**
    * Method to set the alpha (transparency) to a new alpha value
    * @param value the new value to use
    */
@@ -347,6 +263,7 @@ public class Pixel
    * <code>otherPixel</code>.
    * @param otherPixel a pixel that may be in the same picture
    * 				   or a different picture.
+   * <br>
    * Added by Alyce Brady/Pam Cutter
    */
   public void setColorFrom(Pixel otherPixel)
@@ -354,7 +271,7 @@ public class Pixel
   	setColor(otherPixel.getColor());
   }
 
-  /**
+ /**
   * Method to get the distance between this pixel's color and the passed color
   * @param testColor the color to compare to
   * @return the distance between this pixel's color and the passed color

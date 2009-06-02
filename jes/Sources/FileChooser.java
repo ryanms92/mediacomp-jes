@@ -9,7 +9,7 @@ import java.net.*;
  * A class to make working with a file chooser easier
  * for students.  It uses a JFileChooser to let the user
  * pick a file and returns the chosen file name.
- *
+ * <br>
  * Copyright Georgia Institute of Technology 2004
  * @author Barb Ericson ericson@cc.gatech.edu
  *
@@ -26,7 +26,7 @@ public class FileChooser
   /////////////////////// methods /////////////////////////////
 
   /**
-   * Method to pick an item using the file chooser.  
+   * Method to pick an item using the file chooser.
    * NOTE: This method is written to be threadsafe in the event
    * it is called from a thread other than the GUI event-dispatch thread.
    * @param fileChooser the file Chooser to use
@@ -37,7 +37,7 @@ public class FileChooser
 	//Create a place to store the return value from the JFileChooser in the other thread
 	final String[] path = new String[1];
 
-	Runnable pickAFileRunner = 
+	Runnable pickAFileRunner =
 		new Runnable() {
 			public void run() {
 				JFileChooser fileChooser = new JFileChooser();
@@ -50,14 +50,14 @@ public class FileChooser
     				 */
 				JFrame frame = new JFrame();
 				frame.setAlwaysOnTop(true);
-				frame.getContentPane().add(fileChooser);				
+				frame.getContentPane().add(fileChooser);
 
 				String startPath;
 
 				// Decide which path to start from, either latest path or the media dir
 				if ( latestPath != null )
 					startPath = latestPath;
-				else 
+				else
 					startPath = getMediaDirectory();
 
 				// Check to make sure path exists, if it doesn't, use home directory
@@ -134,7 +134,7 @@ public class FileChooser
  {
 	return JESConfig.getInstance().getStringProperty(JESConfig.CONFIG_MEDIAPATH);
  }
-  
+
 
  /**
   * Method to set the media path by setting the directory to use
@@ -144,7 +144,7 @@ public class FileChooser
  {
    // check if the directory exists
    File file = null;
-   
+
    if ( directory != null )
      file = new File( directory );
 

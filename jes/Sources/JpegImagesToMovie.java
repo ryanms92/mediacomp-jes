@@ -44,35 +44,35 @@ import javax.media.format.VideoFormat;
  * This program takes a list of JPEG image files and converts them into
  * a QuickTime or AVI movie.
  * @author Sun - orig
- * @author Barb Ericson ericson@cc.gatech.edu 
+ * @author Barb Ericson ericson@cc.gatech.edu
  * modified to use List<String> instead of Vector
  * and added methods for Quicktime and AVI
  */
-public class JpegImagesToMovie implements ControllerListener, 
+public class JpegImagesToMovie implements ControllerListener,
   DataSinkListener {
-  
+
   /** number of frames per second */
   private int fRate = 16;
-  
-  /** 
-   * Method to write out a quicktime movie 
+
+  /**
+   * Method to write out a quicktime movie
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
    * @param inFiles string full path names of the frames
-   * @param outML the Media Locator 
+   * @param outML the Media Locator
    */
   public boolean doItQuicktime(int width, int height,
-                               int frameRate, 
+                               int frameRate,
                                List<String> inFiles,
                                MediaLocator outML) {
     this.fRate = frameRate;
     return doIt(width,height,frameRate,inFiles,outML,
          FileTypeDescriptor.QUICKTIME);
   }
-  
-  /** 
-   * Method to write out a quicktime movie 
+
+  /**
+   * Method to write out a quicktime movie
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
@@ -80,7 +80,7 @@ public class JpegImagesToMovie implements ControllerListener,
    * @param outputURL the output URL for the movie
    */
   public boolean doItQuicktime(int width, int height,
-                               int frameRate, 
+                               int frameRate,
                                List<String> inFiles,
                                String outputURL)
   {
@@ -88,9 +88,9 @@ public class JpegImagesToMovie implements ControllerListener,
      MediaLocator oml = createMediaLocator(outputURL);
      return doItQuicktime(width,height,frameRate,inFiles,oml);
   }
-  
-  /** 
-   * Method to write out an AVI movie 
+
+  /**
+   * Method to write out an AVI movie
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
@@ -105,43 +105,43 @@ public class JpegImagesToMovie implements ControllerListener,
      MediaLocator oml = createMediaLocator(outputURL);
      return doItAVI(width,height,frameRate,inFiles,oml);
   }
-  
-  /** 
-   * Method to write out an AVI movie 
+
+  /**
+   * Method to write out an AVI movie
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
    * @param inFiles string full path names of the frames
-   * @param outML the Media Locator 
+   * @param outML the Media Locator
    */
   public boolean doItAVI(int width, int height,
-                         int frameRate, 
+                         int frameRate,
                          List<String> inFiles,
                          MediaLocator outML) {
     this.fRate = frameRate;
     return doItAVI(width,height,frameRate,inFiles,outML,
          FileTypeDescriptor.MSVIDEO);
   }
-  
+
   /**
    * Method to write out the movie for a given type
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
    * @param inFiles string full path names of the frames
-   * @param outML the Media Locator 
-   * @type the VideoFormat type 
+   * @param outML the Media Locator
+   * @param type the VideoFormat type
    */
-  public boolean doIt(int width, int height, 
-                      int frameRate, List<String> inFiles, 
+  public boolean doIt(int width, int height,
+                      int frameRate, List<String> inFiles,
                       MediaLocator outML,
                       String type) {
     this.fRate = frameRate;
-    ImageDataSource ids = new ImageDataSource(width, height, 
+    ImageDataSource ids = new ImageDataSource(width, height,
                                               frameRate, inFiles);
-    
+
     Processor p;
-    
+
     try {
       //System.err.println("- create processor for the image datasource ...");
       p = Manager.createProcessor(ids);
@@ -149,9 +149,9 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Yikes!  Cannot create a processor from the data source.");
       return false;
     }
-    
+
     p.addControllerListener(this);
-    
+
     // Put the Processor into configured state so we can set
     // some processing options on the processor.
     p.configure();
@@ -159,10 +159,10 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Failed to configure the processor.");
       return false;
     }
-    
-    // Set the output content descriptor to QuickTime. 
+
+    // Set the output content descriptor to QuickTime.
     p.setContentDescriptor(new ContentDescriptor(type));
-    
+
     // Query for the processor for supported formats.
     // Then set it on the processor.
     TrackControl tcs[] = p.getTrackControls();
@@ -171,11 +171,11 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("The mux does not support the input format: " + tcs[0].getFormat());
       return false;
     }
-    
+
     tcs[0].setFormat(f[0]);
-    
+
     //System.err.println("Setting the track format to: " + f[0]);
-    
+
     // We are done with programming the processor.  Let's just
     // realize it.
     p.realize();
@@ -183,19 +183,19 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Failed to realize the processor.");
       return false;
     }
-    
+
     // Now, we'll need to create a DataSink.
     DataSink dsink;
     if ((dsink = createDataSink(p, outML)) == null) {
       System.err.println("Failed to create a DataSink for the given output MediaLocator: " + outML);
       return false;
     }
-    
+
     dsink.addDataSinkListener(this);
     fileDone = false;
-    
+
     System.err.println("start processing...");
-    
+
     // OK, we can now start the actual transcoding.
     try {
       p.start();
@@ -204,39 +204,39 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("IO error during processing");
       return false;
     }
-    
+
     // Wait for EndOfStream event.
     waitForFileDone();
-    
+
     // Cleanup.
     try {
       dsink.close();
     } catch (Exception e) {}
     p.removeControllerListener(this);
-    
+
     System.err.println("...done processing.");
-    
+
     return true;
   }
-  
+
   /**
    * Method to write out the movie for an AVI movie
    * @param width the width of the resulting movie
    * @param height the height of the resulting movie
    * @param frameRate the number of frames per second
    * @param inFiles string full path names of the frames
-   * @param outML the Media Locator 
-   * @type the VideoFormat type 
+   * @param outML the Media Locator
+   * @param type the VideoFormat type
    */
-  public boolean doItAVI(int width, int height, 
-                      int frameRate, List<String> inFiles, 
+  public boolean doItAVI(int width, int height,
+                      int frameRate, List<String> inFiles,
                       MediaLocator outML,
                       String type) {
-    ImageDataSource ids = new ImageDataSource(width, height, 
+    ImageDataSource ids = new ImageDataSource(width, height,
                                               frameRate, inFiles);
-    
+
     Processor p;
-    
+
     try {
       System.err.println("- create processor for the image datasource ...");
       p = Manager.createProcessor(ids);
@@ -244,9 +244,9 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Yikes!  Cannot create a processor from the data source.");
       return false;
     }
-    
+
     p.addControllerListener(this);
-    
+
     // Put the Processor into configured state so we can set
     // some processing options on the processor.
     p.configure();
@@ -254,10 +254,10 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Failed to configure the processor.");
       return false;
     }
-    
-    // Set the output content descriptor to QuickTime. 
+
+    // Set the output content descriptor to QuickTime.
     p.setContentDescriptor(new ContentDescriptor(type));
-    
+
      // Query for the processor for supported formats.
     // Then set it on the processor.
     TrackControl tcs[] = p.getTrackControls();
@@ -272,7 +272,7 @@ public class JpegImagesToMovie implements ControllerListener,
       //arrTrackControls[i].setFormat(new AudioFormat(AudioFormat.GSM_MS));
       //}
    }
-    
+
     // We are done with programming the processor.  Let's just
     // realize it.
     p.realize();
@@ -280,19 +280,19 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Failed to realize the processor.");
       return false;
     }
-    
+
     // Now, we'll need to create a DataSink.
     DataSink dsink;
     if ((dsink = createDataSink(p, outML)) == null) {
       System.err.println("Failed to create a DataSink for the given output MediaLocator: " + outML);
       return false;
     }
-    
+
     dsink.addDataSinkListener(this);
     fileDone = false;
-    
+
     System.err.println("start processing...");
-    
+
     // OK, we can now start the actual transcoding.
     try {
       p.start();
@@ -301,36 +301,36 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("IO error during processing");
       return false;
     }
-    
+
     // Wait for EndOfStream event.
     waitForFileDone();
-    
+
     // Cleanup.
     try {
       dsink.close();
     } catch (Exception e) {}
     p.removeControllerListener(this);
-    
+
     System.err.println("...done processing.");
-    
+
     return true;
   }
-  
-  
+
+
   /**
    * Create the DataSink.
    */
   DataSink createDataSink(Processor p, MediaLocator outML) {
-    
+
     DataSource ds;
-    
+
     if ((ds = p.getDataOutput()) == null) {
       System.err.println("Something is really wrong: the processor does not have an output DataSource");
       return null;
     }
-    
+
     DataSink dsink;
-    
+
     try {
       System.err.println("- create DataSink for: " + outML);
       dsink = Manager.createDataSink(ds, outML);
@@ -339,14 +339,14 @@ public class JpegImagesToMovie implements ControllerListener,
       System.err.println("Cannot create the DataSink: " + e);
       return null;
     }
-    
+
     return dsink;
   }
-  
-  
+
+
   Object waitSync = new Object();
   boolean stateTransitionOK = true;
-  
+
   /**
    * Block until the processor has transitioned to the given state.
    * Return false if the transition failed.
@@ -360,13 +360,15 @@ public class JpegImagesToMovie implements ControllerListener,
     }
     return stateTransitionOK;
   }
-  
-  
+
+
   /**
-   * Controller Listener.
+   * This method is called when an event is generated by a Controller
+   * that this listener is registered with.
+   * @param evt the event generated
    */
   public void controllerUpdate(ControllerEvent evt) {
-    
+
     if (evt instanceof ConfigureCompleteEvent ||
         evt instanceof RealizeCompleteEvent ||
         evt instanceof PrefetchCompleteEvent) {
@@ -384,14 +386,14 @@ public class JpegImagesToMovie implements ControllerListener,
       evt.getSourceController().close();
     }
   }
-  
-  
+
+
   Object waitFileSync = new Object();
   boolean fileDone = false;
   boolean fileSuccess = true;
-  
+
   /**
-   * Block until file writing is done. 
+   * Block until file writing is done.
    */
   boolean waitForFileDone() {
     synchronized (waitFileSync) {
@@ -402,13 +404,15 @@ public class JpegImagesToMovie implements ControllerListener,
     }
     return fileSuccess;
   }
-  
-  
+
+
   /**
-   * Event handler for the file writer.
+   * Event handler for the file writer. This method is called when an
+   * event is generated by a DataSink that this listener is registered with.
+   * @param evt the event generated
    */
   public void dataSinkUpdate(DataSinkEvent evt) {
-    
+
     if (evt instanceof EndOfStreamEvent) {
       synchronized (waitFileSync) {
         fileDone = true;
@@ -422,21 +426,21 @@ public class JpegImagesToMovie implements ControllerListener,
       }
     }
   }
-  
-  
+
+
   public static void main(String args[]) {
-    
+
     if (args.length == 0)
       prUsage();
-    
+
     // Parse the arguments.
     int i = 0;
     int width = -1, height = -1, frameRate = 1;
     List<String> inputFiles = new ArrayList<String>();
     String outputURL = null;
-    
+
     while (i < args.length) {
-      
+
       if (args[i].equals("-w")) {
         i++;
         if (i >= args.length)
@@ -462,54 +466,54 @@ public class JpegImagesToMovie implements ControllerListener,
       }
       i++;
     }
-    
+
     if (outputURL == null || inputFiles.size() == 0)
       prUsage();
-    
+
     // Check for output file extension.
     if (!outputURL.endsWith(".mov") && !outputURL.endsWith(".MOV")) {
       System.err.println("The output file extension should end with a .mov extension");
       prUsage();
     }
-    
+
     if (width < 0 || height < 0) {
       System.err.println("Please specify the correct image size.");
       prUsage();
     }
-    
+
     // Check the frame rate.
     if (frameRate < 1)
       frameRate = 1;
-    
+
     // Generate the output media locators.
     MediaLocator oml;
-    
+
     if ((oml = createMediaLocator(outputURL)) == null) {
       System.err.println("Cannot build media locator from: " + outputURL);
       System.exit(0);
     }
-    
+
     JpegImagesToMovie imageToMovie = new JpegImagesToMovie();
     imageToMovie.doItQuicktime(width, height, frameRate, inputFiles, oml);
-    
+
     System.exit(0);
   }
-  
+
   static void prUsage() {
     System.err.println("Usage: java JpegImagesToMovie -w <width> -h <height> -f <frame rate> -o <output URL> <input JPEG file 1> <input JPEG file 2> ...");
     System.exit(-1);
   }
-  
+
   /**
    * Create a media locator from the given string.
    */
   static MediaLocator createMediaLocator(String url) {
-    
+
     MediaLocator ml;
-    
+
     if (url.indexOf(":") > 0 && (ml = new MediaLocator(url)) != null)
       return ml;
-    
+
     if (url.startsWith(File.separator)) {
       if ((ml = new MediaLocator("file:" + url)) != null)
         return ml;
@@ -518,40 +522,40 @@ public class JpegImagesToMovie implements ControllerListener,
       if ((ml = new MediaLocator(file)) != null)
         return ml;
     }
-    
+
     return null;
   }
-  
-  
+
+
   ///////////////////////////////////////////////
   //
   // Inner classes.
   ///////////////////////////////////////////////
-  
-  
+
+
   /**
    * A DataSource to read from a list of JPEG image files and
    * turn that into a stream of JMF buffers.
    * The DataSource is not seekable or positionable.
    */
   class ImageDataSource extends PullBufferDataSource {
-    
+
     ImageSourceStream streams[];
-    
-    ImageDataSource(int width, int height, int frameRate, 
+
+    ImageDataSource(int width, int height, int frameRate,
                     List images) {
       streams = new ImageSourceStream[1];
-      streams[0] = new ImageSourceStream(width, height, 
+      streams[0] = new ImageSourceStream(width, height,
                                          frameRate, images);
     }
-    
+
     public void setLocator(MediaLocator source) {
     }
-    
+
     public MediaLocator getLocator() {
       return null;
     }
-    
+
     /**
      * Content type is of RAW since we are sending buffers of video
      * frames without a container format.
@@ -559,26 +563,26 @@ public class JpegImagesToMovie implements ControllerListener,
     public String getContentType() {
       return ContentDescriptor.RAW;
     }
-    
+
     public void connect() {
     }
-    
+
     public void disconnect() {
     }
-    
+
     public void start() {
     }
-    
+
     public void stop() {
     }
-    
+
     /**
      * Return the ImageSourceStreams.
      */
     public PullBufferStream[] getStreams() {
       return streams;
     }
-    
+
     /**
      * We could have derived the duration from the number of
      * frames and frame rate.  But for the purpose of this program,
@@ -587,36 +591,36 @@ public class JpegImagesToMovie implements ControllerListener,
     public Time getDuration() {
       return DURATION_UNKNOWN;
     }
-    
+
     public Object[] getControls() {
       return new Object[0];
     }
-    
+
     public Object getControl(String type) {
       return null;
     }
   }
-  
-  
+
+
   /**
    * The source stream to go along with ImageDataSource.
    */
   class ImageSourceStream implements PullBufferStream {
-    
+
     List images;
     int width, height;
     VideoFormat format;
     long frame = 0;
-    
+
     int nextImage = 0; // index of the next image to be read.
     boolean ended = false;
-    
-    public ImageSourceStream(int width, int height, 
+
+    public ImageSourceStream(int width, int height,
                              int frameRate, List images) {
       this.width = width;
       this.height = height;
       this.images = images;
-      
+
       format = new VideoFormat(
                                VideoFormat.JPEG,
                                new Dimension(width, height),
@@ -624,20 +628,20 @@ public class JpegImagesToMovie implements ControllerListener,
                                Format.byteArray,
                                (float)frameRate);
     }
-    
+
     /**
      * We should never need to block assuming data are read from files.
      */
     public boolean willReadBlock() {
       return false;
     }
-    
+
     /**
      * This is called from the Processor to read a frame worth
      * of video data.
      */
     public void read(Buffer buf) throws IOException {
-      
+
       // Check if we've finished all the frames.
       if (nextImage >= images.size()) {
         // We are done.  Set EndOfMedia.
@@ -648,68 +652,68 @@ public class JpegImagesToMovie implements ControllerListener,
         ended = true;
         return;
       }
-      
+
       String imageFile = (String)images.get(nextImage);
       nextImage++;
-      
+
       //System.err.println("  - reading image file: " + imageFile);
-      
-      // Open a random access file for the next image. 
+
+      // Open a random access file for the next image.
       RandomAccessFile raFile;
       raFile = new RandomAccessFile(imageFile, "r");
-      
+
       byte data[] = null;
-      
+
       // Check the input buffer type & size.
-      
+
       if (buf.getData() instanceof byte[])
         data = (byte[])buf.getData();
-      
+
       // Check to see the given buffer is big enough for the frame.
       if (data == null || data.length < raFile.length()) {
         data = new byte[(int)raFile.length()];
         buf.setData(data);
       }
-      
+
       // Read the entire JPEG image from the file.
       raFile.readFully(data, 0, (int)raFile.length());
-      
+
       //System.err.println("    read " + raFile.length() + " bytes.");
-      
+
       buf.setOffset(0);
       buf.setLength((int)raFile.length());
       buf.setFormat(format);
       buf.setFlags(buf.getFlags() | buf.FLAG_KEY_FRAME);
       buf.setTimeStamp(frame++ * Time.ONE_SECOND/fRate); /*AVI*/
 
-      
+
       // Close the random access file.
       raFile.close();
     }
-    
+
     /**
      * Return the format of each video frame.  That will be JPEG.
      */
     public Format getFormat() {
       return format;
     }
-    
+
     public ContentDescriptor getContentDescriptor() {
       return new ContentDescriptor(ContentDescriptor.RAW);
     }
-    
+
     public long getContentLength() {
       return 0;
     }
-    
+
     public boolean endOfStream() {
       return ended;
     }
-    
+
     public Object[] getControls() {
       return new Object[0];
     }
-    
+
     public Object getControl(String type) {
       return null;
     }

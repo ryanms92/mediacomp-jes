@@ -16,28 +16,29 @@ public class ButtonPanel extends JPanel
   private JButton nextButton = new JButton("Next");
   private JButton playButton = new JButton("Play Movie");
   private JButton prevButton = new JButton("Prev");
-  private JButton delBeforeButton = 
+  private JButton delBeforeButton =
     new JButton("Delete All Previous");
-  private JButton delAfterButton = 
+  private JButton delAfterButton =
     new JButton("Delete All After");
-  private JButton writeQuicktimeButton = 
+  private JButton writeQuicktimeButton =
     new JButton("Write Quicktime");
   private JButton writeAVIButton = new JButton("Write AVI");
   private MoviePlayer moviePlayer = null;
-  private static final long serialVersionUID = 7526471155622776147L;  
+  private static final long serialVersionUID = 7526471155622776147L;
   ///////////////// Constructors /////////////////
-  
+
   /**
-   * Constructor that doesn't take any parameters
+   * Constructor that takes a MoviePlayer as a parameter.
+   * @param player the MoviePlayer object
    */
-  public ButtonPanel(MoviePlayer player) 
+  public ButtonPanel(MoviePlayer player)
   {
     this.moviePlayer = player;
-    
+
     // add the previous and next buttons to this panel
     this.add(prevButton);
     this.add(nextButton);
-    
+
     // set up the frame rate list
     frameRateLabel = new JLabel("Frames per Second: ");
     this.add(frameRateLabel);
@@ -55,13 +56,13 @@ public class ButtonPanel extends JPanel
       }
     });
     this.add(scrollPane);
-    
+
     this.add(playButton);
     this.add(delBeforeButton);
     this.add(delAfterButton);
     this.add(writeQuicktimeButton);
     this.add(writeAVIButton);
-    
+
     // add the action listeners to the buttons
     nextButton.setToolTipText("Click to see the next frame");
     nextButton.addActionListener(new ActionListener() {
@@ -99,5 +100,5 @@ public class ButtonPanel extends JPanel
         moviePlayer.writeAVI();
       }});
   }
-  
+
 }

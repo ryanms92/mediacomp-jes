@@ -56,6 +56,7 @@ class JESThread(Thread):
         #print 'running thread in', self.mode, 'mode'
         self.initialize()
         try:
+            #print "JESTHREAD " + Thread.currentThread().getName()
             if self.mode == 'run':
                 code = compile_command(self.fileText)
                 exec code in self.contextForExecution

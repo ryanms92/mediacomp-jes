@@ -4,9 +4,13 @@ import bdb
 import pdb
 import threading
 import time
+import math
 import JESDBVariableWatcher
 from java.lang import Thread
 from java.lang import Long
+from java.lang import Runnable
+import javax.swing as swing
+
 
 SPEED_FACTOR = 20.0
 class JESDebugger(pdb.Pdb):
@@ -22,8 +26,12 @@ class JESDebugger(pdb.Pdb):
 	
 	self.lock = threading.Lock()
 	self.cond = threading.Condition(self.lock)
-	
+
+	#self.history = JESExecHistoryModel()
 	self.watcher = JESDBVariableWatcher.JESDBVariableWatcher(self)
+	self.history = self.watcher.history
+
+
 	self.controlPanel = self.watcher.controlPanel
 	self.interpreter = interpreter
 	self.cmd = None
@@ -45,6 +53,7 @@ class JESDebugger(pdb.Pdb):
 
     #Overrides pdb.interaction
     def interaction(self, frame, traceback):
+        #print "JESDebugger, interaction: " + Thread.currentThread().getName()
 	if self.text_mode:
             cmd = ''
             stop = 0
@@ -67,7 +76,23 @@ class JESDebugger(pdb.Pdb):
             lineno = frame.f_lineno
             filename = self.interpreter.program.filename
             line = linecache.getline(filename, lineno)
-            self.watcher.snapShot(lineno, line)
+
+	    values = []
+	    for var in self.history.getVars():
+		try:
+		    value = eval(var, self.curframe.f_locals,  self.curframe.f_globals) 
+		    values.append(value)
+		except:
+		    values.append('-') # add dummy
+
+
+	    runnableSnapshot = snapShotRunner()
+	    runnableSnapshot.history = self.history
+	    runnableSnapshot.lineno = lineno
+	    runnableSnapshot.line = line
+	    runnableSnapshot.values = values
+	    swing.SwingUtilities.invokeLater(runnableSnapshot)   #append row to table
+
 	    if self.speed < self.MAX_SPEED:
                 if self.speed == 0:
 		    self.lock.acquire()
@@ -83,7 +108,10 @@ class JESDebugger(pdb.Pdb):
                         pause = period - (t - self.last_time)
                     self.last_time = t
                     if pause > 0:
+			#print "JESDebugger, is sleepy: " + Thread.currentThread().getName()
                         time.sleep(pause)
+			#print "Pause " , pause
+			#Thread.sleep( 500 )
 	    if not self.running:
                 self.interpreter.jesThread.stop() # stop myself
 
@@ -105,15 +133,16 @@ class JESDebugger(pdb.Pdb):
 
     def run(self, cmd, globals=None, locals=None):
         self.running = 0
-        self.watcher.clear()
+        self.clearHistory()
         self.controlPanel.run()
         self.last_time = time.time()
+	#print "debug run: " +  Thread.currentThread().getName()
         pdb.Pdb.run(self, cmd, globals, locals)
         self.running = 0
         
     def runeval(self, cmd, globals=None, locals=None):
         self.running = 0
-        self.watcher.clear()
+        self.clearHistory()
         self.controlPanel.run()
         self.last_time = time.time()
         pdb.Pdb.runeval(self, cmd, globals, locals)
@@ -129,3 +158,20 @@ class JESDebugger(pdb.Pdb):
         self.cond.notifyAll()
         self.lock.release()
         
+    def clearHistory(self):
+	clearHist = clearRunner()
+	clearHist.history = self.history
+	swing.SwingUtilities.invokeLater(clearHist)
+
+class snapShotRunner(Runnable):
+    history = None
+    lineno = 0
+    line = None
+    values = None
+    def run(self):
+	self.history.addLine(self.lineno, self.line, self.values)
+
+class clearRunner(Runnable):
+    history = None
+    def run(self):
+	self.history.clear()

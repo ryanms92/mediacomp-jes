@@ -45,6 +45,7 @@ import java.lang.System as System
 #import org.flexdock.docking
 import javax.swing.UIManager as UIManager
 import javax.swing.SwingUtilities as SwingUtilities
+from java.lang import Thread
 
 
 MENU_SEPARATOR = '-'
@@ -326,6 +327,9 @@ class JESUI(swing.JFrame):
                                                        swing.BoxLayout.Y_AXIS))
             self.setIconImage(swing.ImageIcon("images/jesicon.gif").getImage())
             #Create the visual components that will be placed in the UI
+            self.runningBar = swing.JProgressBar(0, 5, string='',
+                                                 preferredSize=(50, 30))
+
             self.editor        = JESEditor.JESEditor(self)
             self.commandWindow = JESCommandWindow.JESCommandWindow(self)
             self.loadButton    = swing.JButton(LOAD_BUTTON_CAPTION,
@@ -336,8 +340,6 @@ class JESUI(swing.JFrame):
                                                actionPerformed=self.actionPerformed)
             self.debuggerButton = swing.JButton(SHOW_DEBUGGER_CAPTION,
                                                 actionPerformed=self.actionPerformed)
-            self.runningBar = swing.JProgressBar(0, 5, string='',
-                                                 preferredSize=(50, 30))
             self.cursorStatusLabel = swing.JLabel()
             self.cursorStatusLabel.setBorder(swing.BorderFactory.createEmptyBorder
                                                     (0,
@@ -1067,8 +1069,8 @@ class JESUI(swing.JFrame):
         self.stopButton.enabled = runBool
 
         if runBool:
-            cursor = awt.Cursor(awt.Cursor.WAIT_CURSOR)
-            textCursor = cursor
+            cursor = awt.Cursor(awt.Cursor.DEFAULT_CURSOR)
+            textCursor = awt.Cursor(awt.Cursor.WAIT_CURSOR)
         else:
             cursor = awt.Cursor(awt.Cursor.DEFAULT_CURSOR)
             textCursor = awt.Cursor(awt.Cursor.TEXT_CURSOR)

@@ -14,8 +14,7 @@ in JES
 <table width="80%" border="0" cellspacing="0" cellpadding="5">
   <tr>
     <td bgcolor="#dddddd" height="107">
-      <b>Sound Functions
-in JES</b><br>
+      <b>Sound Functions in JES</b><br>
        <br>
       This is a list of functions that you may find useful when you are creating programs to manipulate or create audio files in JES. Remember, these functions are part of a special library, and are not available in other Jython programming environments.
     </td>
@@ -37,8 +36,8 @@ in JES</b><br>
             </td>
           <td bgcolor="#eeeeee">
           <b>duplicateSound</b>(sound):<br>
-            <font color=blue>sound</font>: the sound you want to duplicate.<br>
-            <font color=blue>returns</font>: a new Sound object with the same Sample values as the original.<br>
+            <font color=blue>sound</font>: the sound you want to duplicate<br>
+            <font color=blue>returns</font>: a new Sound object with the same Sample values as the original<br>
             Takes a sound as input and returns a new Sound object with the same Sample values as the original.
           </td>
         </tr>
@@ -47,9 +46,9 @@ in JES</b><br>
             </td>
           <td>
           <b>getDuration</b>(sound):<br>
-            <font color=blue>sound</font>: the sound you want to find the length of.<br>
-            <font color=blue>returns</font>: the number of samples in sound.<br>
-            Takes a sound as input and returns the length of the sound in seconds.
+            <font color=blue>sound</font>: the sound you want to find the length of (in seconds)<br>
+            <font color=blue>returns</font>: the number of seconds the sound lasts<br>
+            Takes a sound as input and returns the number of seconds that sound lasts.
           </td>
         </tr>
         <tr>
@@ -57,8 +56,8 @@ in JES</b><br>
             </td>
           <td bgcolor="#eeeeee">
           <b>getLength</b>(sound):<br>
-            <font color=blue>sound</font>: the sound you want to find the length of.<br>
-            <font color=blue>returns</font>: the number of samples in sound.<br>
+            <font color=blue>sound</font>: the sound you want to find the length of (how many samples it has)<br>
+            <font color=blue>returns</font>: the number of samples in sound<br>
             Takes a sound as input and returns the number of samples in that sound.
           </td>
         </tr>
@@ -67,8 +66,8 @@ in JES</b><br>
 		    </td>
 		  <td>
 		  <b>getNumSamples</b>(sound):<br>
-		    <font color=blue>sound</font>: the sound you want to find the length of.<br>
-		    <font color=blue>returns</font>: the number of samples in sound.<br>
+		    <font color=blue>sound</font>: the sound you want to find the length of (how many samples it has)<br>
+		    <font color=blue>returns</font>: the number of samples in sound<br>
 		    Takes a sound as input and returns the number of samples in that sound. (Same as getLength)
 		  </td>
         </tr>
@@ -90,9 +89,9 @@ in JES</b><br>
           </td>
           <td bgcolor="#eeeeee">
           <b>getSampleObjectAt</b>(sound, index):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to get the sample from. <br>
-            <font color=blue>index</font>: An Integer, the index value of the sample you want to get.<br>
-            <font color=blue>returns</font>: The sample object at that index.<br>
+            <font color=blue>sound</font>: the sound you want to get the sample from<br>
+            <font color=blue>index</font>: the index value of the sample you want to get<br>
+            <font color=blue>returns</font>: the sample object at that index<br>
             Takes a sound and an index (an integer value), and returns the Sample object at that index
           </td>
         </tr>
@@ -101,8 +100,8 @@ in JES</b><br>
             </td>
           <td>
           <b>getSamples</b>(sound):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to extract the samples from<br>
-            <font color=blue>returns</font>: A collection of all the samples in the sound<br>
+            <font color=blue>sound</font>: the sound you want to get the samples from<br>
+            <font color=blue>returns</font>: a list of all the samples in the sound<br>
             Takes a sound as input and returns the Samples in that sound.
           </td>
         </tr>
@@ -111,9 +110,9 @@ in JES</b><br>
             </td>
           <td bgcolor="#eeeeee">
           <b>getSampleValue</b>(sample):<br>
-            <font color=blue>sample</font>: A Sample, a sample of a sound.<br>
-            <font color=blue>returns</font>: The integer value of that sample.<br>
-            Takes a Sample object and returns its value (between -32768 and 32767). Formerly getSample().
+            <font color=blue>sample</font>: a sample of a sound<br>
+			<font color=blue>returns</font>: the integer value of that sample<br>
+			Takes a Sample object and returns its value (between -32768 and 32767). (Formerly getSample)
           </td>
         </tr>
         <tr>
@@ -121,8 +120,8 @@ in JES</b><br>
             </td>
           <td>
           <b>getSampleValueAt</b>(sound, index):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to use the sample from.<br>
-            <font color=blue>index</font>: An Integer, the index of the sample you want to get the value of.<br>
+            <font color=blue>sound</font>: the sound you want to get the sample from<br>
+            <font color=blue>index</font>: the index of the sample you want to get the value of<br>
             Takes a sound and an index (an integer value), and returns the value of the sample (between -32768 and 32767) for that object.
           </td>
         </tr>
@@ -131,9 +130,9 @@ in JES</b><br>
             </td>
           <td bgcolor="#eeeeee">
           <b>getSamplingRate</b>(sound):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to get the sampling rate from.<br>
-            <font color=blue>returns</font>: An Integer representing the number of samples per second.<br>
-            Takes a sound as input and returns the number representing the number of samples in each second for the sound
+            <font color=blue>sound</font>: the sound you want to get the sampling rate from<br>
+            <font color=blue>returns</font>: the integer value representing the number of samples per second<br>
+            Takes a sound as input and returns the number representing the number of samples in each second for the sound.
           </td>
         </tr>
         <tr>
@@ -141,17 +140,17 @@ in JES</b><br>
             </td>
           <td>
           <b>getSound</b>(sample):<br>
-            <font color=blue>sample</font>: A Sample, a sample belonging to a sound.<br>
-            <font color=blue>return</font>: A Sound, the sound the sample belongs to.<br>
-            Takes a Sample object and returns the Sound that it remembers as its own.
+            <font color=blue>sample</font>: a sample belonging to a sound<br>
+            <font color=blue>return</font>: the sound the sample belongs to<br>
+            Takes a Sample object and returns the Sound that it belongs to.
           </td>
         </tr>
         <tr>
           <td bgcolor="#eeeeee">makeEmptySound</td>
           <td bgcolor="#eeeeee">
           <b>makeEmptySound</b>(numSamples[, samplingRate]):<br>
-            <font color=blue>numSamples</font>: An integer, number of samples in sound<br>
-            <font color=blue>[samplingRate]</font>: An integer, representing the number of samples per second of sound (optional)<br>
+            <font color=blue>numSamples</font>: the number of samples in sound<br>
+            <font color=blue>samplingRate</font>: the integer value representing the number of samples per second of sound (optional)<br>
             <font color=blue>returns</font>: An Empty Sound.<br>
             Takes one or two integers as input. Returns an empty Sound object with the given number of samples and (optionally) the given sampling rate. Default rate is 22050 bits/second. The resulting sound must not be longer than 600 seconds. Prints an error statement if numSamples or samplingRate are less than 0, or if (numSamples/samplingRate) > 600.
             </td>
@@ -160,18 +159,18 @@ in JES</b><br>
           <td>makeEmptySoundBySeconds</td>
           <td>
           <b>makeEmptySoundBySeconds</b>(duration[, samplingRate]):<br>
-            <font color=blue>duration</font>: An integer, time in seconds for duration of sound<br>
-            <font color=blue>[samplingRate]</font>: An integer, representing the number of samples per second of sound (optional)<br>
+            <font color=blue>duration</font>: the time in seconds for the duration of the sound<br>
+            <font color=blue>samplingRate</font>: the integer value representing the number of samples per second of sound (optional)<br>
             <font color=blue>returns</font>: An Empty Sound.<br>
-            Takes a floating point number and optionally an integer as input. Returns an empty Sound object of the given duration with the given sampling rate. Default rate is 22050 bits/second. If the given arguments do not multiply to an integer, the number of samples is rounded up. Prints an error statement if duration or samplingRate are less than 0 or if duration > 600.
+            Takes a floating point number and optionally an integer as input. Returns an empty Sound object of the given duration and (optionally) the given sampling rate. Default rate is 22050 bits/second. If the given arguments do not multiply to an integer, the number of samples is rounded up. Prints an error statement if duration or samplingRate are less than 0, or if duration > 600.
             </td>
         </tr>
         <tr>
           <td bgcolor="#eeeeee">makeSound</td>
           <td bgcolor="#eeeeee">
           <b>makeSound</b>(path):<br>
-            <font color=blue>path</font>: A String, a path to a wav file.<br>
-            <font color=blue>returns</font>: A Sound, created from the file at the given path.<br>
+            <font color=blue>path</font>: a string path of a wav file<br>
+            <font color=blue>returns</font>: the sound created from the file at the given path<br>
             Takes a filename as input, reads the file, and creates a sound from it. Returns the sound.
           </td>
         </tr>
@@ -180,14 +179,14 @@ in JES</b><br>
           <td>pickAFile</td>
           <td>
           <b>pickAFile</b>():<br>
-            <font color=blue>returns</font>: A String, the path to the file chosen in the dialog box.<br>
-            Lets the user pick a file and returns the complete path name as a string. No input.
+            <font color=blue>returns</font>: the string path to the file chosen in the dialog box<br>
+            Opens a file chooser to let the user pick a file and returns the complete path name as a string. Takes no input.
           </td>
         </tr>
         <tr>
           <td bgcolor="#eeeeee">play</td>
           <td bgcolor="#eeeeee">
-          <b>play</b>(A Sound):<br>
+          <b>play</b>(sound):<br>
             <font color=blue>sound</font>: the sound you want to be played.<br>
             Plays a sound provided as input. No return value.
           </td>
@@ -195,11 +194,11 @@ in JES</b><br>
         <tr>
           <td>playNote</td>
           <td>
-          <b>playNote</b>(note, duration, intensity):<br>
-            <font color=blue>note</font>: the note (a number > 0) you want to be played.<br>
-            <font color=blue>duration</font>: the duration you want the note to be played in milliseconds.<br>
-            <font color=blue>intensity</font>: the intensity (a number between 0 and 127) you want the note to be played.<br>
-            Plays a note. No return value
+          <b>playNote</b>(note, duration[, intensity]):<br>
+            <font color=blue>note</font>: the MIDI note number, from 0 to 127 (60 = Middle C) you want to be played<br>
+			<font color=blue>duration</font>: the duration you want the note to be played in milliseconds<br>
+			<font color=blue>intensity</font>: the intensity (a number between 0 and 127) you want the note to be played (optional)<br>
+			Plays the given note. No return value. Default intensity is 64.
           </td>
         </tr>
         <!-- Legacy support only
@@ -249,18 +248,18 @@ in JES</b><br>
           <td bgcolor="#eeeeee">setSampleValue</td>
           <td bgcolor="#eeeeee">
           <b>setSampleValue</b>(sample, value):<br>
-            <font color=blue>sample</font>: A Sample, the sound sample tou want to change the value of.<br>
-            <font color=blue>value</font>: An Integer, the value you want to set the sample to.<br>
-            Takes a Sample object and a value, and sets the sample to that value. Formerly setSample().
+            <font color=blue>sample</font>: the sound sample you want to change the value of<br>
+            <font color=blue>value</font>: the value you want to set the sample to<br>
+            Takes a Sample object and a value (should be between -32768 and 32767), and sets the sample to that value.<br>
           </td>
         </tr>
         <tr>
           <td>setSampleValueAt</td>
           <td>
-            <b>setSampleValueAt</b>(sound, index, value):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to change a sample in.<br>
-            <font color=blue>index</font>: An Integer, the index of the sample you want to set.<br>
-            <font color=blue>value</font>: An Integer, the new value of the sample you want to set.<br>
+          <b>setSampleValueAt</b>(sound, index, value):<br>
+            <font color=blue>sound</font>: the sound you want to change a sample in<br>
+            <font color=blue>index</font>: the index of the sample you want to set<br>
+            <font color=blue>value</font>: the value you want to set the sample to<br>
             Takes a sound, an index, and a value (should be between -32768 and 32767), and sets the value of the sample at the given index in the given sound to the given value.
           </td>
         </tr>
@@ -268,17 +267,17 @@ in JES</b><br>
           <td bgcolor="#eeeeee">stopPlaying</td>
           <td bgcolor="#eeeeee">
           <b>stopPlaying</b>(sound):<br>
-            <font color=blue>sound</font>: the sound you want to stop being played.<br>
-            Stops playing a sound provided as input. No return value.
+            <font color=blue>sound</font>: the sound that you want to stop playing<br>
+            Stops a sound that is currently playing.
           </td>
         </tr>
         <tr>
           <td>writeSoundTo</td>
           <td>
-          <b>writeSoundTo</b>(sound, filename):<br>
-            <font color=blue>sound</font>: A Sound, the sound you want to write out to a file.<br>
-            <font color=blue>filename</font>: A String, the path of the location you want to write the sound.<br>
-          Takes a sound and a filename (a string) and writes the sound to that file as a WAV file. (Make sure that the filename ends in &#147;.wav&#148; if you want the operating system to treat it right.)</td>
+          <b>writeSoundTo</b>(sound, path):<br>
+            <font color=blue>sound</font>: the sound you want to write out to a file<br>
+            <font color=blue>path</font>: the path to the file you want the picture written to<br>
+            Takes a sound and a filename (a string) and writes the sound to that file as a WAV file. (Make sure that the filename ends in '.wav' if you want the operating system to treat it right.)
         </tr>
       </table>
       <p><br>

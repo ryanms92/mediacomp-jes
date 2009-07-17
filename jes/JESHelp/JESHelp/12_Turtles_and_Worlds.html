@@ -38,12 +38,19 @@ available in other Jython programming environments.
 <b>makeWorld</b>([width, height]):<br>
 <font color=blue>width</font>: the width for your new world (optional)<br>
 <font color=blue>height</font>: the height for your new world (optional)<br>
-Returns a new world of the specified size, where you can put turtles. Default size is
-640x480. For example, these both work:
+<font color=blue>returns</font>: the new world<br>
+Returns a new world of the specified size, where you can put turtles. Default size is 640x480.<br>
+<b>Example:</b>
 <pre>
-earth = makeWorld()
-mars = makeWorld(500, 500)
+def makeDefaultWorld():
+  earth = makeWorld()
 </pre>
+This creates a world with the default size (640x480).
+<pre>
+def makeSmallerWorld():
+  mars = makeWorld(500, 500)
+</pre>
+This creates a smaller world of size 500x500.
 </td></tr>
 
 <tr>
@@ -52,49 +59,66 @@ mars = makeWorld(500, 500)
 <td bgcolor="#eeeeee">
 <b>makeTurtle</b>(world):<br>
 <font color=blue>world</font>: a world to put the turtle in<br>
-Makes a turtle and returns it
-
+<font color=blue>returns</font>: the new turtle<br>
+Makes a turtle and returns it<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-penUp(t)
-moveTo(t, int(500/3), 250)
-penDown(t)
-for i in range(0, 360):
-    turn(t, 1)
-    forward(t, 3)
+def turtleForward():
+  w = makeWorld()
+  t = makeTurtle(w)
+  forward(t)
 </pre>
+This creates a new turtle and moves it forward 100 pixels.
 </td></tr>
 
 <tr>
 <td>forward<br>
 </td>
 <td>
-<b>forward</b>(turtle, distance):<br>
+<b>forward</b>(turtle[, distance]):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-<font color=blue>distance</font>: how far to go, in pixels<br>
-Moves the turtle in the direction it's facing
+<font color=blue>distance</font>: how far to go, in pixels (optional)<br>
+Moves the turtle in the direction it's facing. Default distance is 100 pixels.<br>
+<b>Example</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-forward(t, 100)
+def moveTurtleForward50():
+  w = makeWorld()
+  t = makeTurtle(w)
+  forward(t, 50)
 </pre>
+This creates a new turtle and moves it forward 50 pixels.
+<pre>
+def moveTurtleForward100():
+  w = makeWorld()
+  t = makeTurtle(w)
+  forward(t)
+</pre>
+This creates a new turtle and moves it forward the default number of pixels (100).
 </td></tr>
 
 <tr>
 <td bgcolor="#eeeeee">backward<br>
 </td>
 <td bgcolor="#eeeeee">
-<b>backward</b>(turtle, distance):<br>
+<b>backward</b>(turtle[, distance]):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-<font color=blue>distance</font>: how far back to go<br>
-Moves the turtle backwards (relative to where it's facing)
+<font color=blue>distance</font>: how far to go, in pixels (optional)<br>
+Moves the turtle opposite to the direction it's facing. Default distance is 100 pixels.<br>
+<b>Example</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-
-backward(t, 40)
+def moveTurtleBackward50():
+  w = makeWorld()
+  t = makeTurtle(w)
+  backward(t, 50)
 </pre>
+This creates a new turtle and moves it backward 50 pixels.
+<pre>
+def moveTurtleBackward100():
+  w = makeWorld()
+  t = makeTurtle(w)
+  backward(t)
+</pre>
+This creates a new turtle and moves it backward the default number of pixels (100).
 </td></tr>
 
 <tr>
@@ -103,14 +127,17 @@ backward(t, 40)
 <td>
 <b>turnLeft</b>(turtle):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-Turns the turtle left 90 degrees
-
+Turns the turtle left 90 degrees.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(300, 200)
-t = makeTurtle(w)
-turnLeft(t)
-forward(t, 30)
+def makeLeftSquare():
+  w = makeWorld()
+  t = makeTurtle(w)
+  for x in range(0,4):
+    forward(t)
+    turnLeft(t)
 </pre>
+This will create a turtle and draw a 100x100 square to the upper-left of the middle of the world.
 </td> </tr>
 
 <tr>
@@ -119,13 +146,17 @@ forward(t, 30)
 <td bgcolor="#eeeeee">
 <b>turnRight</b>(turtle):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-Turns the turtle right 90 degrees
+Turns the turtle right 90 degrees.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(300, 200)
-t = makeTurtle(w)
-turnRight(t)
-forward(t, 30)
+def makeRightSquare():
+  w = makeWorld()
+  t = makeTurtle(w)
+  for x in range(0,4):
+    forward(t)
+    turnRight(t)
 </pre>
+This will create a turtle and draw a 100x100 square to the upper-right of the middle of the world.
 </td></tr>
 
 <tr>
@@ -135,16 +166,22 @@ forward(t, 30)
 <b>turn</b>(turtle[, degrees]):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
 <font color=blue>degrees</font>: how many degrees to turn (optional)<br>
-Turns the turtle; positive numbers of degrees mean turning to the turtle's
-right. Default is 90 degrees.
-
+Turns the turtle; positive numbers of degrees mean turning to the turtle's right, negative numbers of degrees mean turning to the turtle's left. Default is 90 degrees.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-
-turn(t, 30)
-forward(t, 100)
+def turnTurtleRight():
+  w = makeWorld()
+  t = makeTurtle(w)
+  turn(t)
 </pre>
+This will create a turtle and turn it right 90 degrees.
+<pre>
+def turnTurtleAround():
+  w = makeWorld()
+  t = makeTurtle(w)
+  turn(t, 180)
+</pre>
+This will create a turtle and turn it 180 degrees.
 </td></tr>
 
 <tr>
@@ -153,17 +190,18 @@ forward(t, 100)
 <td bgcolor="#eeeeee">
 <b>moveTo</b>(turtle, x, y):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-<font color=blue>x</font>: the X coordinate in the world<br>
-<font color=blue>y</font>: the Y coordinate in the world<br>
-
+<font color=blue>x</font>: the x coordinate in the world to move to<br>
+<font color=blue>y</font>: the y coordinate in the world to move to<br>
 Moves the turtle to the specified location. If the turtle's pen is down, it
-draws a line from its old position to the new one.
+draws a line from its old position to the new one.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-
-moveTo(t, 150, 150)
+def moveTurtleTo():
+  w = makeWorld()
+  t = makeTurtle(w)
+  moveTo(t, 150, 150)
 </pre>
+This will create a new turtle and move it to the coordinates (150,150) in the world.
 </td></tr>
 
 
@@ -173,22 +211,31 @@ moveTo(t, 150, 150)
 <td>
 <b>turnToFace</b>(turtle, x[, y]):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-<font color=blue>x</font>: the X coordinate in the world (or a turtle in the world)<br>
-<font color=blue>y</font>: the Y coordinate in the world (optional)<br>
-
-Makes the turtle look towards point (x, y) or towards turtle x if y is unspecified.
-
+<font color=blue>x</font>: the x coordinate in the world (or a turtle in the world)<br>
+<font color=blue>y</font>: the y coordinate in the world (optional)<br>
+Makes the turtle look towards point (x, y) or towards turtle x if y is unspecified.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(500, 500)
-t = makeTurtle(w)
-t2 = makeTurtle(w)
-turn(t, 63)
-backward(t, 40)
-turnToFace(t, 200, 100)
-forward(t, 300)
-moveTo(t, 150, 150)
-turnToFace(t, t2)
+def turtleEscape():
+  w = makeWorld()
+  t = makeTurtle(w)
+  turnToFace(t, 0, 0)
+  forward(t, 400)
 </pre>
+This creates a turtles which then faces the origin (0,0) and moves forward 400 pixels.
+<pre>
+def turtleDuel():
+  w = makeWorld()
+  t = makeTurtle(w)
+  turn(t)
+  t2 = makeTurtle(w)
+  turn(t2, 180)
+  for turtle in getTurtleList(w):
+    forward(turtle, 50)
+  turnToFace(t, t2)
+  turnToFace(t2, t)
+</pre>
+This creates a world with two turtles. The first turtle turns 90 degrees and the second turtle turns around 180 degrees. Then both turtles move forward 50 pixels and turn to face each other.
 </td></tr>
 
 
@@ -199,16 +246,20 @@ turnToFace(t, t2)
 <td bgcolor="#eeeeee">
 <b>penUp</b>(turtle):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-Makes the turtle pick up its pen, so doesn't leave a trail when it moves.
+Makes it so the turtle does not leave a trail when it moves. Default is down.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(300, 200)
-t = makeTurtle(w)
-penUp(t)
-forward(t, 50)
-turnRight(t)
-penDown(t)
-forward(t, 30)
+def turtleSquare():
+  w = makeWorld()
+  t = makeTurtle(w)
+  for x in range(0,4):
+    penUp(t)
+    forward(t)
+    turnRight(t)
+    penDown(t)
+    forward(t)
 </pre>
+This will create a turtle and draw a 200x200 square with only half of each edge showing.
 </td></tr>
 
 
@@ -218,17 +269,20 @@ forward(t, 30)
 <td>
 <b>penDown</b>(turtle):<br>
 <font color=blue>turtle</font>: the turtle to operate on<br>
-Makes the turtle put its pen on the world, so leaves a trail when it moves.
-
+Makes it so the turtle leaves a trail when it moves. Default is down.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld(300, 200)
-t = makeTurtle(w)
-penUp(t)
-forward(t, 50)
-turnRight(t)
-penDown(t)
-forward(t, 30)
+def turtleSquare():
+  w = makeWorld()
+  t = makeTurtle(w)
+  for x in range(0,4):
+    penUp(t)
+    forward(t)
+    turnRight(t)
+    penDown(t)
+    forward(t)
 </pre>
+This will create a turtle and draw a 200x200 square with only half of each edge showing.
 </td></tr>
 
 <tr>
@@ -236,20 +290,22 @@ forward(t, 30)
 </td>
 <td bgcolor="#eeeeee">
 <b>drop</b>(turtle, picture):<br>
-<font color=blue>turtle</font>: the turtle who will do the dropping<br>
+<font color=blue>turtle</font>: the turtle that will do the dropping<br>
 <font color=blue>picture</font>: the picture that the turtle will drop<br>
 The turtle drops a picture where it is currently sitting, rotated so that
-the top of the picture points where the turtle is facing. (this, for
-example, is one way to flip a picture upside-down)
-
+the top of the picture points where the turtle is facing. This, for
+example, is one way to flip a picture upside-down.<br>
+<b>Example:</b>
 <pre>
-w = makeWorld()
-t = makeTurtle(w)
-pic = makePicture("adorable-kitten.jpg")
-
-turn(t, 180)
-drop(t, pic)
+def dropUpsidedownPic():
+  w = makeWorld()
+  t = makeTurtle(w)
+  moveTo(t, 640, 480)
+  pic = makePicture(pickAFile())
+  turn(t, 180)
+  drop(t, pic)
 </pre>
+This allows the user to select a picture file, moves the turtle and drops the picture upside-down. The upper-left corner of the picture will be placed in the lower-right corner of the world.
 </td></tr>
 
 <tr>
@@ -259,7 +315,21 @@ drop(t, pic)
 <b>getHeading</b>(turtle):<br>
 <font color=blue>turtle</font>: the turtle to get the heading of<br>
 <font color=blue>returns</font>: a floating point number representing the heading of the turtle<br>
-Returns the turtle's current heading.
+Returns the degrees of the direction the turtle is facing. (0 degrees is straight up, and heading increases clockwise)<br>
+<b>Example:</b>
+<pre>
+def turtleRightTriangleAngle():
+  w = makeWorld()
+  t = makeTurtle(w)
+  t2 = makeTurtle(w)
+  turnRight(t2)
+  forward(t2)
+  turnLeft(t2)
+  forward(t2, 50)
+  turnToFace(t, t2)
+  return getHeading(t)
+</pre>
+This will calculate the larger of the two acute angles in the right triangle with side lengths 50 and 100 using turtles. (~63.43 degrees)
 </td></tr>
 
 <tr>
@@ -268,8 +338,20 @@ Returns the turtle's current heading.
 <td bgcolor="#eeeeee">
 <b>getTurtleList</b>(world):<br>
 <font color=blue>world</font>: the world to get the turtles from<br>
-Returns a list of all turtles in the specified world. (You could, for
-example, tell each one to do something)
+<font color=blue>returns</font>: the list of turtles in the world<br>
+Returns a list of all turtles in the specified world. (You could, for example, tell each one to do something)<br>
+<b>Example:</b>
+<pre>
+def turtleDuel():
+  w = makeWorld()
+  t = makeTurtle(w)
+  t2 = makeTurtle(w)
+  turn(t2, 180)
+  for turtle in getTurtleList(w):
+    forward(turtle, 50)
+    turn(turtle, 180)
+</pre>
+This creates a world with two turtles. The second turtle turns around 180 degrees, then both turtles move forward 50 pixels and turn to face each other.
 </td></tr>
 
 <tr>
@@ -277,9 +359,17 @@ example, tell each one to do something)
 </td>
 <td>
 <b>getXPos</b>(turtle):<br>
-<font color=blue>turtle</font>: the turtle to get the X position of<br>
-<font color=blue>returns</font>: the X position of the turtle<br>
-Returns the X coordinate of the turtle's location.
+<font color=blue>turtle</font>: the turtle to get the x position of<br>
+<font color=blue>returns</font>: the x position of the turtle<br>
+Returns the x coordinate of the turtle's location.<br>
+<b>Example:</b>
+<pre>
+def getDefaultTurtleXPos():
+  w = makeWorld()
+  todd = makeTurtle(w)
+  return getXPos(todd)
+</pre>
+This will create a world of default size (640x480), place a turtle in the center, and return its x position (320).
 </td></tr>
 
 <tr>
@@ -287,9 +377,17 @@ Returns the X coordinate of the turtle's location.
 </td>
 <td bgcolor="#eeeeee">
 <b>getYPos</b>(turtle):<br>
-<font color=blue>turtle</font>: the turtle to get the Y position of<br>
-<font color=blue>returns</font>: the Y position of the turtle<br>
-Returns the Y coordinate of the turtle's location.
+<font color=blue>turtle</font>: the turtle to get the y position of<br>
+<font color=blue>returns</font>: the y position of the turtle<br>
+Returns the y coordinate of the turtle's location.<br>
+<b>Example:</b>
+<pre>
+def getDefaultTurtleYPos():
+  w = makeWorld()
+  timmy = makeTurtle(w)
+  return getYPos(timmy)
+</pre>
+This will create a world of default size (640x480), place a turtle in the center, and return its y position (240).
 </td></tr>
 
 </table>

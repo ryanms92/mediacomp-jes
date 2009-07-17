@@ -102,16 +102,15 @@ class JESDebugger(pdb.Pdb):
                 else:
                     t = time.time()
                     period = SPEED_FACTOR / self.speed
-                    if self.last_time == -1:
-                        pause = period
-                    else:
-                        pause = period - (t - self.last_time)
-                    self.last_time = t
-                    if pause > 0:
-			#print "JESDebugger, is sleepy: " + Thread.currentThread().getName()
-                        time.sleep(pause)
-			#print "Pause " , pause
-			#Thread.sleep( 500 )
+		    time.sleep(period)  #Dorn, no complicated stuff here, but this does
+		    			#hang up the AWT thread for unknown reasons
+                    #if self.last_time == -1:
+                    #    pause = period
+                    #else:
+                    #    pause = period - (t - self.last_time)
+                    #self.last_time = t
+                    #if pause > 0:
+                    #    time.sleep(pause)
 	    if not self.running:
                 self.interpreter.jesThread.stop() # stop myself
 

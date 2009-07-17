@@ -136,7 +136,7 @@ def setTestMediaFolder():
     global mediaFolder
     mediaFolder = os.getcwd() + os.sep
 
-def getMediaFolder(filename=None):
+def getMediaFolder( filename = "" ):
     return getMediaPath(filename)
 
 def showMediaFolder():
@@ -1128,7 +1128,7 @@ def drop(turtle, picture):
     if not isinstance(turtle, Turtle):
         print "drop(turtle, picture): Input is not a turtle"
         raise ValueError
-    if not isinstance(turtle,Picture):
+    if not isinstance(picture,Picture):
         print "drop(turtle, picture): Input is not a picture"
         raise ValueError
     turtle.drop(picture)

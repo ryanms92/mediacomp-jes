@@ -95,9 +95,9 @@ public class JESConfig
 
 	// Other instance variables
 	private ArrayList<String> properties;
-	private String[] defaults = {"","","","Normal","12","","1","0","","0","","1","","0","1","1",""};
+	private String[] defaults = {"","","","Normal","12","","1","0","","0","","0","","0","1","1",""};
 	private boolean configLoaded = true;
-	private boolean sessionWrapAround = true;
+	private boolean sessionWrapAround = false;
   /**
    * A constructor to preload JES settings or load defaults if settings file cannot be read.
    */

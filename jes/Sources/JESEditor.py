@@ -39,9 +39,6 @@ class JESEditor(swing.JTextPane,
         self.boxHeight = 0
         self.addFocusListener(self)
 
-	#Added these two lines for auto-indentation on new line
-	self._enterKey = swing.KeyStroke.getKeyStroke(awt.event.KeyEvent.VK_ENTER, 0 )
-	self.getKeymap().addActionForKeyStroke(self._enterKey, AutoIndentAction())
 
     def focusGained(self, e):
         self.gui.FocusOwner = self
@@ -312,16 +309,5 @@ class JESEditor(swing.JTextPane,
             g.setColor(awt.Color(200, 200, 250))
             g.drawRect(self.boxX, self.boxY, self.boxWidth, self.boxHeight)
 
-# Special class for taking care of auto indentation on newline in the
-# Editor pane
-class AutoIndentAction(swing.AbstractAction):
-    def actionPerformed(self, e):
-	editorPane = e.getSource()
-	caretPos = editorPane.getCaretPosition()
-	
-	numSpaces = editorPane.getNumSpaces(caretPos)
-	indentStr = " " * numSpaces
-	
-	editorPane.document.insertString(caretPos,"\n" + indentStr, None)
 
 

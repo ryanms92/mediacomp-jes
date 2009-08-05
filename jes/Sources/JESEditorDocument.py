@@ -162,6 +162,16 @@ class JESEditorDocument(HighlightingStyledDocument):
             self.removeLineHighlighting()
         if str == '\t':
             str = JESConstants.TAB
+	#Added to make auto indent work
+	if str == '\n':
+	    defaultElement = self.getDefaultRootElement()
+	    rowIndex = defaultElement.getElementIndex(offset)
+	    rowStart = defaultElement.getElement(rowIndex).getStartOffset()
+	    rowEnd = defaultElement.getElement(rowIndex).getEndOffset() - 1
+	    rowText = self.getText(rowStart, rowEnd - rowStart)#.expandtabs()
+	    newRowText = rowText.lstrip()
+	    numSpaces = (len(rowText) - len(newRowText))
+	    str = "\n" + (" " * numSpaces)
         self.editor.modified = 1
         self.editor.gui.loadButton.enabled = 1
         if addUndoEvent:

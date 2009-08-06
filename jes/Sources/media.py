@@ -208,47 +208,47 @@ def duplicateSound(sound):
 
 def getSamples(sound):
     if not isinstance(sound, Sound):
-        print "getSamples(sound): Input is not a sound."
+        print "getSamples(sound): Input is not a sound"
         raise ValueError
 #    return Samples(sound)
     return Samples.getSamples(sound)
 
 def play(sound):
     if not isinstance(sound,Sound):
-        print "play(sound): Input is not a sound."
+        print "play(sound): Input is not a sound"
         raise ValueError
     sound.play()
 
 def blockingPlay(sound):
     if not isinstance(sound,Sound):
-        print "blockingPlay(sound): Input is not a sound."
+        print "blockingPlay(sound): Input is not a sound"
         raise ValueError
     sound.blockingPlay()
 
 # Buck Scharfnorth (27 May 2008): Added method for stopping play of a sound
 def stopPlaying(sound):
     if not isinstance(sound,Sound):
-        print "stopPlaying(sound): Input is not a sound."
+        print "stopPlaying(sound): Input is not a sound"
         raise ValueError
     sound.stopPlaying()
 
 def playAtRate(sound,rate):
     if not isinstance(sound, Sound):
-        print "playAtRate(sound,rate): Input is not a sound."
+        print "playAtRate(sound,rate): First input is not a sound"
         raise ValueError
     # sound.playAtRate(rate)
     sound.playAtRateDur(rate,sound.getLength())
 
 def playAtRateDur(sound,rate,dur):
     if not isinstance(sound,Sound):
-        print "playAtRateDur(sound,rate,dur): Input is not a sound."
+        print "playAtRateDur(sound,rate,dur): First input is not a sound"
         raise ValueError
     sound.playAtRateDur(rate,dur)
 
 #20June03 new functionality in JavaSound (ellie)
 def playInRange(sound,start,stop):
         if not isinstance(sound, Sound):
-                print "playInRange(sound,start,stop):  Input is not a sound."
+                print "playInRange(sound,start,stop): First input is not a sound"
                 raise ValueError
         # sound.playInRange(start,stop)
         sound.playAtRateInRange(1,start-Sound._SoundIndexOffset,stop-Sound._SoundIndexOffset)
@@ -256,7 +256,7 @@ def playInRange(sound,start,stop):
 #20June03 new functionality in JavaSound (ellie)
 def blockingPlayInRange(sound,start,stop):
         if not isinstance(sound, Sound):
-                print "blockingPlayInRange(sound,start,stop): Input is not a sound."
+                print "blockingPlayInRange(sound,start,stop): First input is not a sound"
                 raise ValueError
         # sound.blockingPlayInRange(start,stop)
         sound.blockingPlayAtRateInRange(1,start-Sound._SoundIndexOffset,stop-Sound._SoundIndexOffset)
@@ -264,26 +264,26 @@ def blockingPlayInRange(sound,start,stop):
 #20June03 new functionality in JavaSound (ellie)
 def playAtRateInRange(sound,rate,start,stop):
         if not isinstance(sound,Sound):
-                print "playAtRateInRAnge(sound,rate,start,stop): Input is not a sound."
+                print "playAtRateInRAnge(sound,rate,start,stop): First input is not a sound"
                 raise ValueError
         sound.playAtRateInRange(rate,start - Sound._SoundIndexOffset,stop - Sound._SoundIndexOffset)
 
 #20June03 new functionality in JavaSound (ellie)
 def blockingPlayAtRateInRange(sound,rate,start,stop):
         if not isinstance(sound, Sound):
-                print "blockingPlayAtRateInRange(sound,rate,start,stop):  Input is not a sound."
+                print "blockingPlayAtRateInRange(sound,rate,start,stop): First input is not a sound"
                 raise ValueError
         sound.blockingPlayAtRateInRange(rate, start - Sound._SoundIndexOffset,stop - Sound._SoundIndexOffset)
 
 def getSamplingRate(sound):
     if not isinstance(sound, Sound):
-        print "getSamplingRate(sound): Input is not a sound."
+        print "getSamplingRate(sound): Input is not a sound"
         raise ValueError
     return sound.getSamplingRate()
 
 def setSampleValueAt(sound,index,value):
     if not isinstance(sound, Sound):
-        print "setSampleValueAt(sound,index,value): Input is not a sound."
+        print "setSampleValueAt(sound,index,value): First input is not a sound"
         raise ValueError
     if index < Sound._SoundIndexOffset:
         print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(Sound._SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(Sound._SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + Sound._SoundIndexOffset ) + "]."
@@ -295,7 +295,7 @@ def setSampleValueAt(sound,index,value):
 
 def getSampleValueAt(sound,index):
     if not isinstance(sound,Sound):
-        print "getSampleValueAt(sound,index): Input is not a sound."
+        print "getSampleValueAt(sound,index): First input is not a sound"
         raise ValueError
     if index < Sound._SoundIndexOffset:
         print "You asked for the sample at index: " + str( index ) + ".  This number is less than " + str(Sound._SoundIndexOffset) + ".  Please try" + " again using an index in the range [" + str(Sound._SoundIndexOffset) + "," + str ( getLength( sound ) - 1 + Sound._SoundIndexOffset ) + "]."
@@ -307,7 +307,7 @@ def getSampleValueAt(sound,index):
 
 def getSampleObjectAt(sound,index):
     if not isinstance(sound, Sound):
-        print "getSampleObjectAt(sound,index): Input is not a sound."
+        print "getSampleObjectAt(sound,index): First input is not a sound"
         raise ValueError
     # return sound.getSampleObjectAt(index-Sound._SoundIndexOffset)
     if index < Sound._SoundIndexOffset:
@@ -320,7 +320,7 @@ def getSampleObjectAt(sound,index):
 
 def setSample(sample,value):
     if not isinstance(sample,Sample):
-        print "setSample(sample,value): Input is not a sample."
+        print "setSample(sample,value): First input is not a sample"
         raise ValueError
     if value > 32767:
         value = 32767
@@ -335,7 +335,7 @@ def setSampleValue(sample, value):
 
 def getSample(sample):
     if not isinstance(sample, Sample):
-        print "getSample(sample): Input is not a sample."
+        print "getSample(sample): Input is not a sample"
         raise ValueError
     return sample.getValue()
 
@@ -345,13 +345,13 @@ def getSampleValue(sample):
 
 def getSound(sample):
     if not isinstance(sample,Sample):
-        print "getSound(sample): Input is not a sample."
+        print "getSound(sample): Input is not a sample"
         raise ValueError
     return sample.getSound()
 
 def getLength(sound):
     if not isinstance(sound, Sound):
-        print "getLength(sound): Input is not a sound."
+        print "getLength(sound): Input is not a sound"
         raise ValueError
     return sound.getLength()
 
@@ -363,7 +363,7 @@ def getNumSamples(sound):
 # in a sound
 def getDuration(sound):
   if not isinstance(sound, Sound):
-    print "getDuration(sound): Input is not a sound."
+    print "getDuration(sound): Input is not a sound"
     raise ValueError
   return sound.getLength()/sound.getSamplingRate()
 
@@ -372,7 +372,7 @@ def writeSoundTo(sound,filename):
     if not os.path.isabs(filename):
         filename = mediaFolder + filename
     if not isinstance(sound, Sound):
-        print "writeSoundTo(sound,filename): Input is not a sound."
+        print "writeSoundTo(sound,filename): First input is not a sound"
         raise ValueError
     sound.writeToFile(filename)
 
@@ -613,10 +613,10 @@ def repaint(picture):
 ## adding graphics to your pictures! ##
 def addLine(picture, x1, y1, x2, y2, acolor=black):
     if not isinstance(picture, Picture):
-        print "addLine(picture, x1, y1, x2, y2[, color]): Input is not a picture"
+        print "addLine(picture, x1, y1, x2, y2[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addLine(picture, x1, y1, x2, y2[, color]): Input is not a color"
+        print "addLine(picture, x1, y1, x2, y2[, color]): Last input is not a color"
         raise ValueError
     #g = picture.getBufferedImage().createGraphics()
     #g.setColor(acolor.color)
@@ -625,10 +625,10 @@ def addLine(picture, x1, y1, x2, y2, acolor=black):
 
 def addText(picture, x, y, string, acolor=black):
     if not isinstance(picture, Picture):
-        print "addText(picture, x, y, string[, color]): Input is not a picture"
+        print "addText(picture, x, y, string[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addText(picture, x, y, string[, color]): Input is not a color"
+        print "addText(picture, x, y, string[, color]): Last input is not a color"
         raise ValueError
     #g = picture.getBufferedImage().getGraphics()
     #g.setColor(acolor.color)
@@ -638,22 +638,22 @@ def addText(picture, x, y, string, acolor=black):
 # PamC: Added this function to allow different font styles
 def addTextWithStyle(picture, x, y, string, style, acolor=black):
     if not isinstance(picture, Picture):
-        print "addTextWithStyle(picture, x, y, string, style[, color]): Input is not a picture"
+        print "addTextWithStyle(picture, x, y, string, style[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(style, awt.Font):
         print "addTextWithStyle(picture, x, y, string, style[, color]): Input is not a style (see makeStyle)"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addTextWithStyle(picture, x, y, string, style[, color]): Input is not a color"
+        print "addTextWithStyle(picture, x, y, string, style[, color]): Last input is not a color"
         raise ValueError
     picture.addTextWithStyle(acolor,x,y,string,style)
 
 def addRect(picture, x,y,w,h, acolor=black):
     if not isinstance(picture, Picture):
-        print "addRect(picture, x, y, w, h[, color]): Input is not a picture"
+        print "addRect(picture, x, y, w, h[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addRect(picture, x, y, w, h[, color]): Input is not a color"
+        print "addRect(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     #g = picture.getBufferedImage().getGraphics()
     #g.setColor(acolor.color)
@@ -662,10 +662,10 @@ def addRect(picture, x,y,w,h, acolor=black):
 
 def addRectFilled(picture,x,y,w,h, acolor=black):
     if not isinstance(picture,Picture):
-        print "addRectFilled(picture, x, y, w, h[, color]): Input is not a picture"
+        print "addRectFilled(picture, x, y, w, h[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addRectFilled(picture, x, y, w, h[, color]): Input is not a color"
+        print "addRectFilled(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     #g = picture.getBufferedImage().getGraphics()
     #g.setColor(acolor.color)
@@ -676,10 +676,10 @@ def addRectFilled(picture,x,y,w,h, acolor=black):
 # functions to add more graphics to pictures.
 def addOval(picture, x,y,w,h, acolor=black):
     if not isinstance(picture, Picture):
-        print "addOval(picture, x, y, w, h[, color]): Input is not a picture"
+        print "addOval(picture, x, y, w, h[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addOval(picture, x, y, w, h[, color]): Input is not a color"
+        print "addOval(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     #g = picture.getBufferedImage().getGraphics()
     #g.setColor(acolor.color)
@@ -688,28 +688,28 @@ def addOval(picture, x,y,w,h, acolor=black):
 
 def addOvalFilled(picture,x,y,w,h,acolor=black):
     if not isinstance(picture,Picture):
-        print "addOvalFilled(picture, x, y, w, h[, color]): Input is not a picture"
+        print "addOvalFilled(picture, x, y, w, h[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addOvalFilled(picture, x, y, w, h[, color]): Input is not a color"
+        print "addOvalFilled(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     picture.addOvalFilled(acolor,x,y,w,h)
 
 def addArc(picture,x,y,w,h,start,angle,acolor=black):
     if not isinstance(picture,Picture):
-        print "addArc(picture, x, y, w, h, start, angle[, color]): Input is not a picture"
+        print "addArc(picture, x, y, w, h, start, angle[, color]): First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addArc(picture, x, y, w, h[, color]): Input is not a color"
+        print "addArc(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     picture.addArc(acolor,x,y,w,h,start,angle)
 
 def addArcFilled(picture,x,y,w,h,start,angle,acolor=black):
     if not isinstance(picture,Picture):
-        print "addArcFilled(picture, x, y, w, h[, color]): Input is not a picture"
+        print "addArcFilled(picture, x, y, w, h[, color]): First First input is not a picture"
         raise ValueError
     if not isinstance(acolor, Color):
-        print "addArcFill(picture, x, y, w, h[, color]): Input is not a color"
+        print "addArcFill(picture, x, y, w, h[, color]): Last input is not a color"
         raise ValueError
     picture.addArcFilled(acolor,x,y,w,h,start,angle)
 
@@ -719,7 +719,7 @@ def addArcFilled(picture,x,y,w,h,start,angle,acolor=black):
 ## 29 Oct 2008: -1 changed to Picture._PictureIndexOffset
 def getPixel(picture,x,y):
     if not isinstance(picture, Picture):
-        print "getPixel(picture,x,y): Input is not a picture"
+        print "getPixel(picture,x,y): First input is not a picture"
         raise ValueError
     if ( x < Picture._PictureIndexOffset ) or ( x > getWidth(picture) - 1 + Picture._PictureIndexOffset ):
         print "getPixel(picture,x,y): x (= %s) is less than %s or bigger than the width (= %s)" % (x,Picture._PictureIndexOffset,getWidth(picture) - 1 + Picture._PictureIndexOffset)
@@ -781,10 +781,10 @@ def getColor(pixel):
 
 def setColor(pixel,color):
     if not isinstance(pixel, Pixel):
-        print "setColor(pixel,color): Input is not a pixel."
+        print "setColor(pixel,color): First input is not a pixel"
         raise ValueError
     if not isinstance(color, Color):
-        print "setColor(pixel,color): Input is not a color."
+        print "setColor(pixel,color): Second input is not a color"
         raise ValueError
     pixel.setColor(color.color)
 
@@ -802,19 +802,19 @@ def getY(pixel):
 
 def distance(c1,c2):
     if not isinstance(c1, Color):
-        print "distance(c1,c2): First input is not a color."
+        print "distance(c1,c2): First input is not a color"
         raise ValueError
     if not isinstance(c2, Color):
-        print "distance(c1,c2): Second input is not a color."
+        print "distance(c1,c2): Second input is not a color"
         raise ValueError
     return c1.distance(c2)
 
-def writePictureTo(pict,filename):
+def writePictureTo(picture,filename):
     global mediaFolder
     if not os.path.isabs(filename):
         filename = mediaFolder + filename
-    if not isinstance(pict, Picture):
-        print "writePictureTo(pict,filename): Input is not a picture"
+    if not isinstance(picture, Picture):
+        print "writePictureTo(picture,filename): First input is not a picture"
         raise ValueError
     pict.writeOrFail(filename)
 #   if not os.path.exists(filename):
@@ -860,16 +860,16 @@ def makeColor(red,green=None,blue=None):
 def setAllPixelsToAColor(picture,color):
     #"""This function sets the picture to one color"""
     if not isinstance(picture, Picture):
-        print "setAllPixelsToAColor(picture,color): First argument is not a picture"
+        print "setAllPixelsToAColor(picture,color): First input is not a picture"
         raise ValueError
     if not isinstance(color,Color):
-        print "setAllPixelsToAColor(picture,color): Second argument is not a color"
+        print "setAllPixelsToAColor(picture,color): Second input is not a color"
         raise ValueError
     picture.setAllPixelsToAColor(color.color)
 
 
 def copyInto(smallPicture, bigPicture, startX, startY):
-    """like copyInto(butterfly, jungle, 20,20)"""
+    #like copyInto(butterfly, jungle, 20,20)
     if not smallPicture.__class__ == Picture:
         print "copyInto(smallPicture, bigPicture, startX, startY): smallPicture must be a picture"
         raise ValueError
@@ -916,7 +916,7 @@ def copyInto(smallPicture, bigPicture, startX, startY):
 def duplicatePicture(picture):
     """returns a copy of the picture"""
     if not isinstance(picture, Picture):
-        print "duplicatePicture(picture): First argument is not a picture"
+        print "duplicatePicture(picture): Input is not a picture"
         raise ValueError
     return Picture(picture)
 
@@ -1050,14 +1050,14 @@ import World
 
 def turn(turtle, degrees=90):
     if not isinstance(turtle, Turtle):
-        print "turn(turtle, degrees): Input is not a turtle"
+        print "turn(turtle[, degrees]): Input is not a turtle"
         raise ValueError
     else:
         turtle.turn(degrees)
 
 def turnRight(turtle):
     if not isinstance(turtle,Turtle):
-        print "turnRight(turtle, degrees): Input is not a turtle"
+        print "turnRight(turtle): Input is not a turtle"
         raise ValueError
     else:
         turtle.turnRight()
@@ -1065,7 +1065,7 @@ def turnRight(turtle):
 def turnToFace(turtle, x, y=None):
     if y == None:
         if not (isinstance(turtle, Turtle) and isinstance(x, Turtle)):
-            print "turnToFace(turtle, turtle): Input is not a turtle"
+            print "turnToFace(turtle, turtle): First input is not a turtle"
             raise ValueError
         else:
             turtle.turnToFace(x)
@@ -1078,21 +1078,21 @@ def turnToFace(turtle, x, y=None):
 
 def turnLeft(turtle):
     if not isinstance(turtle, Turtle):
-        print "turnLeft(turtle, degrees): Input is not a turtle"
+        print "turnLeft(turtle): Input is not a turtle"
         raise ValueError
     else:
         turtle.turnLeft()
 
 def forward(turtle, pixels=100):
     if not isinstance(turtle,Turtle):
-        print "forward(turtle, pixels): Input is not a turtle"
+        print "forward(turtle[, pixels]): Input is not a turtle"
         raise ValueError
     else:
         turtle.forward(pixels)
 
 def backward(turtle, pixels=100):
     if not isinstance(turtle, Turtle):
-        print "backward(turtle, pixels): Input is not a turtle"
+        print "backward(turtle[, pixels]): Input is not a turtle"
         raise ValueError
     if (None == pixels):
         turtle.backward()
@@ -1101,7 +1101,7 @@ def backward(turtle, pixels=100):
 
 def moveTo(turtle, x, y):
     if not isinstance(turtle,Turtle):
-        print "moveTo(turtle, pixels): Input is not a turtle"
+        print "moveTo(turtle, x, y): Input is not a turtle"
         raise ValueError
     turtle.moveTo(x,y)
 
@@ -1126,10 +1126,10 @@ def penDown(turtle):
 
 def drop(turtle, picture):
     if not isinstance(turtle, Turtle):
-        print "drop(turtle, picture): Input is not a turtle"
+        print "drop(turtle, picture): First input is not a turtle"
         raise ValueError
     if not isinstance(picture,Picture):
-        print "drop(turtle, picture): Input is not a picture"
+        print "drop(turtle, picture): Second input is not a picture"
         raise ValueError
     turtle.drop(picture)
 
@@ -1218,10 +1218,10 @@ class Movie:
             destPath = mediaFolder + destPath
         destPath = "file://"+destPath
         if framesPerSec <= 0:
-            print "writeQuicktime(filename, framesPerSec): Frame Rate must be a positive number."
+            print "writeQuicktime(path[, framesPerSec]): Frame Rate must be a positive number"
             raise ValueError
         if self.frames == []: #Is movie empty?
-            print "writeQuicktime(filename, framesPerSec): Movie has no frames. Cannot write empty Movie"
+            print "writeQuicktime(path[, framesPerSec]): Movie has no frames. Cannot write empty Movie"
             raise ValueError
         elif self.dir == None and len(self.frames) == 1: #Is movie only 1 frame but never written out
             frame = self.frames[0]
@@ -1243,7 +1243,7 @@ class Movie:
             if(sameDir): #Loop ended because we ran out of frames
                 self.dir = framesDir
             else: #Loop ended because sameDir became false
-                print "writeQuicktime(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
+                print "writeQuicktime(path[, framesPerSec]): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
                 raise ValueError
         writer = MovieWriter(self.dir, framesPerSec, destPath)
         writer.writeQuicktime()
@@ -1254,10 +1254,10 @@ class Movie:
             destPath = mediaFolder + destPath
         destPath = "file://"+destPath
         if framesPerSec <= 0:
-            print "writeAVI(framesPerSec): Frame Rate must be a positive number."
+            print "writeAVI(path[, framesPerSec]): Frame Rate must be a positive number"
             raise ValueError
         if self.frames == []: #Is movie empty?
-            print "writeAVI(framesPerSec): Movie has no frames. Cannot write empty Movie"
+            print "writeAVI(path[, framesPerSec]): Movie has no frames. Cannot write empty Movie"
             raise ValueError
         elif self.dir == None and len(self.frames) == 1: #Is movie only 1 frame but never written out
             frame = self.frames[0]
@@ -1279,7 +1279,7 @@ class Movie:
             if(sameDir): #Loop ended because we ran out of frames
                 self.dir = framesDir
             else: #Loop ended because sameDir became false
-                print "writeAVI(framesPerSec): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
+                print "writeAVI(path[, framesPerSec]): Your frames are in different directories. Call writeFramesToDirectory() first, then try again."
                 raise ValueError
         writer = MovieWriter(self.dir, framesPerSec, destPath)
         writer.writeAVI()
@@ -1288,24 +1288,24 @@ def playMovie( movie ):
     if isinstance( movie, Movie ):
         movie.play()
     else:
-        print "playMovie( movie ): movie is not a Movie object."
+        print "playMovie( movie ): Input is not a Movie"
         raise ValueError
 
 def writeQuicktime(movie, destPath, framesPerSec = 16):
     if not (isinstance(movie, Movie)):
-        print "writeQuicktime(Movie, framesPerSec): Input is not a Movie object."
+        print "writeQuicktime(movie, path[, framesPerSec]): First input is not a Movie"
         raise ValueError
     if framesPerSec <= 0:
-        print "writeQuicktime(Movie, framesPerSec): Frame rate must be a positive number."
+        print "writeQuicktime(movie, path[, framesPerSec]): Frame rate must be a positive number"
         raise ValueError
     movie.writeQuicktime(destPath, framesPerSec)
 
 def writeAVI(movie, destPath, framesPerSec = 16):
     if not (isinstance(movie, Movie)):
-        print "writeAVI(Movie, framesPerSec): Input is not a Movie object."
+        print "writeAVI(movie, path[, framesPerSec]): First input is not a Movie"
         raise ValueError
     if framesPerSec <= 0:
-        print "writeAVI(Movie, framesPerSec): Frame rate must be a positive number."
+        print "writeAVI(movie, path[, framesPerSec]): Frame rate must be a positive number"
         raise ValueError
     movie.writeAVI(destPath, framesPerSec)
 
@@ -1345,7 +1345,7 @@ def addFrameToMovie(a, b):
 
     if not (isinstance(movie,Movie) and isinstance(frame,String)):
    # if movie.__class__ != Movie or frame.__class__ != String:
-        print "addFrameToMovie(frame, movie): frame is not a string or movie is not a Movie object."
+        print "addFrameToMovie(frame, movie): frame is not a string or movie is not a Movie object"
         raise ValueError
 
     movie.addFrame(frame)
@@ -1353,7 +1353,7 @@ def addFrameToMovie(a, b):
 
 def writeFramesToDirectory(movie, directory=None):
     if not isinstance(movie, Movie):
-        print "writeFramesToDirectory(movie[, directory]): movie is not a Movie object."
+        print "writeFramesToDirectory(movie[, directory]): movie is not a Movie object"
         raise ValueError
 
     if directory == None:

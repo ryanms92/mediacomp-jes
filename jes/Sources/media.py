@@ -428,7 +428,7 @@ def _checkPixel(raw):
 class Color:
     def __init__(self,r,g=None,b=None):
         if b == None:
-            if isinstance( r, awt.Color ):
+            if isinstance( r, awt.Color ) or isinstance( r, Color ):
                 self.color = r
             else:
                 val = _checkPixel(r)

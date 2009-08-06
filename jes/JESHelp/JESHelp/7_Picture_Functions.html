@@ -147,8 +147,19 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">distance</td>
+          <td bgcolor="#eeeeee">copyInto</td>
           <td bgcolor="#eeeeee">
+          <b>copyInto</b>(smallPicture, bigPicture, startX, startY):<br>
+            <font color=blue>smallPicture</font>: the picture to paste into the big picture<br>
+            <font color=blue>bigPicture</font>: the picture to be modified<br>
+            <font color=blue>startX</font>: the X coordinate of where to place the small picture on the big one<br>
+            <font color=blue>startY</font>: the Y coordinate of where to place the small picture on the big one<br>
+            Takes two pictures, a x position and a y position as input, and modifies bigPicture by copying into it as much of smallPicture as will fit, starting at the x,y position in the destination picture.
+          </td>
+		</tr>
+        <tr>
+          <td>distance</td>
+          <td>
           <b>distance</b>(color1, color2):<br>
             <font color=blue>color1</font>: the first color you want compared<br>
             <font color=blue>color2</font>: the second color you want compared<br>
@@ -157,9 +168,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>duplicatePicture<br>
-            </td>
-          <td>
+          <td bgcolor="#eeeeee">duplicatePicture</td>
+          <td bgcolor="#eeeeee">
           <b>duplicatePicture</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to duplicate<br>
             <font color=blue>returns</font>: a new picture object with the same image as the original<br>
@@ -167,8 +177,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee" height="25">getColor</td>
-          <td bgcolor="#eeeeee">
+          <td>getColor</td>
+          <td>
           <b>getColor</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to extract the color from<br>
             <font color=blue>returns</font>: the color of the pixel<br>
@@ -176,8 +186,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>getRed</td>
-          <td>
+          <td bgcolor="#eeeeee">getRed</td>
+          <td bgcolor="#eeeeee">
           <b>getRed</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to get the amount of red from<br>
             <font color=blue>returns</font>: the red value of the pixel<br>
@@ -185,8 +195,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#EEEEEE">getGreen</td>
-          <td bgcolor="#EEEEEE">
+          <td>getGreen</td>
+          <td>
           <b>getGreen</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to get the amount of green from<br>
             <font color=blue>returns</font>: the green value of the pixel<br>
@@ -194,8 +204,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>getBlue</td>
-          <td>
+          <td bgcolor="#eeeeee">getBlue</td>
+          <td bgcolor="#eeeeee">
           <b>getBlue</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to get the amount of blue from<br>
             <font color=blue>returns</font>: the blue value of the pixel<br>
@@ -203,8 +213,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#EEEEEE">getHeight</td>
-          <td bgcolor="#EEEEEE">
+          <td>getHeight</td>
+          <td>
           <b>getHeight</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to get the height of<br>
             <font color=blue>returns</font>: the height of the picture<br>
@@ -212,8 +222,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>getPixels</td>
-          <td>
+          <td bgcolor="#eeeeee">getPixels</td>
+          <td bgcolor="#eeeeee">
           <b>getPixels</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to get the pixels from<br>
             <font color=blue>returns</font>: a list of all the pixels in the picture<br>
@@ -221,8 +231,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">getAllPixels</td>
-          <td bgcolor="#eeeeee">
+          <td>getAllPixels</td>
+          <td>
           <b>getAllPixels</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to get the pixels from<br>
             <font color=blue>returns</font>: a list of all the pixels in the picture<br>
@@ -231,18 +241,18 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>getPixel</td>
-          <td>
+          <td bgcolor="#eeeeee">getPixel</td>
+          <td bgcolor="#eeeeee">
           <b>getPixel</b>(picture, xpos, ypos):<br>
             <font color=blue>picture</font>: the picture you want to get the pixel from<br>
             <font color=blue>xpos</font>: the x-coordinate of the pixel you want<br>
             <font color=blue>ypos</font>: the y-coordinate of the pixel you want<br>
-            Takes a picture, an x position and a y position (two numbers), and returns the Pixel object at that point in the picture.
+            Takes a picture, an x position and a y position (two numbers), and returns the Pixel object at that point in the picture. (Same as getPixelAt)
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">getWidth</td>
-          <td bgcolor="#eeeeee">
+          <td>getWidth</td>
+          <td>
           <b>getWidth</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to get the width of<br>
             <font color=blue>returns</font>: the width of the picture<br>
@@ -250,8 +260,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>getX</td>
-          <td>
+          <td bgcolor="#eeeeee">getX</td>
+          <td bgcolor="#eeeeee">
           <b>getX</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to find the x-coordinate of<br>
             <font color=blue>returns</font>: the x-coordinate of the pixel<br>
@@ -259,8 +269,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">getY</td>
-          <td bgcolor="#eeeeee">
+          <td>getY</td>
+          <td>
           <b>getY</b>(pixel):<br>
             <font color=blue>pixel</font>: the pixel you want to find the y-coordinate of<br>
             <font color=blue>returns</font>: the y-coordinate of the pixel<br>
@@ -268,8 +278,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>makeBrighter</td>
-          <td>
+          <td bgcolor="#eeeeee">makeBrighter</td>
+          <td bgcolor="#eeeeee">
           <b>makeBrighter</b>(color):<br>
             <font color=blue>color</font>: the color you want to lighten<br>
             <font color=blue>returns</font>: the new, lighter color<br>
@@ -277,8 +287,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">makeDarker</td>
-          <td bgcolor="#eeeeee">
+          <td>makeDarker</td>
+          <td>
           <b>makeDarker</b>(color):<br>
             <font color=blue>color</font>: the color you want to darken<br>
             <font color=blue>returns</font>: the new, darker color<br>
@@ -286,8 +296,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>makeLighter</td>
-          <td>
+          <td bgcolor="#eeeeee">makeLighter</td>
+          <td bgcolor="#eeeeee">
           <b>makeLighter</b>(color):<br>
             <font color=blue>color</font>: the color you want to lighten<br>
             <font color=blue>returns</font>: the new, lighter color<br>
@@ -295,8 +305,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#EEEEEE">makeColor</td>
-          <td bgcolor="#EEEEEE">
+          <td>makeColor</td>
+          <td>
           <b>makeColor</b>(red[, green, blue]):<br>
             <font color=blue>red</font>: the amount of red you want in the color (or a Color object you want to duplicate) <br>
             <font color=blue>green</font>: the amount of green you want in the color (optional)<br>
@@ -306,8 +316,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>makeEmptyPicture</td>
-          <td>
+          <td bgcolor="#eeeeee">makeEmptyPicture</td>
+          <td bgcolor="#eeeeee">
           <b>makeEmptyPicture</b>(width, height[, color]):<br>
             <font color=blue>width</font>: the width of the empty picture<br>
             <font color=blue>height</font>: height of the empty picture<br>
@@ -317,8 +327,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">makePicture</td>
-          <td bgcolor="#eeeeee">
+          <td>makePicture</td>
+          <td>
           <b>makePicture</b>(path):<br>
             <font color=blue>path</font>: the name of the file you want to open as a picture<br>
             <font color=blue>returns</font>: a picture object made from the file<br>
@@ -326,8 +336,8 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>makeStyle</td>
-          <td>
+          <td bgcolor="#eeeeee">makeStyle</td>
+          <td bgcolor="#eeeeee">
           <b>makeStyle</b>(fontName, emphasis, size):<br>
             <font color=blue>fontName</font>: the name of the font you want in the style (sansSerif, serif, mono)<br>
             <font color=blue>emphasis</font>: the type of emphasis you want in the style (italic, bold, italic + bold, plain)<br>
@@ -337,24 +347,24 @@ in JES
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">pickAColor</td>
-          <td bgcolor="#eeeeee">
+          <td>pickAColor</td>
+          <td>
           <b>pickAColor</b>():<br>
             <font color=blue>returns</font>: the color chosen in the dialog box<br>
             Opens a color chooser to let the user pick a color and returns it. Takes no input.
           </td>
         </tr>
         <tr>
-          <td>pickAFile</td>
-          <td>
+          <td bgcolor="#eeeeee">pickAFile</td>
+          <td bgcolor="#eeeeee">
           <b>pickAFile</b>():<br>
             <font color=blue>returns</font>: the string path to the file chosen in the dialog box<br>
             Opens a file chooser to let the user pick a file and returns the complete path name as a string. Takes no input.
           </td>
         </tr>
         <tr>
-          <td bgcolor="#eeeeee">setColor</td>
-          <td bgcolor="#eeeeee">
+          <td>setColor</td>
+          <td>
             <b>setColor</b>(pixel, color):<br>
             <font color=blue>pixel</font>: the pixel you want to set the color of<br>
             <font color=blue>color</font>: the color you want to set the pixel to<br>
@@ -362,11 +372,20 @@ in JES
           </td>
         </tr>
         <tr>
-          <td>repaint</td>
-          <td>
+          <td bgcolor="#eeeeee">repaint</td>
+          <td bgcolor="#eeeeee">
           <b>repaint</b>(picture):<br>
             <font color=blue>picture</font>: the picture you want to repaint<br>
             Repaints the picture if it has been opened in a window from show(picture), otherwise a new window will be opened.
+          </td>
+        </tr>
+        <tr>
+          <td>setAllPixelsToAColor</td>
+          <td>
+          <b>setAllPixelsToAColor</b>(picture, color):<br>
+            <font color=blue>picture</font>: the picture to change the pixels of<br>
+            <font color=blue>color</font>: the color to set each pixel to<br>
+            Modifies the whole image so that every pixel in that image is the given color.
           </td>
         </tr>
         <tr>

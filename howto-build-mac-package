@@ -1,52 +1,24 @@
-** how to build a .app package for JES!
-Alex Rudnick (alexr@cc.gatech.edu), November 2006, Jan 2007
+To build a Mac distribution:
 
-- open up Jar Bundler (in /Developer/Applications/Java Tools)
+Open up Jar Bundler (in /Developer/Applications/Java Tools)
+Under "Classpath and Files" add:
+ -All of the jars in the jars/ directory
+ -Select all from the Sources folder to get all of the .py, .java, and .class files. Jar Bundler will yell at you for trying to add subfolders. This is okay, we don't need them.
+ -Select all from the Jython-2.2.1/Lib folder (adjust for whatever version of Jython you're using). Same as before, Jar Bundler will yell at you, and it's still okay.
+Under "Build Information", use the main class JESstartup
+Under "Options", turn on "Use Macintosh Menu Bar", "Anti-alias text", "Anti-alias graphics". Put "1.5+" in the JVM version box, which means we'll use Java 1.5.
+On the last tab, "Properties", put the VM options "-Xmx512m". Make sure to also click "Set working directory to inside application package" and "allow mixed localizations". Set the version number appropriately. The defaults are okay for everything else.
+Back on the first tab, use JESi2.icns as the custom icon (located in the images folder). 
+Create the application with the "Create Application" button.
 
-- copy the jes directory out of subversion
-  cp -r mediacomp-dev/jes jes-snapshot
-
-- To make the distribution smaller, delete all of the .svn directories that
-  you may have copied over, like this:
-
-cd jes-snapshot
-find . -name '.svn' -exec rm -rf {} \;
-
-- add all of the jars in the jars/ directory, under "classpath and files".
-
-- now add all of the .py, .java, and .class files from "Sources". It's okay
-  to do a "select all" -- we don't need the things in the subdirectories of
-  Sources. Also, add everything from the jython-2.1/Lib directory, not
-  including subdirectories.
-
-- now under "Build Information", use the main class "JESstartup" (if you
-  like, choose the JESstartup.class file from the jes-snapshot directory
-  you created)
-
-- Under "Options", turn on "Use Macintosh Menu Bar", "Anti-alias text",
-  "Anti-alias graphics". Put "1.5*" in the JVM Version box, which means
-  that we will use Java 1.5.
-
-- On the last tab, "Properties", put the VM options "-Xmx512m". Make sure
-  to also click "set working directory to inside application package" and
-  "allow mixed localizations". The defaults are alright for everything
-  else.
-
-- Back on that first tab, use JESi2.icns as the custom icon. Create the
-  application with the "Create Application" button.
-
-- Now, go into the JES.app/Contents/Resources/Java directory, and say:
-
+In the terminal, go to the JES.app/Contents/Resources/Java directory and do (assuming your source code is in ~/mediacomp-dev/jes):
 cp -r ~/mediacomp-dev/jes/JESHelp .
-cp ~/mediacomp-dev/jes/JESAPIHelp.html .
-cp ~/mediacomp-dev/jes/JES*txt .
+cp ~/mediacomp-dev/jes/JES*.html .
+cp ~/mediacomp-dev/jes/JES*.txt .
 cp -r ~/mediacomp-dev/jes/images .
-find . -name '.svn' -exec rm -rf {} \;
 
-Congratulations, you should be ready to go! (this should come out to be
-about 8.2 megabytes total.)
+This should come out to ~12 MB. (Remember to take out things you don't need from the Windows version, like the win-jre folder or the .exe file.)
 
-Post the thing to coweb.cc.gatech.edu/mediaComp-teach/26.
-The password for that is "barb", like on the other locked pages.
-And the "password to access the page" is attach:carmen, just like on other
-pages on the coweb.
+Post it to http://coweb.cc.gatech.edu/mediaComp-teach/26
+and to http://code.google.com/p/mediacomp-jes/downloads/list
+

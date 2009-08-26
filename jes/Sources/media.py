@@ -816,7 +816,7 @@ def writePictureTo(picture,filename):
     if not isinstance(picture, Picture):
         print "writePictureTo(picture,filename): First input is not a picture"
         raise ValueError
-    pict.writeOrFail(filename)
+    picture.writeOrFail(filename)
 #   if not os.path.exists(filename):
 #       print "writePictureTo(pict,filename): Path is not valid"
 #       raise ValueError

@@ -42,8 +42,8 @@ class Test_Pixel(unittest.TestCase):
     def testConstruct(self):
         self.assertEqual(getX(self.pix1), self.consts['XVAL'], 'Pixel values not set properly in Pixel Constructor.')
         self.assertEqual(getY(self.pix1), self.consts['YVAL'], 'Pixel values not set properly in Pixel Constructor.')
-        self.assertEqual(self.pix1.getX(), self.consts['XVAL']-1, 'Pixel values not set properly in Pixel Constructor.')
-        self.assertEqual(self.pix1.getY(), self.consts['YVAL']-1, 'Pixel values not set properly in Pixel Constructor.')
+        self.assertEqual(self.pix1.getX(), self.consts['XVAL'], 'Pixel values not set properly in Pixel Constructor.')
+        self.assertEqual(self.pix1.getY(), self.consts['YVAL'], 'Pixel values not set properly in Pixel Constructor.')
 
     #following 3 tests for the basic gets/sets
     def testGetSetRed(self):
@@ -69,13 +69,13 @@ class Test_Pixel(unittest.TestCase):
     #make sure we handle boundarie properly
     def testWhiteBlack(self):
         #make sure white pixel 255s work
-        self.pix1 = getPixel(self.pic1, 1, 1)
+        self.pix1 = getPixel(self.pic1, 0, 0)
         self.assertEqual(self.consts['MAXRGB'], getRed(self.pix1), 'Pixel did not handle red 255 in a white pixel')
         self.assertEqual(self.consts['MAXRGB'], getGreen(self.pix1), 'Pixel did not handle green 255 in a white pixel.')
         self.assertEqual(self.consts['MAXRGB'], getBlue(self.pix1), 'Pixel did not handle blue 255 in a white pixel.')
 
         #make sure black 0 vals work
-        self.pix2 = getPixel(self.pic1, 3, 3)
+        self.pix2 = getPixel(self.pic1, 2, 2)
         self.assertEqual(0, getRed(self.pix2), 'Pixel did not handle 0 Red val in a black pixel.')
         self.assertEqual(0, getGreen(self.pix2), 'Pixel did not handle 0 Green value in a black pixel.')
         self.assertEqual(0, getBlue(self.pix2), 'Pixel did not handle 0 Blue value in a black pixel.')

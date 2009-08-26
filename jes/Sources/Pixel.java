@@ -211,9 +211,10 @@ public class Pixel
     // set the red value to the corrected value
     int red = correctValue(value);
 
+    
     // update the pixel value in the picture
     //updatePicture(getAlpha(), red, getGreen(), getBlue());
-    setColor(value, pxColor.getGreen(), pxColor.getBlue(), pxColor.getAlpha());
+    setColor(red, pxColor.getGreen(), pxColor.getBlue(), pxColor.getAlpha());
   }
 
   /**
@@ -227,7 +228,7 @@ public class Pixel
 
     // update the pixel value in the picture
     //updatePicture(getAlpha(), getRed(), green, getBlue());
-    setColor(pxColor.getRed(), value, pxColor.getBlue(), pxColor.getAlpha());
+    setColor(pxColor.getRed(), green, pxColor.getBlue(), pxColor.getAlpha());
   }
 
   /**
@@ -241,7 +242,7 @@ public class Pixel
 
     // update the pixel value in the picture
     //updatePicture(getAlpha(), getRed(), getGreen(), blue);
-    setColor(pxColor.getRed(), pxColor.getGreen(), value, pxColor.getAlpha());
+    setColor(pxColor.getRed(), pxColor.getGreen(), blue, pxColor.getAlpha());
   }
 
   /**

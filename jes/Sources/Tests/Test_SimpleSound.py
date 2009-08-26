@@ -423,7 +423,7 @@ class Test_SimpleSound_8s(unittest.TestCase):
     def testBitSample(self):
         '''Verify sound created has 16 Bit Sample'''
         AF = self.simple.getAudioFileFormat().getFormat()
-        self.assertEquals(AF.getSampleSizeInBits(), 8,
+        self.assertEquals(AF.getSampleSizeInBits(), 16,
             'Sample bit size is %s != 16' % AF.getSampleSizeInBits())
 
     def testChannels(self):     
@@ -500,10 +500,10 @@ class Test_SimpleSound_16b(unittest.TestCase):
             'Encoding is %s != PCM_SIGNED' % (AF.getEncoding()))
 
     def testByteOrder(self):
-        '''Verify sound created is Small-Endian Byte Order'''
+        '''Verify sound created is Big-Endian Byte Order'''
         AF = self.simple.getAudioFileFormat().getFormat()
         self.assertEquals(AF.isBigEndian(), 1,
-            'Sound is Big-Endian Byte Order')
+            'Sound is Small-Endian Byte Order')
 
 #suite = unittest.makeSuite(Test_SimpleSound_16b)
 #results = unittest.TextTestRunner(verbosity=2).run(suite)

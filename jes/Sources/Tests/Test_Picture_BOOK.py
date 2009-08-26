@@ -1,6 +1,7 @@
 import unittest
 import Picture
 import Pixel
+import JESConfig
 from java.awt import Color
 from java.lang import ArrayIndexOutOfBoundsException
 import javax.swing as swing
@@ -28,21 +29,20 @@ class Test_Picture_BOOK(unittest.TestCase):
     def testShow(self):
         '''Test Showing - YOU SHOULD NOW SEE A PICTURE WINDOW WITH BARBARA.JPG'''
         self.pict = Picture("barbara.jpg")
-        print 'Temporarily disabled by timmy because it is annoying'
-        #self.pict.show()
-        #success = swing.JOptionPane.showConfirmDialog(None, 'Does a window show barbara.jpg?', 'TestShowPicOP', swing.JOptionPane.YES_NO_OPTION)
-        #self.assertEqual(success, swing.JOptionPane.YES_OPTION, 'Failed to show barbara.jpg in window.')
+        self.pict.show()
+        success = swing.JOptionPane.showConfirmDialog(None, 'Does a window show barbara.jpg?', 'TestShowPicOP', swing.JOptionPane.YES_NO_OPTION)
+        self.assertEqual(success, swing.JOptionPane.YES_OPTION, 'Failed to show barbara.jpg in window.')
 
     def testExplore(self):
         '''Test Browsing - YOU SHOULD NOW SEE A PICTURE EXPLORER WINDOW WITH BARBARA.JPG'''
         self.pict = Picture("barbara.jpg")
-        print 'Temporarily disabled by timmy because it is annoying'
-        #self.pict.explore()
-        #success = swing.JOptionPane.showConfirmDialog(None, 'Does the explorer start with barbara.jpg?', 'TestExplorerOP', swing.JOptionPane.YES_NO_OPTION)
-        #self.assertEqual(success, swing.JOptionPane.YES_OPTION, 'Failed to show barbara.jpg in explorer.')
+        self.pict.explore()
+        success = swing.JOptionPane.showConfirmDialog(None, 'Does the explorer start with barbara.jpg?', 'TestExplorerOP', swing.JOptionPane.YES_NO_OPTION)
+        self.assertEqual(success, swing.JOptionPane.YES_OPTION, 'Failed to show barbara.jpg in explorer.')
 
     def testDecreaseRed(self):
         '''Test BOOK - Decrease red (by 50%)'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             value = p.getRed()
@@ -58,6 +58,7 @@ class Test_Picture_BOOK(unittest.TestCase):
 
     def testIncreaseRed(self):
         '''Test BOOK - Increase red (by 20%)'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             value = p.getRed()
@@ -87,6 +88,7 @@ class Test_Picture_BOOK(unittest.TestCase):
 
     def testLighten(self):
         '''Test BOOK - Lighten'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             color = p.getColor()
@@ -102,6 +104,7 @@ class Test_Picture_BOOK(unittest.TestCase):
 
     def testDarken(self):
         '''Test BOOK - Darken'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             color = p.getColor()
@@ -117,6 +120,7 @@ class Test_Picture_BOOK(unittest.TestCase):
 
     def testNegative(self):
         '''Test BOOK - Negative'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             red = p.getRed()
@@ -135,6 +139,7 @@ class Test_Picture_BOOK(unittest.TestCase):
 
     def testGreyScale(self):
         '''Test BOOK - GreyScale'''
+	JESConfig.getInstance().setSessionWrapAround(0)
         self.pict = Picture("barbara.jpg")
         for p in self.pict.getPixels():
             newRed = p.getRed() * 0.299

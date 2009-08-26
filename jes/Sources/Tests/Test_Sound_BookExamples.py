@@ -13,9 +13,9 @@ class Test_Sound_BookExamples(unittest.TestCase):
         sound = media.makeSound(f)
 
         samples = media.getSamples(sound)
-        i = 1
+        i = 0
 
-        while i <= media.getLength(sound):
+        while i < media.getLength(sound):
         # for sample in media.getSamples(sound):
             value = media.getSampleValueAt(sound, i)                 
             media.setSample( media.getSampleObjectAt(sound, i),(value*2.0))
@@ -23,8 +23,8 @@ class Test_Sound_BookExamples(unittest.TestCase):
         
         original = media.makeSound(f)
 
-        counter = 1     
-        while counter <= media.getLength(sound):
+        counter = 0     
+        while counter < media.getLength(sound):
             newval = int(round(media.getSampleValueAt(original, counter)*2.0))
             if (newval > 32767):
                 newval = 32767
@@ -41,8 +41,8 @@ class Test_Sound_BookExamples(unittest.TestCase):
         media.setTestMediaFolder()
         sound = media.makeSound(f)
         # samples = media.getSamples(sound)
-        i = 1
-        counter = 1
+        i = 0
+        counter = 0
 
         print "changing"
 
@@ -54,8 +54,8 @@ class Test_Sound_BookExamples(unittest.TestCase):
         print "comparing"
         original = media.makeSound(f)
 
-        counter = 1     
-        while counter <= media.getLength(sound):
+        counter = 0     
+        while counter < media.getLength(sound):
             if( int(media.getSampleValueAt(sound,counter)) != int(media.getSampleValueAt(original,counter)*0.5) ):
                 self.fail("Sample %s not decreased properly" % counter)
                     #print "%s != %s at %s" % (media.getSampleValueAt(sound,counter), (media.getSampleValueAt(original,counter)*2.0), counter)
@@ -70,16 +70,16 @@ class Test_Sound_BookExamples(unittest.TestCase):
         sound = media.makeSound(f)
 
         #for sample in media.getSamples(sound):
-        counter = 1     
-        while counter <= media.getLength(sound):
+        counter = 0     
+        while counter < media.getLength(sound):
             sample = media.getSampleObjectAt(sound, counter)
             largest = max(largest, abs(media.getSample(sample)), media.getSample(sample))
             counter += 1
 
         amplification = 32767.0 / largest
 
-        counter = 1     
-        while counter <= media.getLength(sound):
+        counter = 0     
+        while counter < media.getLength(sound):
             sample = media.getSampleObjectAt(sound, counter)
             louder =  amplification * media.getSample(sample)  
             media.setSample(sample, louder)
@@ -87,8 +87,8 @@ class Test_Sound_BookExamples(unittest.TestCase):
                 
         original = media.makeSound(f)
         
-        counter = 1     
-        while counter <= media.getLength(sound):
+        counter = 0     
+        while counter < media.getLength(sound):
             if( int(media.getSampleValueAt(sound,counter)) != int(media.getSampleValueAt(original,counter)*amplification)):
                 self.fail("Sample %s not normalized properly" % counter)
                     #print "%s != %s at %s" % (media.getSampleValueAt(sound,counter), (media.getSampleValueAt(original,counter)*amplification), counter)
@@ -100,8 +100,8 @@ class Test_Sound_BookExamples(unittest.TestCase):
         sound = media.makeSound(f)
         self.assertEquals(sound.getLength(), 421110)
         #self.assertEquals(media.getSamples(sound), 421110)
-        self.assertEquals(media.getSampleValueAt(sound,1),36)
-        self.assertEquals(media.getSampleValueAt(sound,2),29)
+        self.assertEquals(media.getSampleValueAt(sound,0),36)
+        self.assertEquals(media.getSampleValueAt(sound,1),29)
         #self.assertEquals(media.getLength(sound),220568)
         self.assertEquals(media.getSamplingRate(sound),22050.0)
-        self.assertEquals(media.getSampleValueAt(sound,220568),44)
+        self.assertEquals(media.getSampleValueAt(sound,220567),44)

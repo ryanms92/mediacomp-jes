@@ -14,7 +14,10 @@
 # If this is an absolute path it is used as given
 # Otherwise it is interpreted relative to sys.prefix
 # (typically the directory of this file)
-python.cachedir = cachedir
+
+# Commented out by bjdorn so that the cachedir prop in the startup
+# script will take priority
+#python.cachedir = cachedir
 
 # Setting this property to true disables the package scan for the cachedir.
 # Please be aware that disabling this might break some java import statements

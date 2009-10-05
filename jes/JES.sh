@@ -8,5 +8,5 @@
 
 jars=`sh ./list-jars.sh`
 
-java -Xmx512m -Dpython.home="jython-2.2.1" -Dpython.cachedir="$HOME:.jes-cachedir " \
+java -Xmx512m -Dpython.home="jython-2.2.1" -Dpython.cachedir="$HOME/.jes-cachedir " \
     -classpath ".:$jars:Sources:$CLASSPATH" JESstartup

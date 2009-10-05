@@ -1,0 +1,13 @@
+[dorn@khan Desktop]$ xcopy c:\\cygwin\\home\\dorn\\workspace\\mediacomp-jes\\je
+s jes-4-2-1-nojava /e /EXCLUDE:make.exclude
+
+
+
+delete jython cachedir/packages/*
+
+
+
+jesCompile.bat
+
+
+Done!  , copy to a new folder to test.

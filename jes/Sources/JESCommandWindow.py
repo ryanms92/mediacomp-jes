@@ -138,7 +138,7 @@ class JESCommandWindow(swing.JTextPane,
 ################################################################################
     def showText(self, text):
         self.isSystem = TRUE
-        self.document.insertString(self.currentPos,
+        self.document.insertString(self.document.getLength(),
                                    text,
                                    self.document.getTextAttrib())
         self.isSystem = FALSE

@@ -1841,12 +1841,9 @@ class JESUI(swing.JFrame):
             JESConfig.getInstance().setStringProperty( JESConfig.CONFIG_MODE, self.userExperienceField.getSelectedItem() )
 
             chosenFontSize = self.userFontField.getSelectedItem()
-            if ( not str(chosenFontSize).isdigit() ):
+            if ( not str(chosenFontSize).isdigit() or chosenFontSize < 1 or chosenFontSize > JESConstants.HIGH_FONT ):
                 chosenFontSize = JESConfig.getInstance().getIntegerProperty(JESConfig.CONFIG_FONT);
-            elif ( chosenFontSize < 1 ):
-                chosenFontSize = 1
-            elif ( chosenFontSize > JESConstants.HIGH_FONT ):
-                chosenFontSize = JESConstants.HIGH_FONT
+		swing.JOptionPane.showMessageDialog(self, "Invalid Font Size.  Please try again using a number between 1 and " + str(JESConstants.HIGH_FONT), "Invalid Font Size", swing.JOptionPane.ERROR_MESSAGE)
                 
             JESConfig.getInstance().setIntegerProperty( JESConfig.CONFIG_FONT, chosenFontSize )
             JESConfig.getInstance().setBooleanProperty( JESConfig.CONFIG_BLOCK, not self.blockBox.isSelected() )

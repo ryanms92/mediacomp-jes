@@ -4,6 +4,8 @@ import java.net.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
+import ch.randelshofer.media.avi.AVIOutputStream;
+
 /**
  * Class to write out an AVI or Quicktime movie from
  * a series of JPEG (jpg) frames in a directory
@@ -184,6 +186,11 @@ public class MovieWriter
    */
   public void writeAVI()
   {
+/*  JMF Code no longer functioned for writing AVIs.
+ *  Commented out and code below was written to use a 
+ *  different AVI writing library.
+ *  BJD: 11-9-09
+ *
     JpegImagesToMovie imageToMovie = new JpegImagesToMovie();
     List<String> frameNames = getFrameNames();
     Picture p = new Picture((String) frameNames.get(0));
@@ -191,6 +198,40 @@ public class MovieWriter
 	outputURL = outputURL + ".avi";
     imageToMovie.doItAVI(p.getWidth(),p.getHeight(),
                          frameRate,frameNames,outputURL);
+*/
+
+    // The code below utilizes Werner Randelshofer's AVIOutputStream
+    // object to write an AVI movie from the list of frames.  More 
+    // information about that code can be found in the AVIDemo.jar
+    // archive in the jars folder or at http://www.randelshofer.ch
+    
+    List<String> frameNames = getFrameNames();
+    if(!outputURL.endsWith(".avi"))
+	outputURL = outputURL + ".avi";
+    Picture p = new Picture((String) frameNames.get(0));
+    
+    try
+    {
+	//Convert the URL into a filename 
+        String filename = (new URL(outputURL)).getFile();
+
+	//Setup the output stream
+	AVIOutputStream AVIout = new AVIOutputStream(new File(filename), AVIOutputStream.VideoFormat.JPG);
+	AVIout.setVideoCompressionQuality(1);
+	AVIout.setFrameRate(frameRate);
+	AVIout.setVideoDimension(p.getWidth(), p.getHeight());
+
+	//Write each frame
+	for (int i = 0; i < frameNames.size(); i++)
+	{
+	    AVIout.writeFrame(new File(frameNames.get(i)));
+	}
+
+	//Close the output stream so the AVI has proper format
+	AVIout.close();
+    }
+    catch(Exception e) {    }
+
   }
 
   /**
@@ -210,7 +251,7 @@ public class MovieWriter
   public static void main(String[] args)
   {
     MovieWriter writer =
-      new MovieWriter("c:/Temp/tr1/");
+      new MovieWriter("c:/Temp/testmovie/");
     writer.writeQuicktime();
     writer.writeAVI();
   }

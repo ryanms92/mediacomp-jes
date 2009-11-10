@@ -22,5 +22,6 @@ JARS="$PWD/jars/jython.jar"
 JARS="$JARS:$PWD/jars/jmf.jar"
 JARS="$JARS:$PWD/jars/jl1.0.jar"
 JARS="$JARS:$PWD/jars/junit.jar"
+JARS="$JARS:$PWD/jars/AVIDemo.jar"
 
 echo $JARS

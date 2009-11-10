@@ -179,7 +179,7 @@ JES_API_SECTIONS = [ \
                 'makeTurtle', 'penUp', 'penDown', 'makeWorld',
                 'getTurtleList', 'drop', 'getHeading', 'getXPos', 'getYPos']),
 ('Movies', ['playMovie', 'makeMovie', 'makeMovieFromInitialFile', \
-            'writeFramesToDirectory', 'addFrameToMovie', 'writeQuicktime', \
+            'writeFramesToDirectory', 'addFrameToMovie', 'writeQuicktime', 'writeAVI', \
             'openFrameSequencerTool', 'explore']),
 ('Pixels', ['getColor', 'setColor', 'getRed', 'getGreen', 'getBlue', \
             'setRed', 'setGreen', 'setBlue', 'getX', 'getY']),

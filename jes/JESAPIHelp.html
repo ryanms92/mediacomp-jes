@@ -1489,6 +1489,27 @@ def makeQuicktimeMovie():
 </pre>
 This opens up a file selector dialog. The user picks a picture file, and the function writes a Movie with the given file as the first frame to "C:\myframes\myMovie.mov" at 30 frames per second.
 _
+writeAVI|<b>writeAVI</b>(movie, path[, framesPerSec]):<br>
+<font color=blue>movie</font>: the Movie object that you want to write out. The frames must either all be in the same directory, or the frames must have been written out to a directory since the last change was made.<br>
+<font color=blue>path</font>: the path to the file you want the movie written to<br>
+<font color=blue>framesPerSec</font>: the frame rate for the movie (optional)<br>
+Writes a movie out in the AVI video format. Be sure to end the path with ".avi" so that the operating system will understand it properly. Default frame rate is 16.<br>
+<b>Examples:</b>
+<pre>
+def makeAVIMovie():
+  file = pickAFile()
+  myMovie = makeMovieFromInitialFile(file)
+  writeAVI(myMovie, "C:\\myframes\\myMovie.avi")
+</pre>
+This opens up a file selector dialog. The user picks a picture file, and the function writes a Movie with the given file as the first frame to "C:\myframes\myMovie.avi" at 16 frames per second.
+<pre>
+def makeAVIMovie():
+  file = pickAFile()
+  myMovie = makeMovieFromInitialFile(file)
+  writeAVI(myMovie, "C:\\myframes\\myMovie.avi", 30)
+</pre>
+This opens up a file selector dialog. The user picks a picture file, and the function writes a Movie with the given file as the first frame to "C:\myframes\myMovie.avi" at 30 frames per second.
+_
 writeSoundTo|<b>writeSoundTo</b>(sound, path):<br>
 <font color=blue>sound</font>: the sound you want to write out to a file<br>
 <font color=blue>path</font>: the path to the file you want the picture written to<br>

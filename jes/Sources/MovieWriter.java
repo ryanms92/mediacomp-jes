@@ -201,7 +201,9 @@ public class MovieWriter
 */
 
     // The code below utilizes Werner Randelshofer's AVIOutputStream
-    // object to write an AVI movie from the list of frames.  More 
+    // object to write an AVI movie from the list of frames.  His code
+    // is shared under the Creative Commons Attribution License 
+    // (see http://creativecommons.org/licenses/by/3.0/).  More 
     // information about that code can be found in the AVIDemo.jar
     // archive in the jars folder or at http://www.randelshofer.ch
     

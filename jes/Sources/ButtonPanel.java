@@ -61,7 +61,7 @@ public class ButtonPanel extends JPanel {
 		this.add(delBeforeButton);
 		this.add(delAfterButton);
 		this.add(writeQuicktimeButton);
-//		this.add(writeAVIButton);
+		this.add(writeAVIButton);
 
 		// add the action listeners to the buttons
 		nextButton.setToolTipText("Click to see the next frame");

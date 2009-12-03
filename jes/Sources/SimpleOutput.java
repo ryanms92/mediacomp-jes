@@ -105,7 +105,10 @@ public class SimpleOutput
 
 	try
 	{
-		SwingUtilities.invokeAndWait(promptStringRunner);
+		if (SwingUtilities.isEventDispatchThread())
+			promptStringRunner.run();
+		else
+			SwingUtilities.invokeAndWait(promptStringRunner);
 	}
 	catch(Exception e)
 	{

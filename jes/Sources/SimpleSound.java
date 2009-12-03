@@ -248,13 +248,13 @@ public class SimpleSound{
    * @param fileName The File from which to create this sound.
    * @see SimpleSound#loadFromFile(String filename)
    */
-  public SimpleSound(String fileName)
+  public SimpleSound(String fileName) throws SoundException
   {
     try {
       // load the sound from the file
       loadFromFile(fileName);
     } catch (Exception ex) {
-      printError("Exception during load of file " + fileName);
+      printError("Exception during load of file " + fileName + "\n Please ensure this file exists and uses a filetype supported by JES (wav, aiff, au).");
     }
   }
 
@@ -420,7 +420,7 @@ public class SimpleSound{
    *                            This way we can catch the exception
    *                            in JES.
    */
-  public void printError(String message) //throws SoundException
+  public void printError(String message) throws SoundException
   {
     printError(message, null);
   }
@@ -438,7 +438,7 @@ public class SimpleSound{
    *                            This way we can catch the exception
    *                            in JES.
    */
-  public void printError(String message, Exception e) //throws SoundException
+  public void printError(String message, Exception e) throws SoundException
   {
     if(message != null)
     {
@@ -449,7 +449,7 @@ public class SimpleSound{
         e.printStackTrace();
       }
       //so we can catch the error
-      //throw(new SoundException(message));
+      throw(new SoundException(message));
     }
   }
 
@@ -471,7 +471,7 @@ public class SimpleSound{
    * Method to write this sound to a file
    * @param fileName the name of the file to write to
    */
-  public void write(String fileName)
+  public void write(String fileName) throws SoundException
   {
     try {
       writeToFile(fileName);

@@ -86,7 +86,14 @@ public class FileChooser
 	try
 	{
 		// Run the code now to get the dialog on the GUI thread and then wait for a response
-		SwingUtilities.invokeAndWait(pickAFileRunner);
+		if (SwingUtilities.isEventDispatchThread())
+		{
+			pickAFileRunner.run();
+		}
+		else
+		{
+			SwingUtilities.invokeAndWait(pickAFileRunner);
+		}
 		return path[0];
 	}
 	catch(Exception e)

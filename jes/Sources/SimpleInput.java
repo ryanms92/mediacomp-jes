@@ -204,7 +204,14 @@ public class SimpleInput
 
 	try
 	{
-		SwingUtilities.invokeAndWait(promptStringRunner);
+		if (SwingUtilities.isEventDispatchThread())
+		{
+			promptStringRunner.run();
+		}
+		else
+		{			
+			SwingUtilities.invokeAndWait(promptStringRunner);
+		}
 		return answer[0];
 	}
 	catch(Exception e)

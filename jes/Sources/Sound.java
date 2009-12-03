@@ -23,7 +23,7 @@ public class Sound extends SimpleSound
    * Constructor that takes a file name
    * @param fileName the name of the file to read the sound from
    */
-  public Sound(String fileName)
+  public Sound(String fileName) throws SoundException
   {
     // let the parent class handle setting the file name
     super(fileName);

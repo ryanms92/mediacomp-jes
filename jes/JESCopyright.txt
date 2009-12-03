@@ -1,3 +1,6 @@
+JES- Jython Environment for Students version 4.3
+Copyright (C) 2009 Brian Dorn and Barbara Ericson
+
 JES- Jython Environment for Students version 4.2.1
 Copyright (C) 2009 William Scharfnorth, Brian Dorn, and Barbara Ericson
 

@@ -346,6 +346,10 @@ class Bdb:
             cmd = cmd+'\n'
         try:
             try:
+		import time
+		print "Before exec"
+		time.sleep(10)
+		print "Exec call"
                 exec cmd in globals, locals
             except BdbQuit:
                 pass
